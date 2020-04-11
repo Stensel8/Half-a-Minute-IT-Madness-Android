@@ -23,7 +23,7 @@ public class GameOver extends AppCompatActivity {
         setContentView(R.layout.game_over);
         ivHighScore = findViewById(R.id.ivHighScore);
         tvHighScore = findViewById(R.id.tvHighScore);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         int points = getIntent().getExtras().getInt("points");
         tvPoints = findViewById(R.id.tvPoints);
 
@@ -41,7 +41,7 @@ public class GameOver extends AppCompatActivity {
     }
 
     public void restart(View view) {
-        Intent intent = new Intent(GameOver.this, StartGame.class);
+        Intent intent = new Intent(GameOver.this, MathGame.class);
         startActivity(intent);
         finish();
     }

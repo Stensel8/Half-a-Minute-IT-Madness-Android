@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Score: "
-                android:textSize="18sp" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/tvPoints"
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Personal best: "
-                android:textSize="18sp"/>
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/tvHighScore"
@@ -86,13 +86,8 @@
                 android:layout_weight="1"
                 android:text="best"
                 android:textColor="@android:color/holo_red_light"
-                android:textSize="20sp"/>
+                android:textSize="30sp" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/game_over" />
     </LinearLayout>
 </LinearLayout>

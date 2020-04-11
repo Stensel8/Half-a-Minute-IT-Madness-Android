@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,14 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class StartGame extends AppCompatActivity {
+public class MathGame extends AppCompatActivity {
 
     int op1, op2, correctAnswer, incorrectAnswer;
     TextView tvTimer, tvPoints, tvSum, tvResult;
     Button btn0, btn1, btn2, btn3;
     CountDownTimer countDownTimer;
     long millisUntilFinished;
-    int points;
+    int points, wrong, maxWrongAnswers;
     int numberOfQuestions;
     Random random;
     int[] btnIds;
@@ -31,8 +32,8 @@ public class StartGame extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_game);
-        getSupportActionBar().hide();
+        setContentView(R.layout.math_game);
+//        getSupportActionBar().hide();
         op1 = 0;
         op2 = 0;
         correctAnswer = 0;
@@ -47,6 +48,8 @@ public class StartGame extends AppCompatActivity {
         btn3 = findViewById(R.id.btn3);
         millisUntilFinished = 30100;
         points = 0;
+        wrong = 0;
+        maxWrongAnswers = 2;
         numberOfQuestions = 0;
         random = new Random();
         btnIds = new int[]{R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3};
@@ -55,6 +58,24 @@ public class StartGame extends AppCompatActivity {
         operatorArray = new String[]{"+", "-", "*", "÷"};
         startGame();
 
+    }
+
+    public void pauseGame(View view) {
+
+        countDownTimer.cancel();
+        Intent intent = new Intent(MathGame.this, PauseMenu.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        countDownTimer.cancel();
+        Intent intent = new Intent(MathGame.this, ChooseGame.class);
+        startActivity(intent);
+        finish();
     }
 
     private void startGame() {
@@ -71,17 +92,25 @@ public class StartGame extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                btn0.setClickable(false);
-                btn1.setClickable(false);
-                btn2.setClickable(false);
-                btn3.setClickable(false);
-                Intent intent = new Intent(StartGame.this, GameOver.class);
-                intent.putExtra("points", points);
-                startActivity(intent);
-                finish();
+                gameOver();
             }
         }.start();
 
+    }
+
+    private void gameOver(){
+        if(countDownTimer != null)
+        {
+            countDownTimer.cancel();
+        }
+        btn0.setClickable(false);
+        btn1.setClickable(false);
+        btn2.setClickable(false);
+        btn3.setClickable(false);
+        Intent intent = new Intent(MathGame.this, GameOver.class);
+        intent.putExtra("points", points);
+        startActivity(intent);
+        finish();
     }
 
     private void generateQuestion() {
@@ -134,15 +163,26 @@ public class StartGame extends AppCompatActivity {
     }
 
     public void chooseAnswer(View view) {
-        int answer = Integer.parseInt(((Button) view).getText().toString());
-        if(answer == correctAnswer)
+
+        if(!(view instanceof ImageButton))
         {
-            points++;
-            tvResult.setText("Correct!");
-        }else{
-            tvResult.setText("Wrong!");
+            int answer = Integer.parseInt(((Button) view).getText().toString());
+            if(answer == correctAnswer)
+            {
+                points++;
+                tvResult.setText("Correct!");
+            }else{
+                if(wrong < maxWrongAnswers)
+                {
+                    tvResult.setText("Wrong!");
+                    wrong++;
+                }else{
+                    gameOver();
+                }
+            }
+
+            tvPoints.setText(points + "/" + numberOfQuestions);
+            generateQuestion();
         }
-        tvPoints.setText(points + "/" + numberOfQuestions);
-        generateQuestion();
     }
 }

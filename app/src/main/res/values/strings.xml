@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">THE 30 seconds game</string>
+    <string name="mathGameButton">Math Game</string>
+    <string name="languageGameButton">Language test</string>
+    <string name="chooseGameTitle">Choose your game</string>
+    <string name="playGame">Play game</string>
+    <string name="chooseTestTitle">Choose your test</string>
+    <string name="englishTravelingBtn">French to english for traveling</string>
+    <string name="basicDutchBtn">french to dutch for beginners</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="notificationSettings">Notifications</string>
+    <string name="difficultyTitle">Difficulty</string>
+    <string name="TimerDescription">Timer</string>
+    <string name="TimerValue">30s</string>
+    <string name="ScoreDescription">ScoreImage</string>
+    <string name="ScoreValue">0/0</string>
+    <string name="difficultyEasy">Easy</string>
+    <string name="difficultyMedium">Medium</string>
+    <string name="difficultyHard">Hard</string>
+    <string name="darlModeText">Dark mode</string>
+    <string name="pauseMenuTitle" >Pause menu</string>
+    <string name="resumeBtn">Replay</string>
+    <string name="mainMenuBtn">Main menu</string>
+    <string name="EnglishBeginnerBtn">French to english for beginners</string>
+    <string name="defaultBtnValue">7</string>
+    <string name="defaultAnswerText">\?</string>
+    <string name="defaultCalculation">"1 + 2 = "</string>
+
 </resources>

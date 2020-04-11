@@ -12,12 +12,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
     }
 
-    public void startGame(View view) {
-        Intent intent = new Intent(MainActivity.this, StartGame.class);
+    public void chooseGamePage(View view) {
+        Intent intent = new Intent(MainActivity.this, ChooseGame.class);
         startActivity(intent);
         finish();
     }
+
+    public void goSettings(View view) {
+        Intent intent = new Intent(MainActivity.this, Settings.class);
+        intent.putExtra("activity","main");
+        startActivity(intent);
+        finish();
+    }
+
 }

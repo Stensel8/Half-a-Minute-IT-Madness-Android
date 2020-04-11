@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".PauseMenu">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/pauseMenuTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pauseMenuTitle"
+                android:textColor="@color/lightThemeText"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/resumeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/rounded_btn"
+                android:gravity="center"
+                android:onClick="resumeGame"
+                android:paddingLeft="80dp"
+                android:paddingTop="20dp"
+                android:paddingRight="80dp"
+                android:paddingBottom="20dp"
+                android:text="@string/resumeBtn"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/rounded_btn"
+                android:gravity="center"
+                android:onClick="goSettings"
+                android:paddingLeft="80dp"
+                android:paddingTop="20dp"
+                android:paddingRight="80dp"
+                android:paddingBottom="20dp"
+                android:text="@string/settingsTitle"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/rounded_btn"
+                android:gravity="center"
+                android:onClick="goMain"
+                android:paddingLeft="80dp"
+                android:paddingTop="20dp"
+                android:paddingRight="80dp"
+                android:paddingBottom="20dp"
+                android:text="@string/mainMenuBtn"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
