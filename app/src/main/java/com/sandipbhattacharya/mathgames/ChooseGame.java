@@ -10,6 +10,7 @@ public class ChooseGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_game);
 //        getSupportActionBar().hide();

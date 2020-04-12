@@ -3,7 +3,6 @@
     <string name="mathGameButton">Math Game</string>
     <string name="languageGameButton">Language test</string>
     <string name="chooseGameTitle">Choose your game</string>
-    <string name="playGame">Play game</string>
     <string name="chooseTestTitle">Choose your test</string>
     <string name="englishTravelingBtn">French to english for traveling</string>
     <string name="basicDutchBtn">french to dutch for beginners</string>
@@ -21,9 +20,15 @@
     <string name="pauseMenuTitle" >Pause menu</string>
     <string name="resumeBtn">Replay</string>
     <string name="mainMenuBtn">Main menu</string>
-    <string name="EnglishBeginnerBtn">French to english for beginners</string>
     <string name="defaultBtnValue">7</string>
     <string name="defaultAnswerText">\?</string>
     <string name="defaultCalculation">"1 + 2 = "</string>
-
+    <string name="retry">Try again</string>
+    <string name="exitGame">Exit game</string>
+    <string name="scoreGOver">"Score: "</string>
+    <string name="PersonnalHScore">"Personal best: "</string>
+    <string name="hScoreDescription">High-Score image</string>
+    <string name="EnglishBeginnerBtn">French to english for beginners</string>
+    <string name="playGame">Play game</string>
+    <string name="ChangeLanguage">Change language</string>
 </resources>

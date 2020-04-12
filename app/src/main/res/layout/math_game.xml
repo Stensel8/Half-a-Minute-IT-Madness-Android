@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="?attr/backgroundColor"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -23,7 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:background="@color/background"
+                android:background="?attr/backgroundColor"
                 android:contentDescription="@string/pauseMenuTitle"
                 android:onClick="pauseGame"
                 app:srcCompat="@android:drawable/ic_media_pause" />
@@ -49,6 +49,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/TimerValue"
+                android:textColor="?attr/textColor"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -70,9 +71,10 @@
                 android:id="@+id/tvPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="@string/ScoreValue"
+                android:textColor="?attr/textColor"
                 android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
@@ -93,6 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1 + 2 = "
+                android:textColor="?attr/textColor"
                 android:textSize="32sp" />
 
             <TextView

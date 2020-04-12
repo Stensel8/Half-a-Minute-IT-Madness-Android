@@ -9,6 +9,7 @@ public class LanguageGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.language_game);
 //        getSupportActionBar().hide();

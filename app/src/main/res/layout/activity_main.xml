@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
+    android:background="?attr/backgroundColor"
     android:gravity="center"
-    android:background="@color/background">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"

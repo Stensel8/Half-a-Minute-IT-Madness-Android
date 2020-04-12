@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="?attr/backgroundColor"
     android:orientation="vertical"
     tools:context=".PauseMenu">
 
@@ -25,8 +25,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pauseMenuTitle"
-                android:textColor="@color/lightThemeText"
-                android:textSize="30sp" />
+                android:textColor="?attr/textColor"
+                android:textSize="36sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -44,9 +44,9 @@
                 android:background="@drawable/rounded_btn"
                 android:gravity="center"
                 android:onClick="resumeGame"
-                android:paddingLeft="80dp"
+                android:paddingLeft="50dp"
                 android:paddingTop="20dp"
-                android:paddingRight="80dp"
+                android:paddingRight="50dp"
                 android:paddingBottom="20dp"
                 android:text="@string/resumeBtn"
                 android:textColor="@color/buttonTextColor"
@@ -60,9 +60,9 @@
                 android:background="@drawable/rounded_btn"
                 android:gravity="center"
                 android:onClick="goSettings"
-                android:paddingLeft="80dp"
+                android:paddingLeft="50dp"
                 android:paddingTop="20dp"
-                android:paddingRight="80dp"
+                android:paddingRight="50dp"
                 android:paddingBottom="20dp"
                 android:text="@string/settingsTitle"
                 android:textColor="@color/buttonTextColor"
@@ -76,9 +76,9 @@
                 android:background="@drawable/rounded_btn"
                 android:gravity="center"
                 android:onClick="goMain"
-                android:paddingLeft="80dp"
+                android:paddingLeft="50dp"
                 android:paddingTop="20dp"
-                android:paddingRight="80dp"
+                android:paddingRight="50dp"
                 android:paddingBottom="20dp"
                 android:text="@string/mainMenuBtn"
                 android:textColor="@color/buttonTextColor"

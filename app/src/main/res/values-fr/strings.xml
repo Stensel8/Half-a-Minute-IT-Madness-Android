@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">THE 30 seconds game</string>
+    <string name="EnglishBeginnerBtn">Anglais pour débutants</string>
+    <string name="PersonnalHScore">"Meilleur score: "</string>
+    <string name="basicDutchBtn">Néerlandais pour débutants</string>
+    <string name="chooseGameTitle">Choisissez votre jeu</string>
+    <string name="chooseTestTitle">Choisissez votre test</string>
+    <string name="darlModeText">Mode sombre</string>
+    <string name="difficultyEasy">Facile</string>
+    <string name="difficultyHard">Difficile</string>
+    <string name="difficultyMedium">Moyen</string>
+    <string name="difficultyTitle">Difficulté</string>
+    <string name="englishTravelingBtn">Anglais pour le voyage</string>
+    <string name="exitGame">Quitter</string>
+    <string name="languageGameButton">test de langues</string>
+    <string name="mainMenuBtn">Menu principal</string>
+    <string name="mathGameButton">Jeu de math</string>
+    <string name="pauseMenuTitle">Menu pause</string>
+    <string name="playGame">Jouer</string>
+    <string name="resumeBtn">Rejouer</string>
+    <string name="retry">Réessayer</string>
+    <string name="settingsTitle">Paramètres</string>
+    <string name="ScoreDescription">ScoreImage</string>
+    <string name="ScoreValue">0/0</string>
+    <string name="TimerDescription">Timer</string>
+    <string name="TimerValue">30s</string>
+    <string name="defaultAnswerText">\?</string>
+    <string name="defaultBtnValue">7</string>
+    <string name="defaultCalculation">"1 + 2 = "</string>
+    <string name="hScoreDescription">High-Score image</string>
+    <string name="notificationSettings">Notifications</string>
+    <string name="scoreGOver">"Score: "</string>
+    <string name="ChangeLanguage">Changer la langue</string>
+</resources>

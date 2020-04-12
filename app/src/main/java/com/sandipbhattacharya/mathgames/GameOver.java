@@ -19,6 +19,7 @@ public class GameOver extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
         ivHighScore = findViewById(R.id.ivHighScore);
@@ -42,6 +43,12 @@ public class GameOver extends AppCompatActivity {
 
     public void restart(View view) {
         Intent intent = new Intent(GameOver.this, MathGame.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void main(View view) {
+        Intent intent = new Intent(GameOver.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

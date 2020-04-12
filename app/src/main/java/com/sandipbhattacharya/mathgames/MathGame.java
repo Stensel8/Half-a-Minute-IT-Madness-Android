@@ -31,6 +31,7 @@ public class MathGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.math_game);
 //        getSupportActionBar().hide();
@@ -124,7 +125,9 @@ public class MathGame extends AppCompatActivity {
         ((Button) findViewById(btnIds[correctAnswerPosition])).setText(""+correctAnswer);
         while(true){
             if(incorrectAnswers.size() > 3)
+            {
                 break;
+            }
             op1 = random.nextInt(10);
             op2 = 1 + random.nextInt(9);
             selectedOperator = operatorArray[random.nextInt(4)];

@@ -11,6 +11,7 @@ public class PauseMenu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pause_menu);
     }

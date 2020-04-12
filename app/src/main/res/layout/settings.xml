@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="?attr/backgroundColor"
     android:orientation="vertical">
 
     <LinearLayout
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/settingsTitle"
-                android:textColor="@color/lightThemeText"
+                android:textColor="?attr/textColor"
                 android:textSize="36sp" />
         </LinearLayout>
 
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/difficultyTitle"
-                android:textColor="@color/lightThemeText"
+                android:textColor="?attr/textColor"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -56,7 +56,8 @@
                     android:layout_margin="1dp"
                     android:background="@drawable/rounded_btn"
                     android:text="@string/difficultyEasy"
-                    android:textColor="@color/buttonTextColor" />
+                    android:textColor="@color/buttonTextColor"
+                    android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/difficultyMediumBtn"
@@ -66,7 +67,8 @@
                     android:layout_margin="1dp"
                     android:background="@drawable/rounded_btn"
                     android:text="@string/difficultyMedium"
-                    android:textColor="@color/buttonTextColor" />
+                    android:textColor="@color/buttonTextColor"
+                    android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/difficultyHardBtn"
@@ -76,7 +78,8 @@
                     android:layout_margin="1dp"
                     android:background="@drawable/rounded_btn"
                     android:text="@string/difficultyHard"
-                    android:textColor="@color/buttonTextColor" />
+                    android:textColor="@color/buttonTextColor"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -95,7 +98,7 @@
                     android:layout_marginLeft="70dp"
                     android:layout_weight="1"
                     android:text="@string/notificationSettings"
-                    android:textColor="@color/lightThemeText"
+                    android:textColor="?attr/textColor"
                     android:textSize="30sp" />
 
                 <Switch
@@ -123,7 +126,7 @@
                     android:layout_marginLeft="70dp"
                     android:layout_weight="1"
                     android:text="@string/darlModeText"
-                    android:textColor="@color/lightThemeText"
+                    android:textColor="?attr/textColor"
                     android:textSize="30sp" />
 
                 <Switch
@@ -134,6 +137,24 @@
                     android:layout_marginRight="30dp"
                     android:layout_weight="1"
                     android:checked="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnChangeLanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_btn"
+                    android:padding="10dp"
+                    android:text="@string/ChangeLanguage"
+                    android:textColor="@color/buttonTextColor"
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>
