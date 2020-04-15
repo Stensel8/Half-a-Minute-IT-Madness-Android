@@ -16,10 +16,14 @@ public class GameOver extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     ImageView ivHighScore;
     TextView tvHighScore;
-
+    SharedPref sharedPref;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
+
+        //check dark mode
+        sharedPref = new SharedPref(this);
+        setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
         ivHighScore = findViewById(R.id.ivHighScore);

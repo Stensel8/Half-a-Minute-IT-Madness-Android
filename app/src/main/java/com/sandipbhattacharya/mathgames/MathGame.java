@@ -1,8 +1,10 @@
 package com.sandipbhattacharya.mathgames;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,12 +13,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MathGame extends AppCompatActivity {
 
-    int op1, op2, correctAnswer, incorrectAnswer;
+    SharedPreferences sharedPreferences;
+    double  op1, op2, correctAnswer, incorrectAnswer;
     TextView tvTimer, tvPoints, tvSum, tvResult;
     Button btn0, btn1, btn2, btn3;
     CountDownTimer countDownTimer;
@@ -26,12 +30,17 @@ public class MathGame extends AppCompatActivity {
     Random random;
     int[] btnIds;
     int correctAnswerPosition;
-    ArrayList<Integer> incorrectAnswers;
+    ArrayList<Double> incorrectAnswers;
     String[] operatorArray;
-
+    DecimalFormat df = new DecimalFormat("0.##");
+    SharedPref sharedPref;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
+
+        //check dark mode
+        sharedPref = new SharedPref(this);
+        setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.math_game);
 //        getSupportActionBar().hide();
@@ -64,7 +73,12 @@ public class MathGame extends AppCompatActivity {
     public void pauseGame(View view) {
 
         countDownTimer.cancel();
+        sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("actualGame", "math");
+        editor.commit();
         Intent intent = new Intent(MathGame.this, PauseMenu.class);
+        intent.putExtra("actualGame","math");
         startActivity(intent);
         finish();
     }
@@ -120,9 +134,10 @@ public class MathGame extends AppCompatActivity {
         op2 = 1 + random.nextInt(9);
         String selectedOperator = operatorArray[random.nextInt(4)];
         correctAnswer = getAnswer(selectedOperator);
-        tvSum.setText(op1 + " " + selectedOperator + " " + op2 + " = ");
+        tvSum.setText(df.format(op1) + " " + selectedOperator + " " + df.format(op2) + " = ");
         correctAnswerPosition = random.nextInt(4);
-        ((Button) findViewById(btnIds[correctAnswerPosition])).setText(""+correctAnswer);
+//        tvResult.setText(correctAnswer+"");
+        ((Button) findViewById(btnIds[correctAnswerPosition])).setText(df.format(correctAnswer));
         while(true){
             if(incorrectAnswers.size() > 3)
             {
@@ -132,22 +147,30 @@ public class MathGame extends AppCompatActivity {
             op2 = 1 + random.nextInt(9);
             selectedOperator = operatorArray[random.nextInt(4)];
             incorrectAnswer = getAnswer(selectedOperator);
+
             if(incorrectAnswer == correctAnswer)
                 continue;
+            if(incorrectAnswers.contains(incorrectAnswer))
+                continue;
             incorrectAnswers.add(incorrectAnswer);
+
+            Log.d("test", "incorrect: " + incorrectAnswers + " | correct: " + correctAnswer);
+
         }
 
-        for(int i = 0; i< 3; i++){
+        for(int i = 0; i< 4; i++){
             if(i == correctAnswerPosition)
                 continue;
-            ((Button) findViewById(btnIds[i])).setText(""+incorrectAnswers.get(i));
+
+            ((Button) findViewById(btnIds[i])).setText(""+df.format(incorrectAnswers.get(i)));
+
         }
 
         incorrectAnswers.clear();
     }
 
-    private int getAnswer(String selectedOperator) {
-        int answer = 0;
+    private double getAnswer(String selectedOperator) {
+        double answer = 0;
         switch (selectedOperator){
             case "+":
                 answer = op1 + op2;
@@ -169,15 +192,17 @@ public class MathGame extends AppCompatActivity {
 
         if(!(view instanceof ImageButton))
         {
-            int answer = Integer.parseInt(((Button) view).getText().toString());
-            if(answer == correctAnswer)
+            String answer = ((Button) view).getText().toString();
+            String strCorrect = getResources().getString(R.string.correct);
+            String strWrong = getResources().getString(R.string.wrong);
+            if(answer.equals(df.format(correctAnswer)))
             {
                 points++;
-                tvResult.setText("Correct!");
+                tvResult.setText(strCorrect);
             }else{
                 if(wrong < maxWrongAnswers)
                 {
-                    tvResult.setText("Wrong!");
+                    tvResult.setText(strWrong);
                     wrong++;
                 }else{
                     gameOver();

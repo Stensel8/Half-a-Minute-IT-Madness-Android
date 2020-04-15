@@ -4,13 +4,17 @@
 
     <application
         android:allowBackup="true"
+        android:forceDarkAllowed="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/lightTheme"
-        android:forceDarkAllowed="false">
-        <activity android:name=".PauseMenu"></activity>
+        android:theme="@style/lightTheme">
+        <activity
+            android:name=".Language_test"
+            android:label="@string/title_activity_language_test"
+            android:theme="@style/lightTheme.NoActionBar"></activity>
+        <activity android:name=".PauseMenu" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,35 +22,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Settings"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".LanguageGame" />
-        <activity
-            android:name=".ChooseGame"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".ChooseLanguageGame" />
+        <activity android:name=".ChooseGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity
-            android:name=".MathGame"
-            android:parentActivityName=".ChooseGame">
+        <activity android:name=".MathGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ChooseGame" />
         </activity>
-        <activity
-            android:name=".GameOver"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".GameOver">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <receiver android:name=".NotificationAlert"/>
     </application>
 
 </manifest>

@@ -8,9 +8,14 @@ import android.view.View;
 
 public class ChooseGame extends AppCompatActivity {
 
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
+
+        //check dark mode
+        sharedPref = new SharedPref(this);
+        setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_game);
 //        getSupportActionBar().hide();
@@ -32,7 +37,7 @@ public class ChooseGame extends AppCompatActivity {
     }
 
     public void startLanguageGame(View view) {
-        Intent intent = new Intent(ChooseGame.this, LanguageGame.class);
+        Intent intent = new Intent(ChooseGame.this, ChooseLanguageGame.class);
         startActivity(intent);
         finish();
     }

@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -19,40 +21,37 @@ import java.util.Locale;
 
 public class Settings extends AppCompatActivity {
 
-    public static boolean isDarkMode;
+    private Switch darkModeToggle;
+    SharedPref sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Switch darkmodeToggle;
-
+        sharedPref = new SharedPref(this);
         //set dark theme that we configured
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.darkTheme);
-        }else{
-            setTheme(R.style.lightTheme);
-        }
+        setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+
+//        setTheme(this.sharedDarkMode? R.style.darkTheme: R.style.lightTheme);
 
         super.onCreate(savedInstanceState);
         loadLocale();
         setContentView(R.layout.settings);
 
-
         //switch between dark and light mode
-        darkmodeToggle = findViewById(R.id.darkModeToggle);
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            darkmodeToggle.setChecked(true);
+        darkModeToggle = findViewById(R.id.darkModeToggle);
+        if(sharedPref.loadNightMode() == true){
+            darkModeToggle.setChecked(true);
         }
-        darkmodeToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        darkModeToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    isDarkMode = true;
+                    sharedPref.setNightMode(true);
                     recreate();
                 }else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    isDarkMode = false;
+                    sharedPref.setNightMode(false);
                     recreate();
                 }
+//                Log.d("checked", "checked: " + isChecked + " | boolean: " + isDarkMode);
             }
         });
 

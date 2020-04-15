@@ -8,9 +8,14 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(Settings.isDarkMode? R.style.darkTheme: R.style.lightTheme);
+
+        //check dark mode
+        sharedPref = new SharedPref(this);
+        setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        getSupportActionBar().hide();
