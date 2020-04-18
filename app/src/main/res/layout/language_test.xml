@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
@@ -27,7 +26,6 @@
                 android:background="?attr/backgroundColor"
                 android:contentDescription="@string/pauseMenuTitle"
                 android:onClick="pauseGame"
-                android:src="@android:drawable/ic_media_pause"
                 app:srcCompat="@android:drawable/ic_media_pause" />
         </LinearLayout>
 
@@ -79,12 +77,12 @@
                 android:textColor="?attr/textColor"
                 android:textSize="24sp" />
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -104,7 +102,6 @@
             android:layout_margin="10dp"
             android:background="@drawable/rounded_btn"
             android:onClick="chooseAnswer"
-            android:padding="20dp"
             android:text="@string/answerLang"
             android:textColor="@color/buttonTextColor"
             android:textSize="24sp" />
@@ -116,7 +113,6 @@
             android:layout_margin="10dp"
             android:background="@drawable/rounded_btn"
             android:onClick="chooseAnswer"
-            android:padding="20dp"
             android:text="@string/answerLang"
             android:textColor="@color/buttonTextColor"
             android:textSize="24sp" />
@@ -128,7 +124,6 @@
             android:layout_margin="10dp"
             android:background="@drawable/rounded_btn"
             android:onClick="chooseAnswer"
-            android:padding="20dp"
             android:text="@string/answerLang"
             android:textColor="@color/buttonTextColor"
             android:textSize="24sp" />
@@ -140,17 +135,16 @@
             android:layout_margin="10dp"
             android:background="@drawable/rounded_btn"
             android:onClick="chooseAnswer"
-            android:padding="20dp"
             android:text="@string/answerLang"
             android:textColor="@color/buttonTextColor"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tvResult2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
             android:text=""
             android:textColor="?attr/textColor"
             android:textSize="32sp" />

@@ -40,4 +40,5 @@
     <string name="notifTitle">Play 30 Seconds game!</string>
     <string name="EnglishToFrench">English to French</string>
     <string name="EnglishToDutch">English to dutch</string>
+    <string name="changeGame">Change game</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.sandipbhattacharya.mathgames;
+package com.assbinc.secondsGame;
 
 import org.junit.Test;
 

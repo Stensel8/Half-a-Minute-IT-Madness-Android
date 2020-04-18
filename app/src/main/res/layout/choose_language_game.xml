@@ -1,84 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="?attr/backgroundColor"
-    android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/chooseTestTitle"
-            android:textColor="?attr/textColor"
-            android:textSize="36sp" />
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chooseTestTitle"
+                android:textColor="?attr/textColor"
+                android:textSize="36sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/btnNlToEn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_btn"
+                android:onClick="startLanguageTest"
+                android:padding="20dp"
+                android:text="@string/DutchToEnglish"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="18sp"
+                tools:text="@string/DutchToEnglish" />
+
+            <Button
+                android:id="@+id/btnEnToNl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_btn"
+                android:onClick="startLanguageTest"
+                android:padding="20dp"
+                android:text="@string/EnglishToDutch"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnFrToEn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_btn"
+                android:onClick="startLanguageTest"
+                android:padding="20dp"
+                android:text="@string/FrenchToEnglish"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnEnToFr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_btn"
+                android:onClick="startLanguageTest"
+                android:padding="20dp"
+                android:text="@string/EnglishToFrench"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <Button
-            android:id="@+id/btnNlToEn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_btn"
-            android:onClick="startLanguageTest"
-            android:padding="20dp"
-            android:text="@string/DutchToEnglish"
-            android:textColor="@color/buttonTextColor"
-            android:textSize="18sp"
-            tools:text="@string/DutchToEnglish" />
-
-        <Button
-            android:id="@+id/btnEnToNl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_btn"
-            android:onClick="startLanguageTest"
-            android:padding="20dp"
-            android:text="@string/EnglishToDutch"
-            android:textColor="@color/buttonTextColor"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnFrToEn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_btn"
-            android:onClick="startLanguageTest"
-            android:padding="20dp"
-            android:text="@string/FrenchToEnglish"
-            android:textColor="@color/buttonTextColor"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnEnToFr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_btn"
-            android:onClick="startLanguageTest"
-            android:padding="20dp"
-            android:text="@string/EnglishToFrench"
-            android:textColor="@color/buttonTextColor"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

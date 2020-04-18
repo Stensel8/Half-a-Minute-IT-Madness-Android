@@ -41,4 +41,5 @@
     <string name="answerLang">I am 23 years old</string>
     <string name="notifTitle">30 Seconds game spelen!</string>
     <string name="EnglishToDutch">Nederlands naar Frans</string>
+    <string name="changeGame">Spel veranderen</string>
 </resources>

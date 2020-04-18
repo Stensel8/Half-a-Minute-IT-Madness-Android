@@ -1,4 +1,4 @@
-package com.sandipbhattacharya.mathgames;
+package com.assbinc.secondsGame;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

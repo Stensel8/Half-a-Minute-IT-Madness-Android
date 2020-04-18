@@ -1,4 +1,4 @@
-package com.sandipbhattacharya.mathgames;
+package com.assbinc.secondsGame;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.sandipbhattacharya.mathgames", appContext.getPackageName());
+        assertEquals("com.assbinc.mathgames", appContext.getPackageName());
     }
 }

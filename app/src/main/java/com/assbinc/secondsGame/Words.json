@@ -1,0 +1,27 @@
+[
+  {
+    "frWord": "bonjour",
+    "nlWord": "goeiedag",
+    "enWord": "hello"
+  },
+  {
+    "frWord": "voir",
+    "nlWord": "zien",
+    "enWord": "to see"
+  },
+  {
+    "frWord": "prendre",
+    "nlWord": "nemen",
+    "enWord": "to take"
+  },
+  {
+    "frWord": "voiture",
+    "nlWord": "auto",
+    "enWord": "car"
+  },
+  {
+    "frWord": "chaise",
+    "nlWord": "stoel",
+    "enWord": "chair"
+  }
+]

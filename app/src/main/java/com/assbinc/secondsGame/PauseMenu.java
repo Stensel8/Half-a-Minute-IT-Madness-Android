@@ -1,4 +1,4 @@
-package com.sandipbhattacharya.mathgames;
+package com.assbinc.secondsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 public class PauseMenu extends AppCompatActivity {
 
@@ -86,6 +85,12 @@ public class PauseMenu extends AppCompatActivity {
     public void goMain(View view) {
 
         Intent intent = new Intent(PauseMenu.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void changeGame(View view) {
+        Intent intent = new Intent(PauseMenu.this, ChooseGame.class);
         startActivity(intent);
         finish();
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sandipbhattacharya.mathgames">
+    package="com.assbinc.secondsGame">
 
     <application
         android:allowBackup="true"
@@ -11,40 +11,40 @@
         android:supportsRtl="true"
         android:theme="@style/lightTheme">
         <activity
-            android:name=".Language_test"
+            android:name="com.assbinc.secondsGame.Language_test"
             android:label="@string/title_activity_language_test"
             android:theme="@style/lightTheme.NoActionBar"></activity>
-        <activity android:name=".PauseMenu" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.assbinc.secondsGame.PauseMenu" />
+        <activity android:name="com.assbinc.secondsGame.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settings">
+        <activity android:name="com.assbinc.secondsGame.Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
-        <activity android:name=".ChooseLanguageGame" />
-        <activity android:name=".ChooseGame">
+        <activity android:name="com.assbinc.secondsGame.ChooseLanguageGame" />
+        <activity android:name="com.assbinc.secondsGame.ChooseGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
-        <activity android:name=".MathGame">
+        <activity android:name="com.assbinc.secondsGame.MathGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ChooseGame" />
+                android:value="com.assbinc.secondsGame.ChooseGame" />
         </activity>
-        <activity android:name=".GameOver">
+        <activity android:name="com.assbinc.secondsGame.GameOver">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
 
-        <receiver android:name=".NotificationAlert"/>
+        <receiver android:name="com.assbinc.secondsGame.NotificationAlert"/>
     </application>
 
 </manifest>
