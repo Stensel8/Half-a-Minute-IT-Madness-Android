@@ -29,50 +29,54 @@
         android:padding="20dp">
 
         <Button
-            android:id="@+id/btnDutch"
+            android:id="@+id/btnNlToEn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:onClick="startLanguageTest"
-            android:paddingLeft="20dp"
-            android:paddingTop="20dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="20dp"
-            android:text="@string/basicDutchBtn"
+            android:padding="20dp"
+            android:text="@string/DutchToEnglish"
             android:textColor="@color/buttonTextColor"
             android:textSize="18sp"
-            tools:text="@string/basicDutchBtn" />
+            tools:text="@string/DutchToEnglish" />
 
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/btnEnToNl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:onClick="startLanguageTest"
-            android:paddingLeft="20dp"
-            android:paddingTop="20dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="20dp"
-            android:text="@string/EnglishBeginnerBtn"
+            android:padding="20dp"
+            android:text="@string/EnglishToDutch"
             android:textColor="@color/buttonTextColor"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btn0"
+            android:id="@+id/btnFrToEn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_btn"
+            android:onClick="startLanguageTest"
+            android:padding="20dp"
+            android:text="@string/FrenchToEnglish"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnEnToFr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:onClick="startLanguageTest"
-            android:paddingLeft="20dp"
-            android:paddingTop="20dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="20dp"
-            android:text="@string/englishTravelingBtn"
+            android:padding="20dp"
+            android:text="@string/EnglishToFrench"
             android:textColor="@color/buttonTextColor"
             android:textSize="18sp" />
     </LinearLayout>

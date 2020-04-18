@@ -44,24 +44,31 @@ public class PauseMenu extends AppCompatActivity {
                 startActivity(intent);
                 finish();
                 break;
-            case("dutch"):
+            case("NlToEn"):
 
                 intent = new Intent(this, Language_test.class);
-                intent.putExtra("chosenGame","dutch");
+                intent.putExtra("chosenGame","NlToEn");
                 startActivity(intent);
                 finish();
                 break;
-            case("EnBeginners"):
+            case("EnToNl"):
 
                 intent = new Intent(this, Language_test.class);
-                intent.putExtra("chosenGame","EnBeginners");
+                intent.putExtra("chosenGame","EnToNl");
                 startActivity(intent);
                 finish();
                 break;
-            case("EnTravel"):
+            case("FrToEn"):
 
                 intent = new Intent(this, Language_test.class);
-                intent.putExtra("chosenGame","EnTravel");
+                intent.putExtra("chosenGame","FrToEn");
+                startActivity(intent);
+                finish();
+                break;
+            case("EnToFr"):
+
+                intent = new Intent(this, Language_test.class);
+                intent.putExtra("chosenGame","EnToFr");
                 startActivity(intent);
                 finish();
                 break;

@@ -43,7 +43,7 @@ public class MathGame extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.math_game);
-//        getSupportActionBar().hide();
+
         op1 = 0;
         op2 = 0;
         correctAnswer = 0;
@@ -190,13 +190,12 @@ public class MathGame extends AppCompatActivity {
 
     public void chooseAnswer(View view) {
 
-        if(!(view instanceof ImageButton))
-        {
+        if(!(view instanceof ImageButton)) {
             String answer = ((Button) view).getText().toString();
             String strCorrect = getResources().getString(R.string.correct);
             String strWrong = getResources().getString(R.string.wrong);
-            if(answer.equals(df.format(correctAnswer)))
-            {
+
+            if(answer.equals(df.format(correctAnswer))) {
                 points++;
                 tvResult.setText(strCorrect);
             }else{

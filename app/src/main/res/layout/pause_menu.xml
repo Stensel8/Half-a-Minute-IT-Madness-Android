@@ -38,7 +38,7 @@
             android:padding="10dp">
 
             <Button
-                android:id="@+id/resumeBtn"
+                android:id="@+id/btnResume"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -54,7 +54,7 @@
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btnSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -70,7 +70,7 @@
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"

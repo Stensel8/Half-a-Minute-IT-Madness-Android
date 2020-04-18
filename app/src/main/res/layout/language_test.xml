@@ -103,10 +103,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/rounded_btn"
+            android:onClick="chooseAnswer"
             android:padding="20dp"
+            android:text="@string/answerLang"
             android:textColor="@color/buttonTextColor"
-            android:textSize="24sp"
-            tools:text="@string/answerLang" />
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btn1"
@@ -114,10 +115,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/rounded_btn"
+            android:onClick="chooseAnswer"
             android:padding="20dp"
+            android:text="@string/answerLang"
             android:textColor="@color/buttonTextColor"
-            android:textSize="24sp"
-            tools:text="@string/answerLang" />
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btn2"
@@ -125,10 +127,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/rounded_btn"
+            android:onClick="chooseAnswer"
             android:padding="20dp"
+            android:text="@string/answerLang"
             android:textColor="@color/buttonTextColor"
-            android:textSize="24sp"
-            tools:text="@string/answerLang" />
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btn3"
@@ -136,9 +139,20 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/rounded_btn"
+            android:onClick="chooseAnswer"
             android:padding="20dp"
+            android:text="@string/answerLang"
             android:textColor="@color/buttonTextColor"
-            android:textSize="24sp"
-            tools:text="@string/answerLang" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvResult2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="?attr/textColor"
+            android:textSize="32sp" />
     </LinearLayout>
 </LinearLayout>

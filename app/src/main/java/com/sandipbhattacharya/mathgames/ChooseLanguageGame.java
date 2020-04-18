@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Switch;
 
 public class ChooseLanguageGame extends AppCompatActivity {
 
@@ -28,14 +26,17 @@ public class ChooseLanguageGame extends AppCompatActivity {
         Intent intent = new Intent(this, Language_test.class);
 
         switch(view.getId()){
-            case (R.id.btnDutch):
-                intent.putExtra("chosenGame","dutch");
+            case (R.id.btnNlToEn):
+                intent.putExtra("chosenGame","NlToEn");
                 break;
-            case (R.id.btn1):
-                intent.putExtra("chosenGame","EnBeginners");
+            case (R.id.btnEnToNl):
+                intent.putExtra("chosenGame","EnToNl");
                 break;
-            case (R.id.btn0):
-                intent.putExtra("chosenGame","EnTravel");
+            case (R.id.btnFrToEn):
+                intent.putExtra("chosenGame","FrToEn");
+                break;
+            case (R.id.btnEnToFr):
+                intent.putExtra("chosenGame","EnToFr");
                 break;
         }
         startActivity(intent);
