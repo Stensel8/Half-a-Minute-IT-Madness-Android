@@ -1,11 +1,15 @@
 package com.assbinc.secondsGame;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +28,7 @@ public class GameOver extends AppCompatActivity {
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
 
+        loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
         ivHighScore = findViewById(R.id.ivHighScore);
@@ -45,19 +50,41 @@ public class GameOver extends AppCompatActivity {
         tvHighScore.setText(""+ pointsSP);
     }
 
+    //set saved language
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    //load saved language
+    public void loadLocale(){
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My lang", "");
+        setLocale(language);
+    }
+
     public void restart(View view) {
+        Settings.btnAnimation(view);
+
         Intent intent = new Intent(GameOver.this, MathGame.class);
         startActivity(intent);
         finish();
     }
 
     public void main(View view) {
+        Settings.btnAnimation(view);
+
         Intent intent = new Intent(GameOver.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void exit(View view) {
+        Settings.btnAnimation(view);
+
         finish();
     }
 }

@@ -8,7 +8,7 @@
     <string name="chooseTestTitle">Kies je test</string>
     <string name="darlModeText">Dark mode</string>
     <string name="defaultAnswerText">\?</string>
-    <string name="defaultBtnValue">7</string>
+    <string name="defaultBtnValue">3</string>
     <string name="defaultCalculation">"1 + 2 = "</string>
     <string name="difficultyEasy">Easy</string>
     <string name="difficultyHard">Hard</string>
@@ -42,4 +42,6 @@
     <string name="notifTitle">30 Seconds game spelen!</string>
     <string name="EnglishToDutch">Nederlands naar Frans</string>
     <string name="changeGame">Spel veranderen</string>
+    <string name="changeDfficultyTo">"Moeilijkheid: "</string>
+    <string name="livesLeft">"Levens: "</string>
 </resources>

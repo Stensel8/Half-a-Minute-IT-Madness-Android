@@ -3,25 +3,34 @@ package com.assbinc.secondsGame;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 public class Language_test extends AppCompatActivity {
@@ -29,9 +38,9 @@ public class Language_test extends AppCompatActivity {
     SharedPref sharedPref;
     SharedPreferences sharedPreferences, pref;
     Random random;
-    String correctAnswer, incorrectAnswer, savedLanguage,chosenGame;
-    TextView tvQuestion, tvTimer, tvPoints, tvResult;
-    Button btn0, btn1, btn2, btn3;
+    String correctAnswer, incorrectAnswer, savedLanguage,chosenGame, difficulty;
+    TextView tvQuestion, tvTimer, tvPoints, tvResult, tvLives;
+    Button btn0, btn1, btn2, btn3, clickedBtn;
     CountDownTimer countDownTimer;
     long millisUntilFinished;
     int points, wrong, maxWrongAnswers;
@@ -41,8 +50,8 @@ public class Language_test extends AppCompatActivity {
     ArrayList<String> incorrectAnswers;
     Gson gson;
     Type listType;
-    List<Words> wordsList;
-    Words word;
+    Map<String, Words> wordsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,6 +59,7 @@ public class Language_test extends AppCompatActivity {
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
 
+        loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.language_test);
 
@@ -63,6 +73,7 @@ public class Language_test extends AppCompatActivity {
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
+        tvLives = findViewById(R.id.tvLives);
         millisUntilFinished = 30100;
         points = 0;
         wrong = 0;
@@ -74,21 +85,32 @@ public class Language_test extends AppCompatActivity {
         correctAnswerPosition = 0;
         incorrectAnswers = new ArrayList<>();
         gson = new Gson();
-        listType = new TypeToken<List<Words>>(){}.getType();
-        wordsList = gson.fromJson(WordsJson.myWords, listType);
+        listType = new TypeToken<Map<String, Words>>() {}.getType();
+//        listType = new TypeToken<List<Words>>(){}.getType();
+//        wordsList = gson.fromJson(WordsJson.myWords, listType);
         chosenGame = getIntent().getStringExtra("chosenGame");
         pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         savedLanguage = pref.getString("My lang", "");
-        /*int questionRand = random.nextInt(26/2)*2; //select an even random number to get the associated word as a question
-        int answerRand = questionRand+1; //get the answer from the random question
-
-        TextView tvAnswer = findViewById(R.id.btn0);
-
-        tvQuestion.setText(questionRand + "");
-        tvAnswer.setText(answerRand + "");*/
-
+        sharedPreferences = getSharedPreferences("gameDifficulty", Activity.MODE_PRIVATE);
+        difficulty = sharedPreferences.getString("difficulty", "");
         startGame();
 
+    }
+
+    //set saved language
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    //load saved language
+    public void loadLocale(){
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My lang", "");
+        setLocale(language);
     }
 
     public void pauseGame(View view) {
@@ -134,9 +156,9 @@ public class Language_test extends AppCompatActivity {
     private void generateQuestion() {
 
         numberOfQuestions++;
-        randomId = random.nextInt(wordsList.size());
+        //randomId = random.nextInt(wordsList.size());
 
-        if(savedLanguage.equals("fr")){
+        /*if(savedLanguage.equals("fr")){
             String question;
             switch (chosenGame){
                 case "NlToEn":
@@ -212,14 +234,16 @@ public class Language_test extends AppCompatActivity {
         }
         correctAnswerPosition = random.nextInt(4);
 
-        ((Button) findViewById(btnIds[correctAnswerPosition])).setText(correctAnswer);
+        ((Button) findViewById(btnIds[correctAnswerPosition])).setText(correctAnswer);*/
+
+        tvLives.setText((maxWrongAnswers+1) - wrong + "");
 
         setIncorrectAnswers();
 
     }
 
     private void setIncorrectAnswers(){
-        while(true) {
+        /*while(true) {
             if (incorrectAnswers.size() > 3) {
                 break;
             }
@@ -281,7 +305,7 @@ public class Language_test extends AppCompatActivity {
 
         }
 
-        incorrectAnswers.clear();
+        incorrectAnswers.clear();*/
     }
     private void gameOver() {
         /*if(countDownTimer != null)
@@ -300,18 +324,48 @@ public class Language_test extends AppCompatActivity {
 
     public void chooseAnswer(View view) {
 
-        Log.i("gson", "size: " + wordsList.size() + " | random: " + randomId + " | GSON: " + wordsList.get(randomId).getFrWord());
+        //Log.i("gson", "size: " + wordsList.size() + " | random: " + randomId + " | GSON: " + wordsList.get(randomId).getFrWord());
+
+        clickedBtn = (Button) view;
 
         if (!(view instanceof ImageButton)) {
-            String answer = ((Button) view).getText().toString();
+            String answer = clickedBtn.getText().toString();
             String strCorrect = getResources().getString(R.string.correct);
             String strWrong = getResources().getString(R.string.wrong);
 
             if (answer.equalsIgnoreCase(correctAnswer)) {
                 points++;
+
+                //change the color of the clicked button to green
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_green));
+                }
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //set its initial color
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_btn));
+                        }
+                    }
+                }, 500);
+
                 tvResult.setText(strCorrect);
             } else {
                 if (wrong < maxWrongAnswers) {
+                    //change the color of the clicked button to green
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_red));
+                    }
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //set its initial color
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_btn));
+                            }
+                        }
+                    }, 500);
                     tvResult.setText(strWrong);
                     wrong++;
                 } else {
@@ -320,6 +374,13 @@ public class Language_test extends AppCompatActivity {
             }
 
             tvPoints.setText(points + "/" + numberOfQuestions);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //make the text disappear after 1s
+                    tvResult.setText("");
+                }
+            }, 1000);
             generateQuestion();
         }
     }

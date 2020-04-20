@@ -2,10 +2,14 @@ package com.assbinc.secondsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+
+import java.util.Locale;
 
 public class PauseMenu extends AppCompatActivity {
 
@@ -17,8 +21,26 @@ public class PauseMenu extends AppCompatActivity {
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
+
+        loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pause_menu);
+    }
+
+    //set saved language
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    //load saved language
+    public void loadLocale(){
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My lang", "");
+        setLocale(language);
     }
 
     @Override
@@ -29,6 +51,7 @@ public class PauseMenu extends AppCompatActivity {
     }
 
     public void resumeGame(View view) {
+        Settings.btnAnimation(view);
 
         goBack();
     }
@@ -75,6 +98,7 @@ public class PauseMenu extends AppCompatActivity {
     }
 
     public void goSettings(View view) {
+        Settings.btnAnimation(view);
 
         Intent intent = new Intent(PauseMenu.this, Settings.class);
         intent.putExtra("activity","pause");
@@ -83,6 +107,7 @@ public class PauseMenu extends AppCompatActivity {
     }
 
     public void goMain(View view) {
+        Settings.btnAnimation(view);
 
         Intent intent = new Intent(PauseMenu.this, MainActivity.class);
         startActivity(intent);
@@ -90,6 +115,8 @@ public class PauseMenu extends AppCompatActivity {
     }
 
     public void changeGame(View view) {
+        Settings.btnAnimation(view);
+
         Intent intent = new Intent(PauseMenu.this, ChooseGame.class);
         startActivity(intent);
         finish();

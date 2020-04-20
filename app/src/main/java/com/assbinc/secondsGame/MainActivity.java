@@ -43,12 +43,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void chooseGamePage(View view) {
+        Settings.btnAnimation(view);
         Intent intent = new Intent(MainActivity.this, ChooseGame.class);
         startActivity(intent);
         finish();
     }
 
     public void goSettings(View view) {
+        Settings.btnAnimation(view);
         Intent intent = new Intent(MainActivity.this, Settings.class);
         intent.putExtra("activity","main");
         startActivity(intent);

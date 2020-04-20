@@ -7,15 +7,14 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="start"
             android:orientation="horizontal">
 
             <ImageButton
@@ -30,10 +29,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -44,14 +44,32 @@
 
             <TextView
                 android:id="@+id/tvTimer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
+                android:gravity="start"
                 android:text="@string/TimerValue"
                 android:textColor="?attr/textColor"
                 android:textSize="24sp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvDifficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/difficultyEasy"
+                android:textColor="?attr/textColor"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,6 +95,30 @@
                 android:textColor="?attr/textColor"
                 android:textSize="24sp" />
         </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvLivesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/livesLeft"
+            android:textColor="?attr/textColor"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvLives"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/defaultBtnValue"
+            android:textColor="?attr/textColor"
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout

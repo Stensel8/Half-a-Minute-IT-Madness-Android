@@ -8,11 +8,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -70,6 +75,7 @@ public class Settings extends AppCompatActivity {
         changeLang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAnimation(v);
                 showChangeLanguageDialog();
             }
         });
@@ -78,7 +84,7 @@ public class Settings extends AppCompatActivity {
     private void showChangeLanguageDialog(){
         //Array of languages to display in alert dialog
         final String[] listOfLang = {"Français", "Nederlands", "English"};
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this,sharedPref.loadNightMode()? R.style.Theme_AppCompat_DayNight_Dialog: R.style.Theme_AppCompat_Light_Dialog);
         mBuilder.setSingleChoiceItems(listOfLang, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
@@ -124,6 +130,45 @@ public class Settings extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = pref.getString("My lang", "");
         setLocale(language);
+    }
+
+    public void chooseDifficulty(View view){
+        btnAnimation(view);
+
+        SharedPreferences.Editor editor = getSharedPreferences("gameDifficulty", MODE_PRIVATE).edit();
+        String difficulty = "";
+
+        switch(view.getId()){
+            case (R.id.difficultyEasyBtn):
+                //save data to shared preferences
+                editor.putString("difficulty", "easy");
+                editor.apply();
+                difficulty = getResources().getString(R.string.difficultyEasy);
+
+                break;
+            case (R.id.difficultyMediumBtn):
+                editor.putString("difficulty", "medium");
+                editor.apply();
+                difficulty = getResources().getString(R.string.difficultyMedium);
+
+                break;
+            case (R.id.difficultyHardBtn):
+                editor.putString("difficulty", "hard");
+                editor.apply();
+                difficulty = getResources().getString(R.string.difficultyHard);
+
+                break;
+        }
+
+
+        Toast.makeText(Settings.this, getResources().getString(R.string.changeDfficultyTo) + difficulty ,Toast.LENGTH_SHORT).show();
+    }
+
+    public static void btnAnimation(View view){
+        //little animation when button is clicked
+        AlphaAnimation animation1 = new AlphaAnimation(0.2f, 1.0f);
+        animation1.setDuration(500);
+        view.startAnimation(animation1);
     }
 
     @Override

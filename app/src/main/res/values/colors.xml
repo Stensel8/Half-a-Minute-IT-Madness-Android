@@ -9,4 +9,7 @@
     <color name="buttonColor">#DFA251</color>
     <color name="darkThemeText">#DAD6D6</color>
     <color name="darkBackground">#FF464646</color>
+    <color name="correct">#5CC423</color>
+    <color name="wrong">#F44336</color>
+
 </resources>

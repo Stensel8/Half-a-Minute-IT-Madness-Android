@@ -26,7 +26,7 @@
     <string name="TimerDescription">Timer</string>
     <string name="TimerValue">30s</string>
     <string name="defaultAnswerText">\?</string>
-    <string name="defaultBtnValue">7</string>
+    <string name="defaultBtnValue">3</string>
     <string name="defaultCalculation">"1 + 2 = "</string>
     <string name="hScoreDescription">High-Score image</string>
     <string name="notificationSettings">Notifications</string>
@@ -42,4 +42,6 @@
     <string name="notifTitle">Jouer à 30 seconds game!</string>
     <string name="EnglishToDutch">Français à Néerlandais</string>
     <string name="changeGame">Changer de jeu</string>
+    <string name="changeDfficultyTo">"Difficulté: "</string>
+    <string name="livesLeft">"Vies: "</string>
 </resources>
