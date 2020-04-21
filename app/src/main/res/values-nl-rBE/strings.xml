@@ -44,4 +44,6 @@
     <string name="changeGame">Spel veranderen</string>
     <string name="changeDfficultyTo">"Moeilijkheid: "</string>
     <string name="livesLeft">"Levens: "</string>
+    <string name="top5">Top 5:</string>
+    <string name="chosenGame">"Spel: "</string>
 </resources>

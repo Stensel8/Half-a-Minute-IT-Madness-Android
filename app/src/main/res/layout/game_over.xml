@@ -119,5 +119,136 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_orange"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/top5"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tvDifficultyGOver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:text="@string/difficultyTitle"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvChosenGame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/chosenGame"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:id="@+id/top1Row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/tvTop1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Top1"
+                    android:textColor="?attr/textColor"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/top2Row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/tvTop2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Top2"
+                    android:textColor="?attr/textColor"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/top3Row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/tvTop3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Top3"
+                    android:textColor="?attr/textColor"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/top4Row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/tvTop4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Top4"
+                    android:textColor="?attr/textColor"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/top5Row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/tvTop5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Top5"
+                    android:textColor="?attr/textColor"
+                    android:textSize="24sp" />
+            </TableRow>
+        </TableLayout>
+
     </LinearLayout>
 </ScrollView>

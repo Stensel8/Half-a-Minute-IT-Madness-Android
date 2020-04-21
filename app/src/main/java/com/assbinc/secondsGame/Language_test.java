@@ -39,18 +39,16 @@ public class Language_test extends AppCompatActivity {
     SharedPreferences sharedPreferences, pref;
     Random random;
     String correctAnswer, incorrectAnswer, savedLanguage,chosenGame, difficulty;
-    TextView tvQuestion, tvTimer, tvPoints, tvResult, tvLives;
+    TextView tvQuestion, tvTimer, tvPoints, tvResult, tvLives, tvDifficulty;
     Button btn0, btn1, btn2, btn3, clickedBtn;
     CountDownTimer countDownTimer;
     long millisUntilFinished;
-    int points, wrong, maxWrongAnswers;
-    int numberOfQuestions, randomId;
+    int points, wrong, maxWrongAnswers, numberOfQuestions, randomId, previousRandom;
     int[] btnIds;
     int correctAnswerPosition;
     ArrayList<String> incorrectAnswers;
     Gson gson;
-    Type listType;
-    Map<String, Words> wordsList;
+    Words wordsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +57,14 @@ public class Language_test extends AppCompatActivity {
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
 
+        pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        savedLanguage = pref.getString("My lang", ""); //indicates the current language of the app
         loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.language_test);
 
-        correctAnswer = "";
-        incorrectAnswer = "";
+        correctAnswer = ""; //the answer of the question
+        incorrectAnswer = ""; //the incorrect answers of the question
         tvTimer = findViewById(R.id.tvTimer);
         tvPoints = findViewById(R.id.tvPoints);
         tvQuestion = findViewById(R.id.tvQuestion);
@@ -74,27 +74,24 @@ public class Language_test extends AppCompatActivity {
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
         tvLives = findViewById(R.id.tvLives);
-        millisUntilFinished = 30100;
+        tvDifficulty = findViewById(R.id.tvDifficulty2);
+        millisUntilFinished = 30100; //30 seconds used for the timer
         points = 0;
-        wrong = 0;
-        maxWrongAnswers = 2;
+        wrong = 0; //the wrong answers from the player
+        maxWrongAnswers = 2; //the maximum wrong answers allowed
         numberOfQuestions = 0;
         random = new Random();
-        randomId = 0;
-        btnIds = new int[]{R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3};
+        randomId = 0; //random used to get the question
+        previousRandom = Integer.MAX_VALUE; //random from the previous question //it is initialised to max Int to be sure that the first random will not be the same as this random
+        btnIds = new int[]{R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3}; //the id's of the 4 buttons
         correctAnswerPosition = 0;
-        incorrectAnswers = new ArrayList<>();
-        gson = new Gson();
-        listType = new TypeToken<Map<String, Words>>() {}.getType();
-//        listType = new TypeToken<List<Words>>(){}.getType();
-//        wordsList = gson.fromJson(WordsJson.myWords, listType);
+        incorrectAnswers = new ArrayList<>(); //arrayList with all the incorrect answers
+        gson = new Gson(); //a google library used to facilitate the use of json files
+        wordsList = gson.fromJson(WordsJson.myWords, Words.class); //we get the json string in the WordsJson class thanks to the Words class
         chosenGame = getIntent().getStringExtra("chosenGame");
-        pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        savedLanguage = pref.getString("My lang", "");
         sharedPreferences = getSharedPreferences("gameDifficulty", Activity.MODE_PRIVATE);
         difficulty = sharedPreferences.getString("difficulty", "");
         startGame();
-
     }
 
     //set saved language
@@ -108,17 +105,16 @@ public class Language_test extends AppCompatActivity {
 
     //load saved language
     public void loadLocale(){
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
-        setLocale(language);
+        setLocale(savedLanguage);
     }
 
     public void pauseGame(View view) {
-        String chosenGame = getIntent().getStringExtra("chosenGame");
+        //saves the current game we're playing
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("actualGame", chosenGame);
         editor.commit();
+
         countDownTimer.cancel();
         Intent intent = new Intent(Language_test.this, PauseMenu.class);
         startActivity(intent);
@@ -156,148 +152,471 @@ public class Language_test extends AppCompatActivity {
     private void generateQuestion() {
 
         numberOfQuestions++;
-        //randomId = random.nextInt(wordsList.size());
 
-        /*if(savedLanguage.equals("fr")){
-            String question;
-            switch (chosenGame){
-                case "NlToEn":
-                    question = wordsList.get(randomId).getNlWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getFrWord();
-                    break;
-                case "EnToNl":
-                    question = wordsList.get(randomId).getFrWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getNlWord();
-                    break;
-                case "FrToEn":
-                    question = wordsList.get(randomId).getEnWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getFrWord();
-                    break;
-                case "EnToFr":
-                    question = wordsList.get(randomId).getFrWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getEnWord();
-                    break;
+        /////////////////////// easy mode /////////////////////////
+        if (difficulty.equalsIgnoreCase("easy")){
 
+            tvDifficulty.setText(getResources().getString(R.string.difficultyEasy));
+
+            //if the random is the same as the random from the previous question
+            //we get a new random
+            randomId = random.nextInt(wordsList.getEasyWords().size());
+
+            while (randomId == previousRandom){
+                randomId = random.nextInt(wordsList.getEasyWords().size());
             }
-        }else if(savedLanguage.equals("nl")){
-            String question;
-            switch (chosenGame){
-                case "NlToEn":
-                    question = wordsList.get(randomId).getEnWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getNlWord();
-                    break;
-                case "EnToNl":
-                    question = wordsList.get(randomId).getNlWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getFrWord();
-                    break;
-                case "FrToEn":
-                    question = wordsList.get(randomId).getFrWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getNlWord();
-                    break;
-                case "EnToFr":
-                    question = wordsList.get(randomId).getNlWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getEnWord();
-                    break;
+
+            //when easy mode is turned on, the player get 6 lives instead of 3
+            maxWrongAnswers = 5;
+
+            if(savedLanguage.equals("fr")){
+                String question;
+                switch (chosenGame){
+                    case "NlToEn":
+                        question = wordsList.getEasyWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getEasyWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getEasyWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getEasyWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                        break;
+
+                }
+            }else if(savedLanguage.equals("nl")){
+                String question;
+                switch (chosenGame){
+                    case "NlToEn":
+                        question = wordsList.getEasyWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getEasyWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getEasyWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getEasyWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                        break;
+                }
+            }else {
+                String question;
+                switch (chosenGame) {
+                    case "NlToEn":
+                        question = wordsList.getEasyWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getEasyWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getEasyWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getEasyWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                        break;
+                }
             }
-        }else {
-            String question;
-            switch (chosenGame) {
-                case "NlToEn":
-                    question = wordsList.get(randomId).getNlWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getEnWord();
-                    break;
-                case "EnToNl":
-                    question = wordsList.get(randomId).getEnWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getNlWord();
-                    break;
-                case "FrToEn":
-                    question = wordsList.get(randomId).getFrWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getEnWord();
-                    break;
-                case "EnToFr":
-                    question = wordsList.get(randomId).getEnWord();
-                    tvQuestion.setText(question);
-                    correctAnswer = wordsList.get(randomId).getFrWord();
-                    break;
+
+            /////////////////////// medium mode /////////////////////////
+
+        }else if(difficulty.equalsIgnoreCase("medium")){
+
+            tvDifficulty.setText(getResources().getString(R.string.difficultyMedium));
+
+            randomId = random.nextInt(wordsList.getMediumWords().size());
+
+            while (randomId == previousRandom){
+                randomId = random.nextInt(wordsList.getMediumWords().size());
+            }
+
+            if(savedLanguage.equals("fr")){
+                String question;
+                switch (chosenGame){
+                    case "NlToEn":
+                        question = wordsList.getMediumWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getMediumWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getMediumWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getMediumWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                        break;
+
+                }
+            }else if(savedLanguage.equals("nl")){
+                String question;
+                switch (chosenGame){
+                    case "NlToEn":
+                        question = wordsList.getMediumWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getMediumWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getMediumWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getMediumWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                        break;
+                }
+            }else {
+                String question;
+                switch (chosenGame) {
+                    case "NlToEn":
+                        question = wordsList.getMediumWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getMediumWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getMediumWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getMediumWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                        break;
+                }
+            }
+
+            /////////////////////// hard mode /////////////////////////
+
+        }else{
+
+            tvDifficulty.setText(getResources().getString(R.string.difficultyHard));
+
+            randomId = random.nextInt(wordsList.getHardWords().size());
+
+            while (randomId == previousRandom){
+                randomId = random.nextInt(wordsList.getHardWords().size());
+            }
+
+            if(savedLanguage.equals("fr")){
+                String question;
+                switch (chosenGame){
+                    case "NlToEn":
+                        question = wordsList.getHardWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getHardWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getHardWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getHardWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                        break;
+
+                }
+            }else if(savedLanguage.equals("nl")){
+                String question;
+                switch (chosenGame){
+                    case "NlToEn":
+                        question = wordsList.getHardWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getHardWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getHardWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getHardWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                        break;
+                }
+            }else {
+                String question;
+                switch (chosenGame) {
+                    case "NlToEn":
+                        question = wordsList.getHardWords().get(randomId).getNlWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                        break;
+                    case "EnToNl":
+                        question = wordsList.getHardWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                        break;
+                    case "FrToEn":
+                        question = wordsList.getHardWords().get(randomId).getFrWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                        break;
+                    case "EnToFr":
+                        question = wordsList.getHardWords().get(randomId).getEnWord();
+                        tvQuestion.setText(question);
+                        correctAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                        break;
+                }
             }
         }
+
+        //we store the random to check it on the next question
+        previousRandom = randomId;
+
+        //update the live of the player on every question
+        tvLives.setText((maxWrongAnswers+1) - wrong + "");
+
+        //little bonus when you're at the 30th question
+        if(numberOfQuestions == 31){
+            correctAnswer = "30 seconds game";
+            tvQuestion.setText("30 seconds game");
+        }
+
+        //get a random position between the 4 buttons
         correctAnswerPosition = random.nextInt(4);
 
-        ((Button) findViewById(btnIds[correctAnswerPosition])).setText(correctAnswer);*/
-
-        tvLives.setText((maxWrongAnswers+1) - wrong + "");
+        ((Button) findViewById(btnIds[correctAnswerPosition])).setText(correctAnswer);
 
         setIncorrectAnswers();
 
     }
 
+    //assign the incorrect answers to the other buttons
     private void setIncorrectAnswers(){
-        /*while(true) {
-            if (incorrectAnswers.size() > 3) {
-                break;
-            }
-            randomId = random.nextInt(wordsList.size());
+        while(true) {
 
-            if(savedLanguage.equals("fr")){
-                switch (chosenGame){
-                    case "NlToEn":
-                    case "FrToEn":
-                        incorrectAnswer = wordsList.get(randomId).getFrWord();
-                        break;
-                    case "EnToNl":
-                        incorrectAnswer = wordsList.get(randomId).getNlWord();
-                        break;
-                    case "EnToFr":
-                        incorrectAnswer = wordsList.get(randomId).getEnWord();
-                        break;
+            ///////////////////// easy mode //////////////////////////
+
+            if (difficulty.equalsIgnoreCase("easy")) {
+                if (incorrectAnswers.size() > 3) {
+                    break;
                 }
-            }else if(savedLanguage.equals("nl")){
-                switch (chosenGame){
-                    case "NlToEn":
-                    case "FrToEn":
-                        incorrectAnswer = wordsList.get(randomId).getNlWord();
-                        break;
-                    case "EnToNl":
-                        incorrectAnswer = wordsList.get(randomId).getFrWord();
-                        break;
-                    case "EnToFr":
-                        incorrectAnswer = wordsList.get(randomId).getEnWord();
-                        break;
+
+                randomId = random.nextInt(wordsList.getEasyWords().size());
+
+                if(savedLanguage.equals("fr")){
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                            break;
+                    }
+                }else if(savedLanguage.equals("nl")){
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                            break;
+                    }
+                }else{
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                            break;
+                    }
                 }
+
+                //to make sure we never get multiple correct answers
+                if(incorrectAnswer == correctAnswer)
+                    continue;
+                //to make sure we never get the same incorrect answer on the other buttons
+                if(incorrectAnswers.contains(incorrectAnswer))
+                    continue;
+                incorrectAnswers.add(incorrectAnswer);
+
+                ///////////////////// medium mode //////////////////////////
+
+            }else if(difficulty.equalsIgnoreCase("medium")){
+                if (incorrectAnswers.size() > 3) {
+                    break;
+                }
+
+                randomId = random.nextInt(wordsList.getMediumWords().size());
+
+                if(savedLanguage.equals("fr")){
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                            break;
+                    }
+                }else if(savedLanguage.equals("nl")){
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                            break;
+                    }
+                }else{
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                            break;
+                    }
+                }
+
+                if(incorrectAnswer == correctAnswer)
+                    continue;
+                if(incorrectAnswers.contains(incorrectAnswer))
+                    continue;
+                incorrectAnswers.add(incorrectAnswer);
+
+                ///////////////////// hard mode //////////////////////////
             }else{
-                switch (chosenGame){
-                    case "NlToEn":
-                    case "FrToEn":
-                        incorrectAnswer = wordsList.get(randomId).getEnWord();
-                        break;
-                    case "EnToNl":
-                        incorrectAnswer = wordsList.get(randomId).getNlWord();
-                        break;
-                    case "EnToFr":
-                        incorrectAnswer = wordsList.get(randomId).getFrWord();
-                        break;
+                if (incorrectAnswers.size() > 3) {
+                    break;
                 }
-            }
+                randomId = random.nextInt(wordsList.getHardWords().size());
 
-            if(incorrectAnswer == correctAnswer)
-                continue;
-            if(incorrectAnswers.contains(incorrectAnswer))
-                continue;
-            incorrectAnswers.add(incorrectAnswer);
+                if(savedLanguage.equals("fr")){
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                            break;
+                    }
+                }else if(savedLanguage.equals("nl")){
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                            break;
+                    }
+                }else{
+                    switch (chosenGame){
+                        case "NlToEn":
+                        case "FrToEn":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                            break;
+                        case "EnToNl":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                            break;
+                        case "EnToFr":
+                            incorrectAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                            break;
+                    }
+                }
+
+                if(incorrectAnswer == correctAnswer)
+                    continue;
+                if(incorrectAnswers.contains(incorrectAnswer))
+                    continue;
+                incorrectAnswers.add(incorrectAnswer);
+            }
         }
 
+        //get all the incorrect answers and assign them to a button one by one
         for(int i = 0; i< 4; i++){
+            //doesn't put an incorrect answer at the correct answer's button
             if(i == correctAnswerPosition)
                 continue;
 
@@ -305,10 +624,11 @@ public class Language_test extends AppCompatActivity {
 
         }
 
-        incorrectAnswers.clear();*/
+        //now that all the buttons are assigned, we have to clear the arrayList for the next question
+        incorrectAnswers.clear();
     }
     private void gameOver() {
-        /*if(countDownTimer != null)
+        if(countDownTimer != null)
         {
             countDownTimer.cancel();
         }
@@ -316,20 +636,27 @@ public class Language_test extends AppCompatActivity {
         btn1.setClickable(false);
         btn2.setClickable(false);
         btn3.setClickable(false);
+        sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("actualGame", chosenGame);
+        editor.commit();
         Intent intent = new Intent(Language_test.this, GameOver.class);
         intent.putExtra("points", points);
+        intent.putExtra("difficulty", difficulty);
+        intent.putExtra("chosenGame", "languageGame");
         startActivity(intent);
-        finish();*/
+        finish();
     }
 
     public void chooseAnswer(View view) {
 
-        //Log.i("gson", "size: " + wordsList.size() + " | random: " + randomId + " | GSON: " + wordsList.get(randomId).getFrWord());
+        //Log.i("GSon", "size: " + wordsList.getHardWords().size() + " | random: " + randomId + " | GSon: " + wordsList.getHardWords().get(randomId).getFrWord());
 
         clickedBtn = (Button) view;
 
+        //to make sure we don't verify the answer when clicking on the pause button
         if (!(view instanceof ImageButton)) {
-            String answer = clickedBtn.getText().toString();
+            String answer = clickedBtn.getText().toString(); //we get the answer of the player
             String strCorrect = getResources().getString(R.string.correct);
             String strWrong = getResources().getString(R.string.wrong);
 
@@ -366,6 +693,7 @@ public class Language_test extends AppCompatActivity {
                             }
                         }
                     }, 500);
+
                     tvResult.setText(strWrong);
                     wrong++;
                 } else {
@@ -374,6 +702,7 @@ public class Language_test extends AppCompatActivity {
             }
 
             tvPoints.setText(points + "/" + numberOfQuestions);
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -381,6 +710,7 @@ public class Language_test extends AppCompatActivity {
                     tvResult.setText("");
                 }
             }, 1000);
+
             generateQuestion();
         }
     }

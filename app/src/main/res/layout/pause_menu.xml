@@ -54,22 +54,6 @@
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/btnChangeGame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/rounded_btn"
-                android:gravity="center"
-                android:onClick="changeGame"
-                android:paddingLeft="50dp"
-                android:paddingTop="20dp"
-                android:paddingRight="50dp"
-                android:paddingBottom="20dp"
-                android:text="@string/changeGame"
-                android:textColor="@color/buttonTextColor"
-                android:textSize="30sp" />
-
-            <Button
                 android:id="@+id/btnSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,6 +66,22 @@
                 android:paddingRight="50dp"
                 android:paddingBottom="20dp"
                 android:text="@string/settingsTitle"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/btnChangeGame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/rounded_btn"
+                android:gravity="center"
+                android:onClick="changeGame"
+                android:paddingLeft="50dp"
+                android:paddingTop="20dp"
+                android:paddingRight="50dp"
+                android:paddingBottom="20dp"
+                android:text="@string/changeGame"
                 android:textColor="@color/buttonTextColor"
                 android:textSize="30sp" />
 

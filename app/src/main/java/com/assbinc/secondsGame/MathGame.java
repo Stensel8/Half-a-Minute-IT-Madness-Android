@@ -40,7 +40,7 @@ public class MathGame extends AppCompatActivity {
     int correctAnswerPosition;
     ArrayList<Double> incorrectAnswers;
     String[] operatorArray;
-    DecimalFormat df = new DecimalFormat("0.##");
+    DecimalFormat df;
     SharedPref sharedPref;
     ColorDrawable initialColor;
     int colorId;
@@ -57,10 +57,10 @@ public class MathGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.math_game);
 
-        op1 = 0;
-        op2 = 0;
-        correctAnswer = 0;
-        incorrectAnswer = 0;
+        op1 = 0; //1st number of the operation
+        op2 = 0; //2nd number of the operation
+        correctAnswer = 0; //the answer of the question
+        incorrectAnswer = 0; //the incorrect answers of the question
         tvTimer = findViewById(R.id.tvTimer);
         tvPoints = findViewById(R.id.tvPoints);
         tvSum = findViewById(R.id.tvSum);
@@ -71,16 +71,17 @@ public class MathGame extends AppCompatActivity {
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
         tvLives = findViewById(R.id.tvLives);
-        millisUntilFinished = 30100;
+        millisUntilFinished = 30100; //30 seconds used for the timer
         points = 0;
-        wrong = 0;
-        maxWrongAnswers = 2;
+        wrong = 0; //the wrong answers from the player
+        maxWrongAnswers = 2; //the maximum wrong answers allowed
         numberOfQuestions = 0;
+        df = new DecimalFormat("0.##"); //hide trailing zeros
         random = new Random();
-        btnIds = new int[]{R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3};
+        btnIds = new int[]{R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3}; //the id's of the 4 buttons
         correctAnswerPosition = 0;
-        incorrectAnswers = new ArrayList<>();
-        operatorArray = new String[]{"+", "-", "*", "÷"};
+        incorrectAnswers = new ArrayList<>(); //arrayList with all the incorrect answers
+        operatorArray = new String[]{"+", "-", "*", "÷"}; //every possible operation of the math game
         sharedPreferences = getSharedPreferences("gameDifficulty", Activity.MODE_PRIVATE);
         difficulty = sharedPreferences.getString("difficulty", "easy");
         startGame();
@@ -98,20 +99,20 @@ public class MathGame extends AppCompatActivity {
 
     //load saved language
     public void loadLocale(){
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
+        sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("My lang", "");
         setLocale(language);
     }
 
     public void pauseGame(View view) {
-
-        countDownTimer.cancel();
+        //saves the current game we're playing
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("actualGame", "math");
         editor.commit();
+
+        countDownTimer.cancel();
         Intent intent = new Intent(MathGame.this, PauseMenu.class);
-        intent.putExtra("actualGame","math");
         startActivity(intent);
         finish();
     }
@@ -155,31 +156,45 @@ public class MathGame extends AppCompatActivity {
         btn1.setClickable(false);
         btn2.setClickable(false);
         btn3.setClickable(false);
+        sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("actualGame", "math");
         Intent intent = new Intent(MathGame.this, GameOver.class);
         intent.putExtra("points", points);
+        intent.putExtra("difficulty", difficulty);
+        intent.putExtra("chosenGame", "math");
         startActivity(intent);
         finish();
     }
 
     private void generateQuestion() {
         numberOfQuestions++;
-        String selectedOperator = operatorArray[random.nextInt(4)];
+        String selectedOperator = operatorArray[random.nextInt(4)]; //select a random operator
+
+        ///////////////// easy mode ////////////////////////
+
         if(difficulty.equalsIgnoreCase("easy")){
             tvDifficulty.setText(getResources().getString(R.string.difficultyEasy));
+
+            //when easy mode is turned on, the player get 6 lives instead of 3
             maxWrongAnswers = 5;
 
             op1 = 1 + random.nextInt(9);
+
             while(true){
                 op2 = 1 + random.nextInt(9);
                 correctAnswer = getAnswer(selectedOperator);
 
-                if(op2 < op1){
-                    if(correctAnswer-(int)correctAnswer == 0)
-                        break;
-                }
+                //if the 2nd number is smaller than the 1st one and if the answer isn't a decimal number
+                //then we stop the loop
+                if(op2 < op1 && correctAnswer-(int)correctAnswer == 0)
+                    break;
                 if (op2 == op1)
                     break;
             }
+
+            ///////////////// medium mode ////////////////////////
+
         }else if(difficulty.equalsIgnoreCase("medium")){
             tvDifficulty.setText(getResources().getString(R.string.difficultyMedium));
 
@@ -191,6 +206,9 @@ public class MathGame extends AppCompatActivity {
                 if(correctAnswer-(int)correctAnswer == 0)
                     break;
             }
+
+            ///////////////// hard mode ////////////////////////
+
         }else{
             tvDifficulty.setText(getResources().getString(R.string.difficultyHard));
             op1 = random.nextInt(21);
@@ -199,6 +217,7 @@ public class MathGame extends AppCompatActivity {
 
         }
 
+        //update the live of the player on every question
         tvLives.setText((maxWrongAnswers+1) - wrong + "");
         tvSum.setText(df.format(op1) + " " + selectedOperator + " " + df.format(op2) + " = ");
         correctAnswerPosition = random.nextInt(4);
@@ -209,6 +228,7 @@ public class MathGame extends AppCompatActivity {
     }
 
     private void setIncorrectAnswers(String selectedOperator){
+
         while(true){
             if(incorrectAnswers.size() > 3)
             {
@@ -219,8 +239,10 @@ public class MathGame extends AppCompatActivity {
             selectedOperator = operatorArray[random.nextInt(4)];
             incorrectAnswer = getAnswer(selectedOperator);
 
+            //to make sure we never get multiple correct answers
             if(incorrectAnswer == correctAnswer)
                 continue;
+            //to make sure we never get the same incorrect answer on the other buttons
             if(incorrectAnswers.contains(incorrectAnswer))
                 continue;
             incorrectAnswers.add(incorrectAnswer);
@@ -229,7 +251,9 @@ public class MathGame extends AppCompatActivity {
 
         }
 
+        //get all the incorrect answers and assign them to a button one by one
         for(int i = 0; i< 4; i++){
+            //doesn't put an incorrect answer at the correct answer's button
             if(i == correctAnswerPosition)
                 continue;
 
@@ -237,6 +261,7 @@ public class MathGame extends AppCompatActivity {
 
         }
 
+        //now that all the buttons are assigned, we have to clear the arrayList for the next question
         incorrectAnswers.clear();
     }
 
@@ -263,10 +288,11 @@ public class MathGame extends AppCompatActivity {
 
         clickedBtn = (Button) view;
         initialColor = (ColorDrawable) clickedBtn.getBackground();
-        colorId = initialColor.getColor();
+        colorId = initialColor.getColor(); //get the clicked button backgroundColor
 
+        //to make sure we don't verify the answer when clicking on the pause button
         if(!(view instanceof ImageButton)) {
-            String answer = clickedBtn.getText().toString();
+            String answer = clickedBtn.getText().toString(); //we get the answer of the player
             String strCorrect = getResources().getString(R.string.correct);
             String strWrong = getResources().getString(R.string.wrong);
 
@@ -305,6 +331,7 @@ public class MathGame extends AppCompatActivity {
             }
 
             tvPoints.setText(points + "/" + numberOfQuestions);
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -312,6 +339,7 @@ public class MathGame extends AppCompatActivity {
                     tvResult.setText("");
                 }
             }, 1000);
+            
             generateQuestion();
         }
     }

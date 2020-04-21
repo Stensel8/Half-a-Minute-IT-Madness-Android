@@ -24,10 +24,353 @@
       "frWord": "chaise",
       "nlWord": "stoel",
       "enWord": "chair"
+    },
+    {
+      "frWord": "bonhomme",
+      "nlWord": "man",
+      "enWord": "guy"
+    },
+    {
+      "frWord": "armoire",
+      "nlWord": "kleerkast",
+      "enWord": "wardrobe"
+    },
+    {
+      "frWord": "gentil",
+      "nlWord": "lief",
+      "enWord": "kind"
+    },
+    {
+      "frWord": "jouer",
+      "nlWord": "spelen",
+      "enWord": "play"
+    },
+    {
+      "frWord": "écire",
+      "nlWord": "schrijven",
+      "enWord": "write"
+    },
+    {
+      "frWord": "sale",
+      "nlWord": "vuil",
+      "enWord": "dirty"
+    },
+    {
+      "frWord": "mer",
+      "nlWord": "zee",
+      "enWord": "sea"
+    },
+    {
+      "frWord": "mère",
+      "nlWord": "moeder",
+      "enWord": "mother"
+    },
+    {
+      "frWord": "frère",
+      "nlWord": "broer",
+      "enWord": "brother"
+    },
+    {
+      "frWord": "tenir",
+      "nlWord": "vasthouden",
+      "enWord": "to hold"
+    },
+    {
+      "frWord": "tête",
+      "nlWord": "hoofd",
+      "enWord": "head"
+    },
+    {
+      "frWord": "mains",
+      "nlWord": "handen",
+      "enWord": "hands"
+    },
+    {
+      "frWord": "oiseau",
+      "nlWord": "vogel",
+      "enWord": "bird"
+    },
+    {
+      "frWord": "arbre",
+      "nlWord": "boom",
+      "enWord": "tree"
+    },
+    {
+      "frWord": "sol",
+      "nlWord": "vloer",
+      "enWord": "floor"
+    },
+    {
+      "frWord": "sac à dos",
+      "nlWord": "rugzak",
+      "enWord": "backpack"
+    },
+    {
+      "frWord": "neveu",
+      "nlWord": "neef",
+      "enWord": "nephew"
+    },
+    {
+      "frWord": "trois",
+      "nlWord": "drie",
+      "enWord": "three"
+    },
+    {
+      "frWord": "treize",
+      "nlWord": "dertien",
+      "enWord": "thirteen"
+    },
+    {
+      "frWord": "trente",
+      "nlWord": "dertig",
+      "enWord": "thirty"
+    },
+    {
+      "frWord": "meilleur",
+      "nlWord": "beste",
+      "enWord": "best"
+    },
+    {
+      "frWord": "ongle",
+      "nlWord": "nagel",
+      "enWord": "nail"
+    },
+    {
+      "frWord": "forme",
+      "nlWord": "vorm",
+      "enWord": "shape"
+    },
+    {
+      "frWord": "près",
+      "nlWord": "dichtbij",
+      "enWord": "near"
+    },
+    {
+      "frWord": "amour",
+      "nlWord": "lievde",
+      "enWord": "love"
+    },
+    {
+      "frWord": "jeu",
+      "nlWord": "spel",
+      "enWord": "game"
+    },
+    {
+      "frWord": "balle",
+      "nlWord": "bal",
+      "enWord": "ball"
+    },
+    {
+      "frWord": "chambre",
+      "nlWord": "kamer",
+      "enWord": "room"
+    },
+    {
+      "frWord": "trouver",
+      "nlWord": "vinden",
+      "enWord": "to find"
+    },
+    {
+      "frWord": "poubelle",
+      "nlWord": "vuilnisbak",
+      "enWord": "trash can"
+    },
+    {
+      "frWord": "bouteille",
+      "nlWord": "fles",
+      "enWord": "bottle"
+    },
+    {
+      "frWord": "chose",
+      "nlWord": "iets",
+      "enWord": "thing"
+    },
+    {
+      "frWord": "dessin",
+      "nlWord": "tekening",
+      "enWord": "drawing"
+    },
+    {
+      "frWord": "crayon",
+      "nlWord": "potlood",
+      "enWord": "pencil"
+    },
+    {
+      "frWord": "utiliser",
+      "nlWord": "gebruiken",
+      "enWord": "to use"
+    },
+    {
+      "frWord": "comment",
+      "nlWord": "hoe",
+      "enWord": "how"
+    },
+    {
+      "frWord": "cours",
+      "nlWord": "lessen",
+      "enWord": "classes"
+    },
+    {
+      "frWord": "devoir",
+      "nlWord": "plicht",
+      "enWord": "duty"
     }
   ],
   "mediumWords":
   [
+    {
+      "frWord": "phrase",
+      "nlWord": "zin",
+      "enWord": "sentence"
+    },
+    {
+      "frWord": "usine",
+      "nlWord": "fabriek",
+      "enWord": "factory"
+    },
+    {
+      "frWord": "froid",
+      "nlWord": "koud",
+      "enWord": "cold"
+    },
+    {
+      "frWord": "contour",
+      "nlWord": "omtrek",
+      "enWord": "outline"
+    },
+    {
+      "frWord": "lumineux",
+      "nlWord": "light",
+      "enWord": "bright"
+    },
+    {
+      "frWord": "ancien",
+      "nlWord": "voormalig",
+      "enWord": "former"
+    },
+    {
+      "frWord": "supprime",
+      "nlWord": "verwijdert",
+      "enWord": "delete"
+    },
+    {
+      "frWord": "rayure",
+      "nlWord": "kras",
+      "enWord": "scratch"
+    },
+    {
+      "frWord": "plier",
+      "nlWord": "plooien",
+      "enWord": "fold"
+    },
+    {
+      "frWord": "devoir",
+      "nlWord": "plicht",
+      "enWord": "duty"
+    },
+    {
+      "frWord": "traduction",
+      "nlWord": "vertaling",
+      "enWord": "translation"
+    },
+    {
+      "frWord": "compétences",
+      "nlWord": "vaardigheden",
+      "enWord": "skills"
+    },
+    {
+      "frWord": "coq",
+      "nlWord": "haan",
+      "enWord": "rooster"
+    },
+    {
+      "frWord": "vers",
+      "nlWord": "richting",
+      "enWord": "towards"
+    },
+    {
+      "frWord": "paramêtres",
+      "nlWord": "instellingen",
+      "enWord": "settings"
+    },
+    {
+      "frWord": "règles",
+      "nlWord": "regels",
+      "enWord": "rules"
+    },
+    {
+      "frWord": "évident",
+      "nlWord": "duidelijk",
+      "enWord": "obvious"
+    },
+    {
+      "frWord": "conscience",
+      "nlWord": "bewustzijn",
+      "enWord": "awareness"
+    },
+    {
+      "frWord": "foudre",
+      "nlWord": "bliksem",
+      "enWord": "lightning"
+    },
+    {
+      "frWord": "queue",
+      "nlWord": "staart",
+      "enWord": "tail"
+    },
+    {
+      "frWord": "commencer",
+      "nlWord": "beginnen",
+      "enWord": "start"
+    },
+    {
+      "frWord": "onglet",
+      "nlWord": "tabblad",
+      "enWord": "tab"
+    },
+    {
+      "frWord": "creuser",
+      "nlWord": "graven",
+      "enWord": "dig"
+    },
+    {
+      "frWord": "bénéficier",
+      "nlWord": "genieten",
+      "enWord": "benefit"
+    },
+    {
+      "frWord": "finalement",
+      "nlWord": "uiteindelijk",
+      "enWord": "eventually"
+    },
+    {
+      "frWord": "en fait",
+      "nlWord": "eigenlijk",
+      "enWord": "actually"
+    },
+    {
+      "frWord": "médicament",
+      "nlWord": "geneesmiddel",
+      "enWord": "medecin"
+    },
+    {
+      "frWord": "médecin",
+      "nlWord": "arts",
+      "enWord": "doctor"
+    }
+  ],
+  "HardWords":
+  [
+    {
+      "frWord": "novateur",
+      "nlWord": "innovatief",
+      "enWord": "Innovative"
+    },
+    {
+      "frWord": "interpréter",
+      "nlWord": "interpreteren",
+      "enWord": "construe"
+    },
     {
       "frWord": "phrase",
       "nlWord": "zin",
@@ -47,6 +390,11 @@
       "frWord": "coq",
       "nlWord": "haan",
       "enWord": "rooster"
+    },
+    {
+      "frWord": "vers",
+      "nlWord": "richting",
+      "enWord": "towards"
     }
   ]
 }

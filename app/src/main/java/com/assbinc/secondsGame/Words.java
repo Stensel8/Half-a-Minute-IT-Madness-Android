@@ -1,19 +1,31 @@
 package com.assbinc.secondsGame;
 
-public class Words {
-    private GameEasy easyWords;
-    private GameMedium mediumWords;
-    private GameHard hardWords;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public GameEasy getEasyWords() {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Words {
+    @SerializedName("easyWords")
+    @Expose
+    private List<GameEasy> easyWords = new ArrayList<GameEasy>();
+    @SerializedName("mediumWords")
+    @Expose
+    private List<GameMedium> mediumWords = new ArrayList<GameMedium>();
+    @SerializedName("HardWords")
+    @Expose
+    private List<GameHard> hardWords = new ArrayList<GameHard>();
+
+    public List<GameEasy> getEasyWords() {
         return easyWords;
     }
 
-    public GameMedium getMediumWords() {
+    public List<GameMedium> getMediumWords() {
         return mediumWords;
     }
 
-    public GameHard getHardWords() {
+    public List<GameHard> getHardWords() {
         return hardWords;
     }
 
@@ -28,8 +40,14 @@ public class Words {
 }
 
 class GameEasy{
+    @SerializedName("frWord")
+    @Expose
     private String frWord;
+    @SerializedName("nlWord")
+    @Expose
     private String nlWord;
+    @SerializedName("enWord")
+    @Expose
     private String enWord;
 
     public String getFrWord() {
@@ -55,8 +73,14 @@ class GameEasy{
 }
 
 class GameMedium{
+    @SerializedName("frWord")
+    @Expose
     private String frWord;
+    @SerializedName("nlWord")
+    @Expose
     private String nlWord;
+    @SerializedName("enWord")
+    @Expose
     private String enWord;
 
     public String getFrWord() {
@@ -73,7 +97,7 @@ class GameMedium{
 
     @Override
     public String toString() {
-        return "GameMedium{" +
+        return "GameEasy{" +
                 "frWord='" + frWord + '\'' +
                 ", nlWord='" + nlWord + '\'' +
                 ", enWord='" + enWord + '\'' +
@@ -82,8 +106,14 @@ class GameMedium{
 }
 
 class GameHard{
+    @SerializedName("frWord")
+    @Expose
     private String frWord;
+    @SerializedName("nlWord")
+    @Expose
     private String nlWord;
+    @SerializedName("enWord")
+    @Expose
     private String enWord;
 
     public String getFrWord() {
@@ -100,7 +130,7 @@ class GameHard{
 
     @Override
     public String toString() {
-        return "GameHard{" +
+        return "GameEasy{" +
                 "frWord='" + frWord + '\'' +
                 ", nlWord='" + nlWord + '\'' +
                 ", enWord='" + enWord + '\'' +
