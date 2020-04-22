@@ -90,7 +90,7 @@ public class Language_test extends AppCompatActivity {
         wordsList = gson.fromJson(WordsJson.myWords, Words.class); //we get the json string in the WordsJson class thanks to the Words class
         chosenGame = getIntent().getStringExtra("chosenGame");
         sharedPreferences = getSharedPreferences("gameDifficulty", Activity.MODE_PRIVATE);
-        difficulty = sharedPreferences.getString("difficulty", "");
+        difficulty = sharedPreferences.getString("difficulty", "easy");
         startGame();
     }
 

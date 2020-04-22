@@ -46,4 +46,12 @@
     <string name="livesLeft">"Vies: "</string>
     <string name="top5">Top 5:</string>
     <string name="chosenGame">"Jeu: "</string>
+    <string name="email">E-mail</string>
+    <string name="loginTitle">Connexion</string>
+    <string name="password">Mot de passe</string>
+    <string name="login_empty_msg">Veuillez entrer les champs requis</string>
+    <string name="login_success">Connexion effectuée avec succès</string>
+    <string name="or">Ou</string>
+    <string name="sign_up">S\'inscrire</string>
+    <string name="username">Nom d\'utilisateur</string>
 </resources>

@@ -46,4 +46,12 @@
     <string name="livesLeft">"Levens: "</string>
     <string name="top5">Top 5:</string>
     <string name="chosenGame">"Spel: "</string>
+    <string name="email">E-mail</string>
+    <string name="loginTitle">Login</string>
+    <string name="password">Paswoord</string>
+    <string name="login_empty_msg">Gelieve alle verplichte velden in te vullen</string>
+    <string name="login_success">"Succesvol ingelogd "</string>
+    <string name="or">Of</string>
+    <string name="sign_up">Inschrijven</string>
+    <string name="username">Gebruikersnaam</string>
 </resources>

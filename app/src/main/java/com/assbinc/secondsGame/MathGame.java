@@ -339,7 +339,7 @@ public class MathGame extends AppCompatActivity {
                     tvResult.setText("");
                 }
             }, 1000);
-            
+
             generateQuestion();
         }
     }
