@@ -32,15 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:orientation="horizontal"
-            android:paddingRight="5dp">
+            android:layout_marginStart="30dp"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:contentDescription="@string/TimerDescription"
-                app:srcCompat="@android:drawable/presence_away" />
 
             <TextView
                 android:id="@+id/tvTimer"
@@ -48,6 +42,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
+                android:drawableStart="@android:drawable/presence_away"
+                android:drawableLeft="@android:drawable/presence_away"
                 android:gravity="start"
                 android:text="@string/TimerValue"
                 android:textColor="?attr/textColor"
@@ -75,15 +71,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/ScoreDescription"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
 
             <TextView
                 android:id="@+id/tvPoints"
@@ -91,6 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
+                android:drawableLeft="@android:drawable/btn_star_big_on"
+                android:drawableStart="@android:drawable/btn_star_big_on"
                 android:text="@string/ScoreValue"
                 android:textColor="?attr/textColor"
                 android:textSize="24sp" />

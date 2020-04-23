@@ -18,6 +18,8 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     SharedPref sharedPref;
+    DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,26 +39,39 @@ public class MainActivity extends AppCompatActivity {
     private void showLoginDialog(){
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
         final View mView = getLayoutInflater().inflate(R.layout.login_dialog, null);
-        final EditText mEmail = (EditText) mView.findViewById(R.id.etEmail);
-        final  EditText mPassword = (EditText) mView.findViewById(R.id.etPassword);
-        final Button mToSignUp = (Button) mView.findViewById(R.id.btnToSignUp);
-        Button mLogin = (Button) mView.findViewById(R.id.btnLogin);
+        final EditText etUsername = (EditText) mView.findViewById(R.id.etEmail);
+        final EditText etPassword = (EditText) mView.findViewById(R.id.etPassword);
+        final Button btnToSignUp = (Button) mView.findViewById(R.id.btnToSignUp);
+        final Button btnLogin = (Button) mView.findViewById(R.id.btnLogin);
+
+        db = new DatabaseHelper(this);
 
         mBuilder.setView(mView);
         final AlertDialog mDialog = mBuilder.create();
         mDialog.show();
 
-        mLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mEmail.getText().toString().isEmpty() && !mPassword.getText().toString().isEmpty()){
-                    Toast.makeText(MainActivity.this,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                if (!etUsername.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
+
+                    String username = etUsername.getText().toString().trim();
+                    String pwd = etPassword.getText().toString().trim();
+                    Boolean res = db.checkUser(username, pwd);
+
+                    if(res){
+                        Toast.makeText(MainActivity.this,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                        mDialog.dismiss();
+                    }else{
+                        Toast.makeText(MainActivity.this,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
+                    }
+
                 }else{
                     Toast.makeText(MainActivity.this, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
                 }
             }
         });
-        mToSignUp.setOnClickListener(new View.OnClickListener() {
+        btnToSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -71,27 +86,50 @@ public class MainActivity extends AppCompatActivity {
     private void showSignUpDialog(){
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.signup_dialog, null);
-        final EditText mUsername = (EditText) mView.findViewById(R.id.etUsername);
-        final EditText mEmail = (EditText) mView.findViewById(R.id.etEmailSignUp);
-        final  EditText mPassword = (EditText) mView.findViewById(R.id.etPwdSignUp);
-        final Button mToLogin = (Button) mView.findViewById(R.id.btnToLogin);
-        Button mSignUp = (Button) mView.findViewById(R.id.btnSignUp);
+        final EditText etUsername = (EditText) mView.findViewById(R.id.etUsername);
+        final EditText etPwdSignUp = (EditText) mView.findViewById(R.id.etPasswordSignUp);
+        final  EditText etConfPassword = (EditText) mView.findViewById(R.id.etConfirmPwd);
+        final Button btnToLogin = (Button) mView.findViewById(R.id.btnToLogin);
+        final Button btnSignUp = (Button) mView.findViewById(R.id.btnSignUp);
+
+        db = new DatabaseHelper(this);
 
         mBuilder.setView(mView);
         final AlertDialog mDialogSignUp = mBuilder.create();
         mDialogSignUp.show();
 
-        mSignUp.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mUsername.getText().toString().isEmpty() && !mEmail.getText().toString().isEmpty() && !mPassword.getText().toString().isEmpty()){
-                    Toast.makeText(MainActivity.this,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                if (!etUsername.getText().toString().isEmpty() && !etPwdSignUp.getText().toString().isEmpty() && !etConfPassword.getText().toString().isEmpty()){
+
+                    String username = etUsername.getText().toString().trim();
+                    String pwd = etPwdSignUp.getText().toString().trim();
+                    String confirmPwd = etConfPassword.getText().toString().trim();
+
+                    if(!(username.length() >= 15)){
+                        if(pwd.equals(confirmPwd)){
+                            long val = db.addUser(username,pwd);
+
+                            if (val > 0){
+                                Toast.makeText(MainActivity.this,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
+                                showLoginDialog();
+                                mDialogSignUp.dismiss();
+                            }else{
+                                Toast.makeText(MainActivity.this,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
+                            }
+                        }else{
+                            Toast.makeText(MainActivity.this,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
+                        }
+                    }else {
+                        Toast.makeText(MainActivity.this, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
+                    }
                 }else{
                     Toast.makeText(MainActivity.this, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
                 }
             }
         });
-        mToLogin.setOnClickListener(new View.OnClickListener() {
+        btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

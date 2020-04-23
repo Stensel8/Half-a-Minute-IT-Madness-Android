@@ -53,4 +53,10 @@
     <string name="sign_up">Sign-up</string>
     <string name="or">Or</string>
     <string name="username">Username</string>
+    <string name="conf_password">Confirm password</string>
+    <string name="loginError">Login error</string>
+    <string name="same_pwd">Password does not match</string>
+    <string name="sign_up_succes">Successfully signed-up!</string>
+    <string name="sign_up_error">Sign-up error</string>
+    <string name="username_too_long">this username is too long</string>
 </resources>

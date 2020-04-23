@@ -28,24 +28,24 @@
         android:textColorHint="@android:color/tertiary_text_light" />
 
     <EditText
-        android:id="@+id/etEmailSignUp"
+        android:id="@+id/etPasswordSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
+        android:hint="@string/password"
+        android:inputType="none|textPassword"
         android:textColor="?attr/textColor"
         android:textColorHint="@android:color/tertiary_text_light" />
 
     <EditText
-        android:id="@+id/etPwdSignUp"
+        android:id="@+id/etConfirmPwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
+        android:hint="@string/conf_password"
+        android:inputType="none|textPassword"
         android:textColor="?attr/textColor"
         android:textColorHint="@android:color/tertiary_text_light" />
 

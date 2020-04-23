@@ -376,9 +376,9 @@ class WordsJson {
             "      \"enWord\": \"construe\"\n" +
             "    },\n" +
             "    {\n" +
-            "      \"frWord\": \"phrase\",\n" +
-            "      \"nlWord\": \"zin\",\n" +
-            "      \"enWord\": \"sentence\"\n" +
+            "      \"frWord\": \"Trébucher\",\n" +
+            "      \"nlWord\": \"Struikelen\",\n" +
+            "      \"enWord\": \"Strumble\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"frWord\": \"traduction\",\n" +
