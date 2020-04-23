@@ -54,4 +54,12 @@
     <string name="or">Ou</string>
     <string name="sign_up">S\'inscrire</string>
     <string name="username">Nom d\'utilisateur</string>
+    <string name="account_title">Compte</string>
+    <string name="conf_password">Confirmer le mot de passe</string>
+    <string name="loginError">Login error</string>
+    <string name="logout">Déconnexion</string>
+    <string name="same_pwd">Votre mot de passe n\'est pas identique à la confirmation</string>
+    <string name="sign_up_error">Sign-up error</string>
+    <string name="sign_up_succes">Inscriptiçon réussie!</string>
+    <string name="username_too_long">Ce nom d\'utilisateur est trop long</string>
 </resources>

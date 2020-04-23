@@ -59,4 +59,7 @@
     <string name="sign_up_succes">Successfully signed-up!</string>
     <string name="sign_up_error">Sign-up error</string>
     <string name="username_too_long">this username is too long</string>
+    <string name="account_title">Account</string>
+    <string name="logout">Log out</string>
+    <string name="username_exists">This username is already in use</string>
 </resources>

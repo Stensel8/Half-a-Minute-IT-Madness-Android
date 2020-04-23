@@ -54,4 +54,12 @@
     <string name="or">Of</string>
     <string name="sign_up">Inschrijven</string>
     <string name="username">Gebruikersnaam</string>
+    <string name="account_title">Account</string>
+    <string name="conf_password">Paswoord bevestigen</string>
+    <string name="loginError">Login error</string>
+    <string name="logout">Uitloggen</string>
+    <string name="same_pwd">Wachtwoorden zijn niet identiek</string>
+    <string name="sign_up_error">Sign-up error</string>
+    <string name="sign_up_succes">Geregistreerd!</string>
+    <string name="username_too_long">Deze gebruikersnaam is te lang</string>
 </resources>

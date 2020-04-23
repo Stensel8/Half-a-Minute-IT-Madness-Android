@@ -59,4 +59,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return false;
     }
+
+    public Cursor getItemId(String name){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT" + COL_1 + " FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + name + "'";
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+    public boolean checkMultipleUsername(String name){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT " + COL_2 + " FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + name + "'";
+        Cursor data = db.rawQuery(query,null);
+        int count = data.getCount();
+
+        if(count > 0)
+            return true;
+        else
+            return false;
+
+    }
 }

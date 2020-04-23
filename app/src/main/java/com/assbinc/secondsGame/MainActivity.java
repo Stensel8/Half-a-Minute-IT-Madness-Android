@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -19,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPref sharedPref;
     DatabaseHelper db;
-
+    SessionManager session;
+    String className;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -27,12 +29,16 @@ public class MainActivity extends AppCompatActivity {
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
 
+        session = new SessionManager(this);
         super.onCreate(savedInstanceState);
         loadLocale();
         setContentView(R.layout.activity_main);
+        className = this.getClass().getName().replace("$",".").split("\\.")[3];
 
-        //we need to make the dialog show-up when the user is not connected yet
-        showLoginDialog();
+        //dialog shows-up when the user is not connected yet
+        if (!session.checkLoggedIn()){
+            showLoginDialog();
+        }
     }
 
     //shows the login dialog
@@ -59,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
                     String pwd = etPassword.getText().toString().trim();
                     Boolean res = db.checkUser(username, pwd);
 
+//or
                     if(res){
                         Toast.makeText(MainActivity.this,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                        session.createSession(username);
                         mDialog.dismiss();
                     }else{
                         Toast.makeText(MainActivity.this,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
@@ -108,19 +116,24 @@ public class MainActivity extends AppCompatActivity {
                     String confirmPwd = etConfPassword.getText().toString().trim();
 
                     if(!(username.length() >= 15)){
-                        if(pwd.equals(confirmPwd)){
-                            long val = db.addUser(username,pwd);
+                        if (!db.checkMultipleUsername(username)){
+                            if(pwd.equals(confirmPwd)){
+                                long val = db.addUser(username,pwd);
 
-                            if (val > 0){
-                                Toast.makeText(MainActivity.this,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
-                                showLoginDialog();
-                                mDialogSignUp.dismiss();
+                                if (val > 0){
+                                    Toast.makeText(MainActivity.this,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
+                                    showLoginDialog();
+                                    mDialogSignUp.dismiss();
+                                }else{
+                                    Toast.makeText(MainActivity.this,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
+                                }
                             }else{
-                                Toast.makeText(MainActivity.this,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.this,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
                             }
-                        }else{
-                            Toast.makeText(MainActivity.this,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
+                        }else {
+                            Toast.makeText(MainActivity.this,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
                         }
+
                     }else {
                         Toast.makeText(MainActivity.this, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
                     }
