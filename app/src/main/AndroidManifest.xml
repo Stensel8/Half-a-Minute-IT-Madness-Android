@@ -10,41 +10,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/lightTheme">
+        <activity android:name=".test"></activity>
+        <activity android:name=".MyAccount" />
+        <activity android:name="com.assbinc.secondsgame.MyAccount" />
         <activity
-            android:name="com.assbinc.secondsGame.Language_test"
+            android:name=".LanguageGame"
             android:label="@string/title_activity_language_test"
-            android:theme="@style/lightTheme.NoActionBar"></activity>
-        <activity android:name="com.assbinc.secondsGame.PauseMenu" />
-        <activity android:name="com.assbinc.secondsGame.MainActivity">
+            android:theme="@style/lightTheme.NoActionBar" />
+        <activity android:name=".PauseMenu" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.assbinc.secondsGame.Settings">
+        <activity android:name=".Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
-        <activity android:name="com.assbinc.secondsGame.ChooseLanguageGame" />
-        <activity android:name="com.assbinc.secondsGame.ChooseGame">
+        <activity android:name=".ChooseLanguageGame" />
+        <activity android:name=".ChooseGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
-        <activity android:name="com.assbinc.secondsGame.MathGame">
+        <activity android:name=".MathGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.ChooseGame" />
         </activity>
-        <activity android:name="com.assbinc.secondsGame.GameOver">
+        <activity android:name=".GameOver">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
 
-        <receiver android:name="com.assbinc.secondsGame.NotificationAlert"/>
+        <receiver android:name=".NotificationAlert" />
     </application>
 
 </manifest>

@@ -24,7 +24,6 @@ public class ChooseLanguageGame extends AppCompatActivity {
         loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_language_game);
-//        getSupportActionBar().hide();
 
     }
 
@@ -47,7 +46,7 @@ public class ChooseLanguageGame extends AppCompatActivity {
     public void startLanguageTest(View view){
         Settings.btnAnimation(view);
 
-        Intent intent = new Intent(this, Language_test.class);
+        Intent intent = new Intent(this, LanguageGame.class);
 
         switch(view.getId()){
             case (R.id.btnNlToEn):

@@ -25,6 +25,10 @@ public class SessionManager {
         editor.apply();
     }
 
+    public String getUsername(){
+        return sessionPreferences.getString(USERNAME, "");
+    }
+
     public boolean isLoggedIn(){
         return sessionPreferences.getBoolean(IS_LOGGED, false);
     }
@@ -36,9 +40,8 @@ public class SessionManager {
             return false;
     }
 
-    public void loguut(){
+    public void logout(){
         editor.clear();
         editor.commit();
-
     }
 }

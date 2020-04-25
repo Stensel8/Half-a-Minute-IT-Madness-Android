@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -20,7 +22,13 @@ public class GameOver extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     ImageView ivHighScore;
     TextView tvHighScore, tvChosenGame, tvDifficulty;
+    TableLayout tlScore;
+    Button btnGoLogin;
     SharedPref sharedPref;
+    SessionManager session;
+    int points;
+    String difficulty, chosenGame;
+    boolean islogged;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -31,12 +39,20 @@ public class GameOver extends AppCompatActivity {
         loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
+
+        session = new SessionManager(this);
+
+        tlScore = findViewById(R.id.tlScore);
         ivHighScore = findViewById(R.id.ivHighScore);
         tvHighScore = findViewById(R.id.tvHighScore);
-//        getSupportActionBar().hide();
-        int points = getIntent().getExtras().getInt("points");
-        String difficulty = getIntent().getExtras().getString("difficulty");
-        String chosenGame = getIntent().getExtras().getString("chosenGame");
+        btnGoLogin = findViewById(R.id.btnGoLoginGover);
+
+        tlScore.setVisibility(session.checkLoggedIn()? View.VISIBLE: View.INVISIBLE);
+        btnGoLogin.setVisibility(session.checkLoggedIn()? View.GONE: View.VISIBLE);
+
+        points = getIntent().getExtras().getInt("points");
+        difficulty = getIntent().getExtras().getString("difficulty");
+        chosenGame = getIntent().getExtras().getString("chosenGame");
 
         if(chosenGame.equalsIgnoreCase("languageGame")){
             chosenGame = getResources().getString(R.string.languageGameButton);
@@ -104,28 +120,28 @@ public class GameOver extends AppCompatActivity {
                 break;
             case("NlToEn"):
 
-                intent = new Intent(this, Language_test.class);
+                intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","NlToEn");
                 startActivity(intent);
                 finish();
                 break;
             case("EnToNl"):
 
-                intent = new Intent(this, Language_test.class);
+                intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","EnToNl");
                 startActivity(intent);
                 finish();
                 break;
             case("FrToEn"):
 
-                intent = new Intent(this, Language_test.class);
+                intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","FrToEn");
                 startActivity(intent);
                 finish();
                 break;
             case("EnToFr"):
 
-                intent = new Intent(this, Language_test.class);
+                intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","EnToFr");
                 startActivity(intent);
                 finish();
@@ -144,6 +160,16 @@ public class GameOver extends AppCompatActivity {
     public void exit(View view) {
         Settings.btnAnimation(view);
 
+        finish();
+    }
+
+    public void goToLogin(View view) {
+        Intent intent = new Intent(GameOver.this, MyAccount.class);
+        intent.putExtra("gameover", "gameover");
+        intent.putExtra("points", points);
+        intent.putExtra("difficulty", difficulty);
+        intent.putExtra("chosenGame", chosenGame);
+        startActivity(intent);
         finish();
     }
 }

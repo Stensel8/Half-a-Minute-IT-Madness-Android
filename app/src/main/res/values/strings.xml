@@ -48,7 +48,7 @@
     <string name="loginTitle">Login</string>
     <string name="email">E-mail</string>
     <string name="password">Password</string>
-    <string name="login_success">Login successfull</string>
+    <string name="login_success">You are now logged in</string>
     <string name="login_empty_msg">Please fill any empty fields</string>
     <string name="sign_up">Sign-up</string>
     <string name="or">Or</string>
@@ -62,4 +62,10 @@
     <string name="account_title">Account</string>
     <string name="logout">Log out</string>
     <string name="username_exists">This username is already in use</string>
+    <string name="my_account">My account</string>
+    <string name="usernameAccount">Username:</string>
+    <string name="friends">My friends</string>
+    <string name="totalFriends">Total friends:</string>
+    <string name="add_friends">Add friends</string>
+    <string name="not_connected">You\'re not logged in. You need to log in to see the top 5</string>
 </resources>

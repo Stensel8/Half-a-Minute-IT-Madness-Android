@@ -6,15 +6,32 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME="secondsGame.db";
-    public static final String TABLE_NAME="user";
-    public static final String COL_1="ID";
-    public static final String COL_2="username";
-    public static final String COL_3="password";
+
+    public static final String TABLE_USER ="user";
+    public static final String COL_ID ="ID";
+    public static final String COL_USERNAME ="username";
+    public static final String COL_PWD ="password";
+
+    public static final String TABLE_HSCORE ="highScore";
+    public static final String COL_HSCORE_ID ="ID";
+    public static final String COL_USERNAME_HSCORE ="HScoreUsername";
+    public static final String COL_SCORE_EASY ="easyScore";
+    public static final String COL_SCORE_MEDIUM ="mediumScore";
+    public static final String COL_SCORE_HARD ="hardScore";
+    public static final String COL_GAME_HSCCORE ="HScoreChosenGame";
+
+    public static final String TABLE_PROFILE ="profile";
+    public static final String COL_PROFILE_ID ="ID";
+    public static final String COL_USERNAME_PROFILE ="username";
+    public static final String COL_SCORE_PROFILE ="profileScore";
+
+    public static final String TABLE_FRIEND ="hardHighScore";
+    public static final String COL_FRIEND_ID ="ID";
+    public static final String COL_FRIEND_USERNAME ="username";
+    public static final String COL_FRIENDS ="myFriends";
 
     public DatabaseHelper( Context context) {
         super(context, DB_NAME, null, 1);
@@ -28,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL(" DROP TABLE IF EXISTS " + TABLE_USER);
         onCreate(db);
     }
 
@@ -44,11 +61,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkUser(String username, String password){
-        String[] columns = { COL_1 };
+        String[] columns = {COL_ID};
         SQLiteDatabase db = getReadableDatabase();
-        String selection = COL_2 + "=?" + " and " + COL_3 + "=?";
+        String selection = COL_USERNAME + "=?" + " and " + COL_PWD + "=?";
         String[] selectionArgs = { username, password };
-        Cursor cursor = db.query(TABLE_NAME, columns, selection, selectionArgs,null, null,null);
+        Cursor cursor = db.query(TABLE_USER, columns, selection, selectionArgs,null, null,null);
         int count = cursor.getCount();
 
         cursor.close();
@@ -62,14 +79,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getItemId(String name){
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT" + COL_1 + " FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + name + "'";
+        String query = "SELECT" + COL_ID + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " = '" + name + "'";
         Cursor data = db.rawQuery(query,null);
         return data;
     }
 
     public boolean checkMultipleUsername(String name){
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT " + COL_2 + " FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + name + "'";
+        String query = "SELECT " + COL_USERNAME + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " = '" + name + "'";
         Cursor data = db.rawQuery(query,null);
         int count = data.getCount();
 

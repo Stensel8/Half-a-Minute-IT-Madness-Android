@@ -4,36 +4,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Random;
 
-public class Language_test extends AppCompatActivity {
+public class LanguageGame extends AppCompatActivity {
 
     SharedPref sharedPref;
     SharedPreferences sharedPreferences, pref;
@@ -116,7 +105,7 @@ public class Language_test extends AppCompatActivity {
         editor.commit();
 
         countDownTimer.cancel();
-        Intent intent = new Intent(Language_test.this, PauseMenu.class);
+        Intent intent = new Intent(LanguageGame.this, PauseMenu.class);
         startActivity(intent);
         finish();
     }
@@ -125,7 +114,7 @@ public class Language_test extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         countDownTimer.cancel();
-        Intent intent = new Intent(Language_test.this, ChooseLanguageGame.class);
+        Intent intent = new Intent(LanguageGame.this, ChooseLanguageGame.class);
         startActivity(intent);
         finish();
     }
@@ -640,12 +629,11 @@ public class Language_test extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("actualGame", chosenGame);
         editor.commit();
-        Intent intent = new Intent(Language_test.this, GameOver.class);
+        Intent intent = new Intent(LanguageGame.this, GameOver.class);
         intent.putExtra("points", points);
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("chosenGame", "languageGame");
         startActivity(intent);
-        finish();
     }
 
     public void chooseAnswer(View view) {

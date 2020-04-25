@@ -2,48 +2,69 @@ package com.assbinc.secondsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-
-public class MainActivity extends AppCompatActivity {
+public class MyAccount extends AppCompatActivity {
 
     SharedPref sharedPref;
-    DatabaseHelper db;
     SessionManager session;
-    String className;
+    DatabaseHelper db;
+    int points;
+    String difficulty;
+    String chosenGame;
+    TextView tvUsername;
+    Button btnLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //check dark mode
         sharedPref = new SharedPref(this);
+
+        //set dark theme that we configured
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
 
-        session = new SessionManager(this);
         super.onCreate(savedInstanceState);
-        loadLocale();
-        setContentView(R.layout.activity_main);
-        className = this.getClass().getName().replace("$",".").split("\\.")[3];
+        setContentView(R.layout.my_account);
 
-        //dialog shows-up when the user is not connected yet
-        if (!session.checkLoggedIn()){
+        points = getIntent().getExtras().getInt("points");
+        difficulty = getIntent().getExtras().getString("difficulty");
+        chosenGame = getIntent().getExtras().getString("chosenGame");
+
+        session = new SessionManager(this);
+        btnLogin = findViewById(R.id.btnLoginAccount);
+        tvUsername = findViewById(R.id.tvUsernameAccount);
+        btnLogin.setText(getResources().getString(session.checkLoggedIn()? R.string.logout: R.string.loginTitle));
+
+        if(session.isLoggedIn()){
+            tvUsername.setText(session.getUsername() + "");
+        }
+
+        if (!(getIntent().getStringExtra("gameover") == null) && !session.isLoggedIn()){
             showLoginDialog(getApplicationContext());
         }
     }
 
+    public void login(View view){
+
+        Settings.btnAnimation(view);
+        if(!session.checkLoggedIn()){
+            showLoginDialog(getApplicationContext());
+        }else {
+            session.logout();
+            recreate();
+        }
+    }
+
     //shows the goMyAccount dialog
-    private void showLoginDialog(final Context context){
-        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+    public void showLoginDialog(final Context context){
+        final android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MyAccount.this);
         final View mView = getLayoutInflater().inflate(R.layout.login_dialog, null);
         final EditText etUsername = (EditText) mView.findViewById(R.id.etEmail);
         final EditText etPassword = (EditText) mView.findViewById(R.id.etPassword);
@@ -53,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         mBuilder.setView(mView);
-        final AlertDialog mDialog = mBuilder.create();
+        final android.app.AlertDialog mDialog = mBuilder.create();
         mDialog.show();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -65,11 +86,22 @@ public class MainActivity extends AppCompatActivity {
                     String pwd = etPassword.getText().toString().trim();
                     Boolean res = db.checkUser(username, pwd);
 
-//or
                     if(res){
                         Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                         session.createSession(username);
-                        mDialog.dismiss();
+
+                        if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
+                            Intent intent = new Intent(MyAccount.this, GameOver.class);
+                            intent.putExtra("gameover", "gameover");
+                            intent.putExtra("points", points);
+                            intent.putExtra("difficulty", difficulty);
+                            intent.putExtra("chosenGame", chosenGame);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            mDialog.dismiss();
+                            recreate();
+                        }
                     }else{
                         Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
                     }
@@ -91,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     //shows the sign-up dialog
     private void showSignUpDialog(final Context context){
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MyAccount.this);
         View mView = getLayoutInflater().inflate(R.layout.signup_dialog, null);
         final EditText etUsername = (EditText) mView.findViewById(R.id.etUsername);
         final EditText etPwdSignUp = (EditText) mView.findViewById(R.id.etPasswordSignUp);
@@ -102,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         mBuilder.setView(mView);
-        final AlertDialog mDialogSignUp = mBuilder.create();
+        final android.app.AlertDialog mDialogSignUp = mBuilder.create();
         mDialogSignUp.show();
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 if (val > 0){
                                     Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
-                                    showLoginDialog(getApplicationContext());
+                                    showLoginDialog(context);
                                     mDialogSignUp.dismiss();
                                 }else{
                                     Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
@@ -132,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
                         }else {
                             Toast.makeText(context,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
                         }
-
                     }else {
                         Toast.makeText(context, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
                     }
@@ -150,40 +181,32 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //set saved language
-    private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
+    public void addFriends(View view){
 
-    //load saved language
-    public void loadLocale(){
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
-        setLocale(language);
-    }
-
-    public void chooseGamePage(View view) {
         Settings.btnAnimation(view);
-        Intent intent = new Intent(MainActivity.this, ChooseGame.class);
-        startActivity(intent);
-        finish();
+        if(session.checkLoggedIn()){
+
+        }else {
+
+        }
     }
 
-    public void goSettings(View view) {
-        Settings.btnAnimation(view);
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
-        SharedPreferences sharedPreferences = getSharedPreferences("activity", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activity", "main");
-        editor.commit();
-        Intent intent = new Intent(MainActivity.this, Settings.class);
-//        intent.putExtra("activity","main");
-        startActivity(intent);
-        finish();
+        if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
+            Intent intent = new Intent(MyAccount.this, GameOver.class);
+            intent.putExtra("gameover", "gameover");
+            intent.putExtra("points", points);
+            intent.putExtra("difficulty", difficulty);
+            intent.putExtra("chosenGame", chosenGame);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent = new Intent(MyAccount.this, Settings.class);
+            startActivity(intent);
+            finish();
+        }
     }
-
 }

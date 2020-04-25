@@ -62,4 +62,11 @@
     <string name="sign_up_error">Sign-up error</string>
     <string name="sign_up_succes">Geregistreerd!</string>
     <string name="username_too_long">Deze gebruikersnaam is te lang</string>
+    <string name="username_exists">Deze gebruikersnaam is al gebruikt</string>
+    <string name="my_account">Mijn account</string>
+    <string name="add_friends">Vrienden toevoegen</string>
+    <string name="friends">Mijn vrienden</string>
+    <string name="totalFriends">Totaal vrienden:</string>
+    <string name="usernameAccount">Gebruikersnaam:</string>
+    <string name="not_connected">U bent niet aangemeld. U moet inloggen om de top 5 te zien</string>
 </resources>

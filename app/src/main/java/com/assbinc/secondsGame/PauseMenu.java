@@ -64,35 +64,30 @@ public class PauseMenu extends AppCompatActivity {
 
                 intent = new Intent(this, MathGame.class);
                 startActivity(intent);
-                finish();
                 break;
             case("NlToEn"):
 
-                intent = new Intent(this, Language_test.class);
+                intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","NlToEn");
                 startActivity(intent);
-                finish();
                 break;
             case("EnToNl"):
 
-                intent = new Intent(this, Language_test.class);
+                intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","EnToNl");
                 startActivity(intent);
-                finish();
                 break;
             case("FrToEn"):
 
-                intent = new Intent(this, Language_test.class);
+                intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","FrToEn");
                 startActivity(intent);
-                finish();
                 break;
             case("EnToFr"):
 
-                intent = new Intent(this, Language_test.class);
+                intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","EnToFr");
                 startActivity(intent);
-                finish();
                 break;
         }
     }
@@ -100,10 +95,13 @@ public class PauseMenu extends AppCompatActivity {
     public void goSettings(View view) {
         Settings.btnAnimation(view);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("activity", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("activity", "pause");
+        editor.commit();
         Intent intent = new Intent(PauseMenu.this, Settings.class);
-        intent.putExtra("activity","pause");
+//        intent.putExtra("activity","pause");
         startActivity(intent);
-        finish();
     }
 
     public void goMain(View view) {

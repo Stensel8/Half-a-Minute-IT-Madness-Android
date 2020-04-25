@@ -11,5 +11,6 @@
     <color name="darkBackground">#FF464646</color>
     <color name="correct">#5CC423</color>
     <color name="wrong">#F44336</color>
+    <color name="couleur">#5E3131</color>
 
 </resources>
