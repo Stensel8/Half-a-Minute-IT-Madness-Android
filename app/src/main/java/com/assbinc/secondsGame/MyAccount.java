@@ -2,9 +2,12 @@ package com.assbinc.secondsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +22,7 @@ public class MyAccount extends AppCompatActivity {
     int points;
     String difficulty;
     String chosenGame;
-    TextView tvUsername;
+    TextView tvUsername, tvAccountScore;
     Button btnLogin;
 
     @Override
@@ -40,15 +43,42 @@ public class MyAccount extends AppCompatActivity {
         session = new SessionManager(this);
         btnLogin = findViewById(R.id.btnLoginAccount);
         tvUsername = findViewById(R.id.tvUsernameAccount);
+        tvAccountScore = findViewById(R.id.tvhScoreAccount);
         btnLogin.setText(getResources().getString(session.checkLoggedIn()? R.string.logout: R.string.loginTitle));
 
         if(session.isLoggedIn()){
+            db = new DatabaseHelper(this);
             tvUsername.setText(session.getUsername() + "");
+            tvAccountScore.setText(db.getProfileScore(session.getUsername()) + "");
         }
 
         if (!(getIntent().getStringExtra("gameover") == null) && !session.isLoggedIn()){
             showLoginDialog(getApplicationContext());
         }
+    }
+
+    private void showProfileTable() {
+        Cursor res = db.displayProfileData();
+
+        if(res.getCount() == 0){
+
+            showMessage("error");
+        }else{
+            StringBuffer stringBuffer = new StringBuffer();
+            while (res.moveToNext()){
+                stringBuffer.append("Id: " + res.getString(0) + "\n");
+                stringBuffer.append("Score: " + res.getString(1) + "\n");
+                stringBuffer.append("Username: " + res.getString(2) + "\n\n");
+            }
+            showMessage(stringBuffer.toString());
+        }
+    }
+
+    public void showMessage(String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setMessage(message);
+        builder.show();
     }
 
     public void login(View view){
@@ -184,6 +214,7 @@ public class MyAccount extends AppCompatActivity {
     public void addFriends(View view){
 
         Settings.btnAnimation(view);
+        showProfileTable();
         if(session.checkLoggedIn()){
 
         }else {

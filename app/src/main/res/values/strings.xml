@@ -68,4 +68,5 @@
     <string name="totalFriends">Total friends:</string>
     <string name="add_friends">Add friends</string>
     <string name="not_connected">You\'re not logged in. You need to log in to see the top 5</string>
+    <string name="zero">0</string>
 </resources>

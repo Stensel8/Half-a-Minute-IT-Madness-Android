@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (!etUsername.getText().toString().isEmpty() && !etPwdSignUp.getText().toString().isEmpty() && !etConfPassword.getText().toString().isEmpty()){
 
                     String username = etUsername.getText().toString().trim();
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
                                     showLoginDialog(getApplicationContext());
                                     mDialogSignUp.dismiss();
+
                                 }else{
                                     Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
                                 }
@@ -181,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activity", "main");
         editor.commit();
         Intent intent = new Intent(MainActivity.this, Settings.class);
-//        intent.putExtra("activity","main");
         startActivity(intent);
         finish();
     }

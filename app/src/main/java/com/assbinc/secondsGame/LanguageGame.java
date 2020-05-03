@@ -634,6 +634,7 @@ public class LanguageGame extends AppCompatActivity {
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("chosenGame", "languageGame");
         startActivity(intent);
+        finish();
     }
 
     public void chooseAnswer(View view) {

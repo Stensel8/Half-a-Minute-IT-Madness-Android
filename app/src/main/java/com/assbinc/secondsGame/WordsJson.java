@@ -50,7 +50,7 @@ class WordsJson {
             "      \"enWord\": \"play\"\n" +
             "    },\n" +
             "    {\n" +
-            "      \"frWord\": \"écire\",\n" +
+            "      \"frWord\": \"écrire\",\n" +
             "      \"nlWord\": \"schrijven\",\n" +
             "      \"enWord\": \"write\"\n" +
             "    },\n" +

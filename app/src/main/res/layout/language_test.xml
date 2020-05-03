@@ -96,17 +96,12 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvLivesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/livesLeft"
-            android:textColor="?attr/textColor"
-            android:textSize="24sp" />
-
-        <TextView
             android:id="@+id/tvLives"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/orange_heart"
+            android:drawableLeft="@drawable/orange_heart"
+            android:drawablePadding="5dp"
             android:text="@string/defaultBtnValue"
             android:textColor="?attr/textColor"
             android:textSize="24sp" />

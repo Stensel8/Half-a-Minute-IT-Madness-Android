@@ -11,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.Nullable;
@@ -28,7 +33,8 @@ public class GameOver extends AppCompatActivity {
     SessionManager session;
     int points;
     String difficulty, chosenGame;
-    boolean islogged;
+    DatabaseHelper db;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -74,18 +80,37 @@ public class GameOver extends AppCompatActivity {
         tvChosenGame = findViewById(R.id.tvChosenGame);
         tvDifficulty = findViewById(R.id.tvDifficultyGOver);
         sharedPreferences = getSharedPreferences("pref", 0);
-        int pointsSP = sharedPreferences.getInt("pointsSP", 0);
+        int pointsSP;
+        db = new DatabaseHelper(this);
+
+        if(!session.isLoggedIn()){
+            pointsSP = sharedPreferences.getInt("pointsSP", 0);
+        }else {
+            pointsSP = db.getProfileScore(session.getUsername());
+        }
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(points > pointsSP){
             pointsSP = points;
             editor.putInt("pointsSP", pointsSP);
             editor.commit();
+
+            if(session.isLoggedIn())
+                db.updateScoreProfile(session.getUsername(), pointsSP);
+
             ivHighScore.setVisibility(View.VISIBLE);
         }
         tvPoints.setText(""+ points);
         tvHighScore.setText(""+ pointsSP);
         tvChosenGame.setText(getResources().getString(R.string.chosenGame) + chosenGame);
         tvDifficulty.setText(getResources().getString(R.string.difficultyTitle) + ": " + difficulty);
+        List<Integer> scoreList = new ArrayList<>();
+
+//        cursor.size
+//        for (int i = 0; i < res.getCount(); i++){
+//            scoreList.add(res.getInt(i));
+//        }
+//        Collections.sort(scoreList);
     }
 
     //set saved language
@@ -113,7 +138,6 @@ public class GameOver extends AppCompatActivity {
 
         switch (actual){
             case("math"):
-
                 intent = new Intent(this, MathGame.class);
                 startActivity(intent);
                 finish();

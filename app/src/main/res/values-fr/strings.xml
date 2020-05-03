@@ -60,7 +60,7 @@
     <string name="logout">Déconnexion</string>
     <string name="same_pwd">Votre mot de passe n\'est pas identique à la confirmation</string>
     <string name="sign_up_error">Sign-up error</string>
-    <string name="sign_up_succes">Inscriptiçon réussie!</string>
+    <string name="sign_up_succes">Inscription réussie!</string>
     <string name="username_too_long">Ce nom d\'utilisateur est trop long</string>
     <string name="username_exists">Ce nom d\'utilisateur est déjà utilisé</string>
     <string name="my_account">Mon compte</string>
@@ -69,4 +69,5 @@
     <string name="totalFriends">Nombre d\'amis:</string>
     <string name="usernameAccount">Nom d\'utilisateur:</string>
     <string name="not_connected">Vous n\'êtes pas connecté. Vous devez vous connecter pour voir le top 5</string>
+    <string name="zero">0</string>
 </resources>
