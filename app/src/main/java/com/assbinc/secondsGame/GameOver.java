@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -60,22 +62,6 @@ public class GameOver extends AppCompatActivity {
         difficulty = getIntent().getExtras().getString("difficulty");
         chosenGame = getIntent().getExtras().getString("chosenGame");
 
-        if(chosenGame.equalsIgnoreCase("languageGame")){
-            chosenGame = getResources().getString(R.string.languageGameButton);
-        }else{
-            chosenGame = getResources().getString(R.string.mathGameButton);
-        }
-        switch (difficulty){
-            case "easy":
-                difficulty = getResources().getString(R.string.difficultyEasy);
-                break;
-            case "medium":
-                difficulty = getResources().getString(R.string.difficultyMedium);
-                break;
-            case "hard":
-                difficulty = getResources().getString(R.string.difficultyHard);
-                break;
-        }
         tvPoints = findViewById(R.id.tvPoints);
         tvChosenGame = findViewById(R.id.tvChosenGame);
         tvDifficulty = findViewById(R.id.tvDifficultyGOver);
@@ -95,12 +81,41 @@ public class GameOver extends AppCompatActivity {
             editor.putInt("pointsSP", pointsSP);
             editor.commit();
 
-            if(session.isLoggedIn())
+            if(session.isLoggedIn()){
+                Cursor res = db.getHScore(difficulty, chosenGame);
+
+
+                if (res.getCount() == 0){
+                    //if the top 5 is empty we add the first one
+                    db.addScore(session.getUsername(),difficulty, chosenGame, pointsSP);
+                }else{
+
+                }
                 db.updateScoreProfile(session.getUsername(), pointsSP);
+            }
 
             ivHighScore.setVisibility(View.VISIBLE);
         }
-        tvPoints.setText(""+ points);
+
+        if(chosenGame.equalsIgnoreCase("languageGame")){
+            chosenGame = getResources().getString(R.string.languageGameButton);
+        }else{
+            chosenGame = getResources().getString(R.string.mathGameButton);
+        }
+
+        switch (difficulty){
+            case "easy":
+                difficulty = getResources().getString(R.string.difficultyEasy);
+                break;
+            case "medium":
+                difficulty = getResources().getString(R.string.difficultyMedium);
+                break;
+            case "hard":
+                difficulty = getResources().getString(R.string.difficultyHard);
+                break;
+        }
+
+//        tvPoints.setText(""+ points);
         tvHighScore.setText(""+ pointsSP);
         tvChosenGame.setText(getResources().getString(R.string.chosenGame) + chosenGame);
         tvDifficulty.setText(getResources().getString(R.string.difficultyTitle) + ": " + difficulty);
@@ -133,44 +148,40 @@ public class GameOver extends AppCompatActivity {
         Settings.btnAnimation(view);
 
         Intent intent;
-        sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
         String actual = sharedPreferences.getString("actualGame","");
 
         switch (actual){
             case("math"):
                 intent = new Intent(this, MathGame.class);
                 startActivity(intent);
-                finish();
                 break;
             case("NlToEn"):
 
                 intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","NlToEn");
                 startActivity(intent);
-                finish();
                 break;
             case("EnToNl"):
 
                 intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","EnToNl");
                 startActivity(intent);
-                finish();
                 break;
             case("FrToEn"):
 
                 intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","FrToEn");
                 startActivity(intent);
-                finish();
                 break;
             case("EnToFr"):
 
                 intent = new Intent(this, LanguageGame.class);
                 intent.putExtra("chosenGame","EnToFr");
                 startActivity(intent);
-                finish();
                 break;
         }
+        finish();
     }
 
     public void main(View view) {

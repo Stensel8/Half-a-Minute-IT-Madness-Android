@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Switch;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -21,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_USERNAME_HSCORE ="HScoreUsername";
     public static final String COL_HSCORE_DIFFICULTY ="HScoreDifficulty";
     public static final String COL_SCORE ="HScore";
-    public static final String COL_GAME_HSCCORE ="HScoreChosenGame";
+    public static final String COL_chosenG_HSCCORE ="HScoreChosenGame";
 
     public static final String TABLE_PROFILE ="profile";
     public static final String COL_PROFILE_ID ="profileID";
@@ -41,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String tableUser = "CREATE TABLE "+ TABLE_USER + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)";
-        String tableHighScore = "CREATE TABLE "+ TABLE_HSCORE + " (HScoreID Integer PRIMARY KEY AUTOINCREMENT, HScoreUsername TEXT, score Integer, difficulty TEXT, HScoreChosenGame TEXT)";
+        String tableHighScore = "CREATE TABLE "+ TABLE_HSCORE + " (HScoreID Integer PRIMARY KEY AUTOINCREMENT, HScoreUsername TEXT, HScoreDifficulty TEXT, HScore Integer, HScoreChosenGame TEXT)";
         String tableProfile = "CREATE TABLE "+ TABLE_PROFILE + " (profileID INTEGER PRIMARY KEY AUTOINCREMENT, profileScore INTEGER, profileUsername TEXT)";
         String tableFriends = "CREATE TABLE "+ TABLE_FRIEND + " (friendsID INTEGER PRIMARY KEY AUTOINCREMENT, friendsUername TEXT, myFriends TEXT)";
         db.execSQL(tableUser);
@@ -62,10 +61,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long addUser(String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("username", username);
-        contentValues.put("password", password);
+        contentValues.put(COL_USERNAME, username);
+        contentValues.put(COL_PWD, password);
         initProfile(username);
-        long res = db.insert("user", null, contentValues);
+        long res = db.insert(TABLE_USER, null, contentValues);
         db.close();
 
         return res;
@@ -89,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getItemId(String name){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT" + COL_ID + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " = '" + name + "'";
         Cursor data = db.rawQuery(query,null);
         return data;
@@ -129,7 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getProfileScore(String username){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COL_SCORE_PROFILE + " FROM " + TABLE_PROFILE + " WHERE " + COL_USERNAME_PROFILE + " = '" + username + "'";
         Cursor data = db.rawQuery(query,null);
         data.moveToFirst();
@@ -137,12 +136,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addScore(String username, String difficulty, String chosenGame, int score){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_USERNAME_HSCORE,username);
-        contentValues.put(COL_GAME_HSCCORE,chosenGame);
-        contentValues.put(COL_SCORE,score);
         contentValues.put(COL_HSCORE_DIFFICULTY,difficulty);
+        contentValues.put(COL_chosenG_HSCCORE,chosenGame);
+        contentValues.put(COL_SCORE,score);
 
         long result = db.insert(TABLE_HSCORE,null,contentValues);
 
@@ -155,8 +154,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getHScore(String difficulty, String chosenGame){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL_USERNAME_HSCORE + "," + COL_SCORE + " FROM " + TABLE_HSCORE + " WHERE " + COL_HSCORE_DIFFICULTY + " = '" + difficulty + "' AND " + COL_GAME_HSCCORE + " = '" + chosenGame + "'";
+        String query = "SELECT " + COL_USERNAME_HSCORE + ", " + COL_SCORE +" FROM " + TABLE_HSCORE + " WHERE " + COL_HSCORE_DIFFICULTY + " = '" + difficulty + "' AND " + COL_chosenG_HSCCORE + " = '" + chosenGame + "'";
         Cursor res = db.rawQuery(query,null);
+
         return res;
     }
 }

@@ -90,6 +90,7 @@ public class PauseMenu extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
+        finish();
     }
 
     public void goSettings(View view) {
@@ -100,8 +101,8 @@ public class PauseMenu extends AppCompatActivity {
         editor.putString("activity", "pause");
         editor.commit();
         Intent intent = new Intent(PauseMenu.this, Settings.class);
-//        intent.putExtra("activity","pause");
         startActivity(intent);
+        finish();
     }
 
     public void goMain(View view) {

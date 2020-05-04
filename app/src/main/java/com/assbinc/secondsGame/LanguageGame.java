@@ -656,13 +656,10 @@ public class LanguageGame extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_green));
                 }
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //set its initial color
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_btn));
-                        }
+                new Handler().postDelayed(() -> {
+                    //set its initial color
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_btn));
                     }
                 }, 500);
 
@@ -673,13 +670,10 @@ public class LanguageGame extends AppCompatActivity {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_red));
                     }
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            //set its initial color
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_btn));
-                            }
+                    new Handler().postDelayed(() -> {
+                        //set its initial color
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_btn));
                         }
                     }, 500);
 
@@ -692,12 +686,9 @@ public class LanguageGame extends AppCompatActivity {
 
             tvPoints.setText(points + "/" + numberOfQuestions);
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    //make the text disappear after 1s
-                    tvResult.setText("");
-                }
+            new Handler().postDelayed(() -> {
+                //make the text disappear after 1s
+                tvResult.setText("");
             }, 1000);
 
             generateQuestion();

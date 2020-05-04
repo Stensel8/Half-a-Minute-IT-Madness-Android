@@ -159,6 +159,7 @@ public class MathGame extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("actualGame", "math");
+        editor.commit();
         Intent intent = new Intent(MathGame.this, GameOver.class);
         intent.putExtra("points", points);
         intent.putExtra("difficulty", difficulty);
@@ -301,12 +302,9 @@ public class MathGame extends AppCompatActivity {
                 //change the color of the clicked button to green
                 clickedBtn.setBackgroundColor(getResources().getColor(R.color.correct));
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //set it initial color
-                        clickedBtn.setBackgroundColor(colorId);
-                    }
+                new Handler().postDelayed(() -> {
+                    //set it initial color
+                    clickedBtn.setBackgroundColor(colorId);
                 }, 500);
                 tvResult.setText(strCorrect);
 
@@ -317,12 +315,9 @@ public class MathGame extends AppCompatActivity {
                     //change the color of the clicked button to green
                     clickedBtn.setBackgroundColor(getResources().getColor(R.color.wrong));
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            //set its initial color
-                            clickedBtn.setBackgroundColor(colorId);
-                        }
+                    new Handler().postDelayed(() -> {
+                        //set its initial color
+                        clickedBtn.setBackgroundColor(colorId);
                     }, 500);
                     wrong++;
                 }else{
@@ -332,12 +327,9 @@ public class MathGame extends AppCompatActivity {
 
             tvPoints.setText(points + "/" + numberOfQuestions);
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    //make the text disappear after 1s
-                    tvResult.setText("");
-                }
+            new Handler().postDelayed(() -> {
+                //make the text disappear after 1s
+                tvResult.setText("");
             }, 1000);
 
             generateQuestion();

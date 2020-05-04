@@ -58,7 +58,7 @@ public class MyAccount extends AppCompatActivity {
     }
 
     private void showProfileTable() {
-        Cursor res = db.displayProfileData();
+        Cursor res = db.getHScore("medium", "languageGame");
 
         if(res.getCount() == 0){
 
@@ -68,7 +68,7 @@ public class MyAccount extends AppCompatActivity {
             while (res.moveToNext()){
                 stringBuffer.append("Id: " + res.getString(0) + "\n");
                 stringBuffer.append("Score: " + res.getString(1) + "\n");
-                stringBuffer.append("Username: " + res.getString(2) + "\n\n");
+//                stringBuffer.append("Username: " + res.getString(2) + "\n\n");
             }
             showMessage(stringBuffer.toString());
         }
@@ -107,47 +107,38 @@ public class MyAccount extends AppCompatActivity {
         final android.app.AlertDialog mDialog = mBuilder.create();
         mDialog.show();
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!etUsername.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
+        btnLogin.setOnClickListener(v -> {
+            if (!etUsername.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
 
-                    String username = etUsername.getText().toString().trim();
-                    String pwd = etPassword.getText().toString().trim();
-                    Boolean res = db.checkUser(username, pwd);
+                String username = etUsername.getText().toString().trim();
+                String pwd = etPassword.getText().toString().trim();
+                Boolean res = db.checkUser(username, pwd);
 
-                    if(res){
-                        Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-                        session.createSession(username);
+                if(res){
+                    Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                    session.createSession(username);
 
-                        if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
-                            Intent intent = new Intent(MyAccount.this, GameOver.class);
-                            intent.putExtra("gameover", "gameover");
-                            intent.putExtra("points", points);
-                            intent.putExtra("difficulty", difficulty);
-                            intent.putExtra("chosenGame", chosenGame);
-                            startActivity(intent);
-                            finish();
-                        }else{
-                            mDialog.dismiss();
-                            recreate();
-                        }
+                    if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
+                        Intent intent = new Intent(MyAccount.this, GameOver.class);
+                        intent.putExtra("gameover", "gameover");
+                        intent.putExtra("points", points);
+                        intent.putExtra("difficulty", difficulty);
+                        intent.putExtra("chosenGame", chosenGame);
+                        startActivity(intent);
+                        finish();
                     }else{
-                        Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
+                        mDialog.dismiss();
+                        recreate();
                     }
-
                 }else{
-                    Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        btnToSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                showSignUpDialog(getApplicationContext());
+            }else{
+                Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
             }
         });
+        btnToSignUp.setOnClickListener(v -> showSignUpDialog(getApplicationContext()));
 
     }
 
@@ -167,48 +158,39 @@ public class MyAccount extends AppCompatActivity {
         final android.app.AlertDialog mDialogSignUp = mBuilder.create();
         mDialogSignUp.show();
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!etUsername.getText().toString().isEmpty() && !etPwdSignUp.getText().toString().isEmpty() && !etConfPassword.getText().toString().isEmpty()){
+        btnSignUp.setOnClickListener(v -> {
+            if (!etUsername.getText().toString().isEmpty() && !etPwdSignUp.getText().toString().isEmpty() && !etConfPassword.getText().toString().isEmpty()){
 
-                    String username = etUsername.getText().toString().trim();
-                    String pwd = etPwdSignUp.getText().toString().trim();
-                    String confirmPwd = etConfPassword.getText().toString().trim();
+                String username = etUsername.getText().toString().trim();
+                String pwd = etPwdSignUp.getText().toString().trim();
+                String confirmPwd = etConfPassword.getText().toString().trim();
 
-                    if(!(username.length() >= 15)){
-                        if (!db.checkMultipleUsername(username)){
-                            if(pwd.equals(confirmPwd)){
-                                long val = db.addUser(username,pwd);
+                if(!(username.length() >= 15)){
+                    if (!db.checkMultipleUsername(username)){
+                        if(pwd.equals(confirmPwd)){
+                            long val = db.addUser(username,pwd);
 
-                                if (val > 0){
-                                    Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
-                                    showLoginDialog(context);
-                                    mDialogSignUp.dismiss();
-                                }else{
-                                    Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
-                                }
+                            if (val > 0){
+                                Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
+                                showLoginDialog(context);
+                                mDialogSignUp.dismiss();
                             }else{
-                                Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
+                                Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
                             }
-                        }else {
-                            Toast.makeText(context,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
                         }
                     }else {
-                        Toast.makeText(context, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
                     }
-                }else{
-                    Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(context, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
                 }
+            }else{
+                Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
             }
         });
-        btnToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                mDialogSignUp.dismiss();
-            }
-        });
+        btnToLogin.setOnClickListener(v -> mDialogSignUp.dismiss());
     }
 
     public void addFriends(View view){

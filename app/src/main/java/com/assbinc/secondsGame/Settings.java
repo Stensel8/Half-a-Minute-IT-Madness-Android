@@ -41,14 +41,11 @@ public class Settings extends AppCompatActivity {
         //allow notifications or not
         notificationToggle = findViewById(R.id.notifToggle);
 
-        notificationToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+        notificationToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
 
-                }else{
+            }else{
 
-                }
             }
         });
         //switch between dark and light mode
@@ -72,12 +69,9 @@ public class Settings extends AppCompatActivity {
 
         //change language
         Button changeLang = findViewById(R.id.btnChangeLanguage);
-        changeLang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnAnimation(v);
-                showChangeLanguageDialog();
-            }
+        changeLang.setOnClickListener(v -> {
+            btnAnimation(v);
+            showChangeLanguageDialog();
         });
     }
 
@@ -87,6 +81,7 @@ public class Settings extends AppCompatActivity {
         Intent intent = new Intent(Settings.this, MyAccount.class);
         intent.putExtra("gameover", "settings");
         startActivity(intent);
+        finish();
     }
 
 
@@ -95,27 +90,24 @@ public class Settings extends AppCompatActivity {
         //Array of languages to display in alert dialog
         final String[] listOfLang = {"Français", "Nederlands", "English"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this,sharedPref.loadNightMode()? R.style.Theme_AppCompat_DayNight_Dialog: R.style.Theme_AppCompat_Light_Dialog);
-        mBuilder.setSingleChoiceItems(listOfLang, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                if (i == 0){
-                    //set french
-                    setLocale("fr");
-                    recreate();
-                }
-                if (i == 1){
-                    //set french
-                    setLocale("nl");
-                    recreate();
-                }
-                if (i == 2){
-                    //set french
-                    setLocale("en");
-                    recreate();
-                }
-                //dismiss dialog when language selected
-                dialog.dismiss();
+        mBuilder.setSingleChoiceItems(listOfLang, -1, (dialog, i) -> {
+            if (i == 0){
+                //set french
+                setLocale("fr");
+                recreate();
             }
+            if (i == 1){
+                //set french
+                setLocale("nl");
+                recreate();
+            }
+            if (i == 2){
+                //set french
+                setLocale("en");
+                recreate();
+            }
+            //dismiss dialog when language selected
+            dialog.dismiss();
         });
         AlertDialog mDialog = mBuilder.create();
         mDialog.show();
@@ -192,13 +184,11 @@ public class Settings extends AppCompatActivity {
         if(actual.equalsIgnoreCase("main")){
             Intent intent = new Intent(Settings.this, MainActivity.class);
             startActivity(intent);
-            finish();
         }else if(actual.equalsIgnoreCase("pause")){
             Intent intent = new Intent(Settings.this, PauseMenu.class);
             startActivity(intent);
-            finish();
         }
-
+        finish();
     }
 
 }
