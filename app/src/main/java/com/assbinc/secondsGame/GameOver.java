@@ -28,7 +28,7 @@ public class GameOver extends AppCompatActivity {
     TextView tvPoints;
     SharedPreferences sharedPreferences;
     ImageView ivHighScore;
-    TextView tvHighScore, tvChosenGame, tvDifficulty;
+    TextView tvHighScore, tvChosenGame, tvDifficulty, tvTop1, tvTop2, tvTop3, tvTop4, tvTop5;
     TableLayout tlScore;
     Button btnGoLogin;
     SharedPref sharedPref;
@@ -36,6 +36,7 @@ public class GameOver extends AppCompatActivity {
     int points;
     String difficulty, chosenGame;
     DatabaseHelper db;
+    List<String> scoreList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +55,11 @@ public class GameOver extends AppCompatActivity {
         ivHighScore = findViewById(R.id.ivHighScore);
         tvHighScore = findViewById(R.id.tvHighScore);
         btnGoLogin = findViewById(R.id.btnGoLoginGover);
+        tvTop1 = findViewById(R.id.tvTop1);
+        tvTop2 = findViewById(R.id.tvTop2);
+        tvTop3 = findViewById(R.id.tvTop3);
+        tvTop4 = findViewById(R.id.tvTop4);
+        tvTop5 = findViewById(R.id.tvTop5);
 
         tlScore.setVisibility(session.checkLoggedIn()? View.VISIBLE: View.INVISIBLE);
         btnGoLogin.setVisibility(session.checkLoggedIn()? View.GONE: View.VISIBLE);
@@ -82,19 +88,21 @@ public class GameOver extends AppCompatActivity {
             editor.commit();
 
             if(session.isLoggedIn()){
-                Cursor res = db.getHScore(difficulty, chosenGame);
-
-
-                if (res.getCount() == 0){
-                    //if the top 5 is empty we add the first one
-                    db.addScore(session.getUsername(),difficulty, chosenGame, pointsSP);
-                }else{
-
-                }
+                db.addScore(session.getUsername(),difficulty, chosenGame, pointsSP);
                 db.updateScoreProfile(session.getUsername(), pointsSP);
             }
 
             ivHighScore.setVisibility(View.VISIBLE);
+        }
+
+        Cursor res = db.getHScore(difficulty, chosenGame);
+
+        if(res != null){
+
+            scoreList = new ArrayList<>();
+            while (res.moveToNext()){
+                scoreList.add(res.getString(0) + ": " + res.getString(1));
+            }
         }
 
         if(chosenGame.equalsIgnoreCase("languageGame")){
@@ -115,17 +123,28 @@ public class GameOver extends AppCompatActivity {
                 break;
         }
 
-//        tvPoints.setText(""+ points);
+        if(!scoreList.isEmpty()){
+            if(scoreList.size() >= 1){
+                tvTop1.setText(scoreList.get(0));
+            }
+            if(scoreList.size() >= 2){
+                tvTop2.setText(scoreList.get(1));
+            }
+            if(scoreList.size() >= 3){
+                tvTop3.setText(scoreList.get(2));
+            }
+            if(scoreList.size() >= 4){
+                tvTop4.setText(scoreList.get(3));
+            }
+            if(scoreList.size() >= 5){
+                tvTop5.setText(scoreList.get(4));
+            }
+        }
+
+        tvPoints.setText(""+ points);
         tvHighScore.setText(""+ pointsSP);
         tvChosenGame.setText(getResources().getString(R.string.chosenGame) + chosenGame);
         tvDifficulty.setText(getResources().getString(R.string.difficultyTitle) + ": " + difficulty);
-        List<Integer> scoreList = new ArrayList<>();
-
-//        cursor.size
-//        for (int i = 0; i < res.getCount(); i++){
-//            scoreList.add(res.getInt(i));
-//        }
-//        Collections.sort(scoreList);
     }
 
     //set saved language
@@ -184,6 +203,14 @@ public class GameOver extends AppCompatActivity {
         finish();
     }
 
+    public void changeGame(View view) {
+        Settings.btnAnimation(view);
+
+        Intent intent = new Intent(GameOver.this, ChooseGame.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void main(View view) {
         Settings.btnAnimation(view);
 
@@ -199,6 +226,9 @@ public class GameOver extends AppCompatActivity {
     }
 
     public void goToLogin(View view) {
+        difficulty = getIntent().getExtras().getString("difficulty");
+        chosenGame = getIntent().getExtras().getString("chosenGame");
+
         Intent intent = new Intent(GameOver.this, MyAccount.class);
         intent.putExtra("gameover", "gameover");
         intent.putExtra("points", points);

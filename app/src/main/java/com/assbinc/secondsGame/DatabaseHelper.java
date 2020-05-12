@@ -154,7 +154,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getHScore(String difficulty, String chosenGame){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL_USERNAME_HSCORE + ", " + COL_SCORE +" FROM " + TABLE_HSCORE + " WHERE " + COL_HSCORE_DIFFICULTY + " = '" + difficulty + "' AND " + COL_chosenG_HSCCORE + " = '" + chosenGame + "'";
+        String query = "SELECT " + COL_USERNAME_HSCORE + ", " + COL_SCORE + " FROM " + TABLE_HSCORE + " WHERE " + COL_HSCORE_DIFFICULTY + " = '" + difficulty + "' AND " + COL_chosenG_HSCCORE + " = '" + chosenGame + "' ORDER BY " + COL_SCORE + " DESC LIMIT 5";
         Cursor res = db.rawQuery(query,null);
 
         return res;

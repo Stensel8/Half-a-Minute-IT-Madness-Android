@@ -57,29 +57,29 @@ public class MyAccount extends AppCompatActivity {
         }
     }
 
-    private void showProfileTable() {
-        Cursor res = db.getHScore("medium", "languageGame");
+//    private void showProfileTable() {
+//        Cursor res = db.getHScore("medium", "languageGame");
+//
+//        if(res.getCount() == 0){
+//
+//            showMessage("error");
+//        }else{
+//            StringBuffer stringBuffer = new StringBuffer();
+//            while (res.moveToNext()){
+//                stringBuffer.append("Id: " + res.getString(0) + "\n");
+//                stringBuffer.append("Score: " + res.getString(1) + "\n");
+////                stringBuffer.append("Username: " + res.getString(2) + "\n\n");
+//            }
+//            showMessage(stringBuffer.toString());
+//        }
+//    }
 
-        if(res.getCount() == 0){
-
-            showMessage("error");
-        }else{
-            StringBuffer stringBuffer = new StringBuffer();
-            while (res.moveToNext()){
-                stringBuffer.append("Id: " + res.getString(0) + "\n");
-                stringBuffer.append("Score: " + res.getString(1) + "\n");
-//                stringBuffer.append("Username: " + res.getString(2) + "\n\n");
-            }
-            showMessage(stringBuffer.toString());
-        }
-    }
-
-    public void showMessage(String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setMessage(message);
-        builder.show();
-    }
+//    public void showMessage(String message){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setCancelable(true);
+//        builder.setMessage(message);
+//        builder.show();
+//    }
 
     public void login(View view){
 
@@ -196,7 +196,7 @@ public class MyAccount extends AppCompatActivity {
     public void addFriends(View view){
 
         Settings.btnAnimation(view);
-        showProfileTable();
+//        showProfileTable();
         if(session.checkLoggedIn()){
 
         }else {

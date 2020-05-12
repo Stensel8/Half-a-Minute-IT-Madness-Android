@@ -10,9 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/lightTheme">
-        <activity android:name=".test"></activity>
         <activity android:name=".MyAccount" />
-        <activity android:name="com.assbinc.secondsgame.MyAccount" />
         <activity
             android:name=".LanguageGame"
             android:label="@string/title_activity_language_test"
