@@ -1,27 +1,43 @@
 package com.assbinc.secondsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.media.RingtoneManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     SharedPref sharedPref;
+    SharedPreferences sharedPreferences;
     DatabaseHelper db;
     SessionManager session;
-    String className;
+    private final String channelId = "notificationGame";
+    private final int notificationId = 001;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,15 +49,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         loadLocale();
         setContentView(R.layout.activity_main);
-        className = this.getClass().getName().replace("$",".").split("\\.")[3];
 
-        //dialog shows-up when the user is not connected yet
-        if (!session.checkLoggedIn()){
-            showLoginDialog(getApplicationContext());
-        }
+        sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
+
+        if (firstStart)
+            showStartDialog();
+
+        //Ad
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+
+        AdView adView = findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
-    //shows the goMyAccount dialog
+    private void showStartDialog() {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        final View mView = getLayoutInflater().inflate(R.layout.welcome_message, null);
+        final Button btnToSignUp = (Button) mView.findViewById(R.id.btnSignUpWelcome);
+        final ImageButton btnClose = (ImageButton) mView.findViewById(R.id.btnClose);
+
+        mBuilder.setView(mView);
+        final AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
+
+        btnToSignUp.setOnClickListener(v -> {
+            if (!session.checkLoggedIn()){ //to prevent errors
+                showSignUpDialog(getApplicationContext());
+                mDialog.dismiss();
+            }
+        });
+
+        btnClose.setOnClickListener(v -> mDialog.dismiss());
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
+    }
+
+    //shows the login dialog
     private void showLoginDialog(final Context context){
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
         final View mView = getLayoutInflater().inflate(R.layout.login_dialog, null);
@@ -49,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText etPassword = (EditText) mView.findViewById(R.id.etPassword);
         final Button btnToSignUp = (Button) mView.findViewById(R.id.btnToSignUp);
         final Button btnLogin = (Button) mView.findViewById(R.id.btnLogin);
+        final ImageButton btnCloseLogin = (ImageButton) mView.findViewById(R.id.btnClose2);
 
         db = new DatabaseHelper(this);
 
@@ -56,37 +106,29 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog mDialog = mBuilder.create();
         mDialog.show();
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!etUsername.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
+        btnLogin.setOnClickListener(v -> {
+            if (!etUsername.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
 
-                    String username = etUsername.getText().toString().trim();
-                    String pwd = etPassword.getText().toString().trim();
-                    Boolean res = db.checkUser(username, pwd);
+                String username = etUsername.getText().toString().trim();
+                String pwd = etPassword.getText().toString().trim();
+                Boolean res = db.checkUser(username, pwd);
 
 //or
-                    if(res){
-                        Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-                        session.createSession(username);
-                        mDialog.dismiss();
-                    }else{
-                        Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
-                    }
-
+                if(res){
+                    Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                    session.createSession(username);
+                    mDialog.dismiss();
                 }else{
-                    Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
                 }
+
+            }else{
+                Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
             }
         });
-        btnToSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnToSignUp.setOnClickListener(v -> mDialog.dismiss());
 
-                showSignUpDialog(getApplicationContext());
-            }
-        });
-
+        btnCloseLogin.setOnClickListener(v -> mDialog.dismiss());
     }
 
     //shows the sign-up dialog
@@ -98,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         final  EditText etConfPassword = (EditText) mView.findViewById(R.id.etConfirmPwd);
         final Button btnToLogin = (Button) mView.findViewById(R.id.btnToLogin);
         final Button btnSignUp = (Button) mView.findViewById(R.id.btnSignUp);
+        final ImageButton btnCloseSignUp = (ImageButton) mView.findViewById(R.id.btnClose3);
 
         db = new DatabaseHelper(this);
 
@@ -105,61 +148,85 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog mDialogSignUp = mBuilder.create();
         mDialogSignUp.show();
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnSignUp.setOnClickListener(v -> {
 
-                if (!etUsername.getText().toString().isEmpty() && !etPwdSignUp.getText().toString().isEmpty() && !etConfPassword.getText().toString().isEmpty()){
+            if (!etUsername.getText().toString().isEmpty() && !etPwdSignUp.getText().toString().isEmpty() && !etConfPassword.getText().toString().isEmpty()){
 
-                    String username = etUsername.getText().toString().trim();
-                    String pwd = etPwdSignUp.getText().toString().trim();
-                    String confirmPwd = etConfPassword.getText().toString().trim();
+                String username = etUsername.getText().toString().trim();
+                String pwd = etPwdSignUp.getText().toString().trim();
+                String confirmPwd = etConfPassword.getText().toString().trim();
 
-                    if(!(username.length() >= 15)){
-                        if (!db.checkMultipleUsername(username)){
-                            if(pwd.equals(confirmPwd)){
-                                long val = db.addUser(username,pwd);
+                if(!(username.length() >= 15)){
+                    if (!db.checkMultipleUsername(username)){
+                        if(pwd.equals(confirmPwd)){
+                            long val = db.addUser(username,pwd);
 
-                                if (val > 0){
-                                    Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
-                                    showLoginDialog(getApplicationContext());
-                                    mDialogSignUp.dismiss();
+                            if (val > 0){
+                                Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
+                                displayNotification(getApplicationContext());
 
-                                }else{
-                                    Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
-                                }
+                                //login automatically
+                                Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                                session.createSession(username);
+                                mDialogSignUp.dismiss();
+
                             }else{
-                                Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
+                                Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
                             }
-                        }else {
-                            Toast.makeText(context,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
                         }
-
                     }else {
-                        Toast.makeText(context, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
                     }
-                }else{
-                    Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
+
+                }else {
+                    Toast.makeText(context, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
                 }
+            }else{
+                Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
             }
         });
-        btnToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnToLogin.setOnClickListener(v -> showLoginDialog(getApplicationContext()));
 
-                mDialogSignUp.dismiss();
-            }
-        });
+        btnCloseSignUp.setOnClickListener(v -> mDialogSignUp.dismiss());
+
     }
 
-    //set saved language
-    private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    private void displayNotification(Context context) {
+
+        createNotificationChannel();
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,channelId)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(context.getResources().getString(R.string.inscriptionNotification))
+                .setContentText(context.getResources().getString(R.string.notificationText))
+                .setTicker("THE 30 seconds game")
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+
+        notificationManager.notify(notificationId, builder.build());
     }
+
+    private void createNotificationChannel(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence channelName = "THE 30 Seconds game";
+            String description = getResources().getString(R.string.display_notifications);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel1 = new NotificationChannel(channelId,channelName,importance);
+
+            channel1.setDescription(description);
+
+            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel1);
+
+        }
+    }
+
+
 
     //load saved language
     public void loadLocale(){
@@ -168,6 +235,19 @@ public class MainActivity extends AppCompatActivity {
         setLocale(language);
     }
 
+    //set saved language
+    private void setLocale(String lang) {
+        Locale locale;
+        if(lang.equals("")){ //if there's no saved language
+            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
+        }else{
+            locale = new Locale(lang);
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
     public void chooseGamePage(View view) {
         Settings.btnAnimation(view);
         Intent intent = new Intent(MainActivity.this, ChooseGame.class);

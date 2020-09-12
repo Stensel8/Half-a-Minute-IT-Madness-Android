@@ -214,6 +214,16 @@
       "frWord": "devoir",
       "nlWord": "plicht",
       "enWord": "duty"
+    },
+    {
+      "frWord": "jéter",
+      "nlWord": "gooien",
+      "enWord": "throw"
+    },
+    {
+      "frWord": "anniversaire",
+      "nlWord": "verjaardag",
+      "enWord": "birthday"
     }
   ],
   "mediumWords":
@@ -357,6 +367,126 @@
       "frWord": "médecin",
       "nlWord": "arts",
       "enWord": "doctor"
+    },
+    {
+      "frWord": "blessé",
+      "nlWord": "gewond",
+      "enWord": "injured"
+    },
+    {
+      "frWord": "bouillir",
+      "nlWord": "koken",
+      "enWord": "boil"
+    },
+    {
+      "frWord": "démarrer",
+      "nlWord": "beginnen",
+      "enWord": "start"
+    },
+    {
+      "frWord": "garantir",
+      "nlWord": "verzekeren",
+      "enWord": "ensure"
+    },
+    {
+      "frWord": "brille",
+      "nlWord": "arts",
+      "enWord": "schijnt"
+    },
+    {
+      "frWord": "accomplir",
+      "nlWord": "bereiken",
+      "enWord": "achieve"
+    },
+    {
+      "frWord": "sévère",
+      "nlWord": "streng",
+      "enWord": "harsh"
+    },
+    {
+      "frWord": "lourd",
+      "nlWord": "zwaar",
+      "enWord": "heavy"
+    },
+    {
+      "frWord": "grave",
+      "nlWord": "ernstig",
+      "enWord": "severe"
+    },
+    {
+      "frWord": "corps",
+      "nlWord": "lichaam",
+      "enWord": "body"
+    },
+    {
+      "frWord": "clavier",
+      "nlWord": "toetsenbord",
+      "enWord": "keyboard"
+    },
+    {
+      "frWord": "connaissances",
+      "nlWord": "kennis",
+      "enWord": "knowledge"
+    },
+    {
+      "frWord": "bassin",
+      "nlWord": "bekken",
+      "enWord": "pelvis"
+    },
+    {
+      "frWord": "trottoir",
+      "nlWord": "stoep",
+      "enWord": "pavement"
+    },
+    {
+      "frWord": "silencieux",
+      "nlWord": "stil",
+      "enWord": "quiet"
+    },
+    {
+      "frWord": "grimper",
+      "nlWord": "klimmen",
+      "enWord": "climb"
+    },
+    {
+      "frWord": "renard",
+      "nlWord": "vos",
+      "enWord": "fox"
+    },
+    {
+      "frWord": "météo",
+      "nlWord": "weer",
+      "enWord": "weather"
+    },
+    {
+      "frWord": "cuir",
+      "nlWord": "leer",
+      "enWord": "leather"
+    },
+    {
+      "frWord": "enregistrer",
+      "nlWord": "opnemen",
+      "enWord": "record"
+    },
+    {
+      "frWord": "réunion",
+      "nlWord": "vergadering",
+      "enWord": "meeting"
+    },
+    {
+      "frWord": "équipe",
+      "nlWord": "ploag",
+      "enWord": "team"
+    },
+    {
+      "frWord": "malchance",
+      "nlWord": "pech",
+      "enWord": "bad luck"
+    },
+    {
+      "frWord": "avertissement",
+      "nlWord": "waarschuwing",
+      "enWord": "disclaimer"
     }
   ],
   "HardWords":
@@ -372,29 +502,84 @@
       "enWord": "construe"
     },
     {
-      "frWord": "phrase",
-      "nlWord": "zin",
-      "enWord": "sentence"
+      "frWord": "insulter",
+      "nlWord": "uitschelden",
+      "enWord": "abuse"
     },
     {
-      "frWord": "traduction",
-      "nlWord": "vertaling",
-      "enWord": "translation"
+      "frWord": "achever",
+      "nlWord": "afmaken",
+      "enWord": "complete"
     },
     {
-      "frWord": "compétences",
-      "nlWord": "vaardigheden",
-      "enWord": "skills"
+      "frWord": "tromperie",
+      "nlWord": "bedrog",
+      "enWord": "deception"
     },
     {
-      "frWord": "coq",
-      "nlWord": "haan",
-      "enWord": "rooster"
+      "frWord": "retard",
+      "nlWord": "vertraging",
+      "enWord": "delay"
     },
     {
-      "frWord": "vers",
-      "nlWord": "richting",
-      "enWord": "towards"
+      "frWord": "finalement",
+      "nlWord": "uiteindelijk",
+      "enWord": "eventually"
+    },
+    {
+      "frWord": "preuve",
+      "nlWord": "bewijs",
+      "enWord": "evidence"
+    },
+    {
+      "frWord": "évincer",
+      "nlWord": "verdringen",
+      "enWord": "evict"
+    },
+    {
+      "frWord": "essence",
+      "nlWord": "benzine",
+      "enWord": "petrol"
+    },
+    {
+      "frWord": "empêcher",
+      "nlWord": "tegenhouden",
+      "enWord": "prevent"
+    },
+    {
+      "frWord": "soulager",
+      "nlWord": "verlichten",
+      "enWord": "relieve"
+    },
+    {
+      "frWord": "raisonnable",
+      "nlWord": "redelijk",
+      "enWord": "sensible"
+    },
+    {
+      "frWord": "librairie",
+      "nlWord": "boekhandel",
+      "enWord": "bookshop"
+    },
+    {
+      "frWord": "pot-de-vin",
+      "nlWord": "smeergeld",
+      "enWord": "bribe"
+    },
+    {
+      "frWord": "adhérer",
+      "nlWord": "aansluiten",
+      "enWord": "accede"
+    },
+    {
+      "frWord": "abnégation",
+      "nlWord": "zelfverloochening",
+      "enWord": "self-denial"
+    },
+    {
+      "frWord": "puériculture",
+      "nlWord": "kinderverzorging",
+      "enWord": "childcare"
     }
   ]
 }

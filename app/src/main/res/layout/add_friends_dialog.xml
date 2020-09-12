@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:background="?attr/backgroundColor"
     android:orientation="vertical"
     android:padding="10dp">
@@ -13,76 +12,43 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tvLogin"
+            android:id="@+id/tvAddFriends"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:text="@string/loginTitle"
+            android:text="@string/add_friends"
             android:textColor="?attr/textColor"
             android:textSize="36sp" />
 
         <ImageButton
-            android:id="@+id/btnClose2"
+            android:id="@+id/btnClose4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical|end"
+            android:layout_gravity="end"
             android:background="?attr/backgroundColor"
             android:contentDescription="@string/closeWindow"
             app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
     </FrameLayout>
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etAddFriends"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textEmailAddress"
-        android:textColor="?attr/textColor"
-        android:textColorHint="@android:color/tertiary_text_light" />
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
+        android:hint="@string/friend_username"
+        android:inputType="textPersonName"
         android:textColor="?attr/textColor"
         android:textColorHint="@android:color/tertiary_text_light" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/buttonColor"
-        android:text="@string/loginTitle"
-        android:textColor="@color/buttonTextColor"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:text="@string/or"
-        android:textColor="?attr/textColor"
-        android:textSize="24sp" />
-
-    <Button
-        android:id="@+id/btnToSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:background="@color/buttonColor"
-        android:padding="10dp"
-        android:text="@string/sign_up"
+        android:text="@string/search"
         android:textColor="@color/buttonTextColor"
         android:textSize="20sp" />
 </LinearLayout>

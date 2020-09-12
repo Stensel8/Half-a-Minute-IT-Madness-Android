@@ -58,6 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //adding users to the db
     public long addUser(String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -70,6 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    //check if the user exists so we can log in
     public boolean checkUser(String username, String password){
         String[] columns = {COL_ID};
         SQLiteDatabase db = getReadableDatabase();
@@ -87,13 +89,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public Cursor getItemId(String name){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT" + COL_ID + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " = '" + name + "'";
-        Cursor data = db.rawQuery(query,null);
-        return data;
-    }
+//    public Cursor getItemId(String name){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String query = "SELECT" + COL_ID + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " = '" + name + "'";
+//        Cursor data = db.rawQuery(query,null);
+//        return data;
+//    }
 
+    //check if the username is already taken
     public boolean checkMultipleUsername(String name){
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT " + COL_USERNAME + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " = '" + name + "'";
@@ -107,12 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor displayProfileData(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_PROFILE,null);
-        return res;
-    }
-
+    //initialize the profile with its username and score
     public void initProfile(String username){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -121,6 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_PROFILE,null,contentValues);
     }
 
+    //updates the score in the Profile table
     public void updateScoreProfile(String username, int score){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("UPDATE "+ TABLE_PROFILE + " SET profileScore= '" + score + "' WHERE profileUsername= '"+ username +"'");
@@ -135,6 +134,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data.getInt(0);
     }
 
+    //adds the score to the High-score table
     public boolean addScore(String username, String difficulty, String chosenGame, int score){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -142,8 +142,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_HSCORE_DIFFICULTY,difficulty);
         contentValues.put(COL_chosenG_HSCCORE,chosenGame);
         contentValues.put(COL_SCORE,score);
+        long result;
 
-        long result = db.insert(TABLE_HSCORE,null,contentValues);
+        //we don't save the score value if it is equal to 0
+        if(score != 0)
+            result = db.insert(TABLE_HSCORE,null,contentValues);
+        else
+            result = 1;
 
         if(result==-1){
             return false;
@@ -152,9 +157,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //gets the 5 best scores of the High-score table
     public Cursor getHScore(String difficulty, String chosenGame){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COL_USERNAME_HSCORE + ", " + COL_SCORE + " FROM " + TABLE_HSCORE + " WHERE " + COL_HSCORE_DIFFICULTY + " = '" + difficulty + "' AND " + COL_chosenG_HSCCORE + " = '" + chosenGame + "' ORDER BY " + COL_SCORE + " DESC LIMIT 5";
+        Cursor res = db.rawQuery(query,null);
+
+        return res;
+    }
+
+    //search all the users where the username contains the String "friendsUsername"
+    public Cursor searchFriend(String username, String friendsUsername){
+        SQLiteDatabase db = this.getWritableDatabase();
+        //It will not select the logged user
+        String query = "SELECT " + COL_USERNAME + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " != '" + username + "' AND " + COL_USERNAME + " LIKE '%" + friendsUsername +"%'";
+        Cursor res = db.rawQuery(query,null);
+
+        return res;
+    }
+
+
+    public boolean addFriend(String username, String friendsUsername) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_FRIEND_USERNAME,username);
+        contentValues.put(COL_FRIENDS,friendsUsername);
+
+        long result1 = db.insert(TABLE_FRIEND,null,contentValues);
+
+        contentValues.put(COL_FRIEND_USERNAME,friendsUsername);
+        contentValues.put(COL_FRIENDS,username);
+        long result2 = db.insert(TABLE_FRIEND,null,contentValues);
+
+        if(result1==-1 || result2==-1){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //check if 2 users are friends
+    public boolean checkFriend(String username, String friendsUsername){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT " + COL_FRIENDS + " FROM " + TABLE_FRIEND + " WHERE (" + COL_FRIEND_USERNAME + " = '" + username + "' AND " + COL_FRIENDS + " = '" + friendsUsername + "') OR (" + COL_FRIENDS + " = '" + username + "' AND " + COL_FRIEND_USERNAME + " = '" + friendsUsername + "')";
+        Cursor data = db.rawQuery(query,null);
+        int count = data.getCount();
+
+        if(count > 0)
+            return true;
+        else
+            return false;
+    }
+
+    //returns all the friends of a user
+    public Cursor showFriends(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + COL_FRIENDS + " FROM " + TABLE_FRIEND  + " WHERE " + COL_FRIEND_USERNAME + " = '" + username + "'";
         Cursor res = db.rawQuery(query,null);
 
         return res;

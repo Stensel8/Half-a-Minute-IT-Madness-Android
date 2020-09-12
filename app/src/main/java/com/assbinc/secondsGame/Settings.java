@@ -39,7 +39,7 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.settings);
 
         //allow notifications or not
-        notificationToggle = findViewById(R.id.notifToggle);
+        /*notificationToggle = findViewById(R.id.notifToggle);
 
         notificationToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
@@ -47,7 +47,7 @@ public class Settings extends AppCompatActivity {
             }else{
 
             }
-        });
+        });*/
         //switch between dark and light mode
         darkModeToggle = findViewById(R.id.darkModeToggle);
         if(sharedPref.loadNightMode() == true){
@@ -115,8 +115,12 @@ public class Settings extends AppCompatActivity {
 
     //change language
     private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
+        Locale locale;
+        if(lang.equals("")){ //if there's no saved language
+            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
+        }else{
+            locale = new Locale(lang);
+        }        Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());

@@ -20,8 +20,8 @@ public class SessionManager {
     }
 
     public void createSession(String username){
-        editor.putBoolean(IS_LOGGED, true);
-        editor.putString(USERNAME, username);
+        editor.putBoolean(IS_LOGGED, true); //boolean used to no if logged-in or not
+        editor.putString(USERNAME, username); //saves the username
         editor.apply();
     }
 
@@ -33,6 +33,7 @@ public class SessionManager {
         return sessionPreferences.getBoolean(IS_LOGGED, false);
     }
 
+    //check if logged-in
     public boolean checkLoggedIn(){
         if(this.isLoggedIn())
             return true;

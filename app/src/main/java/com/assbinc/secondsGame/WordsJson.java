@@ -218,6 +218,16 @@ class WordsJson {
             "      \"frWord\": \"devoir\",\n" +
             "      \"nlWord\": \"plicht\",\n" +
             "      \"enWord\": \"duty\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"jéter\",\n" +
+            "      \"nlWord\": \"gooien\",\n" +
+            "      \"enWord\": \"throw\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"anniversaire\",\n" +
+            "      \"nlWord\": \"verjaardag\",\n" +
+            "      \"enWord\": \"birthday\"\n" +
             "    }\n" +
             "  ],\n" +
             "  \"mediumWords\":\n" +
@@ -361,6 +371,126 @@ class WordsJson {
             "      \"frWord\": \"médecin\",\n" +
             "      \"nlWord\": \"arts\",\n" +
             "      \"enWord\": \"doctor\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"blessé\",\n" +
+            "      \"nlWord\": \"gewond\",\n" +
+            "      \"enWord\": \"injured\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"bouillir\",\n" +
+            "      \"nlWord\": \"koken\",\n" +
+            "      \"enWord\": \"boil\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"démarrer\",\n" +
+            "      \"nlWord\": \"beginnen\",\n" +
+            "      \"enWord\": \"start\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"garantir\",\n" +
+            "      \"nlWord\": \"verzekeren\",\n" +
+            "      \"enWord\": \"ensure\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"brille\",\n" +
+            "      \"nlWord\": \"arts\",\n" +
+            "      \"enWord\": \"schijnt\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"accomplir\",\n" +
+            "      \"nlWord\": \"bereiken\",\n" +
+            "      \"enWord\": \"achieve\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"sévère\",\n" +
+            "      \"nlWord\": \"streng\",\n" +
+            "      \"enWord\": \"harsh\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"lourd\",\n" +
+            "      \"nlWord\": \"zwaar\",\n" +
+            "      \"enWord\": \"heavy\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"grave\",\n" +
+            "      \"nlWord\": \"ernstig\",\n" +
+            "      \"enWord\": \"severe\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"corps\",\n" +
+            "      \"nlWord\": \"lichaam\",\n" +
+            "      \"enWord\": \"body\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"clavier\",\n" +
+            "      \"nlWord\": \"toetsenbord\",\n" +
+            "      \"enWord\": \"keyboard\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"connaissances\",\n" +
+            "      \"nlWord\": \"kennis\",\n" +
+            "      \"enWord\": \"knowledge\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"bassin\",\n" +
+            "      \"nlWord\": \"bekken\",\n" +
+            "      \"enWord\": \"pelvis\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"trottoir\",\n" +
+            "      \"nlWord\": \"stoep\",\n" +
+            "      \"enWord\": \"pavement\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"silencieux\",\n" +
+            "      \"nlWord\": \"stil\",\n" +
+            "      \"enWord\": \"quiet\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"grimper\",\n" +
+            "      \"nlWord\": \"klimmen\",\n" +
+            "      \"enWord\": \"climb\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"renard\",\n" +
+            "      \"nlWord\": \"vos\",\n" +
+            "      \"enWord\": \"fox\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"météo\",\n" +
+            "      \"nlWord\": \"weer\",\n" +
+            "      \"enWord\": \"weather\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"cuir\",\n" +
+            "      \"nlWord\": \"leer\",\n" +
+            "      \"enWord\": \"leather\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"enregistrer\",\n" +
+            "      \"nlWord\": \"opnemen\",\n" +
+            "      \"enWord\": \"record\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"réunion\",\n" +
+            "      \"nlWord\": \"vergadering\",\n" +
+            "      \"enWord\": \"meeting\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"équipe\",\n" +
+            "      \"nlWord\": \"ploag\",\n" +
+            "      \"enWord\": \"team\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"malchance\",\n" +
+            "      \"nlWord\": \"pech\",\n" +
+            "      \"enWord\": \"bad luck\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"avertissement\",\n" +
+            "      \"nlWord\": \"waarschuwing\",\n" +
+            "      \"enWord\": \"disclaimer\"\n" +
             "    }\n" +
             "  ],\n" +
             "  \"HardWords\":\n" +
@@ -376,29 +506,84 @@ class WordsJson {
             "      \"enWord\": \"construe\"\n" +
             "    },\n" +
             "    {\n" +
-            "      \"frWord\": \"phrase\",\n" +
-            "      \"nlWord\": \"zin\",\n" +
-            "      \"enWord\": \"sentence\"\n" +
+            "      \"frWord\": \"insulter\",\n" +
+            "      \"nlWord\": \"uitschelden\",\n" +
+            "      \"enWord\": \"abuse\"\n" +
             "    },\n" +
             "    {\n" +
-            "      \"frWord\": \"traduction\",\n" +
-            "      \"nlWord\": \"vertaling\",\n" +
-            "      \"enWord\": \"translation\"\n" +
+            "      \"frWord\": \"achever\",\n" +
+            "      \"nlWord\": \"afmaken\",\n" +
+            "      \"enWord\": \"complete\"\n" +
             "    },\n" +
             "    {\n" +
-            "      \"frWord\": \"compétences\",\n" +
-            "      \"nlWord\": \"vaardigheden\",\n" +
-            "      \"enWord\": \"skills\"\n" +
+            "      \"frWord\": \"tromperie\",\n" +
+            "      \"nlWord\": \"bedrog\",\n" +
+            "      \"enWord\": \"deception\"\n" +
             "    },\n" +
             "    {\n" +
-            "      \"frWord\": \"coq\",\n" +
-            "      \"nlWord\": \"haan\",\n" +
-            "      \"enWord\": \"rooster\"\n" +
+            "      \"frWord\": \"retard\",\n" +
+            "      \"nlWord\": \"vertraging\",\n" +
+            "      \"enWord\": \"delay\"\n" +
             "    },\n" +
             "    {\n" +
-            "      \"frWord\": \"vers\",\n" +
-            "      \"nlWord\": \"richting\",\n" +
-            "      \"enWord\": \"towards\"\n" +
+            "      \"frWord\": \"finalement\",\n" +
+            "      \"nlWord\": \"uiteindelijk\",\n" +
+            "      \"enWord\": \"eventually\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"preuve\",\n" +
+            "      \"nlWord\": \"bewijs\",\n" +
+            "      \"enWord\": \"evidence\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"évincer\",\n" +
+            "      \"nlWord\": \"verdringen\",\n" +
+            "      \"enWord\": \"evict\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"essence\",\n" +
+            "      \"nlWord\": \"benzine\",\n" +
+            "      \"enWord\": \"petrol\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"empêcher\",\n" +
+            "      \"nlWord\": \"tegenhouden\",\n" +
+            "      \"enWord\": \"prevent\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"soulager\",\n" +
+            "      \"nlWord\": \"verlichten\",\n" +
+            "      \"enWord\": \"relieve\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"raisonnable\",\n" +
+            "      \"nlWord\": \"redelijk\",\n" +
+            "      \"enWord\": \"sensible\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"librairie\",\n" +
+            "      \"nlWord\": \"boekhandel\",\n" +
+            "      \"enWord\": \"bookshop\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"pot-de-vin\",\n" +
+            "      \"nlWord\": \"smeergeld\",\n" +
+            "      \"enWord\": \"bribe\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"adhérer\",\n" +
+            "      \"nlWord\": \"aansluiten\",\n" +
+            "      \"enWord\": \"accede\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"abnégation\",\n" +
+            "      \"nlWord\": \"zelfverloochening\",\n" +
+            "      \"enWord\": \"self-denial\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"puériculture\",\n" +
+            "      \"nlWord\": \"kinderverzorging\",\n" +
+            "      \"enWord\": \"childcare\"\n" +
             "    }\n" +
             "  ]\n" +
             "}";

@@ -60,7 +60,11 @@ public class GameOver extends AppCompatActivity {
         tvTop3 = findViewById(R.id.tvTop3);
         tvTop4 = findViewById(R.id.tvTop4);
         tvTop5 = findViewById(R.id.tvTop5);
+        tvPoints = findViewById(R.id.tvPoints);
+        tvChosenGame = findViewById(R.id.tvChosenGame);
+        tvDifficulty = findViewById(R.id.tvDifficultyGOver);
 
+        //displays the top 5 if the user is connected
         tlScore.setVisibility(session.checkLoggedIn()? View.VISIBLE: View.INVISIBLE);
         btnGoLogin.setVisibility(session.checkLoggedIn()? View.GONE: View.VISIBLE);
 
@@ -68,28 +72,28 @@ public class GameOver extends AppCompatActivity {
         difficulty = getIntent().getExtras().getString("difficulty");
         chosenGame = getIntent().getExtras().getString("chosenGame");
 
-        tvPoints = findViewById(R.id.tvPoints);
-        tvChosenGame = findViewById(R.id.tvChosenGame);
-        tvDifficulty = findViewById(R.id.tvDifficultyGOver);
         sharedPreferences = getSharedPreferences("pref", 0);
-        int pointsSP;
+        int pointsHC;
         db = new DatabaseHelper(this);
 
+        //we get the user's high-score if he's logged-in. if not we get the saved high-score
         if(!session.isLoggedIn()){
-            pointsSP = sharedPreferences.getInt("pointsSP", 0);
+            pointsHC = sharedPreferences.getInt("pointsHC", 0);
         }else {
-            pointsSP = db.getProfileScore(session.getUsername());
+            pointsHC = db.getProfileScore(session.getUsername());
+            db.addScore(session.getUsername(),difficulty, chosenGame, points);
         }
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if(points > pointsSP){
-            pointsSP = points;
-            editor.putInt("pointsSP", pointsSP);
+        if(points > pointsHC){
+            //saves the high-score
+            pointsHC = points;
+            editor.putInt("pointsHC", pointsHC);
             editor.commit();
 
+            //update the high-score if logged-in
             if(session.isLoggedIn()){
-                db.addScore(session.getUsername(),difficulty, chosenGame, pointsSP);
-                db.updateScoreProfile(session.getUsername(), pointsSP);
+                db.updateScoreProfile(session.getUsername(), pointsHC);
             }
 
             ivHighScore.setVisibility(View.VISIBLE);
@@ -101,10 +105,12 @@ public class GameOver extends AppCompatActivity {
 
             scoreList = new ArrayList<>();
             while (res.moveToNext()){
+                //we add the name and the high-score of the 5 best users to the arrayList
                 scoreList.add(res.getString(0) + ": " + res.getString(1));
             }
         }
 
+        //we change the String values to display them in multiple languages
         if(chosenGame.equalsIgnoreCase("languageGame")){
             chosenGame = getResources().getString(R.string.languageGameButton);
         }else{
@@ -142,14 +148,19 @@ public class GameOver extends AppCompatActivity {
         }
 
         tvPoints.setText(""+ points);
-        tvHighScore.setText(""+ pointsSP);
+        tvHighScore.setText(""+ pointsHC);
         tvChosenGame.setText(getResources().getString(R.string.chosenGame) + chosenGame);
         tvDifficulty.setText(getResources().getString(R.string.difficultyTitle) + ": " + difficulty);
     }
 
     //set saved language
     private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
+        Locale locale;
+        if(lang.equals("")){ //if there's no saved language
+            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
+        }else{
+            locale = new Locale(lang);
+        }
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;

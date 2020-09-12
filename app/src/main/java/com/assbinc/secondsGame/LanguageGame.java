@@ -85,7 +85,12 @@ public class LanguageGame extends AppCompatActivity {
 
     //set saved language
     private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
+        Locale locale;
+        if(lang.equals("")){ //if there's no saved language
+            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
+        }else{
+            locale = new Locale(lang);
+        }
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;

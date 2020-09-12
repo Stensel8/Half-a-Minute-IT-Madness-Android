@@ -1,18 +1,37 @@
 package com.assbinc.secondsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
+import android.media.RingtoneManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class MyAccount extends AppCompatActivity {
 
@@ -22,8 +41,10 @@ public class MyAccount extends AppCompatActivity {
     int points;
     String difficulty;
     String chosenGame;
-    TextView tvUsername, tvAccountScore;
+    TextView tvUsername, tvAccountScore, tvTotalFriends;
     Button btnLogin;
+    private final String channelId = "notificationGame";
+    private final int notificationId = 001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +54,8 @@ public class MyAccount extends AppCompatActivity {
         //set dark theme that we configured
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
 
+        loadLocale();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_account);
 
@@ -41,24 +64,45 @@ public class MyAccount extends AppCompatActivity {
         chosenGame = getIntent().getExtras().getString("chosenGame");
 
         session = new SessionManager(this);
+        db = new DatabaseHelper(this);
+
         btnLogin = findViewById(R.id.btnLoginAccount);
         tvUsername = findViewById(R.id.tvUsernameAccount);
         tvAccountScore = findViewById(R.id.tvhScoreAccount);
+        tvTotalFriends = findViewById(R.id.tvTotalFriends);
         btnLogin.setText(getResources().getString(session.checkLoggedIn()? R.string.logout: R.string.loginTitle));
 
+        //change the user's info if logged-in
         if(session.isLoggedIn()){
-            db = new DatabaseHelper(this);
             tvUsername.setText(session.getUsername() + "");
             tvAccountScore.setText(db.getProfileScore(session.getUsername()) + "");
+
+            friendsCount();
         }
 
+        //if we come from the GameOver activity
         if (!(getIntent().getStringExtra("gameover") == null) && !session.isLoggedIn()){
             showLoginDialog(getApplicationContext());
         }
     }
 
-//    private void showProfileTable() {
-//        Cursor res = db.getHScore("medium", "languageGame");
+    private void friendsCount() {
+        //count the number of friends
+        Cursor cursor = db.showFriends(session.getUsername());
+
+        ArrayList<String> friendsCount = new ArrayList<>();
+
+        if(cursor.getCount() != 0){
+            while (cursor.moveToNext()){
+                friendsCount.add(cursor.getString(0));
+            }
+        }
+        tvTotalFriends.setText(friendsCount.size() + "");
+    }
+
+//    private void showTable(String username, String friendsUsername) {
+//
+//        Cursor res = db.showFriends(username);
 //
 //        if(res.getCount() == 0){
 //
@@ -67,7 +111,7 @@ public class MyAccount extends AppCompatActivity {
 //            StringBuffer stringBuffer = new StringBuffer();
 //            while (res.moveToNext()){
 //                stringBuffer.append("Id: " + res.getString(0) + "\n");
-//                stringBuffer.append("Score: " + res.getString(1) + "\n");
+////                stringBuffer.append("Score: " + res.getString(1) + "\n");
 ////                stringBuffer.append("Username: " + res.getString(2) + "\n\n");
 //            }
 //            showMessage(stringBuffer.toString());
@@ -81,6 +125,27 @@ public class MyAccount extends AppCompatActivity {
 //        builder.show();
 //    }
 
+    //set saved language
+    private void setLocale(String lang) {
+        Locale locale;
+        if(lang.equals("")){ //if there's no saved language
+            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
+        }else{
+            locale = new Locale(lang);
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    //load saved language
+    public void loadLocale(){
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My lang", "");
+        setLocale(language);
+    }
+
     public void login(View view){
 
         Settings.btnAnimation(view);
@@ -92,7 +157,7 @@ public class MyAccount extends AppCompatActivity {
         }
     }
 
-    //shows the goMyAccount dialog
+    //shows the login dialog
     public void showLoginDialog(final Context context){
         final android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MyAccount.this);
         final View mView = getLayoutInflater().inflate(R.layout.login_dialog, null);
@@ -100,8 +165,7 @@ public class MyAccount extends AppCompatActivity {
         final EditText etPassword = (EditText) mView.findViewById(R.id.etPassword);
         final Button btnToSignUp = (Button) mView.findViewById(R.id.btnToSignUp);
         final Button btnLogin = (Button) mView.findViewById(R.id.btnLogin);
-
-        db = new DatabaseHelper(this);
+        final ImageButton btnCloseLogin = (ImageButton) mView.findViewById(R.id.btnClose2);
 
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialog = mBuilder.create();
@@ -139,6 +203,7 @@ public class MyAccount extends AppCompatActivity {
             }
         });
         btnToSignUp.setOnClickListener(v -> showSignUpDialog(getApplicationContext()));
+        btnCloseLogin.setOnClickListener(v -> mDialog.dismiss());
 
     }
 
@@ -151,8 +216,7 @@ public class MyAccount extends AppCompatActivity {
         final  EditText etConfPassword = (EditText) mView.findViewById(R.id.etConfirmPwd);
         final Button btnToLogin = (Button) mView.findViewById(R.id.btnToLogin);
         final Button btnSignUp = (Button) mView.findViewById(R.id.btnSignUp);
-
-        db = new DatabaseHelper(this);
+        final ImageButton btnCloseSignUp = (ImageButton) mView.findViewById(R.id.btnClose3);
 
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialogSignUp = mBuilder.create();
@@ -173,6 +237,7 @@ public class MyAccount extends AppCompatActivity {
                             if (val > 0){
                                 Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
                                 showLoginDialog(context);
+                                displayNotification(getApplicationContext());
                                 mDialogSignUp.dismiss();
                             }else{
                                 Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
@@ -191,17 +256,164 @@ public class MyAccount extends AppCompatActivity {
             }
         });
         btnToLogin.setOnClickListener(v -> mDialogSignUp.dismiss());
+        btnCloseSignUp.setOnClickListener(v -> mDialogSignUp.dismiss());
+
+    }
+
+    private void displayNotification(Context context) {
+
+        createNotificationChannel();
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,channelId)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(context.getResources().getString(R.string.inscriptionNotification))
+                .setContentText(context.getResources().getString(R.string.notificationText))
+                .setTicker("THE 30 seconds game")
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+
+        notificationManager.notify(notificationId, builder.build());
+    }
+
+    private void createNotificationChannel(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence channelName = "THE 30 Seconds game";
+            String description = getResources().getString(R.string.display_notifications);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel1 = new NotificationChannel(channelId,channelName,importance);
+
+            channel1.setDescription(description);
+
+            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel1);
+
+        }
     }
 
     public void addFriends(View view){
 
         Settings.btnAnimation(view);
-//        showProfileTable();
+
+        //add friends only when logged-in
         if(session.checkLoggedIn()){
-
+            searchFriendsDialog();
         }else {
-
+            Toast.makeText(this, getResources().getString(R.string.not_connected_friends), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void searchFriendsDialog(){
+        android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MyAccount.this);
+        View mView = getLayoutInflater().inflate(R.layout.add_friends_dialog, null);
+        final EditText etAddFriends = (EditText) mView.findViewById(R.id.etAddFriends);
+        final Button btnAdd = (Button) mView.findViewById(R.id.btnAdd);
+        final ImageButton btnCloseSearch = (ImageButton) mView.findViewById(R.id.btnClose4);
+
+        mBuilder.setView(mView);
+        final android.app.AlertDialog mDialogSearch = mBuilder.create();
+        mDialogSearch.show();
+
+        btnAdd.setOnClickListener(v -> {
+
+            if(!etAddFriends.getText().toString().isEmpty()){
+                String friendsUsername = etAddFriends.getText().toString().trim();
+
+                etAddFriends.onEditorAction(EditorInfo.IME_ACTION_DONE); //close the keyboard
+                mDialogSearch.dismiss();
+                addFriendsDialog(friendsUsername);
+
+            }else{
+                Toast.makeText(this, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btnCloseSearch.setOnClickListener(v -> mDialogSearch.dismiss());
+    }
+
+    public void addFriendsDialog(String friendsUsername){
+        android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MyAccount.this);
+        View mView = getLayoutInflater().inflate(R.layout.add_friend_list_dialog, null);
+        final ListView lvAddFriends = (ListView) mView.findViewById(R.id.lvFriends);
+        final ImageButton btnCloseAddFriends = (ImageButton) mView.findViewById(R.id.btnClose5);
+
+        mBuilder.setView(mView);
+        final android.app.AlertDialog mDialogAddFriends = mBuilder.create();
+        mDialogAddFriends.show();
+
+        ArrayList<String> friendsList = new ArrayList<>();
+        Cursor res = db.searchFriend(session.getUsername(), friendsUsername);
+
+        ListAdapter listAdapter = new ArrayAdapter<>(this,R.layout.listrow, friendsList);
+        lvAddFriends.setAdapter(listAdapter);
+
+        if(res.getCount() == 0){
+            friendsList.add(getResources().getString(R.string.no_data));
+        }else{
+            while (res.moveToNext()){
+                friendsList.add(res.getString(0));
+            }
+
+            lvAddFriends.setOnItemClickListener((parent, view, position, id) -> {
+                if(!db.checkFriend(session.getUsername(),friendsList.get(position))){
+                    if(db.addFriend(session.getUsername(),friendsList.get(position))){
+                        Toast.makeText(this, getResources().getString(R.string.friend_added), Toast.LENGTH_LONG).show();
+                        friendsCount();
+                    }
+                }else{
+                    Toast.makeText(this, getResources().getString(R.string.already_friend), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
+        btnCloseAddFriends.setOnClickListener(v -> mDialogAddFriends.dismiss());
+    }
+
+    public void showFriends(View view) {
+        android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MyAccount.this);
+        View mView = getLayoutInflater().inflate(R.layout.add_friend_list_dialog, null);
+        final ListView lvAddFriends = (ListView) mView.findViewById(R.id.lvFriends);
+        final TextView tvAddFriends = (TextView) mView.findViewById(R.id.tvAddFriends2);
+        final ImageButton btnCloseShowFriends = (ImageButton) mView.findViewById(R.id.btnClose5);
+
+        mBuilder.setView(mView);
+        final android.app.AlertDialog mDialogAddFriends = mBuilder.create();
+        mDialogAddFriends.show();
+
+        tvAddFriends.setText(getResources().getString(R.string.friends));
+
+        ArrayList<String> friendsList = new ArrayList<>();
+        Cursor res = db.showFriends(session.getUsername());
+
+        ListAdapter listAdapter = new ArrayAdapter<>(this,R.layout.listrow, friendsList);
+        lvAddFriends.setAdapter(listAdapter);
+
+        if(res.getCount() == 0){
+            friendsList.add(getResources().getString(R.string.no_data));
+        }else{
+            while (res.moveToNext()){
+                friendsList.add(res.getString(0));
+            }
+
+            lvAddFriends.setOnItemClickListener((parent, v, position, id) -> {
+                android.app.AlertDialog.Builder mBuilderFriend = new android.app.AlertDialog.Builder(MyAccount.this);
+                View mViewFriend = getLayoutInflater().inflate(R.layout.friend_profile_dialog, null);
+                final TextView tvFriendUsername = mViewFriend.findViewById(R.id.tvFriendUsername);
+                final TextView tvFriendHC = mViewFriend.findViewById(R.id.tvFriendHC);
+
+                mBuilderFriend.setView(mViewFriend);
+                final android.app.AlertDialog mDialogFriendProfile = mBuilderFriend.create();
+                mDialogFriendProfile.show();
+
+                tvFriendUsername.setText(friendsList.get(position));
+                tvFriendHC.setText(db.getProfileScore(friendsList.get(position)) + "");
+
+            });
+        }
+
+        btnCloseShowFriends.setOnClickListener(v -> mDialogAddFriends.dismiss());
     }
 
     @Override

@@ -90,7 +90,12 @@ public class MathGame extends AppCompatActivity {
 
     //set saved language
     private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
+        Locale locale;
+        if(lang.equals("")){ //if there's no saved language
+            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
+        }else{
+            locale = new Locale(lang);
+        }
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
@@ -235,8 +240,15 @@ public class MathGame extends AppCompatActivity {
             {
                 break;
             }
-            op1 = random.nextInt(10);
-            op2 = 1 + random.nextInt(9);
+
+            if(difficulty.equalsIgnoreCase("hard")){
+                op1 = random.nextInt(21);
+                op2 = 1 + random.nextInt(20);
+            }else {
+                op1 = random.nextInt(10);
+                op2 = 1 + random.nextInt(9);
+            }
+
             selectedOperator = operatorArray[random.nextInt(4)];
             incorrectAnswer = getAnswer(selectedOperator);
 

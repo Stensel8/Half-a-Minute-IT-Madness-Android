@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.assbinc.secondsGame">
-
+    package="com.assbinc.secondsGame"
+    android:versionCode="1"
+    android:versionName="1.0"
+    android:installLocation="preferExternal">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:forceDarkAllowed="false"
@@ -10,6 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/lightTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6646767279000716~5040961198"/>
         <activity android:name=".MyAccount" />
         <activity
             android:name=".LanguageGame"
@@ -44,8 +51,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
-
-        <receiver android:name=".NotificationAlert" />
     </application>
 
 </manifest>
