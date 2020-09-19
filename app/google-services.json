@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1069027620281",
+    "firebase_url": "https://seconds-game-974fa.firebaseio.com",
+    "project_id": "seconds-game-974fa",
+    "storage_bucket": "seconds-game-974fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069027620281:android:66859eff358c9bdbbaf268",
+        "android_client_info": {
+          "package_name": "com.assbinc.secondsgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069027620281-hdvjt18suegvkom0nikg78oan27pqv40.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.assbinc.secondsgame",
+            "certificate_hash": "4e4438f4d9a679752f90de6fbb3ecacffcb3dfa5"
+          }
+        },
+        {
+          "client_id": "1069027620281-fskskh9lur2s9pvja2k862ljuq0s0tsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPX9e4QaI0yBm7fU3jhGMF8EwP1t0oTrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069027620281-fskskh9lur2s9pvja2k862ljuq0s0tsu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

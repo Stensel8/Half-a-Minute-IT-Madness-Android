@@ -34,10 +34,10 @@ public class PauseMenu extends AppCompatActivity {
         MobileAds.initialize(this, initializationStatus -> {
         });
 
-        AdView adView = findViewById(R.id.adViewPause);
+        AdView adViewPause = findViewById(R.id.adViewPause);
 
         AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        adViewPause.loadAd(adRequest);
     }
 
     //set saved language
