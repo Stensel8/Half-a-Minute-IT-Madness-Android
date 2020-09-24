@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 //or
                 if(res){
                     Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-                    session.createSession(username);
+                    //session.createSession(username);
                     mDialog.dismiss();
                 }else{
                     Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 //login automatically
                                 Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-                                session.createSession(username);
+                                //session.createSession(username);
                                 mDialogSignUp.dismiss();
 
                             }else{

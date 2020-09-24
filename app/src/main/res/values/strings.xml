@@ -82,5 +82,11 @@
     <string name="welcomeText">"Hello and welcome to THE 30 seconds game! With THE 30 seconds game you can learn while having fun. You can choose between 2 main games, THE math game and THE language test. The rules are simple. You have 30 seconds to answer as many questions as possible. Each correct answer gives you 1 point. If you answer wrong you lose 1 life. Your lives are indicated with an orange heart in the top right corner of the screen. After 30 seconds or after losing all your lives, the game will be over. You can still try again to beat your own score or your friends' high-score. Have fun! "</string>
     <string name="signupWelcome">Sign-up to be able to show your score to your friends!</string>
     <string name="closeWindow">Close window</string>
-    <string name="gameTitle">Game title</string>
+    <string name="gameTitle" translatable="false">Game title</string>
+    <string name="validEmail">Please enter a valid e-mail</string>
+    <string name="pwdLenght">Password should be at least 6 characters</string>
+    <string name="emailExist">This email is already in use</string>
+    <string name="logoutMsg">Are you sure you want to logout?</string>
+    <string name="yes">yes</string>
+    <string name="no">No</string>
 </resources>

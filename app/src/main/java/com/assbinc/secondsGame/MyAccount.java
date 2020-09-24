@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,10 +16,10 @@ import android.database.Cursor;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +28,12 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -45,6 +50,8 @@ public class MyAccount extends AppCompatActivity {
     Button btnLogin;
     private final String channelId = "notificationGame";
     private final int notificationId = 001;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore fireDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,8 @@ public class MyAccount extends AppCompatActivity {
 
         session = new SessionManager(this);
         db = new DatabaseHelper(this);
+        mAuth = FirebaseAuth.getInstance();
+        fireDb = FirebaseFirestore.getInstance();
 
         btnLogin = findViewById(R.id.btnLoginAccount);
         tvUsername = findViewById(R.id.tvUsernameAccount);
@@ -75,7 +84,7 @@ public class MyAccount extends AppCompatActivity {
         //change the user's info if logged-in
         if(session.isLoggedIn()){
             tvUsername.setText(session.getUsername() + "");
-            tvAccountScore.setText(db.getProfileScore(session.getUsername()) + "");
+            tvAccountScore.setText(session.getProfileScore() + "");
 
             friendsCount();
         }
@@ -152,16 +161,31 @@ public class MyAccount extends AppCompatActivity {
         if(!session.checkLoggedIn()){
             showLoginDialog(getApplicationContext());
         }else {
-            session.logout();
-            recreate();
+
+            showLogoutDialog();
         }
+    }
+
+    private void showLogoutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MyAccount.this);
+        builder.setMessage(getResources().getString(R.string.logoutMsg)).setPositiveButton(getResources().getString(R.string.yes), (dialog, which) -> {
+            session.logout();
+            //firebase logout
+            mAuth.signOut();
+            dialog.dismiss();
+            recreate();
+        }).setNegativeButton(getResources().getString(R.string.no), (dialog, which) -> {
+            dialog.dismiss();
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     //shows the login dialog
     public void showLoginDialog(final Context context){
         final android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MyAccount.this);
         final View mView = getLayoutInflater().inflate(R.layout.login_dialog, null);
-        final EditText etUsername = (EditText) mView.findViewById(R.id.etEmail);
+        final EditText etEmail = (EditText) mView.findViewById(R.id.etEmail);
         final EditText etPassword = (EditText) mView.findViewById(R.id.etPassword);
         final Button btnToSignUp = (Button) mView.findViewById(R.id.btnToSignUp);
         final Button btnLogin = (Button) mView.findViewById(R.id.btnLogin);
@@ -172,31 +196,71 @@ public class MyAccount extends AppCompatActivity {
         mDialog.show();
 
         btnLogin.setOnClickListener(v -> {
-            if (!etUsername.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
+            if (!etEmail.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
 
-                String username = etUsername.getText().toString().trim();
+                String email = etEmail.getText().toString().trim();
                 String pwd = etPassword.getText().toString().trim();
-                Boolean res = db.checkUser(username, pwd);
+//                Boolean res = db.checkUser(email, pwd);
 
-                if(res){
-                    Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-                    session.createSession(username);
+                mAuth.signInWithEmailAndPassword(email,pwd).addOnCompleteListener(task -> {
+                    //signIn
+                    if(task.isSuccessful()){
+                        String uid = mAuth.getCurrentUser().getUid();
 
-                    if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
-                        Intent intent = new Intent(MyAccount.this, GameOver.class);
-                        intent.putExtra("gameover", "gameover");
-                        intent.putExtra("points", points);
-                        intent.putExtra("difficulty", difficulty);
-                        intent.putExtra("chosenGame", chosenGame);
-                        startActivity(intent);
-                        finish();
+                        DocumentReference doc = fireDb.collection("users").document(uid);
+                        doc.get().addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                DocumentSnapshot document = task1.getResult();
+                                if (document.exists()) {
+                                    User user = document.toObject(User.class);
+
+                                    session.createSession(user.getUsername(), uid, user.getProfileScore());
+                                    Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+
+                                    if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
+                                        Intent intent = new Intent(MyAccount.this, GameOver.class);
+                                        intent.putExtra("gameover", "gameover");
+                                        intent.putExtra("points", points);
+                                        intent.putExtra("difficulty", difficulty);
+                                        intent.putExtra("chosenGame", chosenGame);
+                                        startActivity(intent);
+                                        finish();
+                                    }else{
+                                        mDialog.dismiss();
+                                        recreate();
+                                    }
+                                } else {
+                                    Snackbar.make(mView, "No such document",Snackbar.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Snackbar.make(mView, "get failed with ",Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
                     }else{
-                        mDialog.dismiss();
-                        recreate();
+                        Toast.makeText(context, getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
-                }
+
+
+                });
+//                if(res){
+//                    Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+//                    session.createSession(email);
+//
+//                    if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
+//                        Intent intent = new Intent(MyAccount.this, GameOver.class);
+//                        intent.putExtra("gameover", "gameover");
+//                        intent.putExtra("points", points);
+//                        intent.putExtra("difficulty", difficulty);
+//                        intent.putExtra("chosenGame", chosenGame);
+//                        startActivity(intent);
+//                        finish();
+//                    }else{
+//                        mDialog.dismiss();
+//                        recreate();
+//                    }
+//                }else{
+//                    Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
+//                }
 
             }else{
                 Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
@@ -212,6 +276,7 @@ public class MyAccount extends AppCompatActivity {
         android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MyAccount.this);
         View mView = getLayoutInflater().inflate(R.layout.signup_dialog, null);
         final EditText etUsername = (EditText) mView.findViewById(R.id.etUsername);
+        final EditText etEmail = (EditText) mView.findViewById(R.id.etEmail);
         final EditText etPwdSignUp = (EditText) mView.findViewById(R.id.etPasswordSignUp);
         final  EditText etConfPassword = (EditText) mView.findViewById(R.id.etConfirmPwd);
         final Button btnToLogin = (Button) mView.findViewById(R.id.btnToLogin);
@@ -223,34 +288,81 @@ public class MyAccount extends AppCompatActivity {
         mDialogSignUp.show();
 
         btnSignUp.setOnClickListener(v -> {
-            if (!etUsername.getText().toString().isEmpty() && !etPwdSignUp.getText().toString().isEmpty() && !etConfPassword.getText().toString().isEmpty()){
+            if (!etEmail.getText().toString().isEmpty() && !etUsername.getText().toString().isEmpty() && !etPwdSignUp.getText().toString().isEmpty() && !etConfPassword.getText().toString().isEmpty()){
 
                 String username = etUsername.getText().toString().trim();
+                String email = etEmail.getText().toString().trim();
                 String pwd = etPwdSignUp.getText().toString().trim();
                 String confirmPwd = etConfPassword.getText().toString().trim();
+                String profileScore = "0"; //profile score is initialized to 0
 
-                if(!(username.length() >= 15)){
-                    if (!db.checkMultipleUsername(username)){
-                        if(pwd.equals(confirmPwd)){
-                            long val = db.addUser(username,pwd);
+                if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) { //if email format isn't correct
 
-                            if (val > 0){
-                                Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
-                                showLoginDialog(context);
-                                displayNotification(getApplicationContext());
-                                mDialogSignUp.dismiss();
+                    if(!(username.length() >= 15)){
+//                    if (!db.checkMultipleUsername(username)){
+//                        if(pwd.equals(confirmPwd)){
+//                            long val = db.addUser(username,pwd);
+//
+//                            if (val > 0){
+//                                Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
+//                                showLoginDialog(context);
+//                                displayNotification(getApplicationContext());
+//                                mDialogSignUp.dismiss();
+//                            }else{
+//                                Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
+//                            }
+//                        }else{
+//                            Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
+//                        }
+//                    }else {
+//                        Toast.makeText(context,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
+//                    }
+                        if(pwd.length() >= 6){
+                            if(pwd.equals(confirmPwd)){
+                                if(pwd.equals(confirmPwd)){
+                                    mAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(task -> {
+                                        if(task.isSuccessful()){
+                                            User user = new User(username,email,pwd, profileScore);
+                                            DocumentReference doc = fireDb.collection("users").document(mAuth.getCurrentUser().getUid());
+                                            doc.set(user); //creates users collection in Firestore with uid as document name
+                                            Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
+                                            displayNotification(getApplicationContext());
+                                            showLoginDialog(context);
+                                            mDialogSignUp.dismiss();
+
+                                        }else{
+                                            try
+                                            {
+                                                throw task.getException();
+                                            }catch (FirebaseAuthUserCollisionException existEmail) //throw an error if email is already in use
+                                            {
+                                                Log.d("TAG", "onComplete: exist_email");
+
+                                                Toast.makeText(context,getResources().getString(R.string.emailExist), Toast.LENGTH_SHORT).show();
+                                            }
+                                            catch (Exception e)
+                                            {
+                                                Log.d("TAG", "onComplete: " + e.getMessage());
+                                            }
+                                        }
+                                    });
+                                }else{
+                                    Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
+                                }
                             }else{
-                                Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
+                                Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
                             }
                         }else{
-                            Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,getResources().getString(R.string.pwdLenght), Toast.LENGTH_LONG).show();
                         }
+
                     }else {
-                        Toast.makeText(context,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
                     }
                 }else {
-                    Toast.makeText(context, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, getResources().getString(R.string.validEmail), Toast.LENGTH_LONG).show();
                 }
+
             }else{
                 Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
             }

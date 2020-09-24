@@ -83,4 +83,10 @@
     <string name="welcomeText">Hallo en welkom bij THE 30 seconds game! Met THE 30 seconds game u kunt spelend leren. U kunt kiezen tussen 2 spellen, DE wiskundespel en DE taaltest. De regels zijn simpel. U moet zoveel mogelijk vragen beantwoorden in 30 seconden. Elk juist antwoord verdient u 1 punt. Als uw antwoord verkeerd is verliest u 1 leven. Uw levens zijn aangeduid met een oranje hart in de rechterbovenhoek van uw scherm. Na 30 seconden of na het verlies van al uw levens, het spel zal voorbij zijn. U kunt altijd opnieuw beginnen om uw score of die van uw vrienden te overtreffen. Veel plezier! </string>
     <string name="signupWelcome">Schrijf u in voor uw score aan uw vrienden te kunnen tonen!</string>
     <string name="closeWindow">close window</string>
+    <string name="validEmail">"Vul enn geldig e-mailadres in "</string>
+    <string name="pwdLenght">Het watchtwoord moet ten minste 6 tekens lang zijn</string>
+    <string name="emailExist">Deze email is al gebruikt</string>
+    <string name="logoutMsg">Bent u zeker dat u wilt uitloggen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
 </resources>

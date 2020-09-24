@@ -83,4 +83,10 @@
     <string name="welcomeText">Bonjour et bienvenue sur THE 30 seconds game! Avec THE 30 seconds game vous apprenez en vous amusant. Vous pouvez choisir entre 2 jeux, LE jeu de math et LE test de langues. Les règles sont simple. Vous avez 30 secondes pour répondre à un maximum de questions. Chaque bonne réponse vous rapportera 1 point. Si vous donnez une mauvaise réponse vous perdez 1 vie. Vos vies sont indiquées avec un coeur orange dans le coin supérieur droit de votre écran. Après 30 secondes ou après avoir perdu toutes vos vies la partie sera terminée. Vous pourrez toujours recommencer pour battre votre record ou celui de vos amis. Amusez-vous bien!</string>
     <string name="signupWelcome">Inscrivez-vous pour pouvoir partager votre score à vos amis!</string>
     <string name="closeWindow">close window</string>
+    <string name="validEmail">Veuillez entrer une adresse mail valide</string>
+    <string name="pwdLenght">Le mot de passe doit contenir au moins 6 caractères</string>
+    <string name="emailExist">Cette adresse mail est déjà utilisée</string>
+    <string name="logoutMsg">Êtes-vous sûr de vouloir vous déconnecter?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 </resources>
