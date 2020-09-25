@@ -456,6 +456,7 @@ public class MyAccount extends AppCompatActivity {
         mDialogAddFriends.show();
 
         ArrayList<String> friendsList = new ArrayList<>();
+        //TODO: add friendslist to fiestore
         Cursor res = db.searchFriend(session.getUsername(), friendsUsername);
 
         ListAdapter listAdapter = new ArrayAdapter<>(this,R.layout.listrow, friendsList);

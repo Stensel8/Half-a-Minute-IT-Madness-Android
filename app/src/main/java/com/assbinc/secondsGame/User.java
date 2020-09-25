@@ -9,13 +9,13 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private String profileScore;
+    private int profileScore;
 
     public User() {
 
     }
 
-    public User(String username, String email, String password, String profileScore) {
+    public User(String username, String email, String password, int profileScore) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -30,7 +30,7 @@ public class User {
         return this.email;
     }
 
-    public String getProfileScore(){
+    public int getProfileScore(){
         return this.profileScore;
     }
 

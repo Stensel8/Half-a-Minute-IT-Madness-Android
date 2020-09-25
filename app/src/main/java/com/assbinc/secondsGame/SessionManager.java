@@ -3,6 +3,9 @@ package com.assbinc.secondsGame;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class SessionManager {
 
     SharedPreferences sessionPreferences;
@@ -21,11 +24,11 @@ public class SessionManager {
         editor = sessionPreferences.edit();
     }
 
-    public void createSession(String username, String uid, String profileScore){
+    public void createSession(String username, String uid, int profileScore){
         editor.putBoolean(IS_LOGGED, true); //boolean used to no if logged-in or not
         editor.putString(USERNAME, username); //saves the username
         editor.putString(UID, uid); //saves the Firestore uid
-        editor.putString(PROFILESCORE, profileScore); //saves the profileScore
+        editor.putInt(PROFILESCORE, profileScore); //saves the profileScore
         editor.apply();
     }
 
@@ -33,10 +36,22 @@ public class SessionManager {
         return sessionPreferences.getString(USERNAME, "");
     }
 
-    public String getProfileScore(){
-        return sessionPreferences.getString(PROFILESCORE, "");
+    public int getProfileScore(){
+        return sessionPreferences.getInt(PROFILESCORE, 0);
     }
 
+    public String getUid(){
+        return sessionPreferences.getString(UID, "");
+    }
+
+    public void setProfileScore(String profileScore, FirebaseFirestore db){
+        DocumentReference docUser = db.collection("users").document(getUid());
+
+        docUser.update("profileScore", profileScore);
+
+        editor.putString(PROFILESCORE, profileScore); //saves the new profileScore
+        editor.apply();
+    }
 
     public boolean isLoggedIn(){
         return sessionPreferences.getBoolean(IS_LOGGED, false);
@@ -54,6 +69,4 @@ public class SessionManager {
         editor.clear();
         editor.commit();
     }
-
-    //TODO: put db here data to avoid fetching data from firestore
 }
