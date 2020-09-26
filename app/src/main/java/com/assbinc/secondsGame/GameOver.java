@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,10 +36,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameOver extends AppCompatActivity {
 
+    final int MAX_TOP = 5;
     TextView tvPoints;
     SharedPreferences sharedPreferences;
     ImageView ivHighScore;
     TextView tvHighScore, tvChosenGame, tvDifficulty, tvTop1, tvTop2, tvTop3, tvTop4, tvTop5;
+    ProgressBar progressBarScore;
     TableLayout tlScore;
     Button btnGoLogin;
     SharedPref sharedPref;
@@ -46,8 +49,9 @@ public class GameOver extends AppCompatActivity {
     int points;
     String difficulty, chosenGame;
     DatabaseHelper db;
-    List<String> scoreList;
     private FirebaseFirestore fireDb;
+    CollectionReference collection;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -74,11 +78,12 @@ public class GameOver extends AppCompatActivity {
         tvPoints = findViewById(R.id.tvPoints);
         tvChosenGame = findViewById(R.id.tvChosenGame);
         tvDifficulty = findViewById(R.id.tvDifficultyGOver);
-//        scoreList = new ArrayList<>();
+        progressBarScore = findViewById(R.id.progressBarScore);
 
         //displays the top 5 if the user is connected
         tlScore.setVisibility(session.checkLoggedIn()? View.VISIBLE: View.INVISIBLE);
         btnGoLogin.setVisibility(session.checkLoggedIn()? View.GONE: View.VISIBLE);
+        progressBarScore.setVisibility(View.GONE);
 
         points = getIntent().getExtras().getInt("points");
         difficulty = getIntent().getExtras().getString("difficulty");
@@ -87,6 +92,7 @@ public class GameOver extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("pref", 0);
         int pointsHC;
         db = new DatabaseHelper(this);
+        collection = fireDb.collection("highscore");
 
         //we get the user's high-score if he's logged-in. if not we get the saved high-score
         if(!session.isLoggedIn()){
@@ -97,6 +103,53 @@ public class GameOver extends AppCompatActivity {
             //db.addScore(session.getUsername(),difficulty, chosenGame, points);
         }
 
+        if (session.isLoggedIn()){
+            progressBarScore.setVisibility(View.VISIBLE);
+
+            collection.orderBy("score", Query.Direction.DESCENDING).get().addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    progressBarScore.setVisibility(View.GONE);
+
+                    //check if collection exists
+                    if(task.getResult().size() > 0){
+                        Log.d("collection", "collection will be updated");
+                        Highscore minScore = null;
+                        Highscore maxScore = null;
+                        List<String> scoreList = new ArrayList<>();
+
+                        for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                            Highscore score = documentSnapshot.toObject(Highscore.class);
+                            scoreList.add(score.getUsername() + ": " + score.getScore());
+
+                            if(minScore == null || minScore.getScore() > score.getScore()){
+                                minScore = score;
+                            }
+                            if(maxScore == null || maxScore.getScore() < score.getScore()){
+                                maxScore = score;
+                            }
+                            Log.d("max", maxScore.getScore() + "");
+                            Log.d("min", minScore.getScore() + "");
+                        }
+                        if(points > maxScore.getScore()) {
+                            if (task.getResult().size() >= MAX_TOP) {
+                                //delete last score and add new highscore
+                                deleteLastDocument(minScore);
+                            }
+                            setHightScoreToFirestore(points, difficulty, chosenGame);
+                            scoreList.add(0,session.getUsername() + ": " + points);
+                        }
+                        showTop(scoreList);
+                    }else{
+                        Log.d("created", "collection created");
+
+                        setHightScoreToFirestore(points, difficulty, chosenGame);
+                    }
+                }else {
+                    Log.e("order", "Error, could not get score");
+                }
+            });
+        }
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(points > pointsHC){
             //saves the high-score
@@ -104,57 +157,10 @@ public class GameOver extends AppCompatActivity {
             editor.putInt("pointsHC", pointsHC);
             editor.commit();
 
-            if (session.isLoggedIn()){
-                session.setProfileScore(points + "", fireDb);
-
-                CollectionReference collection = fireDb.collection("highscore");
-                collection.orderBy("score", Query.Direction.DESCENDING).get().addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        //check if collection exists
-                        if(task.getResult().size() > 0){
-                            Log.d("collection", "collection will be updated");
-                            Highscore minScore = null;
-                            Highscore maxScore = null;
-
-                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                                Highscore score = documentSnapshot.toObject(Highscore.class);
-//                                scoreList.add(score.getUsername() + ": " + score.getScore());
-
-                                if(minScore == null || minScore.getScore() > score.getScore()){
-                                    minScore = score;
-                                }
-                                if(maxScore == null || maxScore.getScore() < score.getScore()){
-                                    maxScore = score;
-                                }
-                                Log.d("max", maxScore.getScore() + "");
-                                Log.d("min", minScore.getScore() + "");
-                            }
-                            if(points > maxScore.getScore()) {
-                                if (task.getResult().size() < 5) {
-                                    setHightScoreToFirestore(points, difficulty, chosenGame);
-                                } else {
-                                    //delete last score and add new highscore
-                                    deleteLastDocument(minScore);
-                                    setHightScoreToFirestore(points, difficulty, chosenGame);
-                                }
-//                                scoreList.set(4, session.getUsername() + ": " + points);
-                            }
-
-                        }else{
-                            Log.d("created", "collection created");
-
-                            setHightScoreToFirestore(points, difficulty, chosenGame);
-                        }
-                    }else {
-                        Log.e("order", "Error, could not get score");
-                    }
-                });
-            }
-
-
             //update the high-score if logged-in
             if(session.isLoggedIn()){
 //                db.updateScoreProfile(session.getUsername(), pointsHC);
+                  session.setProfileScore(points, fireDb);
             }
 
             ivHighScore.setVisibility(View.VISIBLE);
@@ -190,28 +196,30 @@ public class GameOver extends AppCompatActivity {
                 break;
         }
 
-//        if(!scoreList.isEmpty()){
-//            if(scoreList.size() >= 1){
-//                tvTop1.setText(scoreList.get(0));
-//            }
-//            if(scoreList.size() >= 2){
-//                tvTop2.setText(scoreList.get(1));
-//            }
-//            if(scoreList.size() >= 3){
-//                tvTop3.setText(scoreList.get(2));
-//            }
-//            if(scoreList.size() >= 4){
-//                tvTop4.setText(scoreList.get(3));
-//            }
-//            if(scoreList.size() >= 5){
-//                tvTop5.setText(scoreList.get(4));
-//            }
-//        }
-
         tvPoints.setText(""+ points);
         tvHighScore.setText(""+ pointsHC);
         tvChosenGame.setText(getResources().getString(R.string.chosenGame) + chosenGame);
         tvDifficulty.setText(getResources().getString(R.string.difficultyTitle) + ": " + difficulty);
+    }
+
+    private void showTop(List<String> list) {
+        if(!list.isEmpty()){
+            if(list.size() >= 1){
+                tvTop1.setText(list.get(0));
+            }
+            if(list.size() >= 2){
+                tvTop2.setText(list.get(1));
+            }
+            if(list.size() >= 3){
+                tvTop3.setText(list.get(2));
+            }
+            if(list.size() >= 4){
+                tvTop4.setText(list.get(3));
+            }
+            if(list.size() >= 5){
+                tvTop5.setText(list.get(4));
+            }
+        }
     }
 
     private void deleteLastDocument(Highscore minScore) {

@@ -209,6 +209,7 @@
                     android:onClick="goToLogin"
                     android:text="@string/loginTitle"
                     android:textColor="@color/buttonTextColor" />
+
             </LinearLayout>
 
             <TableLayout
@@ -292,6 +293,13 @@
                         android:textSize="24sp" />
                 </TableRow>
             </TableLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBarScore"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
 
         </FrameLayout>
 

@@ -44,12 +44,12 @@ public class SessionManager {
         return sessionPreferences.getString(UID, "");
     }
 
-    public void setProfileScore(String profileScore, FirebaseFirestore db){
+    public void setProfileScore(int profileScore, FirebaseFirestore db){
         DocumentReference docUser = db.collection("users").document(getUid());
 
         docUser.update("profileScore", profileScore);
 
-        editor.putString(PROFILESCORE, profileScore); //saves the new profileScore
+        editor.putInt(PROFILESCORE, profileScore); //saves the new profileScore
         editor.apply();
     }
 

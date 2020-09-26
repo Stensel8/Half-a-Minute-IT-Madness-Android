@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
@@ -190,6 +191,9 @@ public class MyAccount extends AppCompatActivity {
         final Button btnToSignUp = (Button) mView.findViewById(R.id.btnToSignUp);
         final Button btnLogin = (Button) mView.findViewById(R.id.btnLogin);
         final ImageButton btnCloseLogin = (ImageButton) mView.findViewById(R.id.btnClose2);
+        final ProgressBar progressBarLogin = (ProgressBar) mView.findViewById(R.id.progressBarLogin);
+
+        progressBarLogin.setVisibility(mView.GONE);
 
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialog = mBuilder.create();
@@ -202,6 +206,8 @@ public class MyAccount extends AppCompatActivity {
                 String pwd = etPassword.getText().toString().trim();
 //                Boolean res = db.checkUser(email, pwd);
 
+                progressBarLogin.setVisibility(mView.VISIBLE);
+
                 mAuth.signInWithEmailAndPassword(email,pwd).addOnCompleteListener(task -> {
                     //signIn
                     if(task.isSuccessful()){
@@ -210,6 +216,8 @@ public class MyAccount extends AppCompatActivity {
                         DocumentReference doc = fireDb.collection("users").document(uid);
                         doc.get().addOnCompleteListener(task1 -> {
                             if (task1.isSuccessful()) {
+                                progressBarLogin.setVisibility(mView.GONE);
+
                                 DocumentSnapshot document = task1.getResult();
                                 if (document.exists()) {
                                     User user = document.toObject(User.class);
@@ -237,6 +245,8 @@ public class MyAccount extends AppCompatActivity {
                             }
                         });
                     }else{
+                        progressBarLogin.setVisibility(mView.GONE);
+
                         Toast.makeText(context, getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
                     }
 
@@ -282,6 +292,10 @@ public class MyAccount extends AppCompatActivity {
         final Button btnToLogin = (Button) mView.findViewById(R.id.btnToLogin);
         final Button btnSignUp = (Button) mView.findViewById(R.id.btnSignUp);
         final ImageButton btnCloseSignUp = (ImageButton) mView.findViewById(R.id.btnClose3);
+        final ProgressBar progressBarSignUp = (ProgressBar) mView.findViewById(R.id.progressBarSignUp);
+
+        progressBarSignUp.setVisibility(mView.GONE);
+
 
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialogSignUp = mBuilder.create();
@@ -294,7 +308,6 @@ public class MyAccount extends AppCompatActivity {
                 String email = etEmail.getText().toString().trim();
                 String pwd = etPwdSignUp.getText().toString().trim();
                 String confirmPwd = etConfPassword.getText().toString().trim();
-                String profileScore = "0"; //profile score is initialized to 0
 
                 if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) { //if email format isn't correct
 
@@ -320,9 +333,11 @@ public class MyAccount extends AppCompatActivity {
                         if(pwd.length() >= 6){
                             if(pwd.equals(confirmPwd)){
                                 if(pwd.equals(confirmPwd)){
+                                    progressBarSignUp.setVisibility(mView.VISIBLE);
                                     mAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(task -> {
                                         if(task.isSuccessful()){
-                                            User user = new User(username,email,pwd, profileScore);
+                                            progressBarSignUp.setVisibility(mView.GONE);
+                                            User user = new User(username,email,pwd, 0);
                                             DocumentReference doc = fireDb.collection("users").document(mAuth.getCurrentUser().getUid());
                                             doc.set(user); //creates users collection in Firestore with uid as document name
                                             Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
@@ -331,6 +346,8 @@ public class MyAccount extends AppCompatActivity {
                                             mDialogSignUp.dismiss();
 
                                         }else{
+                                            progressBarSignUp.setVisibility(mView.GONE);
+
                                             try
                                             {
                                                 throw task.getException();
