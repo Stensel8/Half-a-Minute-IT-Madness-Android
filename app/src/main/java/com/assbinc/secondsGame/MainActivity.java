@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MyAccount.class);
             intent.putExtra("main","main");
             startActivity(intent);
+            finish();
         });
 
         btnClose.setOnClickListener(v -> mDialog.dismiss());
