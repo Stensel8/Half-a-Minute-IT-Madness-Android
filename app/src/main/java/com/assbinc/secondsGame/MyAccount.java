@@ -34,7 +34,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -86,54 +88,16 @@ public class MyAccount extends AppCompatActivity {
         if(session.isLoggedIn()){
             tvUsername.setText(session.getUsername() + "");
             tvAccountScore.setText(session.getProfileScore() + "");
-
-            friendsCount();
+            tvTotalFriends.setText(session.getNbFriends() + "");
         }
 
-        //if we come from the GameOver activity
+        //if the previous activity was the GameOver activity
         if (!(getIntent().getStringExtra("gameover") == null) && !session.isLoggedIn()){
             showLoginDialog(getApplicationContext());
+        }else if (!(getIntent().getStringExtra("main") == null) && !session.isLoggedIn()){ //if the previous activity was the MainActivity
+            showSignUpDialog(getApplicationContext());
         }
     }
-
-    private void friendsCount() {
-        //count the number of friends
-        Cursor cursor = db.showFriends(session.getUsername());
-
-        ArrayList<String> friendsCount = new ArrayList<>();
-
-        if(cursor.getCount() != 0){
-            while (cursor.moveToNext()){
-                friendsCount.add(cursor.getString(0));
-            }
-        }
-        tvTotalFriends.setText(friendsCount.size() + "");
-    }
-
-//    private void showTable(String username, String friendsUsername) {
-//
-//        Cursor res = db.showFriends(username);
-//
-//        if(res.getCount() == 0){
-//
-//            showMessage("error");
-//        }else{
-//            StringBuffer stringBuffer = new StringBuffer();
-//            while (res.moveToNext()){
-//                stringBuffer.append("Id: " + res.getString(0) + "\n");
-////                stringBuffer.append("Score: " + res.getString(1) + "\n");
-////                stringBuffer.append("Username: " + res.getString(2) + "\n\n");
-//            }
-//            showMessage(stringBuffer.toString());
-//        }
-//    }
-
-//    public void showMessage(String message){
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setCancelable(true);
-//        builder.setMessage(message);
-//        builder.show();
-//    }
 
     //set saved language
     private void setLocale(String lang) {
@@ -162,7 +126,6 @@ public class MyAccount extends AppCompatActivity {
         if(!session.checkLoggedIn()){
             showLoginDialog(getApplicationContext());
         }else {
-
             showLogoutDialog();
         }
     }
@@ -204,7 +167,6 @@ public class MyAccount extends AppCompatActivity {
 
                 String email = etEmail.getText().toString().trim();
                 String pwd = etPassword.getText().toString().trim();
-//                Boolean res = db.checkUser(email, pwd);
 
                 progressBarLogin.setVisibility(mView.VISIBLE);
 
@@ -222,7 +184,7 @@ public class MyAccount extends AppCompatActivity {
                                 if (document.exists()) {
                                     User user = document.toObject(User.class);
 
-                                    session.createSession(user.getUsername(), uid, user.getProfileScore());
+                                    session.createSession(user.getUsername(), uid, user.getProfileScore(), user.getFriends());
                                     Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
 
                                     if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
@@ -232,6 +194,8 @@ public class MyAccount extends AppCompatActivity {
                                         intent.putExtra("difficulty", difficulty);
                                         intent.putExtra("chosenGame", chosenGame);
                                         startActivity(intent);
+                                        finish();
+                                    }else if (getIntent().getStringExtra("main") != null){
                                         finish();
                                     }else{
                                         mDialog.dismiss();
@@ -249,36 +213,13 @@ public class MyAccount extends AppCompatActivity {
 
                         Toast.makeText(context, getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
                     }
-
-
                 });
-//                if(res){
-//                    Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-//                    session.createSession(email);
-//
-//                    if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
-//                        Intent intent = new Intent(MyAccount.this, GameOver.class);
-//                        intent.putExtra("gameover", "gameover");
-//                        intent.putExtra("points", points);
-//                        intent.putExtra("difficulty", difficulty);
-//                        intent.putExtra("chosenGame", chosenGame);
-//                        startActivity(intent);
-//                        finish();
-//                    }else{
-//                        mDialog.dismiss();
-//                        recreate();
-//                    }
-//                }else{
-//                    Toast.makeText(context,getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
-//                }
-
             }else{
                 Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
             }
         });
         btnToSignUp.setOnClickListener(v -> showSignUpDialog(getApplicationContext()));
         btnCloseLogin.setOnClickListener(v -> mDialog.dismiss());
-
     }
 
     //shows the sign-up dialog
@@ -296,7 +237,6 @@ public class MyAccount extends AppCompatActivity {
 
         progressBarSignUp.setVisibility(mView.GONE);
 
-
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialogSignUp = mBuilder.create();
         mDialogSignUp.show();
@@ -309,58 +249,53 @@ public class MyAccount extends AppCompatActivity {
                 String pwd = etPwdSignUp.getText().toString().trim();
                 String confirmPwd = etConfPassword.getText().toString().trim();
 
-                if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) { //if email format isn't correct
-
+                if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) { //if email format is correct
                     if(!(username.length() >= 15)){
-//                    if (!db.checkMultipleUsername(username)){
-//                        if(pwd.equals(confirmPwd)){
-//                            long val = db.addUser(username,pwd);
-//
-//                            if (val > 0){
-//                                Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
-//                                showLoginDialog(context);
-//                                displayNotification(getApplicationContext());
-//                                mDialogSignUp.dismiss();
-//                            }else{
-//                                Toast.makeText(context,getResources().getString(R.string.sign_up_error), Toast.LENGTH_LONG).show();
-//                            }
-//                        }else{
-//                            Toast.makeText(context,getResources().getString(R.string.same_pwd), Toast.LENGTH_LONG).show();
-//                        }
-//                    }else {
-//                        Toast.makeText(context,getResources().getString(R.string.username_exists), Toast.LENGTH_LONG).show();
-//                    }
                         if(pwd.length() >= 6){
                             if(pwd.equals(confirmPwd)){
                                 if(pwd.equals(confirmPwd)){
                                     progressBarSignUp.setVisibility(mView.VISIBLE);
-                                    mAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(task -> {
+
+                                    fireDb.collection("users").whereEqualTo("username", username).limit(1).get().addOnCompleteListener(task -> {
                                         if(task.isSuccessful()){
-                                            progressBarSignUp.setVisibility(mView.GONE);
-                                            User user = new User(username,email,pwd, 0);
-                                            DocumentReference doc = fireDb.collection("users").document(mAuth.getCurrentUser().getUid());
-                                            doc.set(user); //creates users collection in Firestore with uid as document name
-                                            Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
-                                            displayNotification(getApplicationContext());
-                                            showLoginDialog(context);
-                                            mDialogSignUp.dismiss();
+                                            if (task.getResult().size() > 0){ //username already in use
 
+                                                progressBarSignUp.setVisibility(mView.GONE);
+
+                                                Toast.makeText(this, getResources().getString(R.string.username_exists), Toast.LENGTH_SHORT).show();
+                                            }else{
+                                                mAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(task1 -> {
+                                                    if(task1.isSuccessful()){
+                                                        progressBarSignUp.setVisibility(mView.GONE);
+                                                        int profileScore = 0;
+                                                        int nbFriends = 0;
+                                                        User user = new User(username,email,pwd, profileScore, nbFriends, mAuth.getCurrentUser().getUid());
+                                                        DocumentReference doc = fireDb.collection("users").document(mAuth.getCurrentUser().getUid());
+                                                        doc.set(user); //creates users collection in Firestore with uid as document name
+                                                        Toast.makeText(context,getResources().getString(R.string.sign_up_succes), Toast.LENGTH_LONG).show();
+                                                        displayNotification(getApplicationContext());
+                                                        showLoginDialog(context);
+                                                        mDialogSignUp.dismiss();
+
+                                                    }else{
+                                                        progressBarSignUp.setVisibility(mView.GONE);
+
+                                                        try{
+                                                            throw task1.getException();
+                                                        }catch(FirebaseAuthUserCollisionException existEmail){ //throw an error if email is already in use
+                                                            Log.d("email", "onComplete: exist_email");
+
+                                                            Toast.makeText(context,getResources().getString(R.string.emailExist), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                        catch (Exception e) {
+                                                            Log.d("error", "onComplete: " + e.getMessage());
+                                                        }
+                                                    }
+                                                });
+                                            }
                                         }else{
-                                            progressBarSignUp.setVisibility(mView.GONE);
-
-                                            try
-                                            {
-                                                throw task.getException();
-                                            }catch (FirebaseAuthUserCollisionException existEmail) //throw an error if email is already in use
-                                            {
-                                                Log.d("TAG", "onComplete: exist_email");
-
-                                                Toast.makeText(context,getResources().getString(R.string.emailExist), Toast.LENGTH_SHORT).show();
-                                            }
-                                            catch (Exception e)
-                                            {
-                                                Log.d("TAG", "onComplete: " + e.getMessage());
-                                            }
+                                            Log.e("request", "request fail");
+                                            Toast.makeText(this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }else{
@@ -372,7 +307,6 @@ public class MyAccount extends AppCompatActivity {
                         }else{
                             Toast.makeText(context,getResources().getString(R.string.pwdLenght), Toast.LENGTH_LONG).show();
                         }
-
                     }else {
                         Toast.makeText(context, getResources().getString(R.string.username_too_long), Toast.LENGTH_LONG).show();
                     }
@@ -384,13 +318,25 @@ public class MyAccount extends AppCompatActivity {
                 Toast.makeText(context, getResources().getString(R.string.login_empty_msg), Toast.LENGTH_LONG).show();
             }
         });
-        btnToLogin.setOnClickListener(v -> mDialogSignUp.dismiss());
-        btnCloseSignUp.setOnClickListener(v -> mDialogSignUp.dismiss());
+
+        btnToLogin.setOnClickListener(v -> {
+            if (getIntent().getStringExtra("main") != null){
+                showLoginDialog(context);
+            }else{
+                mDialogSignUp.dismiss();
+            }
+        });
+        btnCloseSignUp.setOnClickListener(v -> {
+            if (getIntent().getStringExtra("main") != null){
+                finish();
+            }else{
+                mDialogSignUp.dismiss();
+            }
+        });
 
     }
 
     private void displayNotification(Context context) {
-
         createNotificationChannel();
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,channelId)
                 .setSmallIcon(R.mipmap.ic_launcher)
@@ -467,38 +413,121 @@ public class MyAccount extends AppCompatActivity {
         View mView = getLayoutInflater().inflate(R.layout.add_friend_list_dialog, null);
         final ListView lvAddFriends = (ListView) mView.findViewById(R.id.lvFriends);
         final ImageButton btnCloseAddFriends = (ImageButton) mView.findViewById(R.id.btnClose5);
+        final ProgressBar progressBarFriends = (ProgressBar) mView.findViewById(R.id.progressBarFriends);
 
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialogAddFriends = mBuilder.create();
         mDialogAddFriends.show();
 
-        ArrayList<String> friendsList = new ArrayList<>();
-        //TODO: add friendslist to fiestore
-        Cursor res = db.searchFriend(session.getUsername(), friendsUsername);
+        progressBarFriends.setVisibility(mView.VISIBLE);
 
+        ArrayList<String> friendsList = new ArrayList<>();
+
+        //get friendslist from firestore
+        fireDb.collection("users").orderBy("username").startAt(friendsUsername).endAt(friendsUsername + "\uf8ff").get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                progressBarFriends.setVisibility(mView.GONE);
+                for (DocumentSnapshot doc : task.getResult()){
+                    if(!doc.getString("username").equalsIgnoreCase(session.getUsername())){
+                        friendsList.add(doc.getString("username"));
+                    }
+                }
+                showFriendList(lvAddFriends,friendsList, "add");
+            }
+        }).addOnFailureListener(e -> {
+            progressBarFriends.setVisibility(mView.GONE);
+
+            showFriendList(lvAddFriends, friendsList, "show");
+            Log.e("No friends", e.getMessage());
+        });
+
+        btnCloseAddFriends.setOnClickListener(v -> mDialogAddFriends.dismiss());
+    }
+
+    private void showFriendList(ListView lvAddFriends, ArrayList<String> friendsList, String addOrShow) {
         ListAdapter listAdapter = new ArrayAdapter<>(this,R.layout.listrow, friendsList);
         lvAddFriends.setAdapter(listAdapter);
 
-        if(res.getCount() == 0){
-            friendsList.add(getResources().getString(R.string.no_data));
-        }else{
-            while (res.moveToNext()){
-                friendsList.add(res.getString(0));
+        if(!friendsList.isEmpty()){
+            if(addOrShow.equalsIgnoreCase("add")){
+                lvAddFriends.setOnItemClickListener((parent, view, position, id) -> {
+                    //check if friends and adds new friend if necessary
+                    alreadyFriends(friendsList.get(position));
+                });
+            }else if(addOrShow.equalsIgnoreCase("show")){
+                //show profile
+                lvAddFriends.setOnItemClickListener((parent, v, position, id) -> {
+                    android.app.AlertDialog.Builder mBuilderFriend = new android.app.AlertDialog.Builder(MyAccount.this);
+                    View mViewFriend = getLayoutInflater().inflate(R.layout.friend_profile_dialog, null);
+                    final TextView tvFriendUsername = mViewFriend.findViewById(R.id.tvFriendUsername);
+                    final TextView tvFriendHC = mViewFriend.findViewById(R.id.tvFriendHC);
+                    final TextView textView3 = mViewFriend.findViewById(R.id.textView3);
+                    final ProgressBar progressBarFriendProfile = mViewFriend.findViewById(R.id.progressBarFriendProfile);
+
+                    mBuilderFriend.setView(mViewFriend);
+                    final android.app.AlertDialog mDialogFriendProfile = mBuilderFriend.create();
+                    mDialogFriendProfile.show();
+
+                    tvFriendUsername.setText(friendsList.get(position));
+                    //show friend's score
+                    progressBarFriendProfile.setVisibility(mViewFriend.VISIBLE);
+                    textView3.setVisibility(mViewFriend.INVISIBLE);
+                    tvFriendHC.setVisibility(mViewFriend.INVISIBLE);
+                    fireDb.collection("users").whereEqualTo("username", friendsList.get(position)).limit(1).get().addOnCompleteListener(task -> {
+                        if(task.isSuccessful()){
+                            progressBarFriendProfile.setVisibility(mViewFriend.GONE);
+                            textView3.setVisibility(mViewFriend.VISIBLE);
+                            tvFriendHC.setVisibility(mViewFriend.VISIBLE);
+
+                            for (DocumentSnapshot doc : task.getResult()){
+                                tvFriendHC.setText(doc.get("profileScore") + "");
+                            }
+                        }else{
+                            progressBarFriendProfile.setVisibility(mViewFriend.GONE);
+                        }
+                    });
+                });
             }
 
-            lvAddFriends.setOnItemClickListener((parent, view, position, id) -> {
-                if(!db.checkFriend(session.getUsername(),friendsList.get(position))){
-                    if(db.addFriend(session.getUsername(),friendsList.get(position))){
-                        Toast.makeText(this, getResources().getString(R.string.friend_added), Toast.LENGTH_LONG).show();
-                        friendsCount();
-                    }
-                }else{
-                    Toast.makeText(this, getResources().getString(R.string.already_friend), Toast.LENGTH_LONG).show();
-                }
-            });
+        }else{
+            friendsList.add(getResources().getString(R.string.no_data));
         }
+    }
 
-        btnCloseAddFriends.setOnClickListener(v -> mDialogAddFriends.dismiss());
+    private void addFriendToFirestore(String friend) {
+        Friends newFriend = new Friends(session.getUsername(), friend);
+        Friends me = new Friends(friend, session.getUsername());
+        fireDb.collection("friends").document().set(newFriend).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                fireDb.collection("friends").document().set(me).addOnCompleteListener(task1 -> {
+                    Toast.makeText(this, getResources().getString(R.string.friend_added), Toast.LENGTH_SHORT).show();
+                    session.setNbFriends(fireDb, tvTotalFriends);
+
+                    fireDb.collection("users").whereEqualTo("username", friend).limit(1).get().addOnSuccessListener(task2 -> {
+                        for (DocumentSnapshot docUser : task2.getDocuments()){
+                            String uid = docUser.getString("uid");
+                            fireDb.collection("users").document(uid).update("friends", FieldValue.increment(1));
+                        }
+                    });
+                });
+            }else{
+                Toast.makeText(this, "Could not add this friend", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void alreadyFriends(String friend) {
+        fireDb.collection("friends").whereEqualTo("username", session.getUsername()).whereEqualTo("friends", friend).limit(1).get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                if (task.getResult().size() > 0){
+                    Toast.makeText(this, getResources().getString(R.string.already_friend), Toast.LENGTH_LONG).show();
+                }else{
+                    addFriendToFirestore(friend);
+                }
+            }else{
+                Toast.makeText(this, task.getException().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void showFriends(View view) {
@@ -507,6 +536,7 @@ public class MyAccount extends AppCompatActivity {
         final ListView lvAddFriends = (ListView) mView.findViewById(R.id.lvFriends);
         final TextView tvAddFriends = (TextView) mView.findViewById(R.id.tvAddFriends2);
         final ImageButton btnCloseShowFriends = (ImageButton) mView.findViewById(R.id.btnClose5);
+        final ProgressBar progressBarFriends = (ProgressBar) mView.findViewById(R.id.progressBarFriends);
 
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialogAddFriends = mBuilder.create();
@@ -515,33 +545,22 @@ public class MyAccount extends AppCompatActivity {
         tvAddFriends.setText(getResources().getString(R.string.friends));
 
         ArrayList<String> friendsList = new ArrayList<>();
-        Cursor res = db.showFriends(session.getUsername());
+        progressBarFriends.setVisibility(mView.VISIBLE);
+        //showFriends from firestore
+        fireDb.collection("friends").whereEqualTo("username", session.getUsername()).get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                progressBarFriends.setVisibility(mView.GONE);
 
-        ListAdapter listAdapter = new ArrayAdapter<>(this,R.layout.listrow, friendsList);
-        lvAddFriends.setAdapter(listAdapter);
+                for (DocumentSnapshot doc : task.getResult()){
+                    friendsList.add(doc.getString("friends"));
+                }
+                showFriendList(lvAddFriends,friendsList, "show");
+            }else{
+                progressBarFriends.setVisibility(mView.GONE);
 
-        if(res.getCount() == 0){
-            friendsList.add(getResources().getString(R.string.no_data));
-        }else{
-            while (res.moveToNext()){
-                friendsList.add(res.getString(0));
+                Toast.makeText(this, task.getException().toString(), Toast.LENGTH_LONG).show();
             }
-
-            lvAddFriends.setOnItemClickListener((parent, v, position, id) -> {
-                android.app.AlertDialog.Builder mBuilderFriend = new android.app.AlertDialog.Builder(MyAccount.this);
-                View mViewFriend = getLayoutInflater().inflate(R.layout.friend_profile_dialog, null);
-                final TextView tvFriendUsername = mViewFriend.findViewById(R.id.tvFriendUsername);
-                final TextView tvFriendHC = mViewFriend.findViewById(R.id.tvFriendHC);
-
-                mBuilderFriend.setView(mViewFriend);
-                final android.app.AlertDialog mDialogFriendProfile = mBuilderFriend.create();
-                mDialogFriendProfile.show();
-
-                tvFriendUsername.setText(friendsList.get(position));
-                tvFriendHC.setText(db.getProfileScore(friendsList.get(position)) + "");
-
-            });
-        }
+        });
 
         btnCloseShowFriends.setOnClickListener(v -> mDialogAddFriends.dismiss());
     }
@@ -550,13 +569,15 @@ public class MyAccount extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        if ((getIntent().getStringExtra("gameover").equals("gameover"))) {
+        if (!(getIntent().getStringExtra("gameover") == null) && (getIntent().getStringExtra("gameover").equals("gameover"))) {
             Intent intent = new Intent(MyAccount.this, GameOver.class);
             intent.putExtra("gameover", "gameover");
             intent.putExtra("points", points);
             intent.putExtra("difficulty", difficulty);
             intent.putExtra("chosenGame", chosenGame);
             startActivity(intent);
+            finish();
+        }else if(!(getIntent().getStringExtra("main") == null) &&(getIntent().getStringExtra("main").equals("main"))){
             finish();
         }else{
             Intent intent = new Intent(MyAccount.this, Settings.class);

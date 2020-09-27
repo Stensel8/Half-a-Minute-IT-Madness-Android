@@ -14,8 +14,9 @@ public class Friends {
 
     }
 
-    public Friends(String username) {
+    public Friends(String username, String friends) {
         this.username = username;
+        this.friends = friends;
     }
 
     public String getFriends() {
