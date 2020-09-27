@@ -1,9 +1,7 @@
 package com.assbinc.secondsGame;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -23,7 +22,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,8 +49,8 @@ public class GameOver extends AppCompatActivity {
         //check dark mode
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+        sharedPref.loadLocale(this); //loads the saved language
 
-        loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
 
@@ -96,13 +94,12 @@ public class GameOver extends AppCompatActivity {
         if (session.isLoggedIn()){
             progressBarScore.setVisibility(View.VISIBLE);
 
-            collection.orderBy("score", Query.Direction.DESCENDING).get().addOnCompleteListener(task -> {
+            collection.orderBy("score", Query.Direction.DESCENDING).whereEqualTo("chosenGame", chosenGame).whereEqualTo("difficulty", difficulty).get().addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     progressBarScore.setVisibility(View.GONE);
 
                     //check if collection exists
                     if(task.getResult().size() > 0){
-                        Log.d("collection", "collection will be updated");
                         Highscore minScore = null;
 
                         List<String> scoreList = new ArrayList<>();
@@ -121,21 +118,23 @@ public class GameOver extends AppCompatActivity {
 
                         int listIndex; //the index where we're gonna add the score to the list
 
-                        if(points > scoreObjects.get(0).getScore()){
-                            listIndex = 0;
-                            addToList(scoreList, listIndex, minScore, task);
-                        }else if(points > scoreObjects.get(1).getScore()){
-                            listIndex = 1;
-                            addToList(scoreList, listIndex, minScore, task);
-                        }else if(points > scoreObjects.get(2).getScore()){
-                            listIndex = 2;
-                            addToList(scoreList, listIndex, minScore, task);
-                        }else if(points > scoreObjects.get(3).getScore()){
-                            listIndex = 3;
-                            addToList(scoreList, listIndex, minScore, task);
-                        } else if(points > scoreObjects.get(4).getScore()){
-                            listIndex = 4;
-                            addToList(scoreList, listIndex, minScore, task);
+                        if (points != 0){
+                            if(scoreObjects.size() >= 1 && points > scoreObjects.get(0).getScore()){
+                                listIndex = 0;
+                                addToList(scoreList, listIndex, minScore, task);
+                            }else if(scoreObjects.size() >= 2 && points > scoreObjects.get(1).getScore()){
+                                listIndex = 1;
+                                addToList(scoreList, listIndex, minScore, task);
+                            }else if(scoreObjects.size() >= 3 && points > scoreObjects.get(2).getScore()){
+                                listIndex = 2;
+                                addToList(scoreList, listIndex, minScore, task);
+                            }else if(scoreObjects.size() >= 4 && points > scoreObjects.get(3).getScore()){
+                                listIndex = 3;
+                                addToList(scoreList, listIndex, minScore, task);
+                            } else if(scoreObjects.size() >= 5 && points > scoreObjects.get(4).getScore()){
+                                listIndex = 4;
+                                addToList(scoreList, listIndex, minScore, task);
+                            }
                         }
 
                         showTop(scoreList);
@@ -143,13 +142,15 @@ public class GameOver extends AppCompatActivity {
                         Log.d("created", "collection created");
                         List<String> scoreList = new ArrayList<>();
 
-                        setHighScoreToFirestore(points, difficulty, chosenGame);
-                        scoreList.add(session.getUsername() + ": " + points);
-
+                        if(points > 0){
+                            setHighScoreToFirestore(points, difficulty, chosenGame);
+                            scoreList.add(session.getUsername() + ": " + points);
+                        }
                         showTop(scoreList);
                     }
                 }else {
-                    Log.e("order", "Error, could not get score");
+                    Log.e("order", task.getException().toString());
+                    Toast.makeText(this, "Error, could not load Top 5", Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -169,29 +170,8 @@ public class GameOver extends AppCompatActivity {
             ivHighScore.setVisibility(View.VISIBLE);
         }
 
-        //we change the String values to display them in multiple languages
-        if(chosenGame.equalsIgnoreCase("languageGame")){
-            chosenGame = getResources().getString(R.string.languageGameButton);
-        }else{
-            chosenGame = getResources().getString(R.string.mathGameButton);
-        }
-
-        switch (difficulty){
-            case "easy":
-                difficulty = getResources().getString(R.string.difficultyEasy);
-                break;
-            case "medium":
-                difficulty = getResources().getString(R.string.difficultyMedium);
-                break;
-            case "hard":
-                difficulty = getResources().getString(R.string.difficultyHard);
-                break;
-        }
-
         tvPoints.setText(""+ points);
         tvHighScore.setText(""+ pointsHC);
-        tvChosenGame.setText(getResources().getString(R.string.chosenGame) + chosenGame);
-        tvDifficulty.setText(getResources().getString(R.string.difficultyTitle) + ": " + difficulty);
     }
 
     private void addToList(List<String> scoreList, int listIndex, Highscore minScore, Task<QuerySnapshot> task) {
@@ -222,6 +202,27 @@ public class GameOver extends AppCompatActivity {
                 tvTop5.setText(list.get(4));
             }
         }
+
+        //we change the String values to display them in multiple languages
+        if(chosenGame.equalsIgnoreCase("languageGame")){
+            chosenGame = getResources().getString(R.string.languageGameButton);
+        }else{
+            chosenGame = getResources().getString(R.string.mathGameButton);
+        }
+
+        switch (difficulty){
+            case "easy":
+                difficulty = getResources().getString(R.string.difficultyEasy);
+                break;
+            case "medium":
+                difficulty = getResources().getString(R.string.difficultyMedium);
+                break;
+            case "hard":
+                difficulty = getResources().getString(R.string.difficultyHard);
+                break;
+        }
+        tvChosenGame.setText(getResources().getString(R.string.chosenGame) + chosenGame);
+        tvDifficulty.setText(getResources().getString(R.string.difficultyTitle) + ": " + difficulty);
     }
 
     private void deleteLastDocument(Highscore minScore) {
@@ -247,27 +248,6 @@ public class GameOver extends AppCompatActivity {
                 Log.e("no data", "No data inserted");
             }
         });
-    }
-
-    //set saved language
-    private void setLocale(String lang) {
-        Locale locale;
-        if(lang.equals("")){ //if there's no saved language
-            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
-        }else{
-            locale = new Locale(lang);
-        }
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
-
-    //load saved language
-    public void loadLocale(){
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
-        setLocale(language);
     }
 
     public void restart(View view) {

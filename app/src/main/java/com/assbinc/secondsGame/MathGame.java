@@ -3,15 +3,10 @@ package com.assbinc.secondsGame;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Random;
 
 public class MathGame extends AppCompatActivity {
@@ -52,8 +46,8 @@ public class MathGame extends AppCompatActivity {
         //check dark mode
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+        sharedPref.loadLocale(this); //loads the saved language
 
-        loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.math_game);
 
@@ -86,27 +80,6 @@ public class MathGame extends AppCompatActivity {
         difficulty = sharedPreferences.getString("difficulty", "easy");
         startGame();
 
-    }
-
-    //set saved language
-    private void setLocale(String lang) {
-        Locale locale;
-        if(lang.equals("")){ //if there's no saved language
-            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
-        }else{
-            locale = new Locale(lang);
-        }
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
-
-    //load saved language
-    public void loadLocale(){
-        sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = sharedPreferences.getString("My lang", "");
-        setLocale(language);
     }
 
     public void pauseGame(View view) {

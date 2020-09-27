@@ -4,8 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -13,8 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -33,9 +29,10 @@ public class Settings extends AppCompatActivity {
 
         //set dark theme that we configured
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+        //load selected language
+        sharedPref.loadLocale(this);
 
         super.onCreate(savedInstanceState);
-        loadLocale(); //load selected language
         setContentView(R.layout.settings);
 
         //allow notifications or not
@@ -48,22 +45,19 @@ public class Settings extends AppCompatActivity {
 
             }
         });*/
+
         //switch between dark and light mode
         darkModeToggle = findViewById(R.id.darkModeToggle);
         if(sharedPref.loadNightMode() == true){
             darkModeToggle.setChecked(true);
         }
-        darkModeToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    sharedPref.setNightMode(true);
-                    recreate();
-                }else{
-                    sharedPref.setNightMode(false);
-                    recreate();
-                }
-//                Log.d("checked", "checked: " + isChecked + " | boolean: " + isDarkMode);
+        darkModeToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                sharedPref.setNightMode(true);
+                recreate();
+            }else{
+                sharedPref.setNightMode(false);
+                recreate();
             }
         });
 
@@ -93,17 +87,17 @@ public class Settings extends AppCompatActivity {
         mBuilder.setSingleChoiceItems(listOfLang, -1, (dialog, i) -> {
             if (i == 0){
                 //set french
-                setLocale("fr");
+                sharedPref.setLocale("fr", getApplicationContext());
                 recreate();
             }
             if (i == 1){
-                //set french
-                setLocale("nl");
+                //set dutch
+                sharedPref.setLocale("nl", getApplicationContext());
                 recreate();
             }
             if (i == 2){
-                //set french
-                setLocale("en");
+                //set english
+                sharedPref.setLocale("en", getApplicationContext());
                 recreate();
             }
             //dismiss dialog when language selected
@@ -111,31 +105,6 @@ public class Settings extends AppCompatActivity {
         });
         AlertDialog mDialog = mBuilder.create();
         mDialog.show();
-    }
-
-    //change language
-    private void setLocale(String lang) {
-        Locale locale;
-        if(lang.equals("")){ //if there's no saved language
-            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
-        }else{
-            locale = new Locale(lang);
-        }        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
-        //save data to shared preferences
-        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
-        editor.putString("My lang", lang);
-        editor.apply();
-    }
-
-    //load saved language
-    public void loadLocale(){
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
-        setLocale(language);
     }
 
     public void chooseDifficulty(View view){

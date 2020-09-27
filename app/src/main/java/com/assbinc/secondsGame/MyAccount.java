@@ -4,15 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.database.Cursor;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,16 +32,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MyAccount extends AppCompatActivity {
 
     SharedPref sharedPref;
     SessionManager session;
-    DatabaseHelper db;
     int points;
     String difficulty;
     String chosenGame;
@@ -63,8 +56,7 @@ public class MyAccount extends AppCompatActivity {
 
         //set dark theme that we configured
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
-
-        loadLocale();
+        sharedPref.loadLocale(this); //loads the saved language
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_account);
@@ -74,7 +66,6 @@ public class MyAccount extends AppCompatActivity {
         chosenGame = getIntent().getExtras().getString("chosenGame");
 
         session = new SessionManager(this);
-        db = new DatabaseHelper(this);
         mAuth = FirebaseAuth.getInstance();
         fireDb = FirebaseFirestore.getInstance();
 
@@ -97,27 +88,6 @@ public class MyAccount extends AppCompatActivity {
         }else if (!(getIntent().getStringExtra("main") == null) && !session.isLoggedIn()){ //if the previous activity was the MainActivity
             showSignUpDialog(getApplicationContext());
         }
-    }
-
-    //set saved language
-    private void setLocale(String lang) {
-        Locale locale;
-        if(lang.equals("")){ //if there's no saved language
-            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
-        }else{
-            locale = new Locale(lang);
-        }
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
-
-    //load saved language
-    public void loadLocale(){
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
-        setLocale(language);
     }
 
     public void login(View view){

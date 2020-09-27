@@ -1,42 +1,22 @@
 package com.assbinc.secondsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.media.RingtoneManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     SharedPref sharedPref;
     SharedPreferences sharedPreferences;
-    DatabaseHelper db;
-    SessionManager session;
-    private final String channelId = "notificationGame";
-    private final int notificationId = 001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         //check dark mode
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
+        sharedPref.loadLocale(this); //loads the saved language
 
         super.onCreate(savedInstanceState);
-        loadLocale();
         setContentView(R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
@@ -88,26 +68,7 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    //load saved language
-    public void loadLocale(){
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
-        setLocale(language);
-    }
 
-    //set saved language
-    private void setLocale(String lang) {
-        Locale locale;
-        if(lang.equals("")){ //if there's no saved language
-            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
-        }else{
-            locale = new Locale(lang);
-        }
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
     public void chooseGamePage(View view) {
         Settings.btnAnimation(view);
         Intent intent = new Intent(MainActivity.this, ChooseGame.class);

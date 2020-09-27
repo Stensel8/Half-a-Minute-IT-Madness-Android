@@ -2,9 +2,6 @@ package com.assbinc.secondsGame;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @IgnoreExtraProperties
 public class Friends {
     private String username;

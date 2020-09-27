@@ -3,7 +3,6 @@ package com.assbinc.secondsGame;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -19,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Random;
 
 public class LanguageGame extends AppCompatActivity {
@@ -45,10 +43,11 @@ public class LanguageGame extends AppCompatActivity {
         //check dark mode
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
+        sharedPref.loadLocale(this); //loads the saved language
 
         pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         savedLanguage = pref.getString("My lang", ""); //indicates the current language of the app
-        loadLocale();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.language_test);
 
@@ -81,25 +80,6 @@ public class LanguageGame extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("gameDifficulty", Activity.MODE_PRIVATE);
         difficulty = sharedPreferences.getString("difficulty", "easy");
         startGame();
-    }
-
-    //set saved language
-    private void setLocale(String lang) {
-        Locale locale;
-        if(lang.equals("")){ //if there's no saved language
-            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
-        }else{
-            locale = new Locale(lang);
-        }
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
-
-    //load saved language
-    public void loadLocale(){
-        setLocale(savedLanguage);
     }
 
     public void pauseGame(View view) {

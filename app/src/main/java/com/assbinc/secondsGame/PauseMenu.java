@@ -2,18 +2,14 @@ package com.assbinc.secondsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-
-import java.util.Locale;
 
 public class PauseMenu extends AppCompatActivity {
 
@@ -25,8 +21,8 @@ public class PauseMenu extends AppCompatActivity {
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
+        sharedPref.loadLocale(this); //loads the saved language
 
-        loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pause_menu);
 
@@ -38,27 +34,6 @@ public class PauseMenu extends AppCompatActivity {
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adViewPause.loadAd(adRequest);
-    }
-
-    //set saved language
-    private void setLocale(String lang) {
-        Locale locale;
-        if(lang.equals("")){ //if there's no saved language
-            locale = new Locale(Locale.getDefault().getLanguage()); //get default language of the device
-        }else{
-            locale = new Locale(lang);
-        }
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
-
-    //load saved language
-    public void loadLocale(){
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
-        setLocale(language);
     }
 
     @Override
