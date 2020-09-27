@@ -214,16 +214,24 @@ public class MathGame extends AppCompatActivity {
                 break;
             }
 
+            selectedOperator = operatorArray[random.nextInt(4)];
+
             if(difficulty.equalsIgnoreCase("hard")){
                 op1 = random.nextInt(21);
                 op2 = 1 + random.nextInt(20);
+                incorrectAnswer = getAnswer(selectedOperator);
+
             }else {
                 op1 = random.nextInt(10);
-                op2 = 1 + random.nextInt(9);
+                while(true){
+                    op2 = 1 + random.nextInt(9);
+                    incorrectAnswer = getAnswer(selectedOperator);
+
+                    if(incorrectAnswer-(int)incorrectAnswer == 0)
+                        break;
+                }
             }
 
-            selectedOperator = operatorArray[random.nextInt(4)];
-            incorrectAnswer = getAnswer(selectedOperator);
 
             //to make sure we never get multiple correct answers
             if(incorrectAnswer == correctAnswer)
@@ -290,7 +298,7 @@ public class MathGame extends AppCompatActivity {
                 new Handler().postDelayed(() -> {
                     //set it initial color
                     clickedBtn.setBackgroundColor(colorId);
-                }, 500);
+                }, 300);
                 tvResult.setText(strCorrect);
 
             }else{
@@ -303,7 +311,7 @@ public class MathGame extends AppCompatActivity {
                     new Handler().postDelayed(() -> {
                         //set its initial color
                         clickedBtn.setBackgroundColor(colorId);
-                    }, 500);
+                    }, 300);
                     wrong++;
                 }else{
                     gameOver();
