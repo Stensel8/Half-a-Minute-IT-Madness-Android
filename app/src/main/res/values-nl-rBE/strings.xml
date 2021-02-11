@@ -89,4 +89,14 @@
     <string name="logoutMsg">Bent u zeker dat u wilt uitloggen?</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
+    <string name="sound">Audio</string>
+    <string name="updates">Nieuwigheden</string>
+    <string name="update_list2">- Toevoeging van geluidseffecten</string>
+    <string name="update_list">- U kunt nu een Ideeênbus vinden in de instellingen om uw ideeën te delen met de computerontwikkelaars</string>
+    <string name="suggestion_box">Ideeênbus</string>
+    <string name="thanks_idea">Dank u voor uw idee</string>
+    <string name="send_button">Opsturen</string>
+    <string name="suggestion_explanation">Bij \"HET 30 seconds game\" kan JIJ deelnemen om de app te verbeteren! Voeg hier uw ideeën toe en de beste ideeên zullen worden uitgekozen voor een toekomstige update.</string>
+    <string name="words_title">Nieuwe woorden</string>
+    <string name="new_words">- Niewe woorden werden toegevoegd</string>
 </resources>

@@ -15,7 +15,6 @@ public class SharedPref {
     }
 
     //save the dark mode state
-
     public void setNightMode(Boolean state){
 
         SharedPreferences.Editor editor = mySharedPref.edit();
@@ -29,14 +28,37 @@ public class SharedPref {
         return state;
     }
 
+    //boolean to know if we need to show the ad or not
+    public void setAdShown(Boolean state){
+        SharedPreferences.Editor editor = mySharedPref.edit();
+        editor.putBoolean("showAd",state);
+        editor.commit();
+    }
+
+    //get the ad boolean
+    public Boolean adShown(){
+        Boolean state = mySharedPref.getBoolean("showAd", true);
+        return state;
+    }
+
+    //save the sound state
+    public void setSound(Boolean state){
+
+        SharedPreferences.Editor editor = mySharedPref.edit();
+        editor.putBoolean("sound",state);
+        editor.commit();
+    }
+
+    //get the sound preference
+    public Boolean getSound(){
+        Boolean soundState = mySharedPref.getBoolean("sound", true);
+        return soundState;
+    }
+
     //set saved language
     public void setLocale(String lang, Context context) {
-        java.util.Locale locale;
-        if(lang.equals("")){ //if there's no saved language
-            locale = new java.util.Locale(java.util.Locale.getDefault().getLanguage()); //get default language of the device
-        }else{
-            locale = new java.util.Locale(lang);
-        }
+        java.util.Locale locale = new java.util.Locale(lang);
+
         java.util.Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
@@ -46,7 +68,7 @@ public class SharedPref {
     //load saved language
     public void loadLocale(Context context){
         SharedPreferences pref = context.getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", "");
+        String language = pref.getString("My lang", java.util.Locale.getDefault().getLanguage());
         setLocale(language, context);
     }
 }

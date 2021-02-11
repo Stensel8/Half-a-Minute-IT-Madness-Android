@@ -3,6 +3,7 @@ package com.assbinc.secondsGame;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -36,6 +37,8 @@ public class LanguageGame extends AppCompatActivity {
     ArrayList<String> incorrectAnswers;
     Gson gson;
     Words wordsList;
+    private MediaPlayer player;
+    private MediaPlayer timerPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class LanguageGame extends AppCompatActivity {
         sharedPref.loadLocale(this); //loads the saved language
 
         pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        savedLanguage = pref.getString("My lang", ""); //indicates the current language of the app
+        savedLanguage = pref.getString("My lang", java.util.Locale.getDefault().getLanguage()); //current language of the game
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.language_test);
@@ -91,6 +94,7 @@ public class LanguageGame extends AppCompatActivity {
 
         countDownTimer.cancel();
         Intent intent = new Intent(LanguageGame.this, PauseMenu.class);
+        releasePlayer();
         startActivity(intent);
         finish();
     }
@@ -113,7 +117,24 @@ public class LanguageGame extends AppCompatActivity {
         countDownTimer = new CountDownTimer(millisUntilFinished, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                tvTimer.setText("" + (millisUntilFinished / 1000) + "s");
+                long seconds = millisUntilFinished / 1000;
+                int initialColor = tvTimer.getCurrentTextColor();
+
+                tvTimer.setText("" + (seconds) + "s");
+
+                if(seconds <= 5){
+                    if (seconds == 5){
+                        timerPlayer = MediaPlayer.create(LanguageGame.this, R.raw.five_sec_countdown);
+                        playTimerSound();
+                    }
+                    tvTimer.setTextColor(getResources().getColor(R.color.wrong));
+                    tvTimer.setTextSize(26);
+                    new Handler().postDelayed(() -> {
+                        //set it initial color and size
+                        tvTimer.setTextSize(24);
+                        tvTimer.setTextColor(initialColor);
+                    }, 300);
+                }
             }
 
             @Override
@@ -121,6 +142,12 @@ public class LanguageGame extends AppCompatActivity {
                 gameOver();
             }
         }.start();
+    }
+
+    private void playTimerSound() {
+        if (sharedPref.getSound()){
+            startPlayer(timerPlayer);
+        }
     }
 
     private void generateQuestion() {
@@ -618,9 +645,17 @@ public class LanguageGame extends AppCompatActivity {
         intent.putExtra("points", points);
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("chosenGame", "languageGame");
+        releasePlayer();
         startActivity(intent);
         finish();
     }
+
+    private void releasePlayer() {
+        if(timerPlayer != null && sharedPref.getSound()){
+            timerPlayer.release();
+        }
+    }
+
 
     public void chooseAnswer(View view) {
 
@@ -633,8 +668,11 @@ public class LanguageGame extends AppCompatActivity {
             String answer = clickedBtn.getText().toString(); //we get the answer of the player
             String strCorrect = getResources().getString(R.string.correct);
             String strWrong = getResources().getString(R.string.wrong);
+            boolean isCorrect = false;
 
             if (answer.equalsIgnoreCase(correctAnswer)) {
+                isCorrect = true;
+                playSound(isCorrect);
                 points++;
 
                 //change the color of the clicked button to green
@@ -651,6 +689,8 @@ public class LanguageGame extends AppCompatActivity {
                 tvResult.setText(strCorrect);
             } else {
                 if (wrong < maxWrongAnswers) {
+                    playSound(isCorrect);
+
                     //change the color of the clicked button to green
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_red));
@@ -677,6 +717,40 @@ public class LanguageGame extends AppCompatActivity {
             }, 1000);
 
             generateQuestion();
+        }
+    }
+
+    private void playSound(boolean isCorrect) {
+        if (sharedPref.getSound()){
+            if (isCorrect){
+
+                //stops the previous sound
+                stopPlayer();
+
+                player = MediaPlayer.create(this,R.raw.correct_fav);
+                startPlayer(player);
+
+            }else{
+                //stops the previous sound
+                stopPlayer();
+
+                player = MediaPlayer.create(this,R.raw.wrong);
+                startPlayer(player);
+            }
+        }
+    }
+
+    private void startPlayer(MediaPlayer myPlayer) {
+        myPlayer.start();
+        myPlayer.setOnCompletionListener(mp -> {
+            stopPlayer();
+        });
+    }
+
+    private void stopPlayer() {
+        if(player != null){
+            player.release();
+            player = null;
         }
     }
 }

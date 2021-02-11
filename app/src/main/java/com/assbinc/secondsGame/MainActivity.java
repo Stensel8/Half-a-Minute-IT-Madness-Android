@@ -30,10 +30,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
+        sharedPreferences.edit().remove("updates").commit();
         boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
+        boolean updateDialog = sharedPreferences.getBoolean("update2", true);
 
         if (firstStart)
             showStartDialog();
+        if (updateDialog){
+            showUpdateDialog();
+        }
 
         //Ad
         MobileAds.initialize(this, initializationStatus -> {
@@ -43,6 +48,22 @@ public class MainActivity extends AppCompatActivity {
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+    }
+
+    private void showUpdateDialog() {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        final View mViewUpdate = getLayoutInflater().inflate(R.layout.updates_msg, null);
+        final ImageButton btnCloseDialog = (ImageButton) mViewUpdate.findViewById(R.id.btnCloseUpdate);
+
+        mBuilder.setView(mViewUpdate);
+        final AlertDialog mDialogUpdate = mBuilder.create();
+        mDialogUpdate.show();
+
+        btnCloseDialog.setOnClickListener(vUpdate -> mDialogUpdate.dismiss());
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("update2", false);
+        editor.apply();
     }
 
     private void showStartDialog() {

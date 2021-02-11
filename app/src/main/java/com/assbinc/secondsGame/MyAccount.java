@@ -157,7 +157,7 @@ public class MyAccount extends AppCompatActivity {
                                     session.createSession(user.getUsername(), uid, user.getProfileScore(), user.getFriends());
                                     Toast.makeText(context,getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
 
-                                    if (getIntent().getStringExtra("gameover") != null) {
+                                    if (getIntent().getStringExtra("gameover") != null && getIntent().getStringExtra("gameover").equalsIgnoreCase("gameover")) {
                                         Intent intent = new Intent(MyAccount.this, GameOver.class);
                                         intent.putExtra("gameover", "gameover");
                                         intent.putExtra("points", points);
@@ -165,7 +165,7 @@ public class MyAccount extends AppCompatActivity {
                                         intent.putExtra("chosenGame", chosenGame);
                                         startActivity(intent);
                                         finish();
-                                    }else if (getIntent().getStringExtra("main") != null){
+                                    }else if (getIntent().getStringExtra("main") != null && getIntent().getStringExtra("main").equalsIgnoreCase("main")){
                                         Intent intent = new Intent(MyAccount.this, MainActivity.class);
                                         startActivity(intent);
                                         finish();

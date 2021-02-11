@@ -89,4 +89,14 @@
     <string name="logoutMsg">Are you sure you want to logout?</string>
     <string name="yes">yes</string>
     <string name="no">No</string>
+    <string name="sound">Sound</string>
+    <string name="updates">Updates</string>
+    <string name="update_list">- You can now find a suggestion box in the settings to share your ideas with the developers!</string>
+    <string name="update_list2">- Sound effects added</string>
+    <string name="suggestion_box">Suggestion box</string>
+    <string name="suggestion_explanation">On \"THE 30 seconds game\" it is YOU who participates to improve the application! Add here your ideas for improvements and the best ideas will be chosen for a future update.</string>
+    <string name="send_button">Send</string>
+    <string name="thanks_idea">Thank tou for your suggestion</string>
+    <string name="new_words">- New words were added</string>
+    <string name="words_title">New words</string>
 </resources>

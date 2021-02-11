@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -39,6 +40,8 @@ public class MathGame extends AppCompatActivity {
     ColorDrawable initialColor;
     int colorId;
     String difficulty;
+    MediaPlayer player;
+    private MediaPlayer timerPlayer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,6 +94,7 @@ public class MathGame extends AppCompatActivity {
 
         countDownTimer.cancel();
         Intent intent = new Intent(MathGame.this, PauseMenu.class);
+        releasePlayer();
         startActivity(intent);
         finish();
     }
@@ -114,7 +118,24 @@ public class MathGame extends AppCompatActivity {
         countDownTimer = new CountDownTimer(millisUntilFinished, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                tvTimer.setText("" + (millisUntilFinished / 1000) + "s");
+                long seconds = millisUntilFinished / 1000;
+                int initialColor = tvTimer.getCurrentTextColor();
+
+                tvTimer.setText("" + (seconds) + "s");
+
+                if(seconds <= 5){
+                    if (seconds == 5){
+                        timerPlayer = MediaPlayer.create(MathGame.this, R.raw.five_sec_countdown);
+                        playTimerSound();
+                    }
+                    tvTimer.setTextColor(getResources().getColor(R.color.wrong));
+                    tvTimer.setTextSize(26);
+                    new Handler().postDelayed(() -> {
+                        //set it initial color and size
+                        tvTimer.setTextSize(24);
+                        tvTimer.setTextColor(initialColor);
+                    }, 300);
+                }
             }
 
             @Override
@@ -123,6 +144,12 @@ public class MathGame extends AppCompatActivity {
             }
         }.start();
 
+    }
+
+    private void playTimerSound() {
+        if (sharedPref.getSound()){
+            startPlayer(timerPlayer);
+        }
     }
 
     private void gameOver(){
@@ -142,8 +169,15 @@ public class MathGame extends AppCompatActivity {
         intent.putExtra("points", points);
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("chosenGame", "math");
+        releasePlayer();
         startActivity(intent);
         finish();
+    }
+
+    private void releasePlayer() {
+        if(timerPlayer != null && sharedPref.getSound()){
+            timerPlayer.release();
+        }
     }
 
     private void generateQuestion() {
@@ -289,8 +323,11 @@ public class MathGame extends AppCompatActivity {
             String answer = clickedBtn.getText().toString(); //we get the answer of the player
             String strCorrect = getResources().getString(R.string.correct);
             String strWrong = getResources().getString(R.string.wrong);
+            boolean isCorrect = false;
 
             if(answer.equals(df.format(correctAnswer))) {
+                isCorrect = true;
+                playSound(isCorrect);
                 points++;
                 //change the color of the clicked button to green
                 clickedBtn.setBackgroundColor(getResources().getColor(R.color.correct));
@@ -304,6 +341,7 @@ public class MathGame extends AppCompatActivity {
             }else{
                 if(wrong < maxWrongAnswers)
                 {
+                    playSound(isCorrect);
                     tvResult.setText(strWrong);
                     //change the color of the clicked button to green
                     clickedBtn.setBackgroundColor(getResources().getColor(R.color.wrong));
@@ -326,6 +364,40 @@ public class MathGame extends AppCompatActivity {
             }, 1000);
 
             generateQuestion();
+        }
+    }
+
+    private void playSound(boolean isCorrect) {
+        if (sharedPref.getSound()){
+            if (isCorrect){
+
+                //stops the previous sound
+                stopPlayer();
+
+                player = MediaPlayer.create(this,R.raw.correct_fav);
+                startPlayer(player);
+
+            }else{
+                //stops the previous sound
+                stopPlayer();
+
+                player = MediaPlayer.create(this,R.raw.wrong);
+                startPlayer(player);
+            }
+        }
+    }
+
+    private void startPlayer(MediaPlayer myPlayer) {
+        myPlayer.start();
+        myPlayer.setOnCompletionListener(mp -> {
+            stopPlayer();
+        });
+    }
+
+    private void stopPlayer() {
+        if(player != null){
+            player.release();
+            player = null;
         }
     }
 }

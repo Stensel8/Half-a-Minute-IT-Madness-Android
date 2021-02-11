@@ -2,6 +2,7 @@ package com.assbinc.secondsGame;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +43,7 @@ public class GameOver extends AppCompatActivity {
     String difficulty, chosenGame;
     private FirebaseFirestore fireDb;
     CollectionReference collection;
+    private MediaPlayer player;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,19 +121,35 @@ public class GameOver extends AppCompatActivity {
                         int listIndex; //the index where we're gonna add the score to the list
 
                         if (points != 0){
-                            if(scoreObjects.size() >= 1 && points > scoreObjects.get(0).getScore()){
-                                listIndex = 0;
+                            if((scoreObjects.size() >= 1 && points > scoreObjects.get(0).getScore()) || (scoreObjects.size() == 1)){
+                                if(scoreObjects.size() == 1){
+                                    listIndex = 1;
+                                }else{
+                                    listIndex = 0;
+                                }
                                 addToList(scoreList, listIndex, minScore, task);
-                            }else if(scoreObjects.size() >= 2 && points > scoreObjects.get(1).getScore()){
-                                listIndex = 1;
+                            }else if((scoreObjects.size() >= 2 && points > scoreObjects.get(1).getScore()) || (scoreObjects.size() == 2)){
+                                if(scoreObjects.size() == 2){
+                                    listIndex = 2;
+                                }else{
+                                    listIndex = 1;
+                                }
                                 addToList(scoreList, listIndex, minScore, task);
-                            }else if(scoreObjects.size() >= 3 && points > scoreObjects.get(2).getScore()){
-                                listIndex = 2;
+                            }else if((scoreObjects.size() >= 3 && points > scoreObjects.get(2).getScore()) || (scoreObjects.size() == 3)){
+                                if(scoreObjects.size() == 3){
+                                    listIndex = 3;
+                                }else{
+                                    listIndex = 2;
+                                }
                                 addToList(scoreList, listIndex, minScore, task);
-                            }else if(scoreObjects.size() >= 4 && points > scoreObjects.get(3).getScore()){
-                                listIndex = 3;
+                            }else if((scoreObjects.size() >= 4 && points > scoreObjects.get(3).getScore()) || (scoreObjects.size() == 4)){
+                                if(scoreObjects.size() == 4){
+                                    listIndex = 4;
+                                }else{
+                                    listIndex = 3;
+                                }
                                 addToList(scoreList, listIndex, minScore, task);
-                            } else if(scoreObjects.size() >= 5 && points > scoreObjects.get(4).getScore()){
+                            } else if((scoreObjects.size() >= 5 && points > scoreObjects.get(4).getScore())){
                                 listIndex = 4;
                                 addToList(scoreList, listIndex, minScore, task);
                             }
@@ -162,6 +180,8 @@ public class GameOver extends AppCompatActivity {
             editor.putInt("pointsHC", pointsHC);
             editor.commit();
 
+            applause();
+
             //update the high-score if logged-in
             if(session.isLoggedIn()){
                   session.setProfileScore(points, fireDb);
@@ -172,6 +192,23 @@ public class GameOver extends AppCompatActivity {
 
         tvPoints.setText(""+ points);
         tvHighScore.setText(""+ pointsHC);
+    }
+
+    private void applause() {
+        if(sharedPref.getSound()){
+            player = MediaPlayer.create(this, R.raw.applause);
+            player.start();
+            player.setOnCompletionListener(mp -> {
+                stopPlayer();
+            });
+        }
+    }
+
+    private void stopPlayer() {
+        if(player != null){
+            player.release();
+            player = null;
+        }
     }
 
     private void addToList(List<String> scoreList, int listIndex, Highscore minScore, Task<QuerySnapshot> task) {
@@ -256,6 +293,7 @@ public class GameOver extends AppCompatActivity {
         Intent intent;
         SharedPreferences sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
         String actual = sharedPreferences.getString("actualGame","");
+        stopPlayer();
 
         switch (actual){
             case("math"):
@@ -294,6 +332,7 @@ public class GameOver extends AppCompatActivity {
         Settings.btnAnimation(view);
 
         Intent intent = new Intent(GameOver.this, ChooseGame.class);
+        stopPlayer();
         startActivity(intent);
         finish();
     }
@@ -302,6 +341,7 @@ public class GameOver extends AppCompatActivity {
         Settings.btnAnimation(view);
 
         Intent intent = new Intent(GameOver.this, MainActivity.class);
+        stopPlayer();
         startActivity(intent);
         finish();
     }
@@ -321,6 +361,7 @@ public class GameOver extends AppCompatActivity {
         intent.putExtra("points", points);
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("chosenGame", chosenGame);
+        stopPlayer();
         startActivity(intent);
         finish();
     }

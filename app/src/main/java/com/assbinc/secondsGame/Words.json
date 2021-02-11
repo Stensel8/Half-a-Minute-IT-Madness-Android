@@ -6,6 +6,11 @@
       "enWord": "hello"
     },
     {
+      "frWord": "annuler",
+      "nlWord": "afzeggen",
+      "enWord": "to cancel"
+    },
+    {
       "frWord": "voir",
       "nlWord": "zien",
       "enWord": "to see"
@@ -121,6 +126,16 @@
       "enWord": "thirteen"
     },
     {
+      "frWord": "devenir",
+      "nlWord": "worden",
+      "enWord": "to become"
+    },
+    {
+      "frWord": "courrir",
+      "nlWord": "remmen",
+      "enWord": "to run"
+    },
+    {
       "frWord": "trente",
       "nlWord": "dertig",
       "enWord": "thirty"
@@ -216,7 +231,7 @@
       "enWord": "duty"
     },
     {
-      "frWord": "jéter",
+      "frWord": "jeter",
       "nlWord": "gooien",
       "enWord": "throw"
     },
@@ -224,6 +239,46 @@
       "frWord": "anniversaire",
       "nlWord": "verjaardag",
       "enWord": "birthday"
+    },
+    {
+      "frWord": "faire",
+      "nlWord": "doen",
+      "enWord": "to do"
+    },
+    {
+      "frWord": "frigo",
+      "nlWord": "koelkast",
+      "enWord": "freezer"
+    },
+    {
+      "frWord": "corde",
+      "nlWord": "touw",
+      "enWord": "rope"
+    },
+    {
+      "frWord": "oreille",
+      "nlWord": "oor",
+      "enWord": "ear"
+    },
+    {
+      "frWord": "boucle d'oreille",
+      "nlWord": "oorbel",
+      "enWord": "earring"
+    },
+    {
+      "frWord": "soin",
+      "nlWord": "zorg",
+      "enWord": "care"
+    },
+    {
+      "frWord": "visage",
+      "nlWord": "gezicht",
+      "enWord": "face"
+    },
+    {
+      "frWord": "orteille",
+      "nlWord": "teen",
+      "enWord": "toe"
     }
   ],
   "mediumWords":
@@ -232,6 +287,116 @@
       "frWord": "phrase",
       "nlWord": "zin",
       "enWord": "sentence"
+    },
+    {
+      "frWord": "hématome",
+      "nlWord": "blauwe plek",
+      "enWord": "bruise"
+    },
+    {
+      "frWord": "dinde",
+      "nlWord": "kalkoen",
+      "enWord": "turkey"
+    },
+    {
+      "frWord": "chou",
+      "nlWord": "cabbage",
+      "enWord": "kool"
+    },
+    {
+      "frWord": "légumes",
+      "nlWord": "groenten",
+      "enWord": "vegetables"
+    },
+    {
+      "frWord": "boîte de conserve",
+      "nlWord": "een blik",
+      "enWord": "a can"
+    },
+    {
+      "frWord": "garder",
+      "nlWord": "bewaren",
+      "enWord": "keep"
+    },
+    {
+      "frWord": "santé",
+      "nlWord": "gezondheid",
+      "enWord": "health"
+    },
+    {
+      "frWord": "poignée",
+      "nlWord": "handvat",
+      "enWord": "handle"
+    },
+    {
+      "frWord": "bureau",
+      "nlWord": "kantoor",
+      "enWord": "office"
+    },
+    {
+      "frWord": "brosse",
+      "nlWord": "borstel",
+      "enWord": "brush"
+    },
+    {
+      "frWord": "rater",
+      "nlWord": "missen",
+      "enWord": "fail"
+    },
+    {
+      "frWord": "lire",
+      "nlWord": "lezen",
+      "enWord": "read"
+    },
+    {
+      "frWord": "déplacer",
+      "nlWord": "verplaatsen",
+      "enWord": "move"
+    },
+    {
+      "frWord": "jupe",
+      "nlWord": "rok",
+      "enWord": "skirt"
+    },
+    {
+      "frWord": "écharpe",
+      "nlWord": "sjaal",
+      "enWord": "skarf"
+    },
+    {
+      "frWord": "équitation",
+      "nlWord": "paardrijden",
+      "enWord": "horse-riding"
+    },
+    {
+      "frWord": "frissonner",
+      "nlWord": "huiveren",
+      "enWord": "shiver"
+    },
+    {
+      "frWord": "cinéma",
+      "nlWord": "bioscoop",
+      "enWord": "theatre"
+    },
+    {
+      "frWord": "écureuil",
+      "nlWord": "eekhoorn",
+      "enWord": "squirrel"
+    },
+    {
+      "frWord": "mâcher",
+      "nlWord": "kauwen",
+      "enWord": "chew"
+    },
+    {
+      "frWord": "cueillir",
+      "nlWord": "plukken",
+      "enWord": "pluck"
+    },
+    {
+      "frWord": "chercher",
+      "nlWord": "zoeken",
+      "enWord": "seek"
     },
     {
       "frWord": "usine",
@@ -279,6 +444,11 @@
       "enWord": "duty"
     },
     {
+      "frWord": "obligatoire",
+      "nlWord": "verplicht",
+      "enWord": "mandatory"
+    },
+    {
       "frWord": "traduction",
       "nlWord": "vertaling",
       "enWord": "translation"
@@ -297,6 +467,11 @@
       "frWord": "vers",
       "nlWord": "richting",
       "enWord": "towards"
+    },
+    {
+      "frWord": "verre",
+      "nlWord": "beker",
+      "enWord": "glass"
     },
     {
       "frWord": "paramêtres",
@@ -327,11 +502,6 @@
       "frWord": "queue",
       "nlWord": "staart",
       "enWord": "tail"
-    },
-    {
-      "frWord": "commencer",
-      "nlWord": "beginnen",
-      "enWord": "start"
     },
     {
       "frWord": "onglet",
@@ -390,8 +560,8 @@
     },
     {
       "frWord": "brille",
-      "nlWord": "arts",
-      "enWord": "schijnt"
+      "nlWord": "schijnt",
+      "enWord": "shine"
     },
     {
       "frWord": "accomplir",
@@ -412,6 +582,11 @@
       "frWord": "grave",
       "nlWord": "ernstig",
       "enWord": "severe"
+    },
+    {
+      "frWord": "faible",
+      "nlWord": "zwak",
+      "enWord": "weak"
     },
     {
       "frWord": "corps",
@@ -487,6 +662,16 @@
       "frWord": "avertissement",
       "nlWord": "waarschuwing",
       "enWord": "disclaimer"
+    },
+    {
+      "frWord": "prudent",
+      "nlWord": "voorzichtig",
+      "enWord": "cautious"
+    },
+    {
+      "frWord": "voyage",
+      "nlWord": "tocht",
+      "enWord": "journey"
     }
   ],
   "HardWords":
@@ -495,6 +680,36 @@
       "frWord": "novateur",
       "nlWord": "innovatief",
       "enWord": "Innovative"
+    },
+    {
+      "frWord": "klaxonner",
+      "nlWord": "toeteren",
+      "enWord": "honk"
+    },
+    {
+      "frWord": "courant",
+      "nlWord": "stroom",
+      "enWord": "current"
+    },
+    {
+      "frWord": "éclore",
+      "nlWord": "uitkomen",
+      "enWord": "hatch"
+    },
+    {
+      "frWord": "mastodonte",
+      "nlWord": "kolos",
+      "enWord": "juggernaut"
+    },
+    {
+      "frWord": "graisse",
+      "nlWord": "vet",
+      "enWord": "grease"
+    },
+    {
+      "frWord": "sans pilote",
+      "nlWord": "onbemand",
+      "enWord": "unmanned"
     },
     {
       "frWord": "interpréter",

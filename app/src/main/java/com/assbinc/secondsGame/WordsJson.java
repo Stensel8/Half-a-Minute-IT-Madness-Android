@@ -10,6 +10,11 @@ class WordsJson {
             "      \"enWord\": \"hello\"\n" +
             "    },\n" +
             "    {\n" +
+            "      \"frWord\": \"annuler\",\n" +
+            "      \"nlWord\": \"afzeggen\",\n" +
+            "      \"enWord\": \"to cancel\"\n" +
+            "    },\n" +
+            "    {\n" +
             "      \"frWord\": \"voir\",\n" +
             "      \"nlWord\": \"zien\",\n" +
             "      \"enWord\": \"to see\"\n" +
@@ -125,6 +130,16 @@ class WordsJson {
             "      \"enWord\": \"thirteen\"\n" +
             "    },\n" +
             "    {\n" +
+            "      \"frWord\": \"devenir\",\n" +
+            "      \"nlWord\": \"worden\",\n" +
+            "      \"enWord\": \"to become\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"courrir\",\n" +
+            "      \"nlWord\": \"remmen\",\n" +
+            "      \"enWord\": \"to run\"\n" +
+            "    },\n" +
+            "    {\n" +
             "      \"frWord\": \"trente\",\n" +
             "      \"nlWord\": \"dertig\",\n" +
             "      \"enWord\": \"thirty\"\n" +
@@ -220,7 +235,7 @@ class WordsJson {
             "      \"enWord\": \"duty\"\n" +
             "    },\n" +
             "    {\n" +
-            "      \"frWord\": \"jéter\",\n" +
+            "      \"frWord\": \"jeter\",\n" +
             "      \"nlWord\": \"gooien\",\n" +
             "      \"enWord\": \"throw\"\n" +
             "    },\n" +
@@ -228,6 +243,46 @@ class WordsJson {
             "      \"frWord\": \"anniversaire\",\n" +
             "      \"nlWord\": \"verjaardag\",\n" +
             "      \"enWord\": \"birthday\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"faire\",\n" +
+            "      \"nlWord\": \"doen\",\n" +
+            "      \"enWord\": \"to do\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"frigo\",\n" +
+            "      \"nlWord\": \"koelkast\",\n" +
+            "      \"enWord\": \"freezer\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"corde\",\n" +
+            "      \"nlWord\": \"touw\",\n" +
+            "      \"enWord\": \"rope\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"oreille\",\n" +
+            "      \"nlWord\": \"oor\",\n" +
+            "      \"enWord\": \"ear\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"boucle d'oreille\",\n" +
+            "      \"nlWord\": \"oorbel\",\n" +
+            "      \"enWord\": \"earring\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"soin\",\n" +
+            "      \"nlWord\": \"zorg\",\n" +
+            "      \"enWord\": \"care\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"visage\",\n" +
+            "      \"nlWord\": \"gezicht\",\n" +
+            "      \"enWord\": \"face\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"orteille\",\n" +
+            "      \"nlWord\": \"teen\",\n" +
+            "      \"enWord\": \"toe\"\n" +
             "    }\n" +
             "  ],\n" +
             "  \"mediumWords\":\n" +
@@ -236,6 +291,116 @@ class WordsJson {
             "      \"frWord\": \"phrase\",\n" +
             "      \"nlWord\": \"zin\",\n" +
             "      \"enWord\": \"sentence\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"hématome\",\n" +
+            "      \"nlWord\": \"blauwe plek\",\n" +
+            "      \"enWord\": \"bruise\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"dinde\",\n" +
+            "      \"nlWord\": \"kalkoen\",\n" +
+            "      \"enWord\": \"turkey\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"chou\",\n" +
+            "      \"nlWord\": \"cabbage\",\n" +
+            "      \"enWord\": \"kool\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"légumes\",\n" +
+            "      \"nlWord\": \"groenten\",\n" +
+            "      \"enWord\": \"vegetables\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"boîte de conserve\",\n" +
+            "      \"nlWord\": \"een blik\",\n" +
+            "      \"enWord\": \"a can\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"garder\",\n" +
+            "      \"nlWord\": \"bewaren\",\n" +
+            "      \"enWord\": \"keep\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"santé\",\n" +
+            "      \"nlWord\": \"gezondheid\",\n" +
+            "      \"enWord\": \"health\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"poignée\",\n" +
+            "      \"nlWord\": \"handvat\",\n" +
+            "      \"enWord\": \"handle\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"bureau\",\n" +
+            "      \"nlWord\": \"kantoor\",\n" +
+            "      \"enWord\": \"office\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"brosse\",\n" +
+            "      \"nlWord\": \"borstel\",\n" +
+            "      \"enWord\": \"brush\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"rater\",\n" +
+            "      \"nlWord\": \"missen\",\n" +
+            "      \"enWord\": \"fail\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"lire\",\n" +
+            "      \"nlWord\": \"lezen\",\n" +
+            "      \"enWord\": \"read\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"déplacer\",\n" +
+            "      \"nlWord\": \"verplaatsen\",\n" +
+            "      \"enWord\": \"move\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"jupe\",\n" +
+            "      \"nlWord\": \"rok\",\n" +
+            "      \"enWord\": \"skirt\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"écharpe\",\n" +
+            "      \"nlWord\": \"sjaal\",\n" +
+            "      \"enWord\": \"skarf\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"équitation\",\n" +
+            "      \"nlWord\": \"paardrijden\",\n" +
+            "      \"enWord\": \"horse-riding\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"frissonner\",\n" +
+            "      \"nlWord\": \"huiveren\",\n" +
+            "      \"enWord\": \"shiver\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"cinéma\",\n" +
+            "      \"nlWord\": \"bioscoop\",\n" +
+            "      \"enWord\": \"theatre\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"écureuil\",\n" +
+            "      \"nlWord\": \"eekhoorn\",\n" +
+            "      \"enWord\": \"squirrel\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"mâcher\",\n" +
+            "      \"nlWord\": \"kauwen\",\n" +
+            "      \"enWord\": \"chew\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"cueillir\",\n" +
+            "      \"nlWord\": \"plukken\",\n" +
+            "      \"enWord\": \"pluck\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"chercher\",\n" +
+            "      \"nlWord\": \"zoeken\",\n" +
+            "      \"enWord\": \"seek\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"frWord\": \"usine\",\n" +
@@ -283,6 +448,11 @@ class WordsJson {
             "      \"enWord\": \"duty\"\n" +
             "    },\n" +
             "    {\n" +
+            "      \"frWord\": \"obligatoire\",\n" +
+            "      \"nlWord\": \"verplicht\",\n" +
+            "      \"enWord\": \"mandatory\"\n" +
+            "    },\n" +
+            "    {\n" +
             "      \"frWord\": \"traduction\",\n" +
             "      \"nlWord\": \"vertaling\",\n" +
             "      \"enWord\": \"translation\"\n" +
@@ -301,6 +471,11 @@ class WordsJson {
             "      \"frWord\": \"vers\",\n" +
             "      \"nlWord\": \"richting\",\n" +
             "      \"enWord\": \"towards\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"verre\",\n" +
+            "      \"nlWord\": \"beker\",\n" +
+            "      \"enWord\": \"glass\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"frWord\": \"paramêtres\",\n" +
@@ -331,11 +506,6 @@ class WordsJson {
             "      \"frWord\": \"queue\",\n" +
             "      \"nlWord\": \"staart\",\n" +
             "      \"enWord\": \"tail\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"frWord\": \"commencer\",\n" +
-            "      \"nlWord\": \"beginnen\",\n" +
-            "      \"enWord\": \"start\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"frWord\": \"onglet\",\n" +
@@ -394,8 +564,8 @@ class WordsJson {
             "    },\n" +
             "    {\n" +
             "      \"frWord\": \"brille\",\n" +
-            "      \"nlWord\": \"arts\",\n" +
-            "      \"enWord\": \"schijnt\"\n" +
+            "      \"nlWord\": \"schijnt\",\n" +
+            "      \"enWord\": \"shine\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"frWord\": \"accomplir\",\n" +
@@ -416,6 +586,11 @@ class WordsJson {
             "      \"frWord\": \"grave\",\n" +
             "      \"nlWord\": \"ernstig\",\n" +
             "      \"enWord\": \"severe\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"faible\",\n" +
+            "      \"nlWord\": \"zwak\",\n" +
+            "      \"enWord\": \"weak\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"frWord\": \"corps\",\n" +
@@ -491,6 +666,16 @@ class WordsJson {
             "      \"frWord\": \"avertissement\",\n" +
             "      \"nlWord\": \"waarschuwing\",\n" +
             "      \"enWord\": \"disclaimer\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"prudent\",\n" +
+            "      \"nlWord\": \"voorzichtig\",\n" +
+            "      \"enWord\": \"cautious\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"voyage\",\n" +
+            "      \"nlWord\": \"tocht\",\n" +
+            "      \"enWord\": \"journey\"\n" +
             "    }\n" +
             "  ],\n" +
             "  \"HardWords\":\n" +
@@ -499,6 +684,36 @@ class WordsJson {
             "      \"frWord\": \"novateur\",\n" +
             "      \"nlWord\": \"innovatief\",\n" +
             "      \"enWord\": \"Innovative\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"klaxonner\",\n" +
+            "      \"nlWord\": \"toeteren\",\n" +
+            "      \"enWord\": \"honk\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"courant\",\n" +
+            "      \"nlWord\": \"stroom\",\n" +
+            "      \"enWord\": \"current\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"éclore\",\n" +
+            "      \"nlWord\": \"uitkomen\",\n" +
+            "      \"enWord\": \"hatch\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"mastodonte\",\n" +
+            "      \"nlWord\": \"kolos\",\n" +
+            "      \"enWord\": \"juggernaut\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"graisse\",\n" +
+            "      \"nlWord\": \"vet\",\n" +
+            "      \"enWord\": \"grease\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"frWord\": \"sans pilote\",\n" +
+            "      \"nlWord\": \"onbemand\",\n" +
+            "      \"enWord\": \"unmanned\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"frWord\": \"interpréter\",\n" +

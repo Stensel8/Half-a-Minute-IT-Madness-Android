@@ -89,4 +89,14 @@
     <string name="logoutMsg">Êtes-vous sûr de vouloir vous déconnecter?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="sound">Son</string>
+    <string name="updates">Nouveautés</string>
+    <string name="update_list">- Vous pouvez maintenant trouver une boîte à suggestions dans les paramètres pour partager vos idées avec les développeurs !</string>
+    <string name="update_list2">- Ajout d\'effets sonores</string>
+    <string name="suggestion_box">Boîte à idées</string>
+    <string name="suggestion_explanation">Sur \"THE 30 seconds game\" c\'est VOUS qui participez à améliorer l\'application! Ajoutez ici vos idées d\'améliorations et les meilleures d\'entre elles seront choisies pour une future mise à jour.</string>
+    <string name="send_button">Envoyer</string>
+    <string name="thanks_idea">Merci pour votre suggestion</string>
+    <string name="words_title">Nouveaux mots</string>
+    <string name="new_words">- Des nouveaux mots ont été ajoutés</string>
 </resources>
