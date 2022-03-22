@@ -42,6 +42,7 @@ public class ChooseGame extends AppCompatActivity {
         Intent intent = new Intent(ChooseGame.this, ChooseLanguageGame.class);
         startActivity(intent);
         finish();
+
     }
 
 

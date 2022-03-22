@@ -35,6 +35,7 @@
                 android:layout_gravity="center_vertical|end"
                 android:background="?attr/backgroundColor"
                 android:contentDescription="@string/closeWindow"
+                android:minWidth="48dp"
                 app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
         </FrameLayout>
@@ -67,7 +68,7 @@
             android:layout_margin="10dp"
             android:background="@color/buttonColor"
             android:text="@string/sign_up"
-            android:textColor="@color/buttonTextColor"
+            android:textColor="#455A64"
             android:textSize="20sp" />
     </LinearLayout>
 </ScrollView>
