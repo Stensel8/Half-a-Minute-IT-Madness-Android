@@ -13,6 +13,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.assbinc.secondsgame.R;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,7 +80,7 @@ public class GameOver extends AppCompatActivity {
         btnGoLogin.setVisibility(session.checkLoggedIn()? View.GONE: View.VISIBLE);
         progressBarScore.setVisibility(View.GONE);
 
-        points = getIntent().getExtras().getInt("points");
+        points = Objects.requireNonNull(getIntent().getExtras()).getInt("points");
         difficulty = getIntent().getExtras().getString("difficulty");
         chosenGame = getIntent().getExtras().getString("chosenGame");
 
@@ -167,7 +169,7 @@ public class GameOver extends AppCompatActivity {
                         showTop(scoreList);
                     }
                 }else {
-                    Log.e("order", task.getException().toString());
+                    Log.e("order", Objects.requireNonNull(task.getException()).toString());
                     Toast.makeText(this, "Error, could not load Top 5", Toast.LENGTH_LONG).show();
                 }
             });
@@ -178,7 +180,7 @@ public class GameOver extends AppCompatActivity {
             //saves the high-score
             pointsHC = points;
             editor.putInt("pointsHC", pointsHC);
-            editor.commit();
+            editor.apply();
 
             applause();
 
@@ -198,9 +200,7 @@ public class GameOver extends AppCompatActivity {
         if(sharedPref.getSound()){
             player = MediaPlayer.create(this, R.raw.applause);
             player.start();
-            player.setOnCompletionListener(mp -> {
-                stopPlayer();
-            });
+            player.setOnCompletionListener(mp -> stopPlayer());
         }
     }
 
@@ -247,16 +247,10 @@ public class GameOver extends AppCompatActivity {
             chosenGame = getResources().getString(R.string.mathGameButton);
         }
 
-        switch (difficulty){
-            case "easy":
-                difficulty = getResources().getString(R.string.difficultyEasy);
-                break;
-            case "medium":
-                difficulty = getResources().getString(R.string.difficultyMedium);
-                break;
-            case "hard":
-                difficulty = getResources().getString(R.string.difficultyHard);
-                break;
+        switch (difficulty) {
+            case "easy" -> difficulty = getResources().getString(R.string.difficultyEasy);
+            case "medium" -> difficulty = getResources().getString(R.string.difficultyMedium);
+            case "hard" -> difficulty = getResources().getString(R.string.difficultyHard);
         }
         tvChosenGame.setText(getResources().getString(R.string.chosenGame) + chosenGame);
         tvDifficulty.setText(getResources().getString(R.string.difficultyTitle) + ": " + difficulty);

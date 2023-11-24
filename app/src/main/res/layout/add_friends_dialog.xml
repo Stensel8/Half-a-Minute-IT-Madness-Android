@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
@@ -42,7 +41,8 @@
         android:hint="@string/friend_username"
         android:inputType="textPersonName"
         android:textColor="?attr/textColor"
-        android:textColorHint="@android:color/tertiary_text_light" />
+        android:textColorHint="@android:color/tertiary_text_light"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -51,6 +51,6 @@
         android:layout_marginTop="10dp"
         android:background="@color/buttonColor"
         android:text="@string/search"
-        android:textColor="@color/buttonTextColor"
+        android:textColor="#455A64"
         android:textSize="20sp" />
 </LinearLayout>

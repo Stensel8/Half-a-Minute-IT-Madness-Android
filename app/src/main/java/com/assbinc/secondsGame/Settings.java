@@ -1,12 +1,8 @@
 package com.assbinc.secondsGame;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -22,21 +18,21 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.firebase.firestore.DocumentReference;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.assbinc.secondsgame.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Objects;
 
 public class Settings extends AppCompatActivity {
 
     SharedPref sharedPref;
     SessionManager session;
     private FirebaseFirestore fireDb;
-    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +55,6 @@ public class Settings extends AppCompatActivity {
         ImageView imgIdea = (ImageView) findViewById(R.id.imgIdea);
         imgIdea.setImageResource(sharedPref.loadNightMode()? R.drawable.idea_box_white: R.drawable.idea_box);
 
-        //init interstitial ad
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-6646767279000716/2432453969");
-
-        //allow notifications or not
-        /*notificationToggle = findViewById(R.id.notifToggle);
-
-        notificationToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked){
-
-            }else{
-
-            }
-        });*/
 
         //switch between dark and light mode
         darkModeToggle = findViewById(R.id.darkModeToggle);
@@ -128,7 +110,7 @@ public class Settings extends AppCompatActivity {
     private void showChangeLanguageDialog(){
         //Array of languages to display in alert dialog
         final String[] listOfLang = {"Français", "Nederlands", "English"};
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this,sharedPref.loadNightMode()? R.style.Theme_AppCompat_DayNight_Dialog: R.style.Theme_AppCompat_Light_Dialog);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this,sharedPref.loadNightMode()? androidx.appcompat.R.style.Theme_AppCompat_DayNight_Dialog: androidx.appcompat.R.style.Theme_AppCompat_Light_Dialog);
         mBuilder.setSingleChoiceItems(listOfLang, -1, (dialog, i) -> {
             if (i == 0){
                 //set french
@@ -158,26 +140,23 @@ public class Settings extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("gameDifficulty", MODE_PRIVATE).edit();
         String difficulty = "";
 
-        switch(view.getId()){
-            case (R.id.difficultyEasyBtn):
+        switch (view.getId()) {
+            case (R.id.difficultyEasyBtn) -> {
                 //save data to shared preferences
                 editor.putString("difficulty", "easy");
                 editor.apply();
                 difficulty = getResources().getString(R.string.difficultyEasy);
-
-                break;
-            case (R.id.difficultyMediumBtn):
+            }
+            case (R.id.difficultyMediumBtn) -> {
                 editor.putString("difficulty", "medium");
                 editor.apply();
                 difficulty = getResources().getString(R.string.difficultyMedium);
-
-                break;
-            case (R.id.difficultyHardBtn):
+            }
+            case (R.id.difficultyHardBtn) -> {
                 editor.putString("difficulty", "hard");
                 editor.apply();
                 difficulty = getResources().getString(R.string.difficultyHard);
-
-                break;
+            }
         }
 
 
@@ -212,16 +191,16 @@ public class Settings extends AppCompatActivity {
                 fireDb.collection("suggestions").get().addOnCompleteListener(t ->{
                     if(t.isSuccessful()){
                         for (DocumentSnapshot doc : t.getResult()){
-                            progressBar.setVisibility(mViewShowSuggestions.GONE);
+                            progressBar.setVisibility(View.GONE);
 
                             suggestionList.add("\n-" + doc.get("username") + "-\n\n\"" + doc.get("idea") + "\"");
                         }
                             ListAdapter listAdapter = new ArrayAdapter<>(this,R.layout.listrow, suggestionList);
                             lvSuggestions.setAdapter(listAdapter);
                     }else{
-                        progressBar.setVisibility(mViewShowSuggestions.GONE);
+                        progressBar.setVisibility(View.GONE);
 
-                        Toast.makeText(this, t.getException().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, Objects.requireNonNull(t.getException()).toString(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -238,16 +217,7 @@ public class Settings extends AppCompatActivity {
 
                 btnCloseDialog.setOnClickListener(vUpdate -> mDialogSuggestion.dismiss());
                 btnConfirmIdea.setOnClickListener(vConfirm -> {
-                    //show Ad every 4 click
-                    if(sharedPref.adShown()){
-                        //create new interstitial ad
-                        AdRequest adRequestInterstitial = new AdRequest.Builder().build();
-                        mInterstitialAd.loadAd(adRequestInterstitial);
 
-                        if (mInterstitialAd.isLoaded()){
-                            mInterstitialAd.show();
-                        }
-                    }
                     //switch between true and false
                     sharedPref.setAdShown(!sharedPref.adShown());
 

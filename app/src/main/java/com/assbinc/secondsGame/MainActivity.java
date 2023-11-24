@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import com.assbinc.secondsgame.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
-        sharedPreferences.edit().remove("updates").commit();
+        sharedPreferences.edit().remove("updates").apply();
         boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
         boolean updateDialog = sharedPreferences.getBoolean("update2", true);
 
@@ -40,14 +39,6 @@ public class MainActivity extends AppCompatActivity {
             showUpdateDialog();
         }
 
-        //Ad
-        MobileAds.initialize(this, initializationStatus -> {
-        });
-
-        AdView adView = findViewById(R.id.adView);
-
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
     }
 
     private void showUpdateDialog() {
@@ -104,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("activity", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activity", "main");
-        editor.commit();
+        editor.apply();
         Intent intent = new Intent(MainActivity.this, Settings.class);
         startActivity(intent);
         finish();

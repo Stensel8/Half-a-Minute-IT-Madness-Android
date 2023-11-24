@@ -7,9 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import com.assbinc.secondsgame.R;
+
 
 public class PauseMenu extends AppCompatActivity {
 
@@ -26,14 +25,6 @@ public class PauseMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pause_menu);
 
-        //Ad
-        MobileAds.initialize(this, initializationStatus -> {
-        });
-
-        AdView adViewPause = findViewById(R.id.adViewPause);
-
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adViewPause.loadAd(adRequest);
     }
 
     @Override
@@ -52,36 +43,31 @@ public class PauseMenu extends AppCompatActivity {
     private void goBack(){
         Intent intent;
         String actual = sharedPreferences.getString("actualGame","");
-        switch (actual){
-            case("math"):
-
+        switch (actual) {
+            case ("math") -> {
                 intent = new Intent(this, MathGame.class);
                 startActivity(intent);
-                break;
-            case("NlToEn"):
-
+            }
+            case ("NlToEn") -> {
                 intent = new Intent(this, LanguageGame.class);
-                intent.putExtra("chosenGame","NlToEn");
+                intent.putExtra("chosenGame", "NlToEn");
                 startActivity(intent);
-                break;
-            case("EnToNl"):
-
+            }
+            case ("EnToNl") -> {
                 intent = new Intent(this, LanguageGame.class);
-                intent.putExtra("chosenGame","EnToNl");
+                intent.putExtra("chosenGame", "EnToNl");
                 startActivity(intent);
-                break;
-            case("FrToEn"):
-
+            }
+            case ("FrToEn") -> {
                 intent = new Intent(this, LanguageGame.class);
-                intent.putExtra("chosenGame","FrToEn");
+                intent.putExtra("chosenGame", "FrToEn");
                 startActivity(intent);
-                break;
-            case("EnToFr"):
-
+            }
+            case ("EnToFr") -> {
                 intent = new Intent(this, LanguageGame.class);
-                intent.putExtra("chosenGame","EnToFr");
+                intent.putExtra("chosenGame", "EnToFr");
                 startActivity(intent);
-                break;
+            }
         }
         finish();
     }
@@ -92,7 +78,7 @@ public class PauseMenu extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("activity", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activity", "pause");
-        editor.commit();
+        editor.apply();
         Intent intent = new Intent(PauseMenu.this, Settings.class);
         startActivity(intent);
         finish();

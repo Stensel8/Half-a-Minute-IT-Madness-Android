@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.assbinc.secondsGame"
     android:versionCode="10"
-    android:versionName="1.6"
+    android:versionName="2.0"
     android:installLocation="preferExternal">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
-        android:allowBackup="true"
         android:forceDarkAllowed="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,40 +17,40 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6646767279000716~7449282479"/>
-        <activity android:name=".MyAccount" />
+        <activity android:name="com.assbinc.secondsGame.MyAccount" />
         <activity
-            android:name=".LanguageGame"
+            android:name="com.assbinc.secondsGame.LanguageGame"
             android:label="@string/title_activity_language_test"
             android:theme="@style/lightTheme.NoActionBar" />
-        <activity android:name=".PauseMenu" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.assbinc.secondsGame.PauseMenu" />
+        <activity android:name="com.assbinc.secondsGame.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settings">
+        <activity android:name="com.assbinc.secondsGame.Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
-        <activity android:name=".ChooseLanguageGame" />
-        <activity android:name=".ChooseGame">
+        <activity android:name="com.assbinc.secondsGame.ChooseLanguageGame" />
+        <activity android:name="com.assbinc.secondsGame.ChooseGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
-        <activity android:name=".MathGame">
+        <activity android:name="com.assbinc.secondsGame.MathGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.ChooseGame" />
         </activity>
-        <activity android:name=".GameOver">
+        <activity android:name="com.assbinc.secondsGame.GameOver">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assbinc.secondsGame.MainActivity" />
         </activity>
     </application>
-
 </manifest>

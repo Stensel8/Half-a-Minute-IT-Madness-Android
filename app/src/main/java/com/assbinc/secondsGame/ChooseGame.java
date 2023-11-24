@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.assbinc.secondsgame.R;
+
 public class ChooseGame extends AppCompatActivity {
 
     SharedPref sharedPref;

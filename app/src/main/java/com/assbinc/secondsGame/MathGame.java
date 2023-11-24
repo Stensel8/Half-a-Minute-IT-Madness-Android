@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.assbinc.secondsgame.R;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
@@ -90,7 +92,7 @@ public class MathGame extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("actualGame", "math");
-        editor.commit();
+        editor.apply();
 
         countDownTimer.cancel();
         Intent intent = new Intent(MathGame.this, PauseMenu.class);

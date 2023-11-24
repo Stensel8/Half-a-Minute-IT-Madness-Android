@@ -45,7 +45,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/DutchToEnglish"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="18sp"
                 tools:text="@string/DutchToEnglish" />
 
@@ -59,7 +59,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToDutch"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="18sp" />
 
             <Button
@@ -72,7 +72,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/FrenchToEnglish"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="18sp" />
 
             <Button
@@ -84,7 +84,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToFrench"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="18sp" />
 
         </LinearLayout>
