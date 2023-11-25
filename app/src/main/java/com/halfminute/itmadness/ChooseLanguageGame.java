@@ -1,4 +1,4 @@
-package com.assbinc.secondsGame;
+package com.halfminute.itmadness;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.assbinc.secondsgame.R;
+import com.halfminute.itmadness.R;
 
 public class ChooseLanguageGame extends AppCompatActivity {
 

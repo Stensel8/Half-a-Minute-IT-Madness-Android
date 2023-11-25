@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1069027620281:android:66859eff358c9bdbbaf268",
         "android_client_info": {
-          "package_name": "com.assbinc.secondsgame"
+          "package_name": "com.halfminute.itmadness"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1069027620281-hdvjt18suegvkom0nikg78oan27pqv40.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.assbinc.secondsgame",
+            "package_name": "com.halfminute.itmadness",
             "certificate_hash": "4e4438f4d9a679752f90de6fbb3ecacffcb3dfa5"
           }
         },

@@ -1,4 +1,4 @@
-package com.assbinc.secondsGame;
+package com.halfminute.itmadness;
 
 import org.junit.Test;
 

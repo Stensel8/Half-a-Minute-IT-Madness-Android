@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">THE 30 seconds game</string>
+    <string name="app_name">Half a Minute IT Madness</string>
     <string name="mathGameButton">Math Game</string>
     <string name="languageGameButton">Language test</string>
     <string name="chooseGameTitle">Choose your game</string>
@@ -73,9 +73,9 @@
     <string name="no_data">No result</string>
     <string name="display_notifications">Show notifications</string>
     <string name="inscriptionNotification">Thanks for signing-up!</string>
-    <string name="notificationText">Welcome to THE 30 seconds game</string>
+    <string name="notificationText">Welcome to Half a Minute IT Madness</string>
     <string name="welcome">Welcome!</string>
-    <string name="welcomeText">"Hello and welcome to THE 30 seconds game! With THE 30 seconds game you can learn while having fun. You can choose between 2 main games, THE math game and THE language test. The rules are simple. You have 30 seconds to answer as many questions as possible. Each correct answer gives you 1 point. If you answer wrong you lose 1 life. Your lives are indicated with an orange heart in the top right corner of the screen. After 30 seconds or after losing all your lives, the game will be over. You can still try again to beat your own score or your friends' high-score. Have fun! "</string>
+    <string name="welcomeText">"Hello and welcome to Half a Minute IT Madness! With Half a Minute IT Madness you can learn while having fun. You can choose between 2 main games, THE math game and THE language test. The rules are simple. You have 30 seconds to answer as many questions as possible. Each correct answer gives you 1 point. If you answer wrong you lose 1 life. Your lives are indicated with an orange heart in the top right corner of the screen. After 30 seconds or after losing all your lives, the game will be over. You can still try again to beat your own score or your friends' high-score. Have fun! "</string>
     <string name="signupWelcome">Sign-up to be able to show your score to your friends!</string>
     <string name="closeWindow">Close window</string>
     <string name="gameTitle" translatable="false">Game title</string>
@@ -89,7 +89,7 @@
     <string name="updates">Updates</string>
     <string name="update_list">- You can now find a suggestion box in the settings to share your ideas with the developers!</string>
     <string name="suggestion_box">Suggestion box</string>
-    <string name="suggestion_explanation">On \"THE 30 seconds game\" it is YOU who participates to improve the application! Add here your ideas for improvements and the best ideas will be chosen for a future update.</string>
+    <string name="suggestion_explanation">On \"Half a Minute IT Madness\" it is YOU who participates to improve the application! Add here your ideas for improvements and the best ideas will be chosen for a future update.</string>
     <string name="send_button">Send</string>
     <string name="thanks_idea">Thank tou for your suggestion</string>
     <string name="new_words">- New words were added</string>

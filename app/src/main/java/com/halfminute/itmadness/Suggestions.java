@@ -1,4 +1,4 @@
-package com.assbinc.secondsGame;
+package com.halfminute.itmadness;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 

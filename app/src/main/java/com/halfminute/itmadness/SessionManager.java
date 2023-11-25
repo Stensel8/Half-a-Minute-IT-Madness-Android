@@ -1,4 +1,4 @@
-package com.assbinc.secondsGame;
+package com.halfminute.itmadness;
 
 import android.content.Context;
 import android.content.SharedPreferences;

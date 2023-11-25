@@ -3,7 +3,7 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     defaultConfig {
-        applicationId "com.assbinc.secondsgame"
+        applicationId "com.halfminute.itmadness"
         minSdk 31
         targetSdkVersion 34
         compileSdk 34
@@ -35,7 +35,7 @@ android {
         }
     }
 
-    namespace 'com.assbinc.secondsgame'
+    namespace 'com.halfminute.itmadness'
 }
 
 dependencies {
@@ -69,9 +69,3 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}

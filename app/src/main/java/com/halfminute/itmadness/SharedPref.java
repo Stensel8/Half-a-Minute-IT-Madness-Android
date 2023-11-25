@@ -1,4 +1,4 @@
-package com.assbinc.secondsGame;
+package com.halfminute.itmadness;
 
 import android.app.Activity;
 import android.content.Context;

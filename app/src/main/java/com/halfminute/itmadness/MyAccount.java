@@ -1,4 +1,4 @@
-package com.assbinc.secondsGame;
+package com.halfminute.itmadness;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -13,7 +13,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -29,7 +28,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.assbinc.secondsgame.R;
+import com.halfminute.itmadness.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -318,7 +317,7 @@ public class MyAccount extends AppCompatActivity {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(context.getResources().getString(R.string.inscriptionNotification))
                 .setContentText(context.getResources().getString(R.string.notificationText))
-                .setTicker("THE 30 seconds game")
+                .setTicker("Half a Minute IT Madness")
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
@@ -339,7 +338,7 @@ public class MyAccount extends AppCompatActivity {
     }
 
     private void createNotificationChannel(){
-        CharSequence channelName = "THE 30 Seconds game";
+        CharSequence channelName = "Half a Minute IT Madness";
         String description = getResources().getString(R.string.display_notifications);
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
 

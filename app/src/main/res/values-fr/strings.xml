@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">THE 30 seconds game</string>
+    <string name="app_name">Half a Minute IT Madness</string>
     <string name="FrenchToEnglish">Anglais à Français</string>
     <string name="PersonnalHScore">"Meilleur score: "</string>
     <string name="DutchToEnglish">Néerlandais à Français</string>
@@ -69,9 +69,9 @@
     <string name="no_data">Aucun résultat</string>
     <string name="display_notifications">Affichage des notifications</string>
     <string name="inscriptionNotification">Merci pour votre inscription!</string>
-    <string name="notificationText">Bienvenue sur THE 30 seconds game</string>
+    <string name="notificationText">Bienvenue sur Half a Minute IT Madness</string>
     <string name="welcome">Bienvenue!</string>
-    <string name="welcomeText">Bonjour et bienvenue sur THE 30 seconds game! Avec THE 30 seconds game vous apprenez en vous amusant. Vous pouvez choisir entre 2 jeux, LE jeu de math et LE test de langues. Les règles sont simple. Vous avez 30 secondes pour répondre à un maximum de questions. Chaque bonne réponse vous rapportera 1 point. Si vous donnez une mauvaise réponse vous perdez 1 vie. Vos vies sont indiquées avec un coeur orange dans le coin supérieur droit de votre écran. Après 30 secondes ou après avoir perdu toutes vos vies la partie sera terminée. Vous pourrez toujours recommencer pour battre votre record ou celui de vos amis. Amusez-vous bien!</string>
+    <string name="welcomeText">Bonjour et bienvenue sur Half a Minute IT Madness! Avec Half a Minute IT Madness vous apprenez en vous amusant. Vous pouvez choisir entre 2 jeux, LE jeu de math et LE test de langues. Les règles sont simple. Vous avez 30 secondes pour répondre à un maximum de questions. Chaque bonne réponse vous rapportera 1 point. Si vous donnez une mauvaise réponse vous perdez 1 vie. Vos vies sont indiquées avec un coeur orange dans le coin supérieur droit de votre écran. Après 30 secondes ou après avoir perdu toutes vos vies la partie sera terminée. Vous pourrez toujours recommencer pour battre votre record ou celui de vos amis. Amusez-vous bien!</string>
     <string name="signupWelcome">Inscrivez-vous pour pouvoir partager votre score à vos amis!</string>
     <string name="closeWindow">close window</string>
     <string name="validEmail">Veuillez entrer une adresse mail valide</string>
@@ -84,7 +84,7 @@
     <string name="updates">Nouveautés</string>
     <string name="update_list">- Vous pouvez maintenant trouver une boîte à suggestions dans les paramètres pour partager vos idées avec les développeurs !</string>
     <string name="suggestion_box">Boîte à idées</string>
-    <string name="suggestion_explanation">Sur \"THE 30 seconds game\" c\'est VOUS qui participez à améliorer l\'application! Ajoutez ici vos idées d\'améliorations et les meilleures d\'entre elles seront choisies pour une future mise à jour.</string>
+    <string name="suggestion_explanation">Sur \"Half a Minute IT Madness\" c\'est VOUS qui participez à améliorer l\'application! Ajoutez ici vos idées d\'améliorations et les meilleures d\'entre elles seront choisies pour une future mise à jour.</string>
     <string name="send_button">Envoyer</string>
     <string name="thanks_idea">Merci pour votre suggestion</string>
     <string name="words_title">Nouveaux mots</string>

@@ -1,4 +1,4 @@
-package com.assbinc.secondsGame;
+package com.halfminute.itmadness;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.assbinc.secondsgame.R;
+import com.halfminute.itmadness.R;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
