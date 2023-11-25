@@ -1,15 +1,13 @@
 package com.halfminute.itmadness;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.halfminute.itmadness.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -60,19 +58,13 @@ public class MainActivity extends AppCompatActivity {
     private void showStartDialog() {
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
         final View mView = getLayoutInflater().inflate(R.layout.welcome_message, null);
-        final Button btnToSignUp = (Button) mView.findViewById(R.id.btnSignUpWelcome);
+
         final ImageButton btnClose = (ImageButton) mView.findViewById(R.id.btnClose);
 
         mBuilder.setView(mView);
         final AlertDialog mDialog = mBuilder.create();
         mDialog.show();
 
-        btnToSignUp.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MyAccount.class);
-            intent.putExtra("main","main");
-            startActivity(intent);
-            finish();
-        });
 
         btnClose.setOnClickListener(v -> mDialog.dismiss());
 
