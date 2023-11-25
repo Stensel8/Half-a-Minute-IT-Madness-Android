@@ -12,3 +12,17 @@
 /captures
 .externalNativeBuild
 .cxx
+/outputs/
+/generated/
+.navigation/
+*.apk
+*.ap_
+*.aab
+.gradle/
+gradle-app.setting
+proguard-rules.pro
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+google-services.json
+secrets.xml
