@@ -140,28 +140,25 @@ public class Settings extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("gameDifficulty", MODE_PRIVATE).edit();
         String difficulty = "";
 
-        switch (view.getId()) {
-            case (R.id.difficultyEasyBtn) -> {
-                //save data to shared preferences
-                editor.putString("difficulty", "easy");
-                editor.apply();
-                difficulty = getResources().getString(R.string.difficultyEasy);
-            }
-            case (R.id.difficultyMediumBtn) -> {
-                editor.putString("difficulty", "medium");
-                editor.apply();
-                difficulty = getResources().getString(R.string.difficultyMedium);
-            }
-            case (R.id.difficultyHardBtn) -> {
-                editor.putString("difficulty", "hard");
-                editor.apply();
-                difficulty = getResources().getString(R.string.difficultyHard);
-            }
+        int viewId = view.getId();
+        if (viewId == R.id.difficultyEasyBtn) {
+            //save data to shared preferences
+            editor.putString("difficulty", "easy");
+            editor.apply();
+            difficulty = getResources().getString(R.string.difficultyEasy);
+        } else if (viewId == R.id.difficultyMediumBtn) {
+            editor.putString("difficulty", "medium");
+            editor.apply();
+            difficulty = getResources().getString(R.string.difficultyMedium);
+        } else if (viewId == R.id.difficultyHardBtn) {
+            editor.putString("difficulty", "hard");
+            editor.apply();
+            difficulty = getResources().getString(R.string.difficultyHard);
         }
-
 
         Toast.makeText(Settings.this, getResources().getString(R.string.changeDfficultyTo) + difficulty ,Toast.LENGTH_SHORT).show();
     }
+
 
     public void suggestionBox(View view){
         btnAnimation(view);

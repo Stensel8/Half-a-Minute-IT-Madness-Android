@@ -39,13 +39,21 @@ public class ChooseLanguageGame extends AppCompatActivity {
 
         Intent intent = new Intent(this, LanguageGame.class);
 
-        switch (view.getId()) {
-            case (R.id.btnNlToEn) -> intent.putExtra("chosenGame", "NlToEn");
-            case (R.id.btnEnToNl) -> intent.putExtra("chosenGame", "EnToNl");
-            case (R.id.btnFrToEn) -> intent.putExtra("chosenGame", "FrToEn");
-            case (R.id.btnEnToFr) -> intent.putExtra("chosenGame", "EnToFr");
+        int viewId = view.getId();
+        if (viewId == R.id.btnNlToEn) {
+            intent.putExtra("chosenGame", "NlToEn");
+        } else if (viewId == R.id.btnEnToNl) {
+            intent.putExtra("chosenGame", "EnToNl");
+        } else if (viewId == R.id.btnFrToEn) {
+            intent.putExtra("chosenGame", "FrToEn");
+        } else if (viewId == R.id.btnEnToFr) {
+            intent.putExtra("chosenGame", "EnToFr");
+        } else {
+            // Handle the default case if needed
         }
+
         startActivity(intent);
         finish();
     }
+
 }
