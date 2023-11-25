@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
@@ -19,7 +18,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/settingsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -42,7 +40,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/account_title"
@@ -50,7 +47,6 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/btnLoginSettings"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,12 +55,11 @@
                     android:onClick="goMyAccount"
                     android:padding="10dp"
                     android:text="@string/my_account"
-                    android:textColor="@color/buttonTextColor"
+                    android:textColor="#424242"
                     android:textSize="16sp" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -87,7 +82,7 @@
                     android:background="@drawable/rounded_btn"
                     android:onClick="chooseDifficulty"
                     android:text="@string/difficultyEasy"
-                    android:textColor="@color/buttonTextColor"
+                    android:textColor="#424242"
                     android:textSize="16sp" />
 
                 <Button
@@ -99,7 +94,7 @@
                     android:background="@drawable/rounded_btn"
                     android:onClick="chooseDifficulty"
                     android:text="@string/difficultyMedium"
-                    android:textColor="@color/buttonTextColor"
+                    android:textColor="#424242"
                     android:textSize="16sp" />
 
                 <Button
@@ -111,7 +106,7 @@
                     android:background="@drawable/rounded_btn"
                     android:onClick="chooseDifficulty"
                     android:text="@string/difficultyHard"
-                    android:textColor="@color/buttonTextColor"
+                    android:textColor="#424242"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -152,11 +147,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvDarkMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
-                    android:layout_marginLeft="70dp"
                     android:layout_weight="1"
                     android:text="@string/darlModeText"
                     android:textColor="?attr/textColor"
@@ -167,7 +160,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
-                    android:layout_marginRight="30dp"
                     android:layout_weight="1"
                     android:checked="false" />
             </LinearLayout>
@@ -179,11 +171,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvSound"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
-                    android:layout_marginLeft="70dp"
                     android:text="@string/sound"
                     android:textColor="?attr/textColor"
                     android:textSize="30sp" />
@@ -193,7 +183,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
-                    android:layout_marginRight="30dp"
                     android:layout_weight="1"
                     android:checked="false" />
             </LinearLayout>
@@ -214,7 +203,7 @@
                     android:onClick="showChangeLanguageDialog"
                     android:padding="10dp"
                     android:text="@string/ChangeLanguage"
-                    android:textColor="@color/buttonTextColor"
+                    android:textColor="#424242"
                     android:textSize="16sp" />
 
                 <LinearLayout
@@ -229,12 +218,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
                         android:contentDescription="@string/suggestion_box"
                         app:srcCompat="@drawable/idea_box" />
 
                     <Button
-                        android:id="@+id/btnIdea"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -242,7 +229,7 @@
                         android:onClick="suggestionBox"
                         android:padding="10dp"
                         android:text="@string/suggestion_box"
-                        android:textColor="@color/buttonTextColor"
+                        android:textColor="#424242"
                         android:textSize="16sp" />
 
                 </LinearLayout>

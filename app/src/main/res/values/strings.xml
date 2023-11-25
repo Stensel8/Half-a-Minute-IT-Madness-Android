@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">THE 30 seconds game</string>
+    <string name="app_name">Half a Minute IT Madness</string>
     <string name="mathGameButton">Math Game</string>
     <string name="languageGameButton">Language test</string>
     <string name="chooseGameTitle">Choose your game</string>
     <string name="chooseTestTitle">Choose your test</string>
     <string name="DutchToEnglish">Dutch to English</string>
     <string name="settingsTitle">Settings</string>
-    <string name="notificationSettings">Notifications</string>
     <string name="difficultyTitle">Difficulty</string>
-    <string name="TimerDescription">Timer</string>
     <string name="TimerValue">30s</string>
-    <string name="ScoreDescription">ScoreImage</string>
+    <string name="game_time" translatable="false">30 seconds game</string>
+    <string name="timer_seconds" translatable="false">%1$d s</string>
     <string name="ScoreValue">0/0</string>
+    <string name="score_format" translatable="false">%1$d/%2$d</string>
     <string name="difficultyEasy">Easy</string>
     <string name="difficultyMedium">Medium</string>
     <string name="difficultyHard">Hard</string>
@@ -21,7 +21,6 @@
     <string name="mainMenuBtn">Main menu</string>
     <string name="defaultBtnValue">3</string>
     <string name="defaultAnswerText">\?</string>
-    <string name="defaultCalculation">"1 + 2 = "</string>
     <string name="retry">Try again</string>
     <string name="exitGame">Exit game</string>
     <string name="scoreGOver">"Score: "</string>
@@ -32,16 +31,16 @@
     <string name="ChangeLanguage">Change language</string>
     <string name="correct">Correct!</string>
     <string name="wrong">Wrong!</string>
+    <string name="lives" translatable="false">%d</string>
     <string name="sum">1 + 2 =</string>
     <string name="title_activity_language_test">Language_test</string>
     <string name="question">Ik ben 23 jaar oud</string>
+    <string name="points" translatable="false">%d/%d</string>
     <string name="answerLang">I am 23 years old</string>
-    <string name="notifTitle">Play 30 Seconds game!</string>
     <string name="EnglishToFrench">English to French</string>
     <string name="EnglishToDutch">English to dutch</string>
     <string name="changeGame">Change game</string>
     <string name="changeDfficultyTo">"Difficulty: "</string>
-    <string name="livesLeft">"Lives: "</string>
     <string name="top5">Top 5:</string>
     <string name="chosenGame">"Game: "</string>
     <string name="loginTitle">Login</string>
@@ -56,7 +55,6 @@
     <string name="loginError">Incorrect username or password</string>
     <string name="same_pwd">Password does not match</string>
     <string name="sign_up_succes">Successfully signed-up!</string>
-    <string name="sign_up_error">Sign-up error</string>
     <string name="username_too_long">this username is too long</string>
     <string name="account_title">Account</string>
     <string name="logout">Log out</string>
@@ -67,8 +65,6 @@
     <string name="totalFriends">Total friends:</string>
     <string name="add_friends">Add friends</string>
     <string name="not_connected">You\'re not logged in. You need to log in to see the top 5</string>
-    <string name="zero">0</string>
-    <string name="add">Add</string>
     <string name="friend_username">Friend\'s username</string>
     <string name="search">Search</string>
     <string name="not_connected_friends">You\'re not logged-in</string>
@@ -77,9 +73,9 @@
     <string name="no_data">No result</string>
     <string name="display_notifications">Show notifications</string>
     <string name="inscriptionNotification">Thanks for signing-up!</string>
-    <string name="notificationText">Welcome to THE 30 seconds game</string>
+    <string name="notificationText">Welcome to Half a Minute IT Madness</string>
     <string name="welcome">Welcome!</string>
-    <string name="welcomeText">"Hello and welcome to THE 30 seconds game! With THE 30 seconds game you can learn while having fun. You can choose between 2 main games, THE math game and THE language test. The rules are simple. You have 30 seconds to answer as many questions as possible. Each correct answer gives you 1 point. If you answer wrong you lose 1 life. Your lives are indicated with an orange heart in the top right corner of the screen. After 30 seconds or after losing all your lives, the game will be over. You can still try again to beat your own score or your friends' high-score. Have fun! "</string>
+    <string name="welcomeText">"In the realm of information technology, welcome to Half a Minute IT Madness! This software application is a testament to the meticulous craftsmanship of three dedicated students enrolled in the HBO-ICT program at Saxion Hogeschool Enschede. Half a Minute IT Madness is designed to combine learning with enjoyment. You have the option to select from two main games: THE Math Game and THE Language Test. The rules are straightforward. You have a 30-second window to respond to as many questions as possible. Each correct answer earns you 1 point, while an incorrect response results in the loss of 1 life. Keep an eye on your lives, conveniently displayed as orange hearts in the top-right corner of the screen. The game concludes after 30 seconds or the depletion of all your lives. Post-game, you can challenge yourself to surpass your own score or compete with your friends' high scores. Dive in and have a rewarding experience!     "</string>
     <string name="signupWelcome">Sign-up to be able to show your score to your friends!</string>
     <string name="closeWindow">Close window</string>
     <string name="gameTitle" translatable="false">Game title</string>
@@ -92,9 +88,8 @@
     <string name="sound">Sound</string>
     <string name="updates">Updates</string>
     <string name="update_list">- You can now find a suggestion box in the settings to share your ideas with the developers!</string>
-    <string name="update_list2">- Sound effects added</string>
     <string name="suggestion_box">Suggestion box</string>
-    <string name="suggestion_explanation">On \"THE 30 seconds game\" it is YOU who participates to improve the application! Add here your ideas for improvements and the best ideas will be chosen for a future update.</string>
+    <string name="suggestion_explanation">On \"Half a Minute IT Madness\" it is YOU who participates to improve the application! Add here your ideas for improvements and the best ideas will be chosen for a future update.</string>
     <string name="send_button">Send</string>
     <string name="thanks_idea">Thank tou for your suggestion</string>
     <string name="new_words">- New words were added</string>

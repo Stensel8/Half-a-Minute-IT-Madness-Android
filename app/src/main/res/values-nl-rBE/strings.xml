@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">THE 30 seconds game</string>
-    <string name="TimerDescription">Timer</string>
+    <string name="app_name">Half a Minute IT Madness</string>
     <string name="TimerValue">30s</string>
     <string name="DutchToEnglish">Engels naar Nederlands</string>
     <string name="chooseGameTitle">Kies je spel</string>
@@ -9,7 +8,6 @@
     <string name="darlModeText">Dark mode</string>
     <string name="defaultAnswerText">\?</string>
     <string name="defaultBtnValue">3</string>
-    <string name="defaultCalculation">"1 + 2 = "</string>
     <string name="difficultyEasy">Easy</string>
     <string name="difficultyHard">Hard</string>
     <string name="difficultyMedium">Medium</string>
@@ -27,7 +25,6 @@
     <string name="settingsTitle">Instellingen</string>
     <string name="FrenchToEnglish">Frans naar Nederlands</string>
     <string name="PersonnalHScore">"High-score: "</string>
-    <string name="ScoreDescription">ScoreImage</string>
     <string name="ScoreValue">0/0</string>
     <string name="ChangeLanguage">Taal veranderen</string>
     <string name="correct">Juist!</string>
@@ -36,13 +33,10 @@
     <string name="sum">1 + 2 =</string>
     <string name="title_activity_language_test">Language_test</string>
     <string name="mathGameButton">Wiskundespel</string>
-    <string name="notificationSettings">Meldingen</string>
     <string name="answerLang">I am 23 years old</string>
-    <string name="notifTitle">30 Seconds game spelen!</string>
     <string name="EnglishToDutch">Nederlands naar Frans</string>
     <string name="changeGame">Spel veranderen</string>
     <string name="changeDfficultyTo">"Moeilijkheid: "</string>
-    <string name="livesLeft">"Levens: "</string>
     <string name="top5">Top 5:</string>
     <string name="chosenGame">"Spel: "</string>
     <string name="email">E-mail</string>
@@ -58,7 +52,6 @@
     <string name="loginError">Onjuiste gebruikersnaam of wachtwoord</string>
     <string name="logout">Uitloggen</string>
     <string name="same_pwd">Wachtwoorden zijn niet identiek</string>
-    <string name="sign_up_error">Sign-up error</string>
     <string name="sign_up_succes">Geregistreerd!</string>
     <string name="username_too_long">Deze gebruikersnaam is te lang</string>
     <string name="username_exists">Deze gebruikersnaam is al gebruikt</string>
@@ -68,8 +61,6 @@
     <string name="totalFriends">Totaal vrienden:</string>
     <string name="usernameAccount">Gebruikersnaam:</string>
     <string name="not_connected">U bent niet aangemeld. U moet inloggen om de top 5 te zien</string>
-    <string name="zero">0</string>
-    <string name="add">Toevoegen</string>
     <string name="friend_username">Vriend gebruikersnaam</string>
     <string name="search">Zoeken</string>
     <string name="not_connected_friends">U bent niet aangemeld</string>
@@ -78,9 +69,9 @@
     <string name="no_data">Geen resultaat</string>
     <string name="display_notifications">Meldingen weergeven</string>
     <string name="inscriptionNotification">Dank u voor u inschrijving!</string>
-    <string name="notificationText">Welkom bij THE 30 seconds game</string>
+    <string name="notificationText">Welkom bij Half a Minute IT Madness</string>
     <string name="welcome">Welkom!</string>
-    <string name="welcomeText">Hallo en welkom bij THE 30 seconds game! Met THE 30 seconds game u kunt spelend leren. U kunt kiezen tussen 2 spellen, DE wiskundespel en DE taaltest. De regels zijn simpel. U moet zoveel mogelijk vragen beantwoorden in 30 seconden. Elk juist antwoord verdient u 1 punt. Als uw antwoord verkeerd is verliest u 1 leven. Uw levens zijn aangeduid met een oranje hart in de rechterbovenhoek van uw scherm. Na 30 seconden of na het verlies van al uw levens, het spel zal voorbij zijn. U kunt altijd opnieuw beginnen om uw score of die van uw vrienden te overtreffen. Veel plezier! </string>
+    <string name="welcomeText">Hallo en welkom bij Half a Minute IT Madness! Met Half a Minute IT Madness u kunt spelend leren. U kunt kiezen tussen 2 spellen, DE wiskundespel en DE taaltest. De regels zijn simpel. U moet zoveel mogelijk vragen beantwoorden in 30 seconden. Elk juist antwoord verdient u 1 punt. Als uw antwoord verkeerd is verliest u 1 leven. Uw levens zijn aangeduid met een oranje hart in de rechterbovenhoek van uw scherm. Na 30 seconden of na het verlies van al uw levens, het spel zal voorbij zijn. U kunt altijd opnieuw beginnen om uw score of die van uw vrienden te overtreffen. Veel plezier! </string>
     <string name="signupWelcome">Schrijf u in voor uw score aan uw vrienden te kunnen tonen!</string>
     <string name="closeWindow">close window</string>
     <string name="validEmail">"Vul enn geldig e-mailadres in "</string>
@@ -91,7 +82,6 @@
     <string name="no">Nee</string>
     <string name="sound">Audio</string>
     <string name="updates">Nieuwigheden</string>
-    <string name="update_list2">- Toevoeging van geluidseffecten</string>
     <string name="update_list">- U kunt nu een Ideeênbus vinden in de instellingen om uw ideeën te delen met de computerontwikkelaars</string>
     <string name="suggestion_box">Ideeênbus</string>
     <string name="thanks_idea">Dank u voor uw idee</string>

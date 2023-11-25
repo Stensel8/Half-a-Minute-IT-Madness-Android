@@ -26,7 +26,6 @@
                 app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
             <TextView
-                android:id="@+id/tvUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -36,7 +35,6 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/tvUpdateList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -48,7 +46,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvUpdate2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -58,7 +55,6 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tvUpdateList2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -70,7 +66,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvUpdate3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

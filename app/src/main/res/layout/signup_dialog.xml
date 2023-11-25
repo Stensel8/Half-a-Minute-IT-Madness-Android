@@ -12,7 +12,6 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tvSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -40,7 +39,8 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textColor="?attr/textColor"
-        android:textColorHint="@android:color/tertiary_text_light" />
+        android:textColorHint="@android:color/tertiary_text_light"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/etUsername"
@@ -51,7 +51,8 @@
         android:hint="@string/username"
         android:inputType="textPersonName"
         android:textColor="?attr/textColor"
-        android:textColorHint="@android:color/tertiary_text_light" />
+        android:textColorHint="@android:color/tertiary_text_light"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/etPasswordSignUp"
@@ -62,7 +63,8 @@
         android:hint="@string/password"
         android:inputType="none|textPassword"
         android:textColor="?attr/textColor"
-        android:textColorHint="@android:color/tertiary_text_light" />
+        android:textColorHint="@android:color/tertiary_text_light"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/etConfirmPwd"
@@ -73,7 +75,8 @@
         android:hint="@string/conf_password"
         android:inputType="none|textPassword"
         android:textColor="?attr/textColor"
-        android:textColorHint="@android:color/tertiary_text_light" />
+        android:textColorHint="@android:color/tertiary_text_light"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnSignUp"
@@ -97,7 +100,6 @@
             android:layout_gravity="center" />
 
         <TextView
-            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
