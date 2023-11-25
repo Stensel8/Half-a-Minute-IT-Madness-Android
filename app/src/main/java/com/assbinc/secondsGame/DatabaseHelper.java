@@ -83,18 +83,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
 
-        if (count > 0)
-            return true;
-        else
-            return false;
+        return count > 0;
     }
-
-//    public Cursor getItemId(String name){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        String query = "SELECT" + COL_ID + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " = '" + name + "'";
-//        Cursor data = db.rawQuery(query,null);
-//        return data;
-//    }
 
     //check if the username is already taken
     public boolean checkMultipleUsername(String name){
@@ -103,10 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query,null);
         int count = data.getCount();
 
-        if(count > 0)
-            return true;
-        else
-            return false;
+        return count > 0;
 
     }
 
@@ -150,11 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             result = 1;
 
-        if(result==-1){
-            return false;
-        }else{
-            return true;
-        }
+        return result != -1;
     }
 
     //gets the 5 best scores of the High-score table
@@ -189,11 +172,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_FRIENDS,username);
         long result2 = db.insert(TABLE_FRIEND,null,contentValues);
 
-        if(result1==-1 || result2==-1){
-            return false;
-        }else{
-            return true;
-        }
+        return result1 != -1 && result2 != -1;
     }
 
     //check if 2 users are friends
@@ -203,10 +182,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query,null);
         int count = data.getCount();
 
-        if(count > 0)
-            return true;
-        else
-            return false;
+        return count > 0;
     }
 
     //returns all the friends of a user

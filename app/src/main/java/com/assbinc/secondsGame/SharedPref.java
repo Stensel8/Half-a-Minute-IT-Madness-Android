@@ -19,26 +19,24 @@ public class SharedPref {
 
         SharedPreferences.Editor editor = mySharedPref.edit();
         editor.putBoolean("darkMode",state);
-        editor.commit();
+        editor.apply();
     }
 
     //load the dark mode state
     public Boolean loadNightMode(){
-        Boolean state = mySharedPref.getBoolean("darkMode", false);
-        return state;
+        return mySharedPref.getBoolean("darkMode", false);
     }
 
     //boolean to know if we need to show the ad or not
     public void setAdShown(Boolean state){
         SharedPreferences.Editor editor = mySharedPref.edit();
         editor.putBoolean("showAd",state);
-        editor.commit();
+        editor.apply();
     }
 
     //get the ad boolean
     public Boolean adShown(){
-        Boolean state = mySharedPref.getBoolean("showAd", true);
-        return state;
+        return mySharedPref.getBoolean("showAd", true);
     }
 
     //save the sound state
@@ -46,13 +44,12 @@ public class SharedPref {
 
         SharedPreferences.Editor editor = mySharedPref.edit();
         editor.putBoolean("sound",state);
-        editor.commit();
+        editor.apply();
     }
 
     //get the sound preference
     public Boolean getSound(){
-        Boolean soundState = mySharedPref.getBoolean("sound", true);
-        return soundState;
+        return mySharedPref.getBoolean("sound", true);
     }
 
     //set saved language
@@ -61,7 +58,7 @@ public class SharedPref {
 
         java.util.Locale.setDefault(locale);
         Configuration config = new Configuration();
-        config.locale = locale;
+        config.setLocale(locale);
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
     }
 

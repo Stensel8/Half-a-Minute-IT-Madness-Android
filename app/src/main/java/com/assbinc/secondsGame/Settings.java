@@ -92,7 +92,7 @@ public class Settings extends AppCompatActivity {
         Button changeLang = findViewById(R.id.btnChangeLanguage);
         changeLang.setOnClickListener(v -> {
             btnAnimation(v);
-            showChangeLanguageDialog();
+            showChangeLanguageDialog(v);
         });
     }
 
@@ -107,7 +107,7 @@ public class Settings extends AppCompatActivity {
 
 
 
-    private void showChangeLanguageDialog(){
+    public void showChangeLanguageDialog(View view){
         //Array of languages to display in alert dialog
         final String[] listOfLang = {"Français", "Nederlands", "English"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this,sharedPref.loadNightMode()? androidx.appcompat.R.style.Theme_AppCompat_DayNight_Dialog: androidx.appcompat.R.style.Theme_AppCompat_Light_Dialog);
@@ -185,7 +185,7 @@ public class Settings extends AppCompatActivity {
                 title.setText("Suggestions");
 
                 ArrayList<String> suggestionList = new ArrayList<>();
-                progressBar.setVisibility(mViewShowSuggestions.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
 
                 //show suggestions only when logged with admin account
                 fireDb.collection("suggestions").get().addOnCompleteListener(t ->{

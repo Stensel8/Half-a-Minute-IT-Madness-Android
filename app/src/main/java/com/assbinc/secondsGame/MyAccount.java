@@ -50,7 +50,6 @@ public class MyAccount extends AppCompatActivity {
     TextView tvUsername, tvAccountScore, tvTotalFriends;
     Button btnLogin;
     private final String channelId = "notificationGame";
-    private final int notificationId = 001;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fireDb;
 
@@ -131,7 +130,7 @@ public class MyAccount extends AppCompatActivity {
         final ImageButton btnCloseLogin = (ImageButton) mView.findViewById(R.id.btnClose2);
         final ProgressBar progressBarLogin = (ProgressBar) mView.findViewById(R.id.progressBarLogin);
 
-        progressBarLogin.setVisibility(mView.GONE);
+        progressBarLogin.setVisibility(View.GONE);
 
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialog = mBuilder.create();
@@ -143,7 +142,7 @@ public class MyAccount extends AppCompatActivity {
                 String email = etEmail.getText().toString().trim();
                 String pwd = etPassword.getText().toString().trim();
 
-                progressBarLogin.setVisibility(mView.VISIBLE);
+                progressBarLogin.setVisibility(View.VISIBLE);
 
                 mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(task -> {
                     //signIn
@@ -153,7 +152,7 @@ public class MyAccount extends AppCompatActivity {
                         DocumentReference doc = fireDb.collection("users").document(uid);
                         doc.get().addOnCompleteListener(task1 -> {
                             if (task1.isSuccessful()) {
-                                progressBarLogin.setVisibility(mView.GONE);
+                                progressBarLogin.setVisibility(View.GONE);
 
                                 DocumentSnapshot document = task1.getResult();
                                 if (document.exists()) {
@@ -186,7 +185,7 @@ public class MyAccount extends AppCompatActivity {
                             }
                         });
                     } else {
-                        progressBarLogin.setVisibility(mView.GONE);
+                        progressBarLogin.setVisibility(View.GONE);
 
                         Toast.makeText(context, getResources().getString(R.string.loginError), Toast.LENGTH_SHORT).show();
                     }
@@ -212,7 +211,7 @@ public class MyAccount extends AppCompatActivity {
         final ImageButton btnCloseSignUp = (ImageButton) mView.findViewById(R.id.btnClose3);
         final ProgressBar progressBarSignUp = (ProgressBar) mView.findViewById(R.id.progressBarSignUp);
 
-        progressBarSignUp.setVisibility(mView.GONE);
+        progressBarSignUp.setVisibility(View.GONE);
 
         mBuilder.setView(mView);
         final android.app.AlertDialog mDialogSignUp = mBuilder.create();
@@ -231,19 +230,19 @@ public class MyAccount extends AppCompatActivity {
                         if (pwd.length() >= 6) {
                             if (pwd.equals(confirmPwd)) {
                                 if (pwd.equals(confirmPwd)) {
-                                    progressBarSignUp.setVisibility(mView.VISIBLE);
+                                    progressBarSignUp.setVisibility(View.VISIBLE);
 
                                     fireDb.collection("users").whereEqualTo("username", username).limit(1).get().addOnCompleteListener(task -> {
                                         if (task.isSuccessful()) {
                                             if (task.getResult().size() > 0) { //username already in use
 
-                                                progressBarSignUp.setVisibility(mView.GONE);
+                                                progressBarSignUp.setVisibility(View.GONE);
 
                                                 Toast.makeText(this, getResources().getString(R.string.username_exists), Toast.LENGTH_SHORT).show();
                                             } else {
                                                 mAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(task1 -> {
                                                     if (task1.isSuccessful()) {
-                                                        progressBarSignUp.setVisibility(mView.GONE);
+                                                        progressBarSignUp.setVisibility(View.GONE);
                                                         int profileScore = 0;
                                                         int nbFriends = 0;
                                                         User user = new User(username, email, pwd, profileScore, nbFriends, mAuth.getCurrentUser().getUid());
@@ -255,7 +254,7 @@ public class MyAccount extends AppCompatActivity {
                                                         mDialogSignUp.dismiss();
 
                                                     } else {
-                                                        progressBarSignUp.setVisibility(mView.GONE);
+                                                        progressBarSignUp.setVisibility(View.GONE);
 
                                                         try {
                                                             throw task1.getException();
@@ -335,23 +334,22 @@ public class MyAccount extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        int notificationId = 001;
         notificationManager.notify(notificationId, builder.build());
     }
 
     private void createNotificationChannel(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence channelName = "THE 30 Seconds game";
-            String description = getResources().getString(R.string.display_notifications);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        CharSequence channelName = "THE 30 Seconds game";
+        String description = getResources().getString(R.string.display_notifications);
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
-            NotificationChannel channel1 = new NotificationChannel(channelId,channelName,importance);
+        NotificationChannel channel1 = new NotificationChannel(channelId,channelName,importance);
 
-            channel1.setDescription(description);
+        channel1.setDescription(description);
 
-            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.createNotificationChannel(channel1);
+        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(channel1);
 
-        }
     }
 
     public void addFriends(View view){
@@ -405,14 +403,14 @@ public class MyAccount extends AppCompatActivity {
         final android.app.AlertDialog mDialogAddFriends = mBuilder.create();
         mDialogAddFriends.show();
 
-        progressBarFriends.setVisibility(mView.VISIBLE);
+        progressBarFriends.setVisibility(View.VISIBLE);
 
         ArrayList<String> friendsList = new ArrayList<>();
 
         //get friendslist from firestore
         fireDb.collection("users").orderBy("username").startAt(friendsUsername).endAt(friendsUsername + "\uf8ff").get().addOnCompleteListener(task -> {
             if(task.isSuccessful()){
-                progressBarFriends.setVisibility(mView.GONE);
+                progressBarFriends.setVisibility(View.GONE);
                 for (DocumentSnapshot doc : task.getResult()){
                     if(!doc.getString("username").equalsIgnoreCase(session.getUsername())){
                         friendsList.add(doc.getString("username"));
@@ -421,7 +419,7 @@ public class MyAccount extends AppCompatActivity {
                 showFriendList(lvAddFriends,friendsList, "add");
             }
         }).addOnFailureListener(e -> {
-            progressBarFriends.setVisibility(mView.GONE);
+            progressBarFriends.setVisibility(View.GONE);
 
             showFriendList(lvAddFriends, friendsList, "show");
             Log.e("No friends", e.getMessage());
@@ -456,20 +454,20 @@ public class MyAccount extends AppCompatActivity {
 
                     tvFriendUsername.setText(friendsList.get(position));
                     //show friend's score
-                    progressBarFriendProfile.setVisibility(mViewFriend.VISIBLE);
-                    textView3.setVisibility(mViewFriend.INVISIBLE);
-                    tvFriendHC.setVisibility(mViewFriend.INVISIBLE);
+                    progressBarFriendProfile.setVisibility(View.VISIBLE);
+                    textView3.setVisibility(View.INVISIBLE);
+                    tvFriendHC.setVisibility(View.INVISIBLE);
                     fireDb.collection("users").whereEqualTo("username", friendsList.get(position)).limit(1).get().addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
-                            progressBarFriendProfile.setVisibility(mViewFriend.GONE);
-                            textView3.setVisibility(mViewFriend.VISIBLE);
-                            tvFriendHC.setVisibility(mViewFriend.VISIBLE);
+                            progressBarFriendProfile.setVisibility(View.GONE);
+                            textView3.setVisibility(View.VISIBLE);
+                            tvFriendHC.setVisibility(View.VISIBLE);
 
                             for (DocumentSnapshot doc : task.getResult()){
                                 tvFriendHC.setText(doc.get("profileScore") + "");
                             }
                         }else{
-                            progressBarFriendProfile.setVisibility(mViewFriend.GONE);
+                            progressBarFriendProfile.setVisibility(View.GONE);
                         }
                     });
                 });
@@ -531,18 +529,18 @@ public class MyAccount extends AppCompatActivity {
         tvAddFriends.setText(getResources().getString(R.string.friends));
 
         ArrayList<String> friendsList = new ArrayList<>();
-        progressBarFriends.setVisibility(mView.VISIBLE);
+        progressBarFriends.setVisibility(View.VISIBLE);
         //showFriends from firestore
         fireDb.collection("friends").whereEqualTo("username", session.getUsername()).get().addOnCompleteListener(task -> {
             if(task.isSuccessful()){
-                progressBarFriends.setVisibility(mView.GONE);
+                progressBarFriends.setVisibility(View.GONE);
 
                 for (DocumentSnapshot doc : task.getResult()){
                     friendsList.add(doc.getString("friends"));
                 }
                 showFriendList(lvAddFriends,friendsList, "show");
             }else{
-                progressBarFriends.setVisibility(mView.GONE);
+                progressBarFriends.setVisibility(View.GONE);
 
                 Toast.makeText(this, task.getException().toString(), Toast.LENGTH_LONG).show();
             }

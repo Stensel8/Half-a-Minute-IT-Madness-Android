@@ -4,15 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.assbinc.secondsgame.R;
 import com.google.gson.Gson;
@@ -39,23 +41,22 @@ public class LanguageGame extends AppCompatActivity {
     Words wordsList;
     private MediaPlayer player;
     private MediaPlayer timerPlayer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        //check dark mode
+        // Check dark mode
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
-        sharedPref.loadLocale(this); //loads the saved language
+        sharedPref.loadLocale(this); // Loads the saved language
 
         pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        savedLanguage = pref.getString("My lang", java.util.Locale.getDefault().getLanguage()); //current language of the game
+        savedLanguage = pref.getString("My lang", java.util.Locale.getDefault().getLanguage()); // Current language of the game
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.language_test);
 
-        correctAnswer = ""; //the answer of the question
-        incorrectAnswer = ""; //the incorrect answers of the question
+        // Initialize variables
+        correctAnswer = ""; // The answer of the question
+        incorrectAnswer = ""; // The incorrect answers of the question
         tvTimer = findViewById(R.id.tvTimer);
         tvPoints = findViewById(R.id.tvPoints);
         tvQuestion = findViewById(R.id.tvQuestion);
@@ -66,27 +67,40 @@ public class LanguageGame extends AppCompatActivity {
         btn3 = findViewById(R.id.btn3);
         tvLives = findViewById(R.id.tvLives);
         tvDifficulty = findViewById(R.id.tvDifficulty2);
-        millisUntilFinished = 30100; //30 seconds used for the timer
+        millisUntilFinished = 30100; // 30 seconds used for the timer
         points = 0;
-        wrong = 0; //the wrong answers from the player
-        maxWrongAnswers = 2; //the maximum wrong answers allowed
+        wrong = 0; // The wrong answers from the player
+        maxWrongAnswers = 2; // The maximum wrong answers allowed
         numberOfQuestions = 0;
         random = new Random();
-        randomId = 0; //random used to get the question
-        previousRandom = Integer.MAX_VALUE; //random from the previous question //it is initialised to max Int to be sure that the first random will not be the same as this random
-        btnIds = new int[]{R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3}; //the id's of the 4 buttons
+        randomId = 0; // Random used to get the question
+        previousRandom = Integer.MAX_VALUE; // Random from the previous question // It is initialised to max Int to be sure that the first random will not be the same as this random
+        btnIds = new int[]{R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3}; // The id's of the 4 buttons
         correctAnswerPosition = 0;
-        incorrectAnswers = new ArrayList<>(); //arrayList with all the incorrect answers
-        gson = new Gson(); //a google library used to facilitate the use of json files
-        wordsList = gson.fromJson(WordsJson.myWords, Words.class); //we get the json string in the WordsJson class thanks to the Words class
+        incorrectAnswers = new ArrayList<>(); // ArrayList with all the incorrect answers
+        gson = new Gson(); // A Google library used to facilitate the use of json files
+        wordsList = gson.fromJson(WordsJson.myWords, Words.class); // We get the json string in the WordsJson class thanks to the Words class
         chosenGame = getIntent().getStringExtra("chosenGame");
         sharedPreferences = getSharedPreferences("gameDifficulty", Activity.MODE_PRIVATE);
         difficulty = sharedPreferences.getString("difficulty", "easy");
+
+        // Create a callback for onBackPressed
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                countDownTimer.cancel();
+                Intent intent = new Intent(LanguageGame.this, ChooseLanguageGame.class);
+                startActivity(intent);
+                finish();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback); // Add the callback to the onBackPressedDispatcher
+
         startGame();
     }
 
     public void pauseGame(View view) {
-        //saves the current game we're playing
+        // Saves the current game we're playing
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("actualGame", chosenGame);
@@ -99,19 +113,11 @@ public class LanguageGame extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        countDownTimer.cancel();
-        Intent intent = new Intent(LanguageGame.this, ChooseLanguageGame.class);
-        startActivity(intent);
-        finish();
-    }
 
     private void startGame() {
 
-        tvTimer.setText("" + (millisUntilFinished / 1000) + "s");
-        tvPoints.setText("" + points + "/" + numberOfQuestions);
+        tvTimer.setText(getString(R.string.timer_seconds, millisUntilFinished / 1000));
+        tvPoints.setText(getString(R.string.score_format, points, numberOfQuestions));
         generateQuestion();
 
         countDownTimer = new CountDownTimer(millisUntilFinished, 1000) {
@@ -120,21 +126,22 @@ public class LanguageGame extends AppCompatActivity {
                 long seconds = millisUntilFinished / 1000;
                 int initialColor = tvTimer.getCurrentTextColor();
 
-                tvTimer.setText("" + (seconds) + "s");
+                tvTimer.setText(getString(R.string.timer_seconds, seconds));
 
                 if(seconds <= 5){
                     if (seconds == 5){
                         timerPlayer = MediaPlayer.create(LanguageGame.this, R.raw.five_sec_countdown);
                         playTimerSound();
                     }
-                    tvTimer.setTextColor(getResources().getColor(R.color.wrong));
+                    tvTimer.setTextColor(getResources().getColor(R.color.wrong, getTheme()));
                     tvTimer.setTextSize(26);
-                    new Handler().postDelayed(() -> {
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         //set it initial color and size
                         tvTimer.setTextSize(24);
                         tvTimer.setTextColor(initialColor);
                     }, 300);
                 }
+
             }
 
             @Override
@@ -421,12 +428,12 @@ public class LanguageGame extends AppCompatActivity {
         previousRandom = randomId;
 
         //update the live of the player on every question
-        tvLives.setText((maxWrongAnswers+1) - wrong + "");
+        tvLives.setText(getString(R.string.lives, (maxWrongAnswers+1) - wrong));
 
         //little bonus when you're at the 30th question
         if(numberOfQuestions == 31){
             correctAnswer = "30 seconds game";
-            tvQuestion.setText("30 seconds game");
+            tvQuestion.setText(getString(R.string.game_time));
         }
 
         //get a random position between the 4 buttons
@@ -636,25 +643,25 @@ public class LanguageGame extends AppCompatActivity {
             points++;
 
             //change the color of the clicked button to green
-            clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_green));
-            new Handler().postDelayed(() -> {
+            clickedBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.rounded_green, null));
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 //set its initial color
-                clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_btn));
+                clickedBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.rounded_btn, null));
             }, 500);
+
 
             tvResult.setText(strCorrect);
         } else {
             if (wrong < maxWrongAnswers) {
                 playSound(isCorrect);
 
-                //change the color of the clicked button to green
-                clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_red));
-                new Handler().postDelayed(() -> {
+                //change the color of the clicked button to red
+                clickedBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.rounded_red, null));
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
                     //set its initial color
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        clickedBtn.setBackground(getResources().getDrawable(R.drawable.rounded_btn));
-                    }
+                    clickedBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.rounded_btn, null));
                 }, 500);
+
 
                 tvResult.setText(strWrong);
                 wrong++;
@@ -663,12 +670,13 @@ public class LanguageGame extends AppCompatActivity {
             }
         }
 
-        tvPoints.setText(points + "/" + numberOfQuestions);
+        tvPoints.setText(getString(R.string.points, points, numberOfQuestions));
 
-        new Handler().postDelayed(() -> {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
             //make the text disappear after 1s
             tvResult.setText("");
         }, 1000);
+
 
         generateQuestion();
     }
@@ -695,9 +703,7 @@ public class LanguageGame extends AppCompatActivity {
 
     private void startPlayer(MediaPlayer myPlayer) {
         myPlayer.start();
-        myPlayer.setOnCompletionListener(mp -> {
-            stopPlayer();
-        });
+        myPlayer.setOnCompletionListener(mp -> stopPlayer());
     }
 
     private void stopPlayer() {

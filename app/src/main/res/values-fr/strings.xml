@@ -21,15 +21,11 @@
     <string name="resumeBtn">Rejouer</string>
     <string name="retry">Réessayer</string>
     <string name="settingsTitle">Paramètres</string>
-    <string name="ScoreDescription">ScoreImage</string>
     <string name="ScoreValue">0/0</string>
-    <string name="TimerDescription">Timer</string>
     <string name="TimerValue">30s</string>
     <string name="defaultAnswerText">\?</string>
     <string name="defaultBtnValue">3</string>
-    <string name="defaultCalculation">"1 + 2 = "</string>
     <string name="hScoreDescription">High-Score image</string>
-    <string name="notificationSettings">Notifications</string>
     <string name="scoreGOver">"Score: "</string>
     <string name="ChangeLanguage">Changer la langue</string>
     <string name="correct">Correct!</string>
@@ -38,11 +34,9 @@
     <string name="sum">1 + 2 =</string>
     <string name="title_activity_language_test">Language_test</string>
     <string name="answerLang">I am 23 years old</string>
-    <string name="notifTitle">Jouer à 30 seconds game!</string>
     <string name="EnglishToDutch">Français à Néerlandais</string>
     <string name="changeGame">Changer de jeu</string>
     <string name="changeDfficultyTo">"Difficulté: "</string>
-    <string name="livesLeft">"Vies: "</string>
     <string name="top5">Top 5:</string>
     <string name="chosenGame">"Jeu: "</string>
     <string name="email">E-mail</string>
@@ -58,7 +52,6 @@
     <string name="loginError">Nom d\'utilisateur ou mot de passe incorrecte</string>
     <string name="logout">Déconnexion</string>
     <string name="same_pwd">Votre mot de passe n\'est pas identique à la confirmation</string>
-    <string name="sign_up_error">Sign-up error</string>
     <string name="sign_up_succes">Inscription réussie!</string>
     <string name="username_too_long">Ce nom d\'utilisateur est trop long</string>
     <string name="username_exists">Ce nom d\'utilisateur est déjà utilisé</string>
@@ -68,8 +61,6 @@
     <string name="totalFriends">Nombre d\'amis:</string>
     <string name="usernameAccount">Nom d\'utilisateur:</string>
     <string name="not_connected">Vous n\'êtes pas connecté. Vous devez vous connecter pour voir le top 5</string>
-    <string name="zero">0</string>
-    <string name="add">Ajouter</string>
     <string name="friend_username">Nom d\'utilisateur de mon ami</string>
     <string name="search">Rechercher</string>
     <string name="not_connected_friends">Vous n\'êtes pas connecté</string>
@@ -92,7 +83,6 @@
     <string name="sound">Son</string>
     <string name="updates">Nouveautés</string>
     <string name="update_list">- Vous pouvez maintenant trouver une boîte à suggestions dans les paramètres pour partager vos idées avec les développeurs !</string>
-    <string name="update_list2">- Ajout d\'effets sonores</string>
     <string name="suggestion_box">Boîte à idées</string>
     <string name="suggestion_explanation">Sur \"THE 30 seconds game\" c\'est VOUS qui participez à améliorer l\'application! Ajoutez ici vos idées d\'améliorations et les meilleures d\'entre elles seront choisies pour une future mise à jour.</string>
     <string name="send_button">Envoyer</string>

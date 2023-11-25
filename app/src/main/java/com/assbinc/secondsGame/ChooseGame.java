@@ -1,5 +1,6 @@
 package com.assbinc.secondsGame;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,15 +22,16 @@ public class ChooseGame extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_game);
-    }
 
-    @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        Intent intent = new Intent(ChooseGame.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(ChooseGame.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     public void startMathGame(View view) {
@@ -44,8 +46,5 @@ public class ChooseGame extends AppCompatActivity {
         Intent intent = new Intent(ChooseGame.this, ChooseLanguageGame.class);
         startActivity(intent);
         finish();
-
     }
-
-
 }

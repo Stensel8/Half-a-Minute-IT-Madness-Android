@@ -166,7 +166,7 @@ public class MathGame extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("actualGame", "math");
-        editor.commit();
+        editor.apply();
         Intent intent = new Intent(MathGame.this, GameOver.class);
         intent.putExtra("points", points);
         intent.putExtra("difficulty", difficulty);
@@ -239,10 +239,10 @@ public class MathGame extends AppCompatActivity {
 
         ((Button) findViewById(btnIds[correctAnswerPosition])).setText(df.format(correctAnswer));
 
-        setIncorrectAnswers(selectedOperator);
+        setIncorrectAnswers();
     }
 
-    private void setIncorrectAnswers(String selectedOperator){
+    private void setIncorrectAnswers(){
 
         while(true){
             if(incorrectAnswers.size() > 3)
@@ -250,7 +250,7 @@ public class MathGame extends AppCompatActivity {
                 break;
             }
 
-            selectedOperator = operatorArray[random.nextInt(4)];
+            String selectedOperator = operatorArray[random.nextInt(4)];
 
             if(difficulty.equalsIgnoreCase("hard")){
                 op1 = random.nextInt(21);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.assbinc.secondsgame.R;
@@ -22,6 +23,15 @@ public class ChooseLanguageGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_language_game);
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(ChooseLanguageGame.this, ChooseGame.class);
+                startActivity(intent);
+                finish();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     public void startLanguageTest(View view){
@@ -35,15 +45,6 @@ public class ChooseLanguageGame extends AppCompatActivity {
             case (R.id.btnFrToEn) -> intent.putExtra("chosenGame", "FrToEn");
             case (R.id.btnEnToFr) -> intent.putExtra("chosenGame", "EnToFr");
         }
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        Intent intent = new Intent(this, ChooseGame.class);
         startActivity(intent);
         finish();
     }

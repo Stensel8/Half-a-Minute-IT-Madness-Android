@@ -16,7 +16,6 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvIdea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -46,7 +45,6 @@
             android:paddingBottom="20dp">
 
             <TextView
-                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/suggestion_explanation"
@@ -59,12 +57,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
+                android:autofillHints=""
                 android:background="@color/boxColor"
                 android:ems="10"
+                android:hint="Enter your suggestion here"
                 android:inputType="textLongMessage|none|textMultiLine"
                 android:padding="10dp"
                 android:textColor="@color/darkThemeText"
+                android:textColorHint="#9E9E9E"
                 android:textSize="24sp" />
+
 
             <Button
                 android:id="@+id/btnConfirmIdea"
@@ -73,7 +75,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_btn"
                 android:text="@string/send_button"
-                android:textColor="@color/buttonTextColor" />
+                android:textColor="#424242" />
 
         </LinearLayout>
 

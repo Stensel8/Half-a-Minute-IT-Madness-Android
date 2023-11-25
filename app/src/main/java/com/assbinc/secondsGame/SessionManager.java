@@ -79,10 +79,7 @@ public class SessionManager {
 
     //check if logged-in
     public boolean checkLoggedIn(){
-        if(this.isLoggedIn())
-            return true;
-        else
-            return false;
+        return this.isLoggedIn();
     }
 
     public void logout(){

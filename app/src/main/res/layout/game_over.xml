@@ -27,7 +27,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scoreGOver"
@@ -77,7 +76,6 @@
             android:padding="10dp">
 
             <Button
-                android:id="@+id/btnTryAgain"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,7 +89,6 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/btnChangeGame2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -105,7 +102,6 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/btnMainGOver"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,7 +115,6 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/btnExitGOver"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -140,14 +135,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
-                android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
-                android:paddingRight="5dp"
                 android:paddingBottom="5dp"
                 android:text="@string/top5"
                 android:textColor="@color/buttonTextColor"
@@ -158,9 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
-                android:paddingLeft="10dp"
                 android:paddingEnd="5dp"
-                android:paddingRight="5dp"
                 android:text="@string/difficultyTitle"
                 android:textColor="@color/buttonTextColor"
                 android:textSize="12sp" />
@@ -170,9 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
-                android:paddingLeft="10dp"
                 android:paddingEnd="5dp"
-                android:paddingRight="5dp"
                 android:paddingBottom="5dp"
                 android:text="@string/chosenGame"
                 android:textColor="@color/buttonTextColor"
@@ -189,7 +177,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvNotConnected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -219,7 +206,6 @@
                 android:visibility="invisible">
 
                 <TableRow
-                    android:id="@+id/top1Row"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/border">
@@ -234,7 +220,6 @@
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/top2Row"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/border">
@@ -249,7 +234,6 @@
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/top3Row"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/border">
@@ -264,7 +248,6 @@
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/top4Row"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/border">
@@ -279,7 +262,6 @@
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/top5Row"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/border">

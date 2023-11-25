@@ -9,13 +9,13 @@ import java.util.List;
 public class Words {
     @SerializedName("easyWords")
     @Expose
-    private List<GameEasy> easyWords = new ArrayList<GameEasy>();
+    private final List<GameEasy> easyWords = new ArrayList<GameEasy>();
     @SerializedName("mediumWords")
     @Expose
-    private List<GameMedium> mediumWords = new ArrayList<GameMedium>();
+    private final List<GameMedium> mediumWords = new ArrayList<GameMedium>();
     @SerializedName("HardWords")
     @Expose
-    private List<GameHard> hardWords = new ArrayList<GameHard>();
+    private final List<GameHard> hardWords = new ArrayList<GameHard>();
 
     public List<GameEasy> getEasyWords() {
         return easyWords;
