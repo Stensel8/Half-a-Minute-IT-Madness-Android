@@ -88,6 +88,13 @@ Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
 fi
 
+# Check for Java version
+MINIMUM_SUPPORTED_VERSION="17.0.0"
+if [ "$($JAVACMD -version 2>&1 | awk -F '"' '/version/ {print $2}' | cut -d'.' -f1-2)" \< "$MINIMUM_SUPPORTED_VERSION" ]; then
+    die "ERROR: Gradle requires a minimum Java version of $MINIMUM_SUPPORTED_VERSION but you are using $($JAVACMD -version 2>&1 | awk -F '"' '/version/ {print $2}'). Please install a compatible Java version."
+fi
+
+
 # Increase the maximum file descriptors if we can.
 if [ "$cygwin" = "false" -a "$darwin" = "false" -a "$nonstop" = "false" ] ; then
     MAX_FD_LIMIT=`ulimit -H -n`
