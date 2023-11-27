@@ -6,27 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.halfminute.itmadness.R;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class Settings extends AppCompatActivity {
 
@@ -51,9 +38,6 @@ public class Settings extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-
-        ImageView imgIdea = (ImageView) findViewById(R.id.imgIdea);
-        imgIdea.setImageResource(sharedPref.loadNightMode()? R.drawable.idea_box_white: R.drawable.idea_box);
 
 
         //switch between dark and light mode
@@ -163,77 +147,6 @@ public class Settings extends AppCompatActivity {
     public void suggestionBox(View view){
         btnAnimation(view);
 
-        if(session.isLoggedIn()){
-            final android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(Settings.this);
-            String username = session.getUsername();
-            String userId = session.getUid();
-
-            if(username.equals("nassimassb")){
-                final View mViewShowSuggestions = getLayoutInflater().inflate(R.layout.add_friend_list_dialog, null);
-                final ListView lvSuggestions = (ListView) mViewShowSuggestions.findViewById(R.id.lvFriends);
-                final TextView title = (TextView) mViewShowSuggestions.findViewById(R.id.tvAddFriends2);
-                final ImageButton btnClose = (ImageButton) mViewShowSuggestions.findViewById(R.id.btnClose5);
-                final ProgressBar progressBar = (ProgressBar) mViewShowSuggestions.findViewById(R.id.progressBarFriends);
-
-                mBuilder.setView(mViewShowSuggestions);
-                final android.app.AlertDialog mDialogShowSuggestion = mBuilder.create();
-                mDialogShowSuggestion.show();
-
-                title.setText("Suggestions");
-
-                ArrayList<String> suggestionList = new ArrayList<>();
-                progressBar.setVisibility(View.VISIBLE);
-
-                //show suggestions only when logged with admin account
-                fireDb.collection("suggestions").get().addOnCompleteListener(t ->{
-                    if(t.isSuccessful()){
-                        for (DocumentSnapshot doc : t.getResult()){
-                            progressBar.setVisibility(View.GONE);
-
-                            suggestionList.add("\n-" + doc.get("username") + "-\n\n\"" + doc.get("idea") + "\"");
-                        }
-                            ListAdapter listAdapter = new ArrayAdapter<>(this,R.layout.listrow, suggestionList);
-                            lvSuggestions.setAdapter(listAdapter);
-                    }else{
-                        progressBar.setVisibility(View.GONE);
-
-                        Toast.makeText(this, Objects.requireNonNull(t.getException()).toString(), Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                btnClose.setOnClickListener(v -> { mDialogShowSuggestion.dismiss(); });
-            }else{
-                final View mViewSuggestion = getLayoutInflater().inflate(R.layout.suggestion_box_layout, null);
-                final ImageButton btnCloseDialog = (ImageButton) mViewSuggestion.findViewById(R.id.btnCloseIdea);
-                final EditText etSuggestion = (EditText) mViewSuggestion.findViewById(R.id.etSuggestion);
-                final Button btnConfirmIdea = (Button) mViewSuggestion.findViewById(R.id.btnConfirmIdea);
-
-                mBuilder.setView(mViewSuggestion);
-                final android.app.AlertDialog mDialogSuggestion = mBuilder.create();
-                mDialogSuggestion.show();
-
-                btnCloseDialog.setOnClickListener(vUpdate -> mDialogSuggestion.dismiss());
-                btnConfirmIdea.setOnClickListener(vConfirm -> {
-
-                    //switch between true and false
-                    sharedPref.setAdShown(!sharedPref.adShown());
-
-                    String suggestionText = etSuggestion.getText().toString();
-
-                    if(!suggestionText.isEmpty()){
-                        Suggestions suggestion = new Suggestions(username, userId ,suggestionText);
-
-                        fireDb.collection("suggestions").document().set(suggestion).addOnCompleteListener(task -> {
-                            mDialogSuggestion.dismiss();
-                            Toast.makeText(getApplicationContext(),getResources().getString(R.string.thanks_idea),Toast.LENGTH_LONG).show();
-                        });
-                    }
-                });
-            }
-
-        }else {
-            Toast.makeText(getApplicationContext(),getResources().getString(R.string.not_connected_friends),Toast.LENGTH_SHORT).show();
-        }
     }
 
     public static void btnAnimation(View view){

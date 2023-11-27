@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/defaultBtnValue"
-                android:textColor="@android:color/holo_green_light"
+                android:textColor="#33691E"
                 android:textSize="60sp" />
         </LinearLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/defaultBtnValue"
-                android:textColor="@color/buttonColor"
+                android:textColor="#BF360C"
                 android:textSize="30sp" />
 
         </LinearLayout>
@@ -85,7 +85,7 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/retry"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="16sp" />
 
             <Button
@@ -98,7 +98,7 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/changeGame"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="16sp" />
 
             <Button
@@ -111,7 +111,7 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/mainMenuBtn"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="16sp" />
 
             <Button
@@ -124,7 +124,7 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/exitGame"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -142,7 +142,7 @@
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
                 android:text="@string/top5"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#455A64"
                 android:textSize="30sp" />
 
             <TextView
@@ -152,7 +152,7 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="5dp"
                 android:text="@string/difficultyTitle"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="12sp" />
 
             <TextView
@@ -163,7 +163,7 @@
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
                 android:text="@string/chosenGame"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="#424242"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -171,53 +171,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
-                    android:text="@string/not_connected"
-                    android:textColor="?attr/textColor"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnGoLoginGover"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/rounded_btn"
-                    android:onClick="goToLogin"
-                    android:text="@string/loginTitle"
-                    android:textColor="@color/buttonTextColor" />
-
-            </LinearLayout>
-
             <TableLayout
                 android:id="@+id/tlScore"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="invisible">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:id="@+id/tvTop1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:textColor="?attr/textColor"
-                        android:textSize="24sp" />
-                </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -233,47 +191,6 @@
                         android:textSize="24sp" />
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:id="@+id/tvTop3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:textColor="?attr/textColor"
-                        android:textSize="24sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:id="@+id/tvTop4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:textColor="?attr/textColor"
-                        android:textSize="24sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:id="@+id/tvTop5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:textColor="?attr/textColor"
-                        android:textSize="24sp" />
-                </TableRow>
             </TableLayout>
 
             <ProgressBar

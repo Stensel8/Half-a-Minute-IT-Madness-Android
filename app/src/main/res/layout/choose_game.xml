@@ -38,7 +38,7 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/mathGameButton"
-            android:textColor="@color/buttonTextColor"
+            android:textColor="#455A64"
             android:textSize="24sp" />
 
         <Button
@@ -52,7 +52,7 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/languageGameButton"
-            android:textColor="@color/buttonTextColor"
+            android:textColor="#455A64"
             android:textSize="24sp" />
     </LinearLayout>
 

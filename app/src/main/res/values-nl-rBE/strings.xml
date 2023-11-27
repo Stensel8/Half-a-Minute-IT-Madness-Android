@@ -60,10 +60,8 @@
     <string name="friends">Mijn vrienden</string>
     <string name="totalFriends">Totaal vrienden:</string>
     <string name="usernameAccount">Gebruikersnaam:</string>
-    <string name="not_connected">U bent niet aangemeld. U moet inloggen om de top 5 te zien</string>
     <string name="friend_username">Vriend gebruikersnaam</string>
     <string name="search">Zoeken</string>
-    <string name="not_connected_friends">U bent niet aangemeld</string>
     <string name="already_friend">Jullie zijn al vrienden</string>
     <string name="friend_added">Nieuwe vriend toegevoegd!</string>
     <string name="no_data">Geen resultaat</string>

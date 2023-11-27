@@ -86,16 +86,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count > 0;
     }
 
-    //check if the username is already taken
-    public boolean checkMultipleUsername(String name) {
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT " + COL_USERNAME + " FROM " + TABLE_USER + " WHERE " + COL_USERNAME + " = '" + name + "'";
-        Cursor data = db.rawQuery(query, null);
-        int count = data.getCount();
-
-        return count > 0;
-
-    }
 
     //initialize the profile with its username and score
     public void initProfile(String username) {

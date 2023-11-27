@@ -64,10 +64,8 @@
     <string name="friends">My friends</string>
     <string name="totalFriends">Total friends:</string>
     <string name="add_friends">Add friends</string>
-    <string name="not_connected">You\'re not logged in. You need to log in to see the top 5</string>
     <string name="friend_username">Friend\'s username</string>
     <string name="search">Search</string>
-    <string name="not_connected_friends">You\'re not logged-in</string>
     <string name="friend_added">New friend added!</string>
     <string name="already_friend">You are already friends</string>
     <string name="no_data">No result</string>
