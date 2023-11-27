@@ -60,10 +60,8 @@
     <string name="friends">Mes amis</string>
     <string name="totalFriends">Nombre d\'amis:</string>
     <string name="usernameAccount">Nom d\'utilisateur:</string>
-    <string name="not_connected">Vous n\'êtes pas connecté. Vous devez vous connecter pour voir le top 5</string>
     <string name="friend_username">Nom d\'utilisateur de mon ami</string>
     <string name="search">Rechercher</string>
-    <string name="not_connected_friends">Vous n\'êtes pas connecté</string>
     <string name="already_friend">Vous êtes déjà amis</string>
     <string name="friend_added">Nouvel ami ajouté!</string>
     <string name="no_data">Aucun résultat</string>
