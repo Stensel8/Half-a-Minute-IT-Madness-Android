@@ -2,14 +2,14 @@
 <resources>
     <color name="colorPrimary">@color/background</color>
     <color name="colorPrimaryDark">@color/background</color>
-    <color name="colorAccent">#FF9800</color>
+    <color name="colorAccent">#2ECC71</color>
     <color name="background">#C5C5C5</color>
     <color name="boxColor">#505050</color>
     <color name="buttonTextColor">#ffff</color>
     <color name="lightThemeText">#363535</color>
-    <color name="buttonColor">#DFA251</color>
-    <color name="darkThemeText">#DAD6D6</color>
-    <color name="darkBackground">#341A44</color>
+    <color name="buttonColor">#1CBD9D</color>
+    <color name="darkThemeText">#0B8F42</color>
+    <color name="darkBackground">#2C3E50</color>
     <color name="correct">#5CC423</color>
     <color name="wrong">#F44336</color>
 

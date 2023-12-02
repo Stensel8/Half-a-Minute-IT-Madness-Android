@@ -19,7 +19,6 @@ public class Settings extends AppCompatActivity {
 
     SharedPref sharedPref;
     SessionManager session;
-    private FirebaseFirestore fireDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +32,7 @@ public class Settings extends AppCompatActivity {
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
         //load selected language
         sharedPref.loadLocale(this);
-        session = new SessionManager(this);
-        fireDb = FirebaseFirestore.getInstance();
+        FirebaseFirestore fireDb = FirebaseFirestore.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);

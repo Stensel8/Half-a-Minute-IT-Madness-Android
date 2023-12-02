@@ -1,5 +1,7 @@
 package com.halfminute.itmadness;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,13 +11,13 @@ import java.util.List;
 public class Words {
     @SerializedName("easyWords")
     @Expose
-    private final List<GameEasy> easyWords = new ArrayList<GameEasy>();
+    private final List<GameEasy> easyWords = new ArrayList<>();
     @SerializedName("mediumWords")
     @Expose
-    private final List<GameMedium> mediumWords = new ArrayList<GameMedium>();
+    private final List<GameMedium> mediumWords = new ArrayList<>();
     @SerializedName("HardWords")
     @Expose
-    private final List<GameHard> hardWords = new ArrayList<GameHard>();
+    private final List<GameHard> hardWords = new ArrayList<>();
 
     public List<GameEasy> getEasyWords() {
         return easyWords;
@@ -29,6 +31,7 @@ public class Words {
         return hardWords;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Words{" +
@@ -39,29 +42,27 @@ public class Words {
     }
 }
 
-class GameEasy{
-    @SerializedName("frWord")
-    @Expose
-    private String frWord;
-    @SerializedName("nlWord")
-    @Expose
-    private String nlWord;
-    @SerializedName("enWord")
-    @Expose
-    private String enWord;
+record GameEasy(@SerializedName("frWord") @Expose String frWord,
+                @SerializedName("nlWord") @Expose String nlWord,
+                @SerializedName("enWord") @Expose String enWord) {
 
-    public String getFrWord() {
+
+    @Override
+    public String frWord() {
         return frWord;
     }
 
-    public String getNlWord() {
+    @Override
+    public String nlWord() {
         return nlWord;
     }
 
-    public String getEnWord() {
+    @Override
+    public String enWord() {
         return enWord;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "GameEasy{" +
@@ -72,32 +73,30 @@ class GameEasy{
     }
 }
 
-class GameMedium{
-    @SerializedName("frWord")
-    @Expose
-    private String frWord;
-    @SerializedName("nlWord")
-    @Expose
-    private String nlWord;
-    @SerializedName("enWord")
-    @Expose
-    private String enWord;
+record GameMedium(@SerializedName("frWord") @Expose String frWord,
+                  @SerializedName("nlWord") @Expose String nlWord,
+                  @SerializedName("enWord") @Expose String enWord) {
 
-    public String getFrWord() {
+
+    @Override
+    public String frWord() {
         return frWord;
     }
 
-    public String getNlWord() {
+    @Override
+    public String nlWord() {
         return nlWord;
     }
 
-    public String getEnWord() {
+    @Override
+    public String enWord() {
         return enWord;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "GameEasy{" +
+        return "GameMedium{" +
                 "frWord='" + frWord + '\'' +
                 ", nlWord='" + nlWord + '\'' +
                 ", enWord='" + enWord + '\'' +
@@ -105,32 +104,30 @@ class GameMedium{
     }
 }
 
-class GameHard{
-    @SerializedName("frWord")
-    @Expose
-    private String frWord;
-    @SerializedName("nlWord")
-    @Expose
-    private String nlWord;
-    @SerializedName("enWord")
-    @Expose
-    private String enWord;
+record GameHard(@SerializedName("frWord") @Expose String frWord,
+                @SerializedName("nlWord") @Expose String nlWord,
+                @SerializedName("enWord") @Expose String enWord) {
 
-    public String getFrWord() {
+
+    @Override
+    public String frWord() {
         return frWord;
     }
 
-    public String getNlWord() {
+    @Override
+    public String nlWord() {
         return nlWord;
     }
 
-    public String getEnWord() {
+    @Override
+    public String enWord() {
         return enWord;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "GameEasy{" +
+        return "GameHard{" +
                 "frWord='" + frWord + '\'' +
                 ", nlWord='" + nlWord + '\'' +
                 ", enWord='" + enWord + '\'' +

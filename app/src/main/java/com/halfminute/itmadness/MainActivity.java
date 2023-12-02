@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         if (updateDialog){
             showUpdateDialog();
         }
+        // TODO: Fix the text of this image. The image on the starting screen is missing an "N" in the word "Madness".
+        // TODO: I think it needs a little bit of Photoshop.
+
 
     }
 

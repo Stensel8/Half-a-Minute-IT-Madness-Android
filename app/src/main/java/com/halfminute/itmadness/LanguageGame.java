@@ -16,7 +16,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.halfminute.itmadness.R;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -181,72 +180,72 @@ public class LanguageGame extends AppCompatActivity {
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getEasyWords().get(randomId).getNlWord();
+                        question = wordsList.getEasyWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).frWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getEasyWords().get(randomId).getFrWord();
+                        question = wordsList.getEasyWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).nlWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getEasyWords().get(randomId).getEnWord();
+                        question = wordsList.getEasyWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).frWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getEasyWords().get(randomId).getFrWord();
+                        question = wordsList.getEasyWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).enWord();
                     }
                 }
             }else if(savedLanguage.equals("nl")){
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getEasyWords().get(randomId).getEnWord();
+                        question = wordsList.getEasyWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).nlWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getEasyWords().get(randomId).getNlWord();
+                        question = wordsList.getEasyWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).frWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getEasyWords().get(randomId).getFrWord();
+                        question = wordsList.getEasyWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).nlWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getEasyWords().get(randomId).getNlWord();
+                        question = wordsList.getEasyWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).enWord();
                     }
                 }
             }else {
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getEasyWords().get(randomId).getNlWord();
+                        question = wordsList.getEasyWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).enWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getEasyWords().get(randomId).getEnWord();
+                        question = wordsList.getEasyWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).nlWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getEasyWords().get(randomId).getFrWord();
+                        question = wordsList.getEasyWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).enWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getEasyWords().get(randomId).getEnWord();
+                        question = wordsList.getEasyWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getEasyWords().get(randomId).frWord();
                     }
                 }
             }
@@ -267,72 +266,72 @@ public class LanguageGame extends AppCompatActivity {
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getMediumWords().get(randomId).getNlWord();
+                        question = wordsList.getMediumWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).frWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getMediumWords().get(randomId).getFrWord();
+                        question = wordsList.getMediumWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).nlWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getMediumWords().get(randomId).getEnWord();
+                        question = wordsList.getMediumWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).frWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getMediumWords().get(randomId).getFrWord();
+                        question = wordsList.getMediumWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).enWord();
                     }
                 }
             }else if(savedLanguage.equals("nl")){
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getMediumWords().get(randomId).getEnWord();
+                        question = wordsList.getMediumWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).nlWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getMediumWords().get(randomId).getNlWord();
+                        question = wordsList.getMediumWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).frWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getMediumWords().get(randomId).getFrWord();
+                        question = wordsList.getMediumWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).nlWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getMediumWords().get(randomId).getNlWord();
+                        question = wordsList.getMediumWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).enWord();
                     }
                 }
             }else {
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getMediumWords().get(randomId).getNlWord();
+                        question = wordsList.getMediumWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).enWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getMediumWords().get(randomId).getEnWord();
+                        question = wordsList.getMediumWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).nlWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getMediumWords().get(randomId).getFrWord();
+                        question = wordsList.getMediumWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).enWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getMediumWords().get(randomId).getEnWord();
+                        question = wordsList.getMediumWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getMediumWords().get(randomId).frWord();
                     }
                 }
             }
@@ -353,72 +352,72 @@ public class LanguageGame extends AppCompatActivity {
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getHardWords().get(randomId).getNlWord();
+                        question = wordsList.getHardWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).frWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getHardWords().get(randomId).getFrWord();
+                        question = wordsList.getHardWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).nlWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getHardWords().get(randomId).getEnWord();
+                        question = wordsList.getHardWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).frWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getHardWords().get(randomId).getFrWord();
+                        question = wordsList.getHardWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).enWord();
                     }
                 }
             }else if(savedLanguage.equals("nl")){
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getHardWords().get(randomId).getEnWord();
+                        question = wordsList.getHardWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).nlWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getHardWords().get(randomId).getNlWord();
+                        question = wordsList.getHardWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).frWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getHardWords().get(randomId).getFrWord();
+                        question = wordsList.getHardWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).nlWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getHardWords().get(randomId).getNlWord();
+                        question = wordsList.getHardWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).enWord();
                     }
                 }
             }else {
                 String question;
                 switch (chosenGame) {
                     case "NlToEn" -> {
-                        question = wordsList.getHardWords().get(randomId).getNlWord();
+                        question = wordsList.getHardWords().get(randomId).nlWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).enWord();
                     }
                     case "EnToNl" -> {
-                        question = wordsList.getHardWords().get(randomId).getEnWord();
+                        question = wordsList.getHardWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).nlWord();
                     }
                     case "FrToEn" -> {
-                        question = wordsList.getHardWords().get(randomId).getFrWord();
+                        question = wordsList.getHardWords().get(randomId).frWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).enWord();
                     }
                     case "EnToFr" -> {
-                        question = wordsList.getHardWords().get(randomId).getEnWord();
+                        question = wordsList.getHardWords().get(randomId).enWord();
                         tvQuestion.setText(question);
-                        correctAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                        correctAnswer = wordsList.getHardWords().get(randomId).frWord();
                     }
                 }
             }
@@ -461,29 +460,29 @@ public class LanguageGame extends AppCompatActivity {
                 if(savedLanguage.equals("fr")){
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).frWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).nlWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).enWord();
                     }
                 }else if(savedLanguage.equals("nl")){
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).nlWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).frWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).enWord();
                     }
                 }else{
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).enWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).nlWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getEasyWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getEasyWords().get(randomId).frWord();
                     }
                 }
 
@@ -507,29 +506,29 @@ public class LanguageGame extends AppCompatActivity {
                 if(savedLanguage.equals("fr")){
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).frWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).nlWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).enWord();
                     }
                 }else if(savedLanguage.equals("nl")){
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).nlWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).frWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).enWord();
                     }
                 }else{
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).enWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).nlWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getMediumWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getMediumWords().get(randomId).frWord();
                     }
                 }
 
@@ -549,29 +548,29 @@ public class LanguageGame extends AppCompatActivity {
                 if(savedLanguage.equals("fr")){
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).frWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).nlWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).enWord();
                     }
                 }else if(savedLanguage.equals("nl")){
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).nlWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).frWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).enWord();
                     }
                 }else{
                     switch (chosenGame) {
                         case "NlToEn", "FrToEn" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getEnWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).enWord();
                         case "EnToNl" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getNlWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).nlWord();
                         case "EnToFr" ->
-                                incorrectAnswer = wordsList.getHardWords().get(randomId).getFrWord();
+                                incorrectAnswer = wordsList.getHardWords().get(randomId).frWord();
                     }
                 }
 

@@ -1,13 +1,11 @@
 package com.halfminute.itmadness;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
-import com.halfminute.itmadness.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class PauseMenu extends AppCompatActivity {

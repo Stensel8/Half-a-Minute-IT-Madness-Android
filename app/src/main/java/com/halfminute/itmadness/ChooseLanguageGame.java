@@ -7,15 +7,13 @@ import android.view.View;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.halfminute.itmadness.R;
-
 public class ChooseLanguageGame extends AppCompatActivity {
 
     SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //check dark mode
+        //Checking if dark mode is enabled
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
         sharedPref.loadLocale(this); //loads the saved language

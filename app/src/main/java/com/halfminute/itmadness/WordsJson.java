@@ -2,7 +2,7 @@ package com.halfminute.itmadness;
 
 class WordsJson {
 
-    static String myWords = """
+    static final String myWords = """
             {
               "easyWords": [
                 {

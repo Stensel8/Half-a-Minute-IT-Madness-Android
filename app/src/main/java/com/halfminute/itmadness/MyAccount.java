@@ -10,17 +10,11 @@ import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MyAccount extends AppCompatActivity {
 
@@ -32,8 +26,6 @@ public class MyAccount extends AppCompatActivity {
     TextView tvUsername, tvAccountScore, tvTotalFriends;
     Button btnLogin;
     private final String channelId = "notificationGame";
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore fireDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +42,6 @@ public class MyAccount extends AppCompatActivity {
         difficulty = getIntent().getExtras().getString("difficulty");
         chosenGame = getIntent().getExtras().getString("chosenGame");
 
-        session = new SessionManager(this);
-        mAuth = FirebaseAuth.getInstance();
-        fireDb = FirebaseFirestore.getInstance();
         }
 
     private void displayNotification(Context context) {
@@ -77,7 +66,7 @@ public class MyAccount extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        int notificationId = 001;
+        int notificationId = 1;
         notificationManager.notify(notificationId, builder.build());
     }
 
@@ -94,43 +83,6 @@ public class MyAccount extends AppCompatActivity {
         notificationManager.createNotificationChannel(channel1);
 
     }
-
-    private void addFriendToFirestore(String friend) {
-        Friends newFriend = new Friends(session.getUsername(), friend);
-        Friends me = new Friends(friend, session.getUsername());
-        fireDb.collection("friends").document().set(newFriend).addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                fireDb.collection("friends").document().set(me).addOnCompleteListener(task1 -> {
-                    Toast.makeText(this, getResources().getString(R.string.friend_added), Toast.LENGTH_SHORT).show();
-                    session.setNbFriends(fireDb, tvTotalFriends);
-
-                    fireDb.collection("users").whereEqualTo("username", friend).limit(1).get().addOnSuccessListener(task2 -> {
-                        for (DocumentSnapshot docUser : task2.getDocuments()){
-                            String uid = docUser.getString("uid");
-                            fireDb.collection("users").document(uid).update("friends", FieldValue.increment(1));
-                        }
-                    });
-                });
-            }else{
-                Toast.makeText(this, "Could not add this friend", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void alreadyFriends(String friend) {
-        fireDb.collection("friends").whereEqualTo("username", session.getUsername()).whereEqualTo("friends", friend).limit(1).get().addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                if (task.getResult().size() > 0){
-                    Toast.makeText(this, getResources().getString(R.string.already_friend), Toast.LENGTH_LONG).show();
-                }else{
-                    addFriendToFirestore(friend);
-                }
-            }else{
-                Toast.makeText(this, task.getException().toString(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

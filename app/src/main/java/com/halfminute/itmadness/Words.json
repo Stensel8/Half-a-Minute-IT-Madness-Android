@@ -279,6 +279,236 @@
       "frWord": "Orteille",
       "nlWord": "Teen",
       "enWord": "Toe"
+    },
+    {
+      "frWord": "Smartphone",
+      "nlWord": "Smartphone",
+      "enWord": "Smartphone"
+    },
+    {
+      "frWord": "USB-C",
+      "nlWord": "USB-C",
+      "enWord": "USB-C"
+    },
+    {
+      "frWord": "Ordinateur portable",
+      "nlWord": "Laptop",
+      "enWord": "Laptop"
+    },
+    {
+      "frWord": "Word",
+      "nlWord": "Word",
+      "enWord": "Word"
+    },
+    {
+      "frWord": "PowerPoint",
+      "nlWord": "PowerPoint",
+      "enWord": "PowerPoint"
+    },
+    {
+      "frWord": "Excel",
+      "nlWord": "Excel",
+      "enWord": "Excel"
+    },
+    {
+      "frWord": "Outlook",
+      "nlWord": "Outlook",
+      "enWord": "Outlook"
+    },
+    {
+      "frWord": "Google",
+      "nlWord": "Google",
+      "enWord": "Google"
+    },
+    {
+      "frWord": "Voiture",
+      "nlWord": "Auto",
+      "enWord": "Car"
+    },
+    {
+      "frWord": "Enschede",
+      "nlWord": "Enschede",
+      "enWord": "Enschede"
+    },
+    {
+      "frWord": "Train",
+      "nlWord": "Trein",
+      "enWord": "Train"
+    },
+    {
+      "frWord": "A35",
+      "nlWord": "A35",
+      "enWord": "A35"
+    },
+    {
+      "frWord": "Tablette",
+      "nlWord": "Tablet",
+      "enWord": "Tablet"
+    },
+    {
+      "frWord": "Hacker",
+      "nlWord": "Hacker",
+      "enWord": "Hacker"
+    },
+    {
+      "frWord": "Zwolle",
+      "nlWord": "Zwolle",
+      "enWord": "Zwolle"
+    },
+    {
+      "frWord": "Java",
+      "nlWord": "Java",
+      "enWord": "Java"
+    },
+    {
+      "frWord": "Processeur",
+      "nlWord": "Processor",
+      "enWord": "Processor"
+    },
+    {
+      "frWord": "Overijssel",
+      "nlWord": "Overijssel",
+      "enWord": "Overijssel"
+    },
+    {
+      "frWord": "Blackboard",
+      "nlWord": "Blackboard",
+      "enWord": "Blackboard"
+    },
+    {
+      "frWord": "Youtube",
+      "nlWord": "Youtube",
+      "enWord": "Youtube"
+    },
+    {
+      "frWord": "Vapeur",
+      "nlWord": "Stoom",
+      "enWord": "Steam"
+    },
+    {
+      "frWord": "Bicyclette",
+      "nlWord": "Fiets",
+      "enWord": "Bicycle"
+    },
+    {
+      "frWord": "Berlin",
+      "nlWord": "Berlijn",
+      "enWord": "Berlin"
+    },
+    {
+      "frWord": "Nijverdal",
+      "nlWord": "Nijverdal",
+      "enWord": "Nijverdal"
+    },
+    {
+      "frWord": "iOS",
+      "nlWord": "iOS",
+      "enWord": "iOS"
+    },
+    {
+      "frWord": "Android",
+      "nlWord": "Android",
+      "enWord": "Android"
+    },
+    {
+      "frWord": "Casque d'écoute",
+      "nlWord": "Hoofdtelefoon",
+      "enWord": "Headphones"
+    },
+    {
+      "frWord": "Verge",
+      "nlWord": "Berm",
+      "enWord": "Verge"
+    },
+    {
+      "frWord": "Windows Phone",
+      "nlWord": "Windows Phone",
+      "enWord": "Windows Phone"
+    },
+    {
+      "frWord": "Ubuntu",
+      "nlWord": "Ubuntu",
+      "enWord": "Ubuntu"
+    },
+    {
+      "frWord": "Epy Drost",
+      "nlWord": "Epy Drost",
+      "enWord": "Epy Drost"
+    },
+    {
+      "frWord": "Half-Duplex",
+      "nlWord": "Half-Duplex",
+      "enWord": "Half-Duplex"
+    },
+    {
+      "frWord": "Duplex intégral",
+      "nlWord": "Full-Duplex",
+      "enWord": "Full-Duplex"
+    },
+    {
+      "frWord": "Voie unique",
+      "nlWord": "enkelbaans spoor",
+      "enWord": "Single track"
+    },
+    {
+      "frWord": "Carte à puce OV",
+      "nlWord": "OV-Chipkaart",
+      "enWord": "OV chip card"
+    },
+    {
+      "frWord": "Tunnel",
+      "nlWord": "Tunnel",
+      "enWord": "Tunnel"
+    },
+    {
+      "frWord": "Plaque d'immatriculation",
+      "nlWord": "Nummerplaat",
+      "enWord": "license plate"
+    },
+    {
+      "frWord": "QWERTY",
+      "nlWord": "QWERTY",
+      "enWord": "QWERTY"
+    },
+    {
+      "frWord": "formation professionnelle supérieure",
+      "nlWord": "hbo-opleiding",
+      "enWord": "Higher professional education"
+    },
+    {
+      "frWord": "Pédale d'accélérateur",
+      "nlWord": "gaspedaal",
+      "enWord": "accelerator pedal"
+    },
+    {
+      "frWord": "Pédale de frein",
+      "nlWord": "rempedaal",
+      "enWord": "brake pedal"
+    },
+    {
+      "frWord": "Pédale d'embrayage",
+      "nlWord": "koppelingspedaal",
+      "enWord": "clutch pedal"
+    },
+    {
+      "frWord": "Scanner d'empreintes digitales",
+      "nlWord": "Vingerafdrukscanner",
+      "enWord": "Fingerprintscanner"
+    },
+    {
+      "frWord": "OLED",
+      "nlWord": "OLED",
+      "enWord": "OLED"
+    },
+    {
+      "frWord": "LCD",
+      "nlWord": "LCD",
+      "enWord": "LCD"
+    },
+    {
+      "frWord": "LED",
+      "nlWord": "LED",
+      "enWord": "LED"
     }
   ],
   "mediumWords": [
@@ -671,6 +901,256 @@
       "frWord": "voyage",
       "nlWord": "tocht",
       "enWord": "journey"
+    },
+    {
+      "nlWord": "Plasma",
+      "frWord": "Plasma",
+      "enWord": "Plasma"
+    },
+    {
+      "nlWord": "Qled",
+      "frWord": "Qled",
+      "enWord": "Qled"
+    },
+    {
+      "nlWord": "Kabelbaan",
+      "frWord": "Téléphérique",
+      "enWord": "Cable car"
+    },
+    {
+      "nlWord": "Matrixbord",
+      "frWord": "Panneau à messages variables",
+      "enWord": "Variable message sign"
+    },
+    {
+      "nlWord": "Snelweg",
+      "frWord": "Autoroute",
+      "enWord": "Highway"
+    },
+    {
+      "nlWord": "Autoweg",
+      "frWord": "Route express",
+      "enWord": "Expressway"
+    },
+    {
+      "nlWord": "Spitsstrook",
+      "frWord": "Voie de dépassement en période de pointe",
+      "enWord": "Shoulder lane (during rush hours)"
+    },
+    {
+      "nlWord": "Thinkpad",
+      "frWord": "Thinkpad",
+      "enWord": "Thinkpad"
+    },
+    {
+      "nlWord": "Touchscreen",
+      "frWord": "Écran tactile",
+      "enWord": "Touchscreen"
+    },
+    {
+      "nlWord": "Luidspreker",
+      "frWord": "Haut-parleur",
+      "enWord": "Loudspeaker"
+    },
+    {
+      "nlWord": "Microfoon",
+      "frWord": "Microphone",
+      "enWord": "Microphone"
+    },
+    {
+      "nlWord": "Hond",
+      "frWord": "Chien",
+      "enWord": "Dog"
+    },
+    {
+      "nlWord": "Tweede Kamer",
+      "frWord": "Deuxième Chambre",
+      "enWord": "House of Representatives"
+    },
+    {
+      "nlWord": "Eerste Kamer",
+      "frWord": "Première Chambre",
+      "enWord": "Senate"
+    },
+    {
+      "nlWord": "Alpen",
+      "frWord": "Alpes",
+      "enWord": "Alps"
+    },
+    {
+      "nlWord": "Locomotief",
+      "frWord": "Locomotive",
+      "enWord": "Locomotive"
+    },
+    {
+      "nlWord": "File",
+      "frWord": "Embouteillage",
+      "enWord": "Traffic jam"
+    },
+    {
+      "nlWord": "Snelwegvinget",
+      "frWord": "Bande d'arrêt d'urgence sur l'autoroute",
+      "enWord": "Emergency lane on the highway"
+    },
+    {
+      "nlWord": "Venetië",
+      "frWord": "Venise",
+      "enWord": "Venice"
+    },
+    {
+      "nlWord": "Gardameer",
+      "frWord": "Lac de Garde",
+      "enWord": "Lake Garda"
+    },
+    {
+      "nlWord": "Power Over Ethernet",
+      "frWord": "Power Over Ethernet",
+      "enWord": "Power Over Ethernet"
+    },
+    {
+      "nlWord": "Ethernet Kabel",
+      "frWord": "Câble Ethernet",
+      "enWord": "Ethernet cable"
+    },
+    {
+      "nlWord": "AVG",
+      "frWord": "AVG",
+      "enWord": "AVG"
+    },
+    {
+      "nlWord": "Datacenter",
+      "frWord": "Centre de données",
+      "enWord": "Datacenter"
+    },
+    {
+      "nlWord": "Packet Tracer",
+      "frWord": "Packet Tracer",
+      "enWord": "Packet Tracer"
+    },
+    {
+      "nlWord": "Wireshark",
+      "frWord": "Wireshark",
+      "enWord": "Wireshark"
+    },
+    {
+      "nlWord": "VOG",
+      "frWord": "Déclaration de comportement",
+      "enWord": "Certificate of Conduct"
+    },
+    {
+      "nlWord": "Limburg",
+      "frWord": "Limbourg",
+      "enWord": "Limburg"
+    },
+    {
+      "nlWord": "België",
+      "frWord": "Belgique",
+      "enWord": "Belgium"
+    },
+    {
+      "nlWord": "Treinvervangende Bus",
+      "frWord": "Bus de remplacement pour le train",
+      "enWord": "Replacement bus for the train"
+    },
+    {
+      "nlWord": "APK",
+      "frWord": "CTM (Contrôle Technique des Moteurs)",
+      "enWord": "MOT (Ministry of Transport) inspection"
+    },
+    {
+      "nlWord": "DMZ",
+      "frWord": "DMZ (Zone démilitarisée)",
+      "enWord": "DMZ (Demilitarized Zone)"
+    },
+    {
+      "nlWord": "Twente",
+      "frWord": "Twente",
+      "enWord": "Twente"
+    },
+    {
+      "nlWord": "SSD",
+      "frWord": "SSD (Disque SSD)",
+      "enWord": "SSD (Solid State Drive)"
+    },
+    {
+      "nlWord": "HDD",
+      "frWord": "HDD (Disque dur)",
+      "enWord": "HDD (Hard Disk Drive)"
+    },
+    {
+      "nlWord": "Studiepunten",
+      "frWord": "Crédits d'études",
+      "enWord": "Study credits"
+    },
+    {
+      "nlWord": "A1",
+      "frWord": "A1",
+      "enWord": "A1"
+    },
+    {
+      "nlWord": "Aanhanger",
+      "frWord": "Remorque",
+      "enWord": "Trailer"
+    },
+    {
+      "nlWord": "Rubrics",
+      "frWord": "Rubriques",
+      "enWord": "Rubrics"
+    },
+    {
+      "nlWord": "Taakbalk",
+      "frWord": "Barre des tâches",
+      "enWord": "Taskbar"
+    },
+    {
+      "nlWord": "Startmenu",
+      "frWord": "Menu Démarrer",
+      "enWord": "Start menu"
+    },
+    {
+      "nlWord": "Snelheidsmeter",
+      "frWord": "Compteur de vitesse",
+      "enWord": "Speedometer"
+    },
+    {
+      "nlWord": "DVD-speler",
+      "frWord": "Lecteur DVD",
+      "enWord": "DVD player"
+    },
+    {
+      "nlWord": "MFA (Multi-Factor Authenticatie)",
+      "frWord": "MFA (Facteur d'authentification multiple)",
+      "enWord": "MFA (Multi-Factor Authentication)"
+    },
+    {
+      "nlWord": "MacOS",
+      "frWord": "MacOS",
+      "enWord": "MacOS"
+    },
+    {
+      "nlWord": "Tweede kamer verkiezingen",
+      "frWord": "Élections de la Deuxième Chambre",
+      "enWord": "House of Representatives elections"
+    },
+    {
+      "nlWord": "Duitsland",
+      "frWord": "Allemagne",
+      "enWord": "Germany"
+    },
+    {
+      "nlWord": "Oostenrijk",
+      "frWord": "Autriche",
+      "enWord": "Austria"
+    },
+    {
+      "nlWord": "AZERTY",
+      "frWord": "AZERTY",
+      "enWord": "AZERTY"
+    },
+    {
+      "nlWord": "Megekko",
+      "frWord": "Megekko",
+      "enWord": "Megekko"
     }
   ],
   "HardWords": [
@@ -793,6 +1273,506 @@
       "frWord": "puériculture",
       "nlWord": "kinderverzorging",
       "enWord": "childcare"
+    },
+    {
+      "nlWord": "IDE",
+      "frWord": "Environnement de développement intégré",
+      "enWord": "Integrated Development Environment"
+    },
+    {
+      "nlWord": "Exploit",
+      "frWord": "Exploitation",
+      "enWord": "Exploit"
+    },
+    {
+      "nlWord": "Compiler",
+      "frWord": "Compilateur",
+      "enWord": "Compiler"
+    },
+    {
+      "nlWord": "Operating System",
+      "frWord": "Système d'exploitation",
+      "enWord": "Operating System"
+    },
+    {
+      "nlWord": "Apple",
+      "frWord": "Pomme",
+      "enWord": "Apple"
+    },
+    {
+      "nlWord": "iOS",
+      "frWord": "iOS",
+      "enWord": "iOS"
+    },
+    {
+      "nlWord": "Azure",
+      "frWord": "Azure",
+      "enWord": "Azure"
+    },
+    {
+      "nlWord": "Virtual Machine (VM)",
+      "frWord": "Machine virtuelle (VM)",
+      "enWord": "Virtual Machine (VM)"
+    },
+    {
+      "nlWord": "Antivirus",
+      "frWord": "Antivirus",
+      "enWord": "Antivirus"
+    },
+    {
+      "nlWord": "Ransomware",
+      "frWord": "Ransomware",
+      "enWord": "Ransomware"
+    },
+    {
+      "nlWord": "CVE",
+      "frWord": "CVE (Common Vulnerabilities and Exposures)",
+      "enWord": "CVE (Common Vulnerabilities and Exposures)"
+    },
+    {
+      "nlWord": "Databreach",
+      "frWord": "Violation de données",
+      "enWord": "Databreach"
+    },
+    {
+      "nlWord": "big.LITTLE",
+      "frWord": "big.LITTLE",
+      "enWord": "big.LITTLE"
+    },
+    {
+      "nlWord": "ARM",
+      "frWord": "ARM",
+      "enWord": "ARM"
+    },
+    {
+      "nlWord": "x64",
+      "frWord": "x64",
+      "enWord": "x64"
+    },
+    {
+      "nlWord": "GPU",
+      "frWord": "GPU (Unité de traitement graphique)",
+      "enWord": "GPU (Graphics Processing Unit)"
+    },
+    {
+      "nlWord": "CPU",
+      "frWord": "CPU (Unité centrale de traitement)",
+      "enWord": "CPU (Central Processing Unit)"
+    },
+    {
+      "nlWord": "RAM",
+      "frWord": "RAM (Mémoire vive)",
+      "enWord": "RAM (Random Access Memory)"
+    },
+    {
+      "nlWord": "Raspberry Pi",
+      "frWord": "Raspberry Pi",
+      "enWord": "Raspberry Pi"
+    },
+    {
+      "nlWord": "Flipper Zero",
+      "frWord": "Flipper Zero",
+      "enWord": "Flipper Zero"
+    },
+    {
+      "nlWord": "IO board",
+      "frWord": "Carte d'E/S",
+      "enWord": "IO board (Input/Output board)"
+    },
+    {
+      "nlWord": "Thunderbolt",
+      "frWord": "Thunderbolt",
+      "enWord": "Thunderbolt"
+    },
+    {
+      "nlWord": "Linux kernel",
+      "frWord": "Noyau Linux",
+      "enWord": "Linux kernel"
+    },
+    {
+      "nlWord": "Tizen",
+      "frWord": "Tizen",
+      "enWord": "Tizen"
+    },
+    {
+      "nlWord": "Citrix",
+      "frWord": "Citrix",
+      "enWord": "Citrix"
+    },
+    {
+      "nlWord": "RDS",
+      "frWord": "RDS (Services Bureau à distance)",
+      "enWord": "RDS (Remote Desktop Services)"
+    },
+    {
+      "nlWord": "RDP Protocol",
+      "frWord": "Protocole RDP",
+      "enWord": "RDP Protocol (Remote Desktop Protocol)"
+    },
+    {
+      "nlWord": "ICMP protocol",
+      "frWord": "Protocole ICMP",
+      "enWord": "ICMP protocol (Internet Control Message Protocol)"
+    },
+    {
+      "nlWord": "Broadcast",
+      "frWord": "Diffusion",
+      "enWord": "Broadcast"
+    },
+    {
+      "nlWord": "Unicast",
+      "frWord": "Unicast",
+      "enWord": "Unicast"
+    },
+    {
+      "nlWord": "Anycast",
+      "frWord": "Anycast",
+      "enWord": "Anycast"
+    },
+    {
+      "nlWord": "MitM attack",
+      "frWord": "Attaque de l'homme du milieu",
+      "enWord": "Man-in-the-Middle (MitM) attack"
+    },
+    {
+      "nlWord": "SEO",
+      "frWord": "SEO (Optimisation des moteurs de recherche)",
+      "enWord": "SEO (Search Engine Optimization)"
+    },
+    {
+      "nlWord": "SEO poisoning",
+      "frWord": "Empoisonnement SEO",
+      "enWord": "SEO poisoning"
+    },
+    {
+      "nlWord": "Google",
+      "frWord": "Google",
+      "enWord": "Google"
+    },
+    {
+      "nlWord": "LinkedIn",
+      "frWord": "LinkedIn",
+      "enWord": "LinkedIn"
+    },
+    {
+      "nlWord": "Facebook",
+      "frWord": "Facebook",
+      "enWord": "Facebook"
+    },
+    {
+      "nlWord": "Microsoft 365",
+      "frWord": "Microsoft 365",
+      "enWord": "Microsoft 365"
+    },
+    {
+      "nlWord": "PaaS",
+      "frWord": "PaaS (Plateforme en tant que service)",
+      "enWord": "PaaS (Platform as a Service)"
+    },
+    {
+      "nlWord": "SaaS",
+      "frWord": "SaaS (Logiciel en tant que service)",
+      "enWord": "SaaS (Software as a Service)"
+    },
+    {
+      "nlWord": "IaaS",
+      "frWord": "IaaS (Infrastructure en tant que service)",
+      "enWord": "IaaS (Infrastructure as a Service)"
+    },
+    {
+      "nlWord": "IntelliJ",
+      "frWord": "IntelliJ",
+      "enWord": "IntelliJ"
+    },
+    {
+      "nlWord": "PyCharm",
+      "frWord": "PyCharm",
+      "enWord": "PyCharm"
+    },
+    {
+      "nlWord": "Jetbrains",
+      "frWord": "JetBrains",
+      "enWord": "JetBrains"
+    },
+    {
+      "nlWord": "Commandline",
+      "frWord": "Ligne de commande",
+      "enWord": "Commandline"
+    },
+    {
+      "nlWord": "Powershell",
+      "frWord": "PowerShell",
+      "enWord": "PowerShell"
+    },
+    {
+      "nlWord": "UEFI / BIOS",
+      "frWord": "UEFI / BIOS",
+      "enWord": "UEFI / BIOS"
+    },
+    {
+      "nlWord": "Firmware",
+      "frWord": "Micrologiciel",
+      "enWord": "Firmware"
+    },
+    {
+      "nlWord": "Programmeertaal",
+      "frWord": "Langage de programmation",
+      "enWord": "Programming language"
+    },
+    {
+      "nlWord": "DDOS",
+      "frWord": "DDoS (Attaque par déni de service distribué)",
+      "enWord": "DDoS (Distributed Denial of Service) attack"
+    },
+    {
+      "nlWord": "IDS systeem",
+      "frWord": "Système IDS (Système de détection d'intrusion)",
+      "enWord": "IDS system (Intrusion Detection System)"
+    },
+    {
+      "nlWord": "DNS protocool",
+      "frWord": "Protocole DNS",
+      "enWord": "DNS protocol"
+    },
+    {
+      "nlWord": "DHCP protocool",
+      "frWord": "Protocole DHCP",
+      "enWord": "DHCP protocol"
+    },
+    {
+      "nlWord": "Secure Boot",
+      "frWord": "Amorçage sécurisé",
+      "enWord": "Secure Boot"
+    },
+    {
+      "nlWord": "CSM",
+      "frWord": "CSM (Compatibilité avec le système de base)",
+      "enWord": "CSM (Compatibility Support Module)"
+    },
+    {
+      "nlWord": "Wordpress",
+      "frWord": "WordPress",
+      "enWord": "WordPress"
+    },
+    {
+      "nlWord": "PHP",
+      "frWord": "PHP",
+      "enWord": "PHP"
+    },
+    {
+      "nlWord": "Database",
+      "frWord": "Base de données",
+      "enWord": "Database"
+    },
+    {
+      "nlWord": "GitHub",
+      "frWord": "GitHub",
+      "enWord": "GitHub"
+    },
+    {
+      "nlWord": "HTML",
+      "frWord": "HTML (Langage de balisage hypertexte)",
+      "enWord": "HTML (Hypertext Markup Language)"
+    },
+    {
+      "nlWord": "Lightning kabel",
+      "frWord": "Câble Lightning",
+      "enWord": "Lightning cable"
+    },
+    {
+      "nlWord": "AD",
+      "frWord": "AD (Active Directory)",
+      "enWord": "AD (Active Directory)"
+    },
+    {
+      "nlWord": "Azure AD",
+      "frWord": "Azure AD (Active Directory)",
+      "enWord": "Azure AD (Active Directory)"
+    },
+    {
+      "nlWord": "Microsoft Entra",
+      "frWord": "Microsoft 365 (Entreprise)",
+      "enWord": "Microsoft 365 (Enterprise)"
+    },
+    {
+      "nlWord": "Visual Studio Code (VSC)",
+      "frWord": "Visual Studio Code (VSC)",
+      "enWord": "Visual Studio Code (VSC)"
+    },
+    {
+      "nlWord": "Firewall",
+      "frWord": "Firewall",
+      "enWord": "Firewall"
+    },
+    {
+      "nlWord": "Client",
+      "frWord": "Client",
+      "enWord": "Client"
+    },
+    {
+      "nlWord": "Server",
+      "frWord": "Serveur",
+      "enWord": "Server"
+    },
+    {
+      "nlWord": "API",
+      "frWord": "API (Interface de programmation d'application)",
+      "enWord": "API (Application Programming Interface)"
+    },
+    {
+      "nlWord": "Solana",
+      "frWord": "Solana",
+      "enWord": "Solana"
+    },
+    {
+      "nlWord": "Ethereum",
+      "frWord": "Ethereum",
+      "enWord": "Ethereum"
+    },
+    {
+      "nlWord": "Bitcoin",
+      "frWord": "Bitcoin",
+      "enWord": "Bitcoin"
+    },
+    {
+      "nlWord": "Monero",
+      "frWord": "Monero",
+      "enWord": "Monero"
+    },
+    {
+      "nlWord": "XRP",
+      "frWord": "XRP",
+      "enWord": "XRP"
+    },
+    {
+      "nlWord": "Avalanche",
+      "frWord": "Avalanche",
+      "enWord": "Avalanche"
+    },
+    {
+      "nlWord": "Fantom",
+      "frWord": "Fantom",
+      "enWord": "Fantom"
+    },
+    {
+      "nlWord": "Litecoin",
+      "frWord": "Litecoin",
+      "enWord": "Litecoin"
+    },
+    {
+      "nlWord": "Blackboard",
+      "frWord": "Tableau noir",
+      "enWord": "Blackboard"
+    },
+    {
+      "nlWord": "Brightspace",
+      "frWord": "Brightspace",
+      "enWord": "Brightspace"
+    },
+    {
+      "nlWord": "SQL",
+      "frWord": "SQL (Langage de requête structuré)",
+      "enWord": "SQL (Structured Query Language)"
+    },
+    {
+      "nlWord": "Encryptie",
+      "frWord": "Cryptage",
+      "enWord": "Encryption"
+    },
+    {
+      "nlWord": "Byte",
+      "frWord": "Octet",
+      "enWord": "Byte"
+    },
+    {
+      "nlWord": "Bit",
+      "frWord": "Bit",
+      "enWord": "Bit"
+    },
+    {
+      "nlWord": "Bug",
+      "frWord": "Bogue",
+      "enWord": "Bug"
+    },
+    {
+      "nlWord": "Malware",
+      "frWord": "Logiciel malveillant",
+      "enWord": "Malware"
+    },
+    {
+      "nlWord": "VPN",
+      "frWord": "VPN (Réseau privé virtuel)",
+      "enWord": "VPN (Virtual Private Network)"
+    },
+    {
+      "nlWord": "IPv4",
+      "frWord": "IPv4",
+      "enWord": "IPv4"
+    },
+    {
+      "nlWord": "IPv6",
+      "frWord": "IPv6",
+      "enWord": "IPv6"
+    },
+    {
+      "nlWord": "Patch",
+      "frWord": "Correctif",
+      "enWord": "Patch"
+    },
+    {
+      "nlWord": "LAN",
+      "frWord": "LAN (Réseau local)",
+      "enWord": "LAN (Local Area Network)"
+    },
+    {
+      "nlWord": "WAN",
+      "frWord": "WAN (Réseau étendu)",
+      "enWord": "WAN (Wide Area Network)"
+    },
+    {
+      "nlWord": "PfSense",
+      "frWord": "PfSense",
+      "enWord": "PfSense"
+    },
+    {
+      "nlWord": "LG",
+      "frWord": "LG",
+      "enWord": "LG"
+    },
+    {
+      "nlWord": "Samsung",
+      "frWord": "Samsung",
+      "enWord": "Samsung"
+    },
+    {
+      "nlWord": "IBM",
+      "frWord": "IBM",
+      "enWord": "IBM"
+    },
+    {
+      "nlWord": "WatchOS",
+      "frWord": "WatchOS",
+      "enWord": "WatchOS"
+    },
+    {
+      "nlWord": "Lenovo",
+      "frWord": "Lenovo",
+      "enWord": "Lenovo"
+    },
+    {
+      "nlWord": "Oneplus",
+      "frWord": "OnePlus",
+      "enWord": "OnePlus"
+    },
+    {
+      "nlWord": "WearOS",
+      "frWord": "WearOS",
+      "enWord": "WearOS"
+    },
+    {
+      "nlWord": "USB-PD",
+      "frWord": "USB Power Delivery",
+      "enWord": "USB Power Delivery (USB-PD)"
     }
   ]
 }

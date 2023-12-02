@@ -13,9 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.Objects;
 
 public class GameOver extends AppCompatActivity {
@@ -27,10 +24,8 @@ public class GameOver extends AppCompatActivity {
     ProgressBar progressBarScore;
     TableLayout tlScore;
     SharedPref sharedPref;
-    SessionManager session;
     int points;
     String difficulty, chosenGame;
-    CollectionReference collection;
     private MediaPlayer player;
 
     @Override
@@ -44,8 +39,7 @@ public class GameOver extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
 
-        session = new SessionManager(this);
-        FirebaseFirestore fireDb = FirebaseFirestore.getInstance();
+
 
         tlScore = findViewById(R.id.tlScore);
         ivHighScore = findViewById(R.id.ivHighScore);
@@ -54,11 +48,8 @@ public class GameOver extends AppCompatActivity {
         tvPoints = findViewById(R.id.tvPoints);
         tvChosenGame = findViewById(R.id.tvChosenGame);
         tvDifficulty = findViewById(R.id.tvDifficultyGOver);
-        progressBarScore = findViewById(R.id.progressBarScore);
 
-        //displays the top 5 if the user is connected
-        tlScore.setVisibility(session.checkLoggedIn()? View.VISIBLE: View.INVISIBLE);
-        progressBarScore.setVisibility(View.GONE);
+
 
         points = Objects.requireNonNull(getIntent().getExtras()).getInt("points");
         difficulty = getIntent().getExtras().getString("difficulty");
@@ -66,8 +57,7 @@ public class GameOver extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("pref", 0);
         int pointsHC = 0;
-        collection = fireDb.collection("highscore");
-        
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(points > pointsHC){
             //saves the high-score
@@ -80,8 +70,8 @@ public class GameOver extends AppCompatActivity {
             ivHighScore.setVisibility(View.VISIBLE);
         }
 
-        tvPoints.setText(""+ points);
-        tvHighScore.setText(""+ pointsHC);
+        tvPoints.setText(String.valueOf(points));
+        tvHighScore.setText(String.valueOf(pointsHC));
     }
 
     private void applause() {
@@ -125,7 +115,7 @@ public class GameOver extends AppCompatActivity {
             }
             case ("FrToEn") -> {
                 intent = new Intent(this, LanguageGame.class);
-                intent.putExtra("chosenGame", "FrToEn");
+                intent.putExtra("lkm .,m lk chosenGame", "FrToEn");
                 startActivity(intent);
             }
             case ("EnToFr") -> {
