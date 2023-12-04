@@ -1,99 +1,106 @@
 package com.halfminute.itmadness;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.ImageButton;
-
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPref sharedPref;
-    SharedPreferences sharedPreferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        //check dark mode
-        sharedPref = new SharedPref(this);
-        setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
-        sharedPref.loadLocale(this); //loads the saved language
-
         super.onCreate(savedInstanceState);
+        setupThemeAndLocale();
         setContentView(R.layout.activity_main);
 
-        sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
-        sharedPreferences.edit().remove("updates").apply();
-        boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
-        boolean updateDialog = sharedPreferences.getBoolean("update2", true);
+        SharedPreferences sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
 
-        if (firstStart)
-            showStartDialog();
-        if (updateDialog){
-            showUpdateDialog();
+        // Check if the update dialog has been shown
+        boolean updateDialogShown = sharedPreferences.getBoolean("updateDialogShown", false);
+        if (!updateDialogShown) {
+            DialogUtils.showUpdateDialog(this);
+
+            // Set the preference to true to indicate that the update dialog has been shown
+            sharedPreferences.edit().putBoolean("updateDialogShown", true).apply();
         }
-        // TODO: Fix the text of this image. The image on the starting screen is missing an "N" in the word "Madness".
-        // TODO: I think it needs a little bit of Photoshop.
 
+        // Check if it's the first start
+        boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
+        if (firstStart) {
+            DialogUtils.showStartDialog(this);
 
+            // Set the preference to false to indicate that the start dialog has been shown
+            sharedPreferences.edit().putBoolean("firstStart", false).apply();
+        }
     }
 
-    private void showUpdateDialog() {
-        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        final View mViewUpdate = getLayoutInflater().inflate(R.layout.updates_msg, null);
-        final ImageButton btnCloseDialog = (ImageButton) mViewUpdate.findViewById(R.id.btnCloseUpdate);
-
-        mBuilder.setView(mViewUpdate);
-        final AlertDialog mDialogUpdate = mBuilder.create();
-        mDialogUpdate.show();
-
-        btnCloseDialog.setOnClickListener(vUpdate -> mDialogUpdate.dismiss());
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("update2", false);
-        editor.apply();
+    private void setupThemeAndLocale() {
+        SharedPref sharedPref = new SharedPref(this);
+        setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
+        sharedPref.loadLocale(this);
     }
 
-    private void showStartDialog() {
-        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        final View mView = getLayoutInflater().inflate(R.layout.welcome_message, null);
+    public static class DialogUtils {
+        public static void showUpdateDialog(Activity activity) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            View viewUpdate = activity.getLayoutInflater().inflate(R.layout.updates_msg, null);
+            ImageButton btnCloseDialog = viewUpdate.findViewById(R.id.btnCloseUpdate);
+            TextView textViewUpdate = viewUpdate.findViewById(R.id.textViewUpdate);
 
-        final ImageButton btnClose = (ImageButton) mView.findViewById(R.id.btnClose);
+            builder.setView(viewUpdate);
+            AlertDialog dialogUpdate = builder.create();
+            dialogUpdate.show();
 
-        mBuilder.setView(mView);
-        final AlertDialog mDialog = mBuilder.create();
-        mDialog.show();
+            btnCloseDialog.setOnClickListener(vUpdate -> dialogUpdate.dismiss());
 
+            String patchNotes = activity.getString(R.string.patch_notes);
+            Spanned spannedPatchNotes = Html.fromHtml(patchNotes, Html.FROM_HTML_MODE_LEGACY);
+            textViewUpdate.setText(spannedPatchNotes);
 
-        btnClose.setOnClickListener(v -> mDialog.dismiss());
+            SharedPreferences.Editor editor = activity.getSharedPreferences("updatePreferences", Context.MODE_PRIVATE).edit();
+            editor.putBoolean("update2", false);
+            editor.apply();
+        }
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("firstStart", false);
-        editor.apply();
+        public static void showStartDialog(Activity activity) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            View view = activity.getLayoutInflater().inflate(R.layout.welcome_message, null);
+            ImageButton btnClose = view.findViewById(R.id.btnClose);
+
+            builder.setView(view);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            btnClose.setOnClickListener(v -> dialog.dismiss());
+
+            SharedPreferences.Editor editor = activity.getSharedPreferences("welcomePreferences", Context.MODE_PRIVATE).edit();
+            editor.putBoolean("firstStart", false);
+            editor.apply();
+        }
     }
-
 
     public void chooseGamePage(View view) {
         Settings.btnAnimation(view);
-        Intent intent = new Intent(MainActivity.this, ChooseGame.class);
-        startActivity(intent);
+        startActivity(new Intent(MainActivity.this, ChooseGame.class));
         finish();
     }
 
     public void goSettings(View view) {
         Settings.btnAnimation(view);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("activity", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = getSharedPreferences("activity", MODE_PRIVATE).edit();
         editor.putString("activity", "main");
         editor.apply();
-        Intent intent = new Intent(MainActivity.this, Settings.class);
-        startActivity(intent);
+
+        startActivity(new Intent(MainActivity.this, Settings.class));
         finish();
     }
-
 }

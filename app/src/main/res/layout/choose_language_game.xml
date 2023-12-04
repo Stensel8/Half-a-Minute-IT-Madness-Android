@@ -44,7 +44,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/DutchToEnglish"
-                android:textColor="#424242"
+                android:textColor="#4E342E"
                 android:textSize="18sp"
                 tools:text="@string/DutchToEnglish" />
 
@@ -58,7 +58,34 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToDutch"
-                android:textColor="#424242"
+                android:textColor="#4E342E"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnDeToEn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_btn"
+                android:onClick="startLanguageTest"
+                android:padding="20dp"
+                android:text="@string/GermanToEnglish"
+                android:textColor="#4E342E"
+                android:textSize="18sp" />
+
+
+            <Button
+                android:id="@+id/btnEnToDe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_btn"
+                android:onClick="startLanguageTest"
+                android:padding="20dp"
+                android:text="@string/EnglishToGerman"
+                android:textColor="#4E342E"
                 android:textSize="18sp" />
 
             <Button
@@ -71,7 +98,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/FrenchToEnglish"
-                android:textColor="#424242"
+                android:textColor="#4E342E"
                 android:textSize="18sp" />
 
             <Button
@@ -83,7 +110,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToFrench"
-                android:textColor="#424242"
+                android:textColor="#4E342E"
                 android:textSize="18sp" />
 
         </LinearLayout>

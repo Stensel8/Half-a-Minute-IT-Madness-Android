@@ -3,9 +3,9 @@
     android:versionCode="10"
     android:versionName="2.0"
     android:installLocation="preferExternal">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:forceDarkAllowed="false"
@@ -14,39 +14,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/lightTheme">
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6646767279000716~7449282479"/>
+            android:value="ca-app-pub-6646767279000716~7449282479" />
+
         <activity android:name="com.halfminute.itmadness.MyAccount" />
+
         <activity
             android:name="com.halfminute.itmadness.LanguageGame"
             android:label="@string/title_activity_language_test"
             android:theme="@style/lightTheme.NoActionBar" />
+
         <activity android:name="com.halfminute.itmadness.PauseMenu" />
-        <activity android:name="com.halfminute.itmadness.MainActivity"
+
+        <activity
+            android:name="com.halfminute.itmadness.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.halfminute.itmadness.Settings">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.halfminute.itmadness.MainActivity" />
-        </activity>
+
+        <activity android:name="com.halfminute.itmadness.Settings"
+            android:parentActivityName="com.halfminute.itmadness.MainActivity" />
+
         <activity android:name="com.halfminute.itmadness.ChooseLanguageGame" />
+
         <activity android:name="com.halfminute.itmadness.ChooseGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.halfminute.itmadness.MainActivity" />
         </activity>
+
         <activity android:name="com.halfminute.itmadness.MathGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.halfminute.itmadness.ChooseGame" />
         </activity>
+
         <activity android:name="com.halfminute.itmadness.GameOver">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

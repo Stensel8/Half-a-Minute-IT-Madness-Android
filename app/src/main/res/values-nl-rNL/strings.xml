@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Half a Minute IT Madness</string>
     <string name="TimerValue">30s</string>
     <string name="DutchToEnglish">Engels naar Nederlands</string>
     <string name="chooseGameTitle">Kies je spel</string>
     <string name="chooseTestTitle">Kies je test</string>
-    <string name="darlModeText">Donkere modus</string>
+    <string name="darkModeText">Donkere modus</string>
     <string name="defaultAnswerText">\?</string>
     <string name="defaultBtnValue">3</string>
     <string name="difficultyEasy">Easy</string>
@@ -24,7 +24,7 @@
     <string name="scoreGOver">"Score: "</string>
     <string name="settingsTitle">Instellingen</string>
     <string name="FrenchToEnglish">Frans naar Nederlands</string>
-    <string name="PersonnalHScore">"High-score: "</string>
+    <string name="PersonalHighScore">"High-score: "</string>
     <string name="ScoreValue">0/0</string>
     <string name="ChangeLanguage">Taal veranderen</string>
     <string name="correct">Juist!</string>
@@ -43,48 +43,45 @@
     <string name="loginTitle">Login</string>
     <string name="password">Paswoord</string>
     <string name="login_empty_msg">Gelieve alle verplichte velden in te vullen</string>
-    <string name="login_success">"Succesvol ingelogd "</string>
     <string name="or">Of</string>
-    <string name="sign_up">Inschrijven</string>
     <string name="username">Gebruikersnaam</string>
     <string name="account_title">Account</string>
-    <string name="conf_password">Wachtwoord bevestigen</string>
-    <string name="loginError">Onjuiste gebruikersnaam of wachtwoord</string>
-    <string name="logout">Uitloggen</string>
-    <string name="same_pwd">Wachtwoorden zijn niet identiek</string>
     <string name="sign_up_succes">Geregistreerd!</string>
     <string name="username_too_long">Deze gebruikersnaam is te lang</string>
-    <string name="username_exists">Deze gebruikersnaam is al gebruikt</string>
-    <string name="my_account">Mijn account</string>
-    <string name="add_friends">Vrienden toevoegen</string>
-    <string name="friends">Mijn vrienden</string>
-    <string name="totalFriends">Totaal vrienden:</string>
-    <string name="usernameAccount">Gebruikersnaam:</string>
-    <string name="friend_username">Vriend gebruikersnaam</string>
-    <string name="search">Zoeken</string>
-    <string name="already_friend">Jullie zijn al vrienden</string>
-    <string name="friend_added">Nieuwe vriend toegevoegd!</string>
     <string name="no_data">Geen resultaat</string>
     <string name="display_notifications">Meldingen weergeven</string>
-    <string name="inscriptionNotification">Dank u voor u inschrijving!</string>
     <string name="notificationText">Welkom bij Half a Minute IT Madness</string>
     <string name="welcome">Welkom!</string>
-    <string name="welcomeText">Hallo en welkom bij Half a Minute IT Madness! Met Half a Minute IT Madness u kunt spelend leren. U kunt kiezen tussen 2 spellen, DE wiskundespel en DE taaltest. De regels zijn simpel. U moet zoveel mogelijk vragen beantwoorden in 30 seconden. Elk juist antwoord verdient u 1 punt. Als uw antwoord verkeerd is verliest u 1 leven. Uw levens zijn aangeduid met een oranje hart in de rechterbovenhoek van uw scherm. Na 30 seconden of na het verlies van al uw levens, het spel zal voorbij zijn. U kunt altijd opnieuw beginnen om uw score of die van uw vrienden te overtreffen. Veel plezier! </string>
-    <string name="signupWelcome">Schrijf u in voor uw score aan uw vrienden te kunnen tonen!</string>
+    <string name="welcomeText">
+    <![CDATA[
+        "Welkom bij Half a Minute IT Madness! Ontworpen door toegewijde studenten van Saxion Hogeschool Enschede, combineert deze app leren met plezier. Kies uit twee hoofdspellen: HET Wiskundespel en DE Taaltest. Eenvoudige regels: 30 seconden om vragen te beantwoorden, 1 punt voor een correct antwoord, verlies van 1 leven voor een onjuist antwoord. Houd uw levens in de gaten, weergegeven als oranje harten rechtsboven. Het spel eindigt na 30 seconden of het verlies van alle levens. Daag uzelf uit om uw score te verbeteren of neem het op tegen de topscores van uw vrienden. Duik in en beleef een lonende ervaring!"
+    ]]>
+</string>
     <string name="closeWindow">close window</string>
-    <string name="validEmail">"Vul enn geldig e-mailadres in "</string>
-    <string name="pwdLenght">Het watchtwoord moet ten minste 6 tekens lang zijn</string>
-    <string name="emailExist">Deze email is al gebruikt</string>
-    <string name="logoutMsg">Bent u zeker dat u wilt uitloggen?</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
     <string name="sound">Audio</string>
-    <string name="updates">Nieuwigheden</string>
-    <string name="update_list">- U kunt nu een Ideeênbus vinden in de instellingen om uw ideeën te delen met de computerontwikkelaars</string>
-    <string name="suggestion_box">Ideeênbus</string>
-    <string name="thanks_idea">Dank u voor uw idee</string>
-    <string name="send_button">Opsturen</string>
-    <string name="suggestion_explanation">Bij \"HET 30 seconds game\" kan JIJ deelnemen om de app te verbeteren! Voeg hier uw ideeën toe en de beste ideeên zullen worden uitgekozen voor een toekomstige update.</string>
-    <string name="words_title">Nieuwe woorden</string>
-    <string name="new_words">- Niewe woorden werden toegevoegd</string>
+    <string name="updates">Nieuwe stuff enzo</string>
+    <string name="patch_title">Wat is er nieuw?</string>
+    <string name="patch_notes" tools:ignore="StringFormatInvalid">
+    <![CDATA[
+        <b>Versie 2.2 bevat :</b><br/>
+        - Duits is als nieuwe taal toegevoegd! (Dit kan nog instabiel zijn. Ik ben van plan dit in de toekomst op te lossen.)<br/>
+        - Meer dan 350 nieuwe woorden toegevoegd!<br/>
+        - Verbeterde vertalingen binnen de interface<br/>
+        - GUI- en leesbaarheidsverbeteringen<br/><br/>
+
+        <b>Versie 2.3 bevat :</b><br/>
+        - App-crash in combinatie met de Duitse taal is opgelost!<br/>
+        - Algemene bugfixes!<br/>
+        - Verbeterde logica voor het vertalen van woorden<br/>
+        - Belgische taal verwijderd!<br/>
+        - Applicatie is voor 35% herschreven in Kotlin 1.9.21. In de toekomst zullen meerdere Java 17-onderdelen worden vervangen door Kotlin.<br/><br/>
+
+        Voor de nieuwste versies, bezoek GitHub op: <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>
+    ]]>
+    </string>
+    <string name="GermanToEnglish">German To English</string>
+    <string name="EnglishToGerman">English to German</string>
+    <string name="show_releasenotes">Show releasenotes</string>
 </resources>
