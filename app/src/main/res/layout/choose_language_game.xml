@@ -71,7 +71,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/GermanToEnglish"
-                android:textColor="#D50000"
+                android:textColor="#4E342E"
                 android:textSize="18sp" />
 
 
@@ -85,7 +85,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToGerman"
-                android:textColor="#D50000"
+                android:textColor="#4E342E"
                 android:textSize="18sp" />
 
             <Button

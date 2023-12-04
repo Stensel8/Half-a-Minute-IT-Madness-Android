@@ -1,34 +1,43 @@
+// Apply necessary plugins
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
-
+apply plugin: 'kotlin-android'
 
 android {
+    // Configuration for the Android application
     defaultConfig {
-        applicationId "com.halfminute.itmadness"
-        minSdk 31
-        targetSdkVersion 34
-        compileSdk 34
-        versionCode 10
-        versionName '2.2'
-        multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.debug
+        applicationId "com.halfminute.itmadness" // Unique identifier for the app
+        minSdk 31 // Minimum SDK version required
+        targetSdkVersion 34 // Target SDK version
+        compileSdk 34 // Compile SDK version
+        versionCode 10 // Version code for the app (increment for each release)
+        versionName '2.3' // Version name for the app (e.g., 2.3)
+        multiDexEnabled true // Enable MultiDex for applications with many methods
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Test runner for instrumentation tests
+        signingConfig signingConfigs.debug // Signing configuration (debug build)
     }
+
+    // Enable view binding
     buildFeatures {
         viewBinding true
     }
+
+    // Build types configuration
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled false // Disable code shrinking for release builds
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' // ProGuard configuration
         }
     }
+
+    // Configure Java compilation options
     android {
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_17
             targetCompatibility JavaVersion.VERSION_17
         }
 
+        // Enable lint checks and deprecation warnings for Java compilation
         tasks.withType(JavaCompile).tap {
             configureEach {
                 options.compilerArgs += ['-Xlint:all', '-Xlint:deprecation']
@@ -36,9 +45,11 @@ android {
         }
     }
 
+    // Namespace for the Android application
     namespace 'com.halfminute.itmadness'
 }
 
+// Dependencies for the Android application
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -55,20 +66,18 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-
 }
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
+
     dependencies {
+        // Gradle build tool dependencies
         classpath 'com.android.tools.build:gradle:8.2.0'
         classpath 'com.google.gms:google-services:4.4.0'
     }
 }
-

@@ -56,16 +56,38 @@
     <string name="display_notifications">Show notifications</string>
     <string name="notificationText">Welcome to Half a Minute IT Madness</string>
     <string name="welcome">Welcome!</string>
-    <string name="welcomeText">"In the realm of information technology, welcome to Half a Minute IT Madness! This software application is a testament to the meticulous craftsmanship of three dedicated students enrolled in the HBO-ICT program at Saxion Hogeschool Enschede. Half a Minute IT Madness is designed to combine learning with enjoyment. You have the option to select from two main games: THE Math Game and THE Language Test. The rules are straightforward. You have a 30-second window to respond to as many questions as possible. Each correct answer earns you 1 point, while an incorrect response results in the loss of 1 life. Keep an eye on your lives, conveniently displayed as orange hearts in the top-right corner of the screen. The game concludes after 30 seconds or the depletion of all your lives. Post-game, you can challenge yourself to surpass your own score or compete with your friends' high scores. Dive in and have a rewarding experience!"</string>
+    <string name="welcomeText">
+    <![CDATA[
+        "Welcome to Half a Minute IT Madness! Crafted by 3 dedicated students from Saxion Hogeschool Enschede, this app blends learning with fun. Choose from two main games: THE Math Game and THE Language Test. Simple rules: 30 seconds to answer questions, 1 point for correct, lose 1 life for incorrect. Monitor lives as orange hearts in the top-right. Game ends after 30 seconds or losing all lives. Beat your score or challenge friends' high scores. Dive in for a rewarding experience!"
+    ]]>
+</string>
     <string name="closeWindow">Close window</string>
     <string name="gameTitle" translatable="false">Game title</string>
     <string name="yes">yes</string>
     <string name="no">No</string>
     <string name="sound">Sound</string>
     <string name="updates">Updates</string>
-    <string name="new_words">- New words were added</string>
-    <string name="words_title">New words</string>
+    <string name="patch_title">What\'s New?</string>
+    <string name="patch_notes">
+    <![CDATA[
+    <b>Version 2.2 contains:</b><br/>
+    - German has been added as a new language! (This may still be unstable. I plan to address this in the future.)<br/>
+    - Added more than 350 new words!<br/>
+    - Improved translations within the interface<br/>
+    - GUI and readability improvements<br/><br/>
+
+    <b>Version 2.3 contains:</b><br/>
+    - Application crash in combination with the German language is fixed!<br/>
+    - General bug fixes!<br/>
+    - Improved logic for translating words<br/>
+    - Belgian language removed!<br/>
+    - Application is 35% rewritten in Kotlin 1.9.21. In the future, multiple Java 17 components will be replaced with Kotlin.<br/><br/>
+
+    For the latest versions, visit GitHub at: <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>
+    ]]>
+    </string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
-    <string name="concatenatedText" translatable="false">This will cause a hard crash</string>
+    <string name="Crashwarning" translatable="false">This will cause a hard crash</string>
+    <string name="show_releasenotes">Show releasenotes</string>
 </resources>

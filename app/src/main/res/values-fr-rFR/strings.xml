@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Half a Minute IT Madness</string>
     <string name="FrenchToEnglish">Anglais à Français</string>
-    <string name="PersonalHighScore">"Meilleur score: "</string>
+    <string name="PersonalHighScore">Meilleur score : </string>
     <string name="DutchToEnglish">Néerlandais à Français</string>
     <string name="chooseGameTitle">Choisissez votre jeu</string>
     <string name="chooseTestTitle">Choisissez votre test</string>
@@ -52,14 +52,36 @@
     <string name="display_notifications">Affichage des notifications</string>
     <string name="notificationText">Bienvenue sur Half a Minute IT Madness</string>
     <string name="welcome">Bienvenue!</string>
-    <string name="welcomeText">Bonjour et bienvenue sur Half a Minute IT Madness! Avec Half a Minute IT Madness vous apprenez en vous amusant. Vous pouvez choisir entre 2 jeux, LE jeu de math et LE test de langues. Les règles sont simple. Vous avez 30 secondes pour répondre à un maximum de questions. Chaque bonne réponse vous rapportera 1 point. Si vous donnez une mauvaise réponse vous perdez 1 vie. Vos vies sont indiquées avec un coeur orange dans le coin supérieur droit de votre écran. Après 30 secondes ou après avoir perdu toutes vos vies la partie sera terminée. Vous pourrez toujours recommencer pour battre votre record ou celui de vos amis. Amusez-vous bien!</string>
+    <string name="welcomeText">
+    <![CDATA[
+        "Bienvenue dans Half a Minute IT Madness ! Conçu par des étudiants dévoués de Saxion Hogeschool Enschede, cette application allie apprentissage et plaisir. Choisissez parmi deux jeux principaux : THE Math Game et THE Language Test. Règles simples : 30 secondes pour répondre aux questions, 1 point pour une réponse correcte, perte de 1 vie pour une réponse incorrecte. Surveillez les vies sous forme de cœurs orange en haut à droite. Le jeu se termine après 30 secondes ou la perte de toutes les vies. Battez votre score ou défiez les meilleurs scores de vos amis. Plongez-vous dans une expérience enrichissante !"
+    ]]>
+</string>
     <string name="closeWindow">close window</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="sound">Son</string>
     <string name="updates">Nouveautés</string>
-    <string name="words_title">Nouveaux mots</string>
-    <string name="new_words">- Des nouveaux mots ont été ajoutés</string>
+    <string name="patch_title">Quoi de neuf ?</string>
+    <string name="patch_notes" tools:ignore="StringFormatInvalid">
+    <![CDATA[
+        <b>Version 2.2 contient :</b><br/>
+        "- L'allemand est ajouté en tant que nouvelle langue ! (Cela peut encore être instable. J'ai l'intention de résoudre cela à l'avenir.)<br/>
+        - Plus de 350 nouveaux mots ajoutés !<br/>
+        - Traductions améliorées dans l'interface<br/>
+        - Améliorations de l'interface graphique et de la lisibilité<br/><br/>
+
+        <b>Version 2.3 contient :</b><br/>
+        - Le crash de l'application avec la langue allemande est résolu !<br/>
+        - Corrections générales des bogues !<br/>
+        - Logique améliorée pour la traduction des mots<br/>
+        - Langue belge supprimée !<br/>
+        - L'application est réécrite à 35% en Kotlin 1.9.21. À l'avenir, plusieurs composants Java 17 seront remplacés par Kotlin.<br/><br/>
+
+        Pour les dernières versions, visitez GitHub à l'adresse : <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>"
+    ]]>
+</string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
+    <string name="show_releasenotes">Show releasenotes</string>
 </resources>
