@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private void showUpdateDialog() {
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
         final View mViewUpdate = getLayoutInflater().inflate(R.layout.updates_msg, null);
-        final ImageButton btnCloseDialog = (ImageButton) mViewUpdate.findViewById(R.id.btnCloseUpdate);
+        final ImageButton btnCloseDialog = mViewUpdate.findViewById(R.id.btnCloseUpdate);
 
         mBuilder.setView(mViewUpdate);
         final AlertDialog mDialogUpdate = mBuilder.create();
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
         final View mView = getLayoutInflater().inflate(R.layout.welcome_message, null);
 
-        final ImageButton btnClose = (ImageButton) mView.findViewById(R.id.btnClose);
+        final ImageButton btnClose = mView.findViewById(R.id.btnClose);
 
         mBuilder.setView(mView);
         final AlertDialog mDialog = mBuilder.create();

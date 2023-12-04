@@ -1,4 +1,9 @@
-{
+package com.halfminute.itmadness
+
+object WordsJson {
+    @JvmField
+    val myWords = """
+            {
   "easyWords": [
     {
       "frWord": "Bonjour",
@@ -1996,7 +2001,7 @@
     },
     {
       "nlWord": "Blackboard",
-      "frWord": "Tableau noir",
+      "frWord": "Blackboard",
       "enWord": "Blackboard",
       "deWord": "Blackboard"
     },
@@ -2133,4 +2138,7 @@
       "deWord": "USB Power Delivery (USB-PD)"
     }
   ]
+}
+
+""".trimIndent()
 }

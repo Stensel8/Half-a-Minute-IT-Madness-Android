@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_weight="1"
-                    android:text="@string/darlModeText"
+                    android:text="@string/darkModeText"
                     android:textColor="?attr/textColor"
                     android:textSize="30sp" />
 

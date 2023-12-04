@@ -10,13 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ChooseLanguageGame extends AppCompatActivity {
 
     SharedPref sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Checking if dark mode is enabled
+        // Checking if dark mode is enabled
         sharedPref = new SharedPref(this);
-        setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
-        sharedPref.loadLocale(this); //loads the saved language
+        setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
+        sharedPref.loadLocale(this); // loads the saved language
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_language_game);
@@ -32,26 +33,32 @@ public class ChooseLanguageGame extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    public void startLanguageTest(View view){
+    public void startLanguageTest(View view) {
         Settings.btnAnimation(view);
 
         Intent intent = new Intent(this, LanguageGame.class);
 
         int viewId = view.getId();
+        String chosenGame = "";
+
         if (viewId == R.id.btnNlToEn) {
-            intent.putExtra("chosenGame", "NlToEn");
+            chosenGame = "NlToEn";
         } else if (viewId == R.id.btnEnToNl) {
-            intent.putExtra("chosenGame", "EnToNl");
+            chosenGame = "EnToNl";
+        } else if (viewId == R.id.btnDeToEn) {
+            chosenGame = "DeToEn";
+        } else if (viewId == R.id.btnEnToDe) {
+            chosenGame = "EnToDe";
         } else if (viewId == R.id.btnFrToEn) {
-            intent.putExtra("chosenGame", "FrToEn");
+            chosenGame = "FrToEn";
         } else if (viewId == R.id.btnEnToFr) {
-            intent.putExtra("chosenGame", "EnToFr");
+            chosenGame = "EnToFr";
         } else {
             // Handle the default case if needed
         }
 
+        intent.putExtra("chosenGame", chosenGame);
         startActivity(intent);
         finish();
     }
-
 }

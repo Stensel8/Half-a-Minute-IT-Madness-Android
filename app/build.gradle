@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
+
 android {
     defaultConfig {
         applicationId "com.halfminute.itmadness"
@@ -8,7 +9,7 @@ android {
         targetSdkVersion 34
         compileSdk 34
         versionCode 10
-        versionName '2.1'
+        versionName '2.2'
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
@@ -47,8 +48,10 @@ dependencies {
     implementation 'com.codesgood:justifiedtextview:2.0.1'
     implementation 'com.google.firebase:firebase-analytics:21.5.0'
     implementation 'com.google.firebase:firebase-auth:22.3.0'
-    implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.firebase:firebase-firestore:24.9.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

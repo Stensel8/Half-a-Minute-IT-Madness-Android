@@ -91,21 +91,26 @@ public class Settings extends AppCompatActivity {
 
     public void showChangeLanguageDialog(View view){
         //Array of languages to display in alert dialog
-        final String[] listOfLang = {"Français", "Nederlands", "English"};
+        final String[] listOfLang = {"German", "Français", "Nederlands", "English"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this,sharedPref.loadNightMode()? androidx.appcompat.R.style.Theme_AppCompat_DayNight_Dialog: androidx.appcompat.R.style.Theme_AppCompat_Light_Dialog);
         mBuilder.setSingleChoiceItems(listOfLang, -1, (dialog, i) -> {
             if (i == 0){
-                //set french
-                sharedPref.setLocale("fr", getApplicationContext());
+                // Set German language
+                sharedPref.setLocale("de", getApplicationContext());
                 recreate();
             }
             if (i == 1){
-                //set dutch
-                sharedPref.setLocale("nl", getApplicationContext());
+                // Set Français language
+                sharedPref.setLocale("fr", getApplicationContext());
                 recreate();
             }
             if (i == 2){
-                //set english
+                // Set Nederlands language
+                sharedPref.setLocale("nl", getApplicationContext());
+                recreate();
+            }
+            if (i == 3){
+                // Set English language
                 sharedPref.setLocale("en", getApplicationContext());
                 recreate();
             }
