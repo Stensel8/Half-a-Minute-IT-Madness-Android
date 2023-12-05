@@ -15,11 +15,12 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="350dp"
             android:layout_gravity="center"
             android:layout_marginBottom="40dp"
             android:contentDescription="@string/gameTitle"
             app:srcCompat="@drawable/seconds_games" />
+            <!-- TODO: Fix the text of this image. The image is missing an "N" in the word "Madness". -->
 
         <LinearLayout
             android:layout_width="match_parent"

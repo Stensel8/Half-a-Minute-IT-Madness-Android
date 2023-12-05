@@ -27,18 +27,6 @@ public class SharedPref {
         return mySharedPref.getBoolean("darkMode", false);
     }
 
-    //boolean to know if we need to show the ad or not
-    public void setAdShown(Boolean state){
-        SharedPreferences.Editor editor = mySharedPref.edit();
-        editor.putBoolean("showAd",state);
-        editor.apply();
-    }
-
-    //get the ad boolean
-    public Boolean adShown(){
-        return mySharedPref.getBoolean("showAd", true);
-    }
-
     //save the sound state
     public void setSound(Boolean state){
 
@@ -57,8 +45,10 @@ public class SharedPref {
         java.util.Locale locale = new java.util.Locale(lang);
 
         java.util.Locale.setDefault(locale);
+
         Configuration config = new Configuration();
         config.setLocale(locale);
+
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
     }
 

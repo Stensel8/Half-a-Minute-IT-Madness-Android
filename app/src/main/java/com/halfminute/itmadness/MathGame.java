@@ -16,8 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.halfminute.itmadness.R;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
@@ -113,8 +111,8 @@ public class MathGame extends AppCompatActivity {
 
     private void startGame() {
 
-        tvTimer.setText("" + (millisUntilFinished / 1000) + "s");
-        tvPoints.setText("" + points + "/" + numberOfQuestions);
+        tvTimer.setText((millisUntilFinished / 1000) + "s");
+        tvPoints.setText(points + "/" + numberOfQuestions);
         generateQuestion();
 
         countDownTimer = new CountDownTimer(millisUntilFinished, 1000) {
@@ -123,7 +121,7 @@ public class MathGame extends AppCompatActivity {
                 long seconds = millisUntilFinished / 1000;
                 int initialColor = tvTimer.getCurrentTextColor();
 
-                tvTimer.setText("" + (seconds) + "s");
+                tvTimer.setText((seconds) + "s");
 
                 if(seconds <= 5){
                     if (seconds == 5){
@@ -233,7 +231,7 @@ public class MathGame extends AppCompatActivity {
         }
 
         //update the live of the player on every question
-        tvLives.setText((maxWrongAnswers+1) - wrong + "");
+        tvLives.setText(String.valueOf((maxWrongAnswers + 1) - wrong));
         tvSum.setText(df.format(op1) + " " + selectedOperator + " " + df.format(op2) + " = ");
         correctAnswerPosition = random.nextInt(4);
 
@@ -287,7 +285,7 @@ public class MathGame extends AppCompatActivity {
             if(i == correctAnswerPosition)
                 continue;
 
-            ((Button) findViewById(btnIds[i])).setText(""+df.format(incorrectAnswers.get(i)));
+            ((Button) findViewById(btnIds[i])).setText(df.format(incorrectAnswers.get(i)));
 
         }
 
@@ -296,21 +294,13 @@ public class MathGame extends AppCompatActivity {
     }
 
     private double getAnswer(String selectedOperator) {
-        double answer = 0;
-        switch (selectedOperator){
-            case "+":
-                answer = op1 + op2;
-                break;
-            case "-":
-                answer = op1 - op2;
-                break;
-            case "*":
-                answer = op1 * op2;
-                break;
-            case "÷":
-                answer = op1 / op2;
-                break;
-        }
+        double answer = switch (selectedOperator) {
+            case "+" -> op1 + op2;
+            case "-" -> op1 - op2;
+            case "*" -> op1 * op2;
+            case "÷" -> op1 / op2;
+            default -> 0;
+        };
         return answer;
     }
 
@@ -391,9 +381,7 @@ public class MathGame extends AppCompatActivity {
 
     private void startPlayer(MediaPlayer myPlayer) {
         myPlayer.start();
-        myPlayer.setOnCompletionListener(mp -> {
-            stopPlayer();
-        });
+        myPlayer.setOnCompletionListener(mp -> stopPlayer());
     }
 
     private void stopPlayer() {

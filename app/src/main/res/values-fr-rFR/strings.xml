@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Half a Minute IT Madness</string>
+    <string name="FrenchToEnglish">Anglais à Français</string>
+    <string name="PersonalHighScore">Meilleur score : </string>
+    <string name="DutchToEnglish">Néerlandais à Français</string>
+    <string name="chooseGameTitle">Choisissez votre jeu</string>
+    <string name="chooseTestTitle">Choisissez votre test</string>
+    <string name="darkModeText">Mode sombre</string>
+    <string name="difficultyEasy">Facile</string>
+    <string name="difficultyHard">Difficile</string>
+    <string name="difficultyMedium">Moyen</string>
+    <string name="difficultyTitle">Difficulté</string>
+    <string name="EnglishToFrench">Français à Anglais</string>
+    <string name="exitGame">Quitter</string>
+    <string name="languageGameButton">Test de langues</string>
+    <string name="mainMenuBtn">Menu principal</string>
+    <string name="mathGameButton">Jeu de math</string>
+    <string name="pauseMenuTitle">Menu pause</string>
+    <string name="playGame">Jouer</string>
+    <string name="resumeBtn">Rejouer</string>
+    <string name="retry">Réessayer</string>
+    <string name="settingsTitle">Paramètres</string>
+    <string name="ScoreValue">0/0</string>
+    <string name="TimerValue">30s</string>
+    <string name="defaultAnswerText">\?</string>
+    <string name="defaultBtnValue">3</string>
+    <string name="hScoreDescription">High-Score image</string>
+    <string name="scoreGOver">"Score: "</string>
+    <string name="ChangeLanguage">Changer la langue</string>
+    <string name="correct">Correct!</string>
+    <string name="wrong">Faux!</string>
+    <string name="question">Ik ben 23 jaar oud</string>
+    <string name="sum">1 + 2 =</string>
+    <string name="title_activity_language_test">Language_test</string>
+    <string name="answerLang">I am 23 years old</string>
+    <string name="EnglishToDutch">Français à Néerlandais</string>
+    <string name="changeGame">Changer de jeu</string>
+    <string name="changeDfficultyTo">"Difficulté: "</string>
+    <string name="top5">Top 5:</string>
+    <string name="chosenGame">"Jeu: "</string>
+    <string name="email">E-mail</string>
+    <string name="loginTitle">Connexion</string>
+    <string name="password">Mot de passe</string>
+    <string name="login_empty_msg">Veuillez entrer les champs requis</string>
+    <string name="or">Ou</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="account_title">Compte</string>
+    <string name="sign_up_succes">Inscription réussie!</string>
+    <string name="username_too_long">Ce nom d\'utilisateur est trop long</string>
+    <string name="no_data">Aucun résultat</string>
+    <string name="display_notifications">Affichage des notifications</string>
+    <string name="notificationText">Bienvenue sur Half a Minute IT Madness</string>
+    <string name="welcome">Bienvenue!</string>
+    <string name="welcomeText">
+    <![CDATA[
+        "Bienvenue dans Half a Minute IT Madness ! Conçu par des étudiants dévoués de Saxion Hogeschool Enschede, cette application allie apprentissage et plaisir. Choisissez parmi deux jeux principaux : THE Math Game et THE Language Test. Règles simples : 30 secondes pour répondre aux questions, 1 point pour une réponse correcte, perte de 1 vie pour une réponse incorrecte. Surveillez les vies sous forme de cœurs orange en haut à droite. Le jeu se termine après 30 secondes ou la perte de toutes les vies. Battez votre score ou défiez les meilleurs scores de vos amis. Plongez-vous dans une expérience enrichissante !"
+    ]]>
+</string>
+    <string name="closeWindow">close window</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="sound">Son</string>
+    <string name="updates">Nouveautés</string>
+    <string name="patch_title">Quoi de neuf ?</string>
+    <string name="patch_notes" tools:ignore="StringFormatInvalid">
+    <![CDATA[
+        <b>Version 2.2 contient :</b><br/>
+        "- L'allemand est ajouté en tant que nouvelle langue ! (Cela peut encore être instable. J'ai l'intention de résoudre cela à l'avenir.)<br/>
+        - Plus de 350 nouveaux mots ajoutés !<br/>
+        - Traductions améliorées dans l'interface<br/>
+        - Améliorations de l'interface graphique et de la lisibilité<br/><br/>
+
+        <b>Version 2.3 contient :</b><br/>
+        - Le crash de l'application avec la langue allemande est résolu !<br/>
+        - Corrections générales des bogues !<br/>
+        - Logique améliorée pour la traduction des mots<br/>
+        - Langue belge supprimée !<br/>
+        - L'application est réécrite à 35% en Kotlin 1.9.21. À l'avenir, plusieurs composants Java 17 seront remplacés par Kotlin.<br/><br/>
+
+        Pour les dernières versions, visitez GitHub à l'adresse : <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>"
+    ]]>
+</string>
+    <string name="GermanToEnglish">German To English</string>
+    <string name="EnglishToGerman">English to German</string>
+    <string name="show_releasenotes">Show releasenotes</string>
+</resources>
