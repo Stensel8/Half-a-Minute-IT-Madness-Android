@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
+    android:background="@color/background"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/chooseGameTitle"
-            android:textColor="?attr/textColor"
+            android:textColor="@color/lightThemeText"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -38,7 +38,7 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/mathGameButton"
-            android:textColor="#455A64"
+            android:textColor="@color/buttonTextColor"
             android:textSize="24sp" />
 
         <Button
@@ -52,7 +52,7 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/languageGameButton"
-            android:textColor="#455A64"
+            android:textColor="@color/buttonTextColor"
             android:textSize="24sp" />
     </LinearLayout>
 

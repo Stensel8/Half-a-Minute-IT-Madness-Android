@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/settingsTitle"
-                android:textColor="?attr/textColor"
+                android:textColor="@color/lightThemeText"
                 android:textSize="36sp" />
         </LinearLayout>
 
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="@string/difficultyTitle"
-                android:textColor="?attr/textColor"
+                android:textColor="@color/lightThemeText"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -55,7 +55,7 @@
                     android:background="@drawable/rounded_btn"
                     android:onClick="chooseDifficulty"
                     android:text="@string/difficultyEasy"
-                    android:textColor="#424242"
+                    android:textColor="@color/buttonTextColor"
                     android:textSize="16sp" />
 
                 <Button
@@ -67,7 +67,7 @@
                     android:background="@drawable/rounded_btn"
                     android:onClick="chooseDifficulty"
                     android:text="@string/difficultyMedium"
-                    android:textColor="#424242"
+                    android:textColor="@color/buttonTextColor"
                     android:textSize="16sp" />
 
                 <Button
@@ -79,7 +79,7 @@
                     android:background="@drawable/rounded_btn"
                     android:onClick="chooseDifficulty"
                     android:text="@string/difficultyHard"
-                    android:textColor="#424242"
+                    android:textColor="@color/buttonTextColor"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -96,7 +96,7 @@
                     android:layout_marginStart="70dp"
                     android:layout_weight="1"
                     android:text="@string/darkModeText"
-                    android:textColor="?attr/textColor"
+                    android:textColor="@color/lightThemeText"
                     android:textSize="30sp" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:text="@string/sound"
-                    android:textColor="?attr/textColor"
+                    android:textColor="@color/lightThemeText"
                     android:textSize="30sp" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -147,7 +147,7 @@
                     android:onClick="showChangeLanguageDialog"
                     android:padding="10dp"
                     android:text="@string/ChangeLanguage"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/buttonTextColor"
                     android:textSize="16sp" />
 
                 <Button
@@ -158,7 +158,7 @@
                     android:background="@drawable/rounded_btn"
                     android:onClick="showWelcomeAndUpdates"
                     android:text="@string/show_releasenotes"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/buttonTextColor"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>

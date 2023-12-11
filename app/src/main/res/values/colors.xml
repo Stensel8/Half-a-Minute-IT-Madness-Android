@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/background</color>
-    <color name="colorPrimaryDark">@color/background</color>
-    <color name="colorAccent">#2ECC71</color>
-    <color name="background">#C5C5C5</color>
-    <color name="boxColor">#505050</color>
-    <color name="buttonTextColor">#ffff</color>
-    <color name="lightThemeText">#363535</color>
-    <color name="buttonColor">#1CBD9D</color>
-    <color name="darkThemeText">#0B8F42</color>
-    <color name="darkBackground">#2C3E50</color>
-    <color name="correct">#5CC423</color>
-    <color name="wrong">#F44336</color>
+    <color name="colorPrimary">#00b58d</color>
+    <color name="colorPrimaryDark">#34495e</color>
+    <color name="colorAccent">#e8f301</color>
+    <color name="background">#7fe75c</color>
+    <color name="boxColor">#00b58d</color>
+    <color name="buttonTextColor">#fcfbdc</color>
+    <color name="lightThemeText">#0c476c</color>
+    <color name="buttonColor">#08a8ff</color>
+    <color name="darkThemeText">#fcfbdc</color>
+    <color name="darkBackground">#08294b</color>
+    <color name="correct">#27ae60</color>
+    <color name="wrong">#f98722</color>
 
     // Colors for the 4 MathGame buttons
-    <color name="button1Color">#088C72</color>
-    <color name="button2Color">#4ED8BD</color>
-    <color name="button3Color">#1CBD9D</color>
-    <color name="button4Color">#0F6A58</color>
+    <color name="button1Color">#08a8ff</color>
+    <color name="button2Color">#38b209</color>
+    <color name="button3Color">#44d80a</color>
+    <color name="button4Color">#0886ff</color>
 
 </resources>

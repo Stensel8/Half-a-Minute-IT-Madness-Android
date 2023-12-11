@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
+    android:background="@color/background"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -22,7 +22,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/welcome"
-                android:textColor="?attr/textColor"
+                android:textColor="@color/lightThemeText"
                 android:textSize="36sp" />
 
             <ImageButton
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|end"
-                android:background="?attr/backgroundColor"
+                android:background="@color/button3Color"
                 android:contentDescription="@string/closeWindow"
                 android:minWidth="48dp"
                 app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
@@ -43,7 +43,7 @@
             android:layout_margin="20dp"
             android:text="@string/welcomeText"
             android:textAllCaps="false"
-            android:textColor="?attr/textColor"
+            android:textColor="@color/darkThemeText"
             android:textSize="18sp" />
 
     </LinearLayout>

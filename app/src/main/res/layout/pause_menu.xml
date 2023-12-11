@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pauseMenuTitle"
-                android:textColor="?attr/textColor"
+                android:textColor="@color/lightThemeText"
                 android:textSize="36sp" />
         </LinearLayout>
 
