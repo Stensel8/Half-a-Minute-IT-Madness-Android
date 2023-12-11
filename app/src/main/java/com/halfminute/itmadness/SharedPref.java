@@ -41,6 +41,7 @@ public class SharedPref {
     }
 
     //set saved language
+//set saved language
     public void setLocale(String lang, Context context) {
         java.util.Locale locale = new java.util.Locale(lang);
 
@@ -50,12 +51,17 @@ public class SharedPref {
         config.setLocale(locale);
 
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+
+        // Use the same key "language" for saving the language preference
+        SharedPreferences.Editor editor = context.getSharedPreferences("Settings", Activity.MODE_PRIVATE).edit();
+        editor.putString("language", lang);
+        editor.apply();
     }
 
     //load saved language
     public void loadLocale(Context context){
         SharedPreferences pref = context.getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = pref.getString("My lang", java.util.Locale.getDefault().getLanguage());
+        String language = pref.getString("language", java.util.Locale.getDefault().getLanguage());
         setLocale(language, context);
     }
 }

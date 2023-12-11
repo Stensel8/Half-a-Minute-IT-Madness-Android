@@ -27,19 +27,16 @@ public class GameOver extends AppCompatActivity {
     int points;
     String difficulty, chosenGame;
     private MediaPlayer player;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        //check dark mode
         sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme);
-        sharedPref.loadLocale(this); //loads the saved language
+        sharedPref.loadLocale(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
-
-
 
         tlScore = findViewById(R.id.tlScore);
         ivHighScore = findViewById(R.id.ivHighScore);
@@ -49,29 +46,23 @@ public class GameOver extends AppCompatActivity {
         tvChosenGame = findViewById(R.id.tvChosenGame);
         tvDifficulty = findViewById(R.id.tvDifficultyGOver);
 
-
-
         points = Objects.requireNonNull(getIntent().getExtras()).getInt("points");
         difficulty = getIntent().getExtras().getString("difficulty");
         chosenGame = getIntent().getExtras().getString("chosenGame");
 
         sharedPreferences = getSharedPreferences("pref", 0);
-        int pointsHC = 0;
+        sessionManager = new SessionManager(this);
+        int pointsHC = sessionManager.getHighScore();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if(points > pointsHC){
-            //saves the high-score
-            pointsHC = points;
-            editor.putInt("pointsHC", pointsHC);
-            editor.apply();
-
+        if (points > pointsHC) {
+            sessionManager.saveHighScore(points);
             applause();
-            
             ivHighScore.setVisibility(View.VISIBLE);
         }
 
         tvPoints.setText(String.valueOf(points));
-        tvHighScore.setText(String.valueOf(pointsHC));
+        tvHighScore.setText(String.valueOf(sessionManager.getHighScore()));
     }
 
     private void applause() {
@@ -88,7 +79,6 @@ public class GameOver extends AppCompatActivity {
             player = null;
         }
     }
-
 
     public void restart(View view) {
         Settings.btnAnimation(view);
@@ -150,5 +140,4 @@ public class GameOver extends AppCompatActivity {
 
         finish();
     }
-
 }

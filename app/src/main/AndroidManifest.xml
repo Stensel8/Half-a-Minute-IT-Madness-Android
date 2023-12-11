@@ -24,7 +24,7 @@
         <activity
             android:name="com.halfminute.itmadness.LanguageGame"
             android:label="@string/title_activity_language_test"
-            android:theme="@style/lightTheme.NoActionBar" />
+            android:theme="@style/lightTheme" />
 
         <activity android:name="com.halfminute.itmadness.PauseMenu" />
 
