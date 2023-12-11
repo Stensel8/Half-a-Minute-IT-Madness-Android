@@ -64,22 +64,37 @@
     <string name="updates">Nouveautés</string>
     <string name="patch_title">Quoi de neuf ?</string>
     <string name="patch_notes" tools:ignore="StringFormatInvalid">
-    <![CDATA[
-        <b>Version 2.2 contient :</b><br/>
-        "- L'allemand est ajouté en tant que nouvelle langue ! (Cela peut encore être instable. J'ai l'intention de résoudre cela à l'avenir.)<br/>
-        - Plus de 350 nouveaux mots ajoutés !<br/>
-        - Traductions améliorées dans l'interface<br/>
-        - Améliorations de l'interface graphique et de la lisibilité<br/><br/>
+<![CDATA[
+<b>Version 2.4 contient :</b><br/>
+"- Corrections de bugs<br/>
+  - Problème de non-enregistrement des meilleurs scores - Problème n°5 - Résolu<br/>
+  - Langue ne se sauvegardant pas correctement - Problème n°7 - Résolu<br/>
+  - Scintillement du mode sombre dans certains scénarios - Problème n°10 - Résolu<br/>
+  - Le mode sombre ne se sauvegardant pas correctement - Problème n°11 - Résolu<br/>
 
-        <b>Version 2.3 contient :</b><br/>
-        - Le crash de l'application avec la langue allemande est résolu !<br/>
-        - Corrections générales des bogues !<br/>
-        - Logique améliorée pour la traduction des mots<br/>
-        - Langue belge supprimée !<br/>
-        - L'application est réécrite à 35% en Kotlin 1.9.21. À l'avenir, plusieurs composants Java 17 seront remplacés par Kotlin.<br/><br/>
+  - Correction de quelques fautes de frappe<br/>
+  - Nous avons encore beaucoup de problèmes connus et de bugs, mais je vais essayer de les résoudre.<br/><br/>
+  - Problèmes connus :
+  Les tuiles peuvent afficher des couleurs inattendues #6
+  Le jeu plante en mode difficile #9
 
-        Pour les dernières versions, visitez GitHub à l'adresse : <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>"
+
+<b>Version 2.3 contient :</b><br/>
+- Crash de l'application en combinaison avec la langue allemande est corrigé !<br/>
+- Corrections de bugs généraux !<br/>
+- Logique améliorée pour la traduction des mots<br/>
+- Langue belge supprimée !<br/>
+- L'application est réécrite à 35% en Kotlin 1.9.21. À l'avenir, plusieurs composants Java 17 seront remplacés par Kotlin.<br/><br/>
+
+<b>Version 2.2 contient :</b><br/>
+- L'allemand a été ajouté comme nouvelle langue ! (Cela peut encore être instable. J'ai l'intention de résoudre cela à l'avenir.)<br/>
+- Plus de 350 nouveaux mots ajoutés !<br/>
+- Traductions améliorées dans l'interface<br/>
+- Améliorations de l'interface graphique et de la lisibilité<br/><br/>
+
+    Pour les dernières versions, visitez GitHub à l'adresse : <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>"
     ]]>
+
 </string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>

@@ -64,24 +64,38 @@
     <string name="updates">Nieuwe stuff enzo</string>
     <string name="patch_title">Wat is er nieuw?</string>
     <string name="patch_notes" tools:ignore="StringFormatInvalid">
-    <![CDATA[
-        <b>Versie 2.2 bevat :</b><br/>
-        - Duits is als nieuwe taal toegevoegd! (Dit kan nog instabiel zijn. Ik ben van plan dit in de toekomst op te lossen.)<br/>
-        - Meer dan 350 nieuwe woorden toegevoegd!<br/>
-        - Verbeterde vertalingen binnen de interface<br/>
-        - GUI- en leesbaarheidsverbeteringen<br/><br/>
+ <![CDATA[
+<b>Versie 2.4 bevat:</b><br/>
+- Bugfixes<br/>
+  - Probleem met niet opslaan van high scores - Probleem #5 - Opgelost<br/>
+  - Taal wordt niet correct opgeslagen - Probleem #7 - Opgelost<br/>
+  - Flikkeren van donkere modus in sommige scenario\'s - Probleem #10 - Opgelost<br/>
+  - Donkere modus wordt niet correct opgeslagen - Probleem #11 - Opgelost<br/>
 
-        <b>Versie 2.3 bevat :</b><br/>
-        - App-crash in combinatie met de Duitse taal is opgelost!<br/>
-        - Algemene bugfixes!<br/>
-        - Verbeterde logica voor het vertalen van woorden<br/>
-        - Belgische taal verwijderd!<br/>
-        - Applicatie is voor 35% herschreven in Kotlin 1.9.21. In de toekomst zullen meerdere Java 17-onderdelen worden vervangen door Kotlin.<br/><br/>
+  - Enkele andere typfouten opgelost<br/>
+  - We hebben nog steeds veel bekende problemen en bugs, maar ik zal mijn best doen om ze aan te pakken.<br/><br/>
+  - Bekende problemen:
+  Tegels kunnen onverwachte kleuren tonen #6
+  Game crasht in de hard-modus #9
 
-        Voor de nieuwste versies, bezoek GitHub op: <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>
+
+<b>Versie 2.3 bevat:</b><br/>
+- Applicatiecrash in combinatie met de Duitse taal is opgelost!<br/>
+- Algemene bugfixes!<br/>
+- Verbeterde logica voor het vertalen van woorden<br/>
+- Belgische taal verwijderd!<br/>
+- Applicatie is voor 35% herschreven in Kotlin 1.9.21. In de toekomst zullen meerdere Java 17-componenten worden vervangen door Kotlin.<br/><br/>
+
+<b>Versie 2.2 bevat:</b><br/>
+- Duits is toegevoegd als nieuwe taal! (Dit kan nog onstabiel zijn. Ik plan dit in de toekomst aan te pakken.)<br/>
+- Meer dan 350 nieuwe woorden toegevoegd!<br/>
+- Verbeterde vertalingen binnen de interface<br/>
+- GUI- en leesbaarheidsverbeteringen<br/><br/>
+
+    Voor de nieuwste versies, bezoek GitHub op: <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>
     ]]>
     </string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
-    <string name="show_releasenotes">Show releasenotes</string>
+    <string name="show_releasenotes">Toon releasenotes</string>
 </resources>

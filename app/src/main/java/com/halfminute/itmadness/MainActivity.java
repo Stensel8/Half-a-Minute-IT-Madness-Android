@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Check if the update dialog has been shown
         boolean updateDialogShown = sharedPreferences.getBoolean("updateDialogShown", false);
+        Log.d("MainActivity", "updateDialogShown: " + updateDialogShown);
         if (!updateDialogShown) {
             DialogUtils.showUpdateDialog(this);
 
@@ -34,12 +36,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Check if it's the first start
         boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
+        Log.d("MainActivity", "firstStart: " + firstStart);
+
+        // Add this log statement to trace the flow
+        Log.d("MainActivity", "Before firstStart condition");
+
         if (firstStart) {
             DialogUtils.showStartDialog(this);
 
             // Set the preference to false to indicate that the start dialog has been shown
             sharedPreferences.edit().putBoolean("firstStart", false).apply();
+        } else {
+            // Add this log statement to trace the flow
+            Log.d("MainActivity", "Inside else condition for firstStart");
         }
+
+        // Add this log statement to trace the flow
+        Log.d("MainActivity", "After firstStart condition");
+        Log.d("MainActivity", "onCreate: End");
+
     }
 
     private void setupThemeAndLocale() {
@@ -81,9 +96,15 @@ public class MainActivity extends AppCompatActivity {
 
             btnClose.setOnClickListener(v -> dialog.dismiss());
 
+            // Log the value before setting
+            Log.d("MainActivity", "Before setting firstStart: " + activity.getSharedPreferences("welcomePreferences", Context.MODE_PRIVATE).getBoolean("firstStart", true));
+
             SharedPreferences.Editor editor = activity.getSharedPreferences("welcomePreferences", Context.MODE_PRIVATE).edit();
             editor.putBoolean("firstStart", false);
             editor.apply();
+
+            // Log the value after setting
+            Log.d("MainActivity", "After setting firstStart: " + activity.getSharedPreferences("welcomePreferences", Context.MODE_PRIVATE).getBoolean("firstStart", true));
         }
     }
 

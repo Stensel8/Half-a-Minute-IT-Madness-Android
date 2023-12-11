@@ -5,9 +5,9 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,6 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
+
+import java.util.Objects;
 
 public class Settings extends AppCompatActivity {
 
@@ -61,7 +63,7 @@ public class Settings extends AppCompatActivity {
         SwitchCompat soundToggle = findViewById(R.id.soundToggle);
         soundToggle.setChecked(sharedPref.getSound());
 
-        Button changeLang = findViewById(R.id.btnChangeLanguage);
+        findViewById(R.id.btnChangeLanguage);
         btnShowWelcomeAndUpdates = findViewById(R.id.btnShowWelcomeAndUpdates);
     }
 
@@ -93,15 +95,11 @@ public class Settings extends AppCompatActivity {
     public void showChangeLanguageDialog(View view) {
         final String[] listOfLang = {"German", "Français", "Nederlands", "English"};
 
-        // Use ContextThemeWrapper to apply the correct theme
-        ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(this,
-                sharedPref.loadNightMode() ? androidx.appcompat.R.style.Theme_AppCompat_DayNight_Dialog :
-                        androidx.appcompat.R.style.Theme_AppCompat_Light_Dialog);
+        int dialogTheme = sharedPref.loadNightMode() ? R.style.darkTheme_Dialog : R.style.lightTheme_Dialog;
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(contextThemeWrapper);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, dialogTheme);
 
-        // Set a custom adapter with a custom layout to control text color
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contextThemeWrapper,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, listOfLang) {
             @NonNull
             @Override
@@ -111,7 +109,7 @@ public class Settings extends AppCompatActivity {
                 TextView textView = view.findViewById(android.R.id.text1);
                 int textColorRes = sharedPref.loadNightMode() ? android.R.color.white : android.R.color.black;
                 int textColor = ContextCompat.getColor(getContext(), textColorRes);
-                textView.setTextColor(textColor); // Set text color based on dark mode
+                textView.setTextColor(textColor);
 
                 return view;
             }
@@ -130,6 +128,11 @@ public class Settings extends AppCompatActivity {
         });
 
         AlertDialog dialog = builder.create();
+
+        // Zorg ervoor dat het dialoogvenster altijd de volledige schermgrootte heeft
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
         dialog.show();
     }
 

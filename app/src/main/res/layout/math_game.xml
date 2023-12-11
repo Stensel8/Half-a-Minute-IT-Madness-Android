@@ -42,8 +42,9 @@
                 android:text="@string/TimerValue"
                 android:textColor="?attr/textColor"
                 android:textSize="24sp"
-                app:drawableLeftCompat="@android:drawable/presence_away"
-                app:drawableStartCompat="@android:drawable/presence_away" />
+                android:drawablePadding="8dp"
+                app:drawableLeftCompat="@drawable/timer_blue"
+                app:drawableStartCompat="@drawable/timer_blue" />
 
         </LinearLayout>
 
@@ -78,8 +79,9 @@
                 android:text="@string/ScoreValue"
                 android:textColor="?attr/textColor"
                 android:textSize="24sp"
-                app:drawableStartCompat="@android:drawable/btn_star_big_on"
-                app:drawableLeftCompat="@android:drawable/btn_star_big_on" />
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/star_blue"
+                app:drawableLeftCompat="@drawable/star_blue" />
         </LinearLayout>
     </FrameLayout>
 
@@ -98,8 +100,8 @@
             android:text="@string/defaultBtnValue"
             android:textColor="?attr/textColor"
             android:textSize="24sp"
-            app:drawableLeftCompat="@drawable/orange_heart"
-            app:drawableStartCompat="@drawable/orange_heart" />
+            app:drawableLeftCompat="@drawable/heart"
+            app:drawableStartCompat="@drawable/heart" />
     </LinearLayout>
 
     <LinearLayout
@@ -141,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#088C72"
+                android:background="@color/button1Color"
                 android:onClick="chooseAnswer"
                 android:text="@string/defaultBtnValue"
                 android:textColor="@color/buttonTextColor"
@@ -153,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#4ED8BD"
+                android:background="@color/button2Color"
                 android:onClick="chooseAnswer"
                 android:text="@string/defaultBtnValue"
                 android:textColor="@color/buttonTextColor"
@@ -171,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#1CBD9D"
+                android:background="@color/button3Color"
                 android:onClick="chooseAnswer"
                 android:text="@string/defaultBtnValue"
                 android:textColor="@color/buttonTextColor"
@@ -183,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#0F6A58"
+                android:background="@color/button4Color"
                 android:onClick="chooseAnswer"
                 android:text="@string/defaultBtnValue"
                 android:textColor="@color/buttonTextColor"

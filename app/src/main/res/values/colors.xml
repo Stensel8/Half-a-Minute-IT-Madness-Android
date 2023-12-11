@@ -13,4 +13,10 @@
     <color name="correct">#5CC423</color>
     <color name="wrong">#F44336</color>
 
+    // Colors for the 4 MathGame buttons
+    <color name="button1Color">#088C72</color>
+    <color name="button2Color">#4ED8BD</color>
+    <color name="button3Color">#1CBD9D</color>
+    <color name="button4Color">#0F6A58</color>
+
 </resources>
