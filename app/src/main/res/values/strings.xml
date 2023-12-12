@@ -2,6 +2,7 @@
     <string name="app_name">Half a Minute IT Madness</string>
     <string name="mathGameButton">Math Game</string>
     <string name="languageGameButton">Language test</string>
+    <string name="guessingGameButton">Guessing game</string>
     <string name="chooseGameTitle">Choose your game</string>
     <string name="chooseTestTitle">Choose your test</string>
     <string name="DutchToEnglish">Dutch to English</string>

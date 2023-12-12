@@ -45,4 +45,12 @@ public class ChooseGame extends AppCompatActivity {
         startActivity(intent); // Start the choose language game activity
         finish(); // Finish this activity
     }
+
+    // Start de guessing game
+    //TODO: maak de methode aan die de guessing game opstart
+    public void startGuessingGame(View view){
+        Settings.btnAnimation(view);
+
+
+    }
 }
