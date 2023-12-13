@@ -10,12 +10,6 @@ A little Android game written in Java and Kotlin where you have to answer as man
 
 A fun and challenging Android game that tests your knowledge across various categories. Answer as many questions as you can within the given 30-second time limit.
 
-## Screenshots
-
-![Screenshot 1](path/to/screenshot1.png)
-![Screenshot 2](path/to/screenshot2.png)
-![Screenshot 3](path/to/screenshot3.png)
-
 ## Features
 
 - Engaging gameplay with a 30-second time constraint.
@@ -23,6 +17,42 @@ A fun and challenging Android game that tests your knowledge across various cate
 - Earn points for correct answers and lose lives for incorrect ones.
 - Track your lives with heart icons displayed in the top right corner.
 - Challenge yourself to improve your score in each category.
+
+## Screenshots
+
+- **Welcome Screen**
+  ![Welcome screen](Documentation/Half%20a%20Minute%20IT%20Madness_welcome.jpg)
+
+- **Home Screen**
+  ![Home screen](Documentation/Half%20a%20Minute%20IT%20Madness_mainactivity.jpg)
+
+- **Settings Screen**
+  ![Settings screen](Documentation/Half%20a%20Minute%20IT%20Madness_settings.jpg)
+
+- **Choose Game Screen**
+  ![Choose game screen](Documentation/Half%20a%20Minute%20IT%20Madness_choosegame.jpg)
+
+- **Math Game Screen**
+  ![Math game screen](Documentation/Half%20a%20Minute%20IT%20Madness_mathgame.jpg)
+
+- **Choose Language Game Screen**
+  ![Choose language game screen](Documentation/Half%20a%20Minute%20IT%20Madness_chooselanguagegame.jpg)
+
+- **Language Game Screen**
+  ![Language game screen](Documentation/Half%20a%20Minute%20IT%20Madness_languagegame.jpg)
+
+- **Game Over Screen** (High scores coming soon)
+  ![Game over screen](Documentation/Half%20a%20Minute%20IT%20Madness_gameover.jpg)
+
+## Coming Soon
+
+- High score board.
+- Guessing game.
+- Improved switching between dark/light mode.
+- Extra additional words.
+- The ability to choose an even higher difficulty.
+- Extra animations.
+- Improved performance / bug fixes.
 
 ## Getting Started
 
@@ -37,11 +67,9 @@ To get started with the game, follow these steps:
 
 3. Build and run the app on your Android device or emulator.
 
-
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to the project, please follow the contribution guidelines.
-
 
 ## License
 This project is licensed under the MIT License.
@@ -52,6 +80,10 @@ Special thanks to the contributors who have helped make this game possible:
 - [Stensel8](https://github.com/Stensel8)
 - [waldbaan](https://github.com/waldbaan)
 - [TimonZeelen](https://github.com/TimonZeelen)
+- [tritshuri](https://github.com/tritshuri)
+
+[View contributors](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/graphs/contributors)
 
 
 Feel free to star the repository if you like it or find the project interesting!
+
