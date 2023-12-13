@@ -104,6 +104,10 @@
     </string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
-    <string name="Crashwarning" translatable="false">This will cause a hard crash</string>
+    <string name="Crashwarning" translatable="false">Medium and Hard may cause a hard crash!</string>
+    <string name="Crashinfo" translatable="false">
+    We\'re aware of an issue involving the Medium and Hard game modes crashing when selecting either German to English or English to German.
+    We hope this will get solved in the upcoming V2.6 or V2.7 update.
+</string>
     <string name="show_releasenotes">Show releasenotes</string>
 </resources>

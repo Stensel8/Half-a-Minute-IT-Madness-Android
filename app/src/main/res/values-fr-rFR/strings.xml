@@ -44,7 +44,7 @@
     <string name="password">Mot de passe</string>
     <string name="login_empty_msg">Veuillez entrer les champs requis</string>
     <string name="or">Ou</string>
-    <string name="username">Nom d\'utilisateur</string>
+    <string name="username">Nom d\\\\\'utilisateur</string>
     <string name="account_title">Compte</string>
     <string name="sign_up_succes">Inscription réussie!</string>
     <string name="username_too_long">Ce nom d\'utilisateur est trop long</string>
@@ -54,9 +54,9 @@
     <string name="welcome">Bienvenue!</string>
     <string name="welcomeText">
     <![CDATA[
-    Découvrez Half a Minute IT Madness, un jeu créatif conçu par trois étudiants dévoués de la Saxion University of Applied Sciences. Choisissez parmi trois jeux stimulants : mathématiques, langues et devinettes. Chaque jeu dure 30 secondes, où une réponse correcte rapporte un point et une réponse incorrecte coûte une vie. Surveillez vos vies, affichées comme des cœurs vert/bleu en haut à droite. Le jeu se termine après 30 secondes ou en perdant toutes les vies. Challengez-vous pour améliorer votre score !
+    "Découvrez Half a Minute IT Madness, un jeu créatif conçu par trois étudiants dévoués de la Saxion University of Applied Sciences. Choisissez parmi trois jeux stimulants : mathématiques, langues et devinettes. Chaque jeu dure 30 secondes, où une réponse correcte rapporte un point et une réponse incorrecte coûte une vie. Surveillez vos vies, affichées comme des cœurs vert/bleu en haut à droite. Le jeu se termine après 30 secondes ou en perdant toutes les vies. Challengez-vous pour améliorer votre score !
 
-    Consultez le dépôt GitHub pour plus d'informations : [GitHub Repository](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android)
+    Consultez le dépôt GitHub pour plus d'informations : [GitHub Repository](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android)"
     ]]>
     </string>
     <string name="closeWindow">close window</string>
