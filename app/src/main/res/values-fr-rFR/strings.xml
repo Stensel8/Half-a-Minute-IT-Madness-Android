@@ -54,9 +54,11 @@
     <string name="welcome">Bienvenue!</string>
     <string name="welcomeText">
     <![CDATA[
-        "Bienvenue dans Half a Minute IT Madness ! Conçu par des étudiants dévoués de Saxion Hogeschool Enschede, cette application allie apprentissage et plaisir. Choisissez parmi deux jeux principaux : THE Math Game et THE Language Test. Règles simples : 30 secondes pour répondre aux questions, 1 point pour une réponse correcte, perte de 1 vie pour une réponse incorrecte. Surveillez les vies sous forme de cœurs orange en haut à droite. Le jeu se termine après 30 secondes ou la perte de toutes les vies. Battez votre score ou défiez les meilleurs scores de vos amis. Plongez-vous dans une expérience enrichissante !"
+    Découvrez Half a Minute IT Madness, un jeu créatif conçu par trois étudiants dévoués de la Saxion University of Applied Sciences. Choisissez parmi trois jeux stimulants : mathématiques, langues et devinettes. Chaque jeu dure 30 secondes, où une réponse correcte rapporte un point et une réponse incorrecte coûte une vie. Surveillez vos vies, affichées comme des cœurs vert/bleu en haut à droite. Le jeu se termine après 30 secondes ou en perdant toutes les vies. Challengez-vous pour améliorer votre score !
+
+    Consultez le dépôt GitHub pour plus d'informations : [GitHub Repository](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android)
     ]]>
-</string>
+    </string>
     <string name="closeWindow">close window</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
