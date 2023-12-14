@@ -12,7 +12,7 @@ A little Android game written in Java and Kotlin where you have to answer as man
 ![Kotlin_Used](https://img.shields.io/github/languages/top/Stensel8/Half-a-Minute-IT-Madness-Android?color=purple&label=Kotlin)
 
 ![Beta_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_prereleases&label=BetaVersion)
-![Stable_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_releases&label=StableVersion&style=flat&color=green)
+![Stable_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_releases&label=StableVersion&style=flat&color=brightgreen)
 
 
 
