@@ -5,6 +5,18 @@ A little Android game written in Java and Kotlin where you have to answer as man
 [![Codacy Security Scan](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml/badge.svg?branch=main)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml)
 [![Scan with Detekt](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/detekt.yml/badge.svg?branch=main)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/detekt.yml)
 
+![License](https://img.shields.io/github/license/Stensel8/Half-a-Minute-IT-Madness-Android?label=License)
+
+![Repo_Size](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/assets/102481635/25f0c1c1-aa0b-4501-acb7-aef1b8dccfb3)
+
+![Kotlin_Used](https://img.shields.io/github/languages/top/Stensel8/Half-a-Minute-IT-Madness-Android?color=purple&label=Kotlin)
+
+![Beta_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_prereleases&label=BetaVersion)
+![Stable_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_releases&label=StableVersion&style=flat&color=green)
+
+
+
+
 ## Overview
 
 A fun and challenging Android game that tests your knowledge across various categories. Answer as many questions as you can within the given 30-second time limit.
