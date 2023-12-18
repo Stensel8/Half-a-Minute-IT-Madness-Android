@@ -4,6 +4,7 @@
     <string name="FrenchToEnglish">Anglais à Français</string>
     <string name="PersonalHighScore">Meilleur score : </string>
     <string name="DutchToEnglish">Néerlandais à Français</string>
+    <string name="guessingGameButton">Jeu de devinettes</string>
     <string name="chooseGameTitle">Choisissez votre jeu</string>
     <string name="chooseTestTitle">Choisissez votre test</string>
     <string name="darkModeText">Mode sombre</string>

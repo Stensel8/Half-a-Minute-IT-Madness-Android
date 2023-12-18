@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="10"
-    android:versionName="2.0"
+    android:versionCode="25"
+    android:versionName="2.5"
     android:installLocation="preferExternal">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -49,6 +49,12 @@
         </activity>
 
         <activity android:name="com.halfminute.itmadness.MathGame">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.halfminute.itmadness.ChooseGame" />
+        </activity>
+
+        <activity android:name="com.halfminute.itmadness.GuessingGame">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.halfminute.itmadness.ChooseGame" />
