@@ -55,13 +55,15 @@
             android:textColor="#455A64"
             android:textSize="24sp" />
 
+        <!-- Dit is de knop voor de guessing game -->
+        <!-- TODO: pas de afstand tussen de knoppen aan -->
         <Button
             android:id="@+id/guessingGameButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
-            android:onClick="startLanguageGame"
+            android:onClick="startGuessingGame"
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
             android:paddingRight="20dp"

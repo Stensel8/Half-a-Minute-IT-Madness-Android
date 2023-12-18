@@ -113,17 +113,84 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvSum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sum"
+                android:textColor="?attr/textColor"
+                android:textSize="32sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/defaultAnswerText"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="32sp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn0"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/button1Color"
+                android:onClick="chooseAnswer"
+                android:text="@string/defaultBtnValue"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="80sp" />
+
+            <Button
+                android:id="@+id/btn1"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/button2Color"
+                android:onClick="chooseAnswer"
+                android:text="@string/defaultBtnValue"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="80sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn2"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/button3Color"
+                android:onClick="chooseAnswer"
+                android:text="@string/defaultBtnValue"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="80sp" />
+
+            <Button
+                android:id="@+id/btn3"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/button4Color"
+                android:onClick="chooseAnswer"
+                android:text="@string/defaultBtnValue"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="80sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvResult"
@@ -133,30 +200,6 @@
             android:text=""
             android:textColor="?attr/textColor"
             android:textSize="32sp" />
-
-        <TextView
-            android:id="@+id/word1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/word2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/word3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/word4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
 
 
     </LinearLayout>
