@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -18,8 +19,11 @@ import java.util.Locale
 import java.util.Random
 
 
-//TODO: Fix the logic inside the languagegame. Currently, it's just using wrong languages.
+//TODO: Fix the logic inside the LanguageGame.kt. Currently, it's just using wrong languages.
 // I think this is because of the buttons that i accidentally "swapped" for the wrong functions.
+
+//TODO: Also, I think I forgot something,
+// because the German language is crashing when on medium or hard mode. Easy one is working just fine.
 class LanguageGame : AppCompatActivity() {
     private var sharedPref: SharedPref? = null
     private var sharedPreferences: SharedPreferences? = null
@@ -92,8 +96,7 @@ class LanguageGame : AppCompatActivity() {
         incorrectAnswers = ArrayList() // ArrayList with all the incorrect answers
         gson = Gson() // A Google library used to facilitate the use of JSON files
         wordsList = gson!!.fromJson(
-            WordsJson.myWords,
-            Words::class.java
+            WordsJson.myWords, Words::class.java
         ) // We get the JSON string in the WordsJson class
         chosenGame = intent.getStringExtra("chosenGame")
         sharedPreferences = getSharedPreferences("gameDifficulty", MODE_PRIVATE)
@@ -112,8 +115,7 @@ class LanguageGame : AppCompatActivity() {
             }
 
         onBackPressedDispatcher.addCallback(
-            this,
-            callback
+            this, callback
         ) // Add the callback to the onBackPressedDispatcher
         startGame()
 
@@ -170,9 +172,11 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    // Define a data class to represent the game difficulty
     private fun generateQuestion() {
         numberOfQuestions++
 
+        Log.d("Language", "Saved Language: $savedLanguage")
 /////////////////////// easy mode /////////////////////////
         if (difficulty.equals("easy", ignoreCase = true)) {
             tvDifficulty!!.text = resources.getString(R.string.difficultyEasy)
@@ -659,8 +663,7 @@ class LanguageGame : AppCompatActivity() {
 
         //get a random position between the 4 buttons
         correctAnswerPosition = random!!.nextInt(4)
-        (findViewById<View>(btnIds[correctAnswerPosition]) as Button).text =
-            correctAnswer
+        (findViewById<View>(btnIds[correctAnswerPosition]) as Button).text = correctAnswer
         setIncorrectAnswers()
     }
 

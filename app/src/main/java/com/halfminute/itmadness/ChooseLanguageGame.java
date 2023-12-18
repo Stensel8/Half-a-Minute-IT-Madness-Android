@@ -2,6 +2,7 @@ package com.halfminute.itmadness;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
@@ -9,13 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ChooseLanguageGame extends AppCompatActivity {
 
-    SharedPref sharedPref;
+    private static final String TAG = "ChooseLanguageGame";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         // Checking if dark mode is enabled
-        sharedPref = new SharedPref(this);
+        SharedPref sharedPref = new SharedPref(this);
         setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
         sharedPref.loadLocale(this); // loads the saved language
 
@@ -25,6 +25,7 @@ public class ChooseLanguageGame extends AppCompatActivity {
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
+                Log.d(TAG, "Back button pressed. Navigating to ChooseGame");
                 Intent intent = new Intent(ChooseLanguageGame.this, ChooseGame.class);
                 startActivity(intent);
                 finish();
@@ -54,9 +55,11 @@ public class ChooseLanguageGame extends AppCompatActivity {
         } else if (viewId == R.id.btnEnToFr) {
             chosenGame = "EnToFr";
         } else {
+            Log.w(TAG, "Unknown button clicked with ID: " + viewId);
             // Handle the default case if needed
         }
 
+        Log.d(TAG, "Starting language test: " + chosenGame);
         intent.putExtra("chosenGame", chosenGame);
         startActivity(intent);
         finish();

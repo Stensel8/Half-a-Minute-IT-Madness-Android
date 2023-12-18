@@ -11,12 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ChooseGame extends AppCompatActivity {
 
     SharedPref sharedPref; // Declare a SharedPref object to access the shared preferences
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         //Checking if dark mode is enabled
         sharedPref = new SharedPref(this); // Initialize the SharedPref object with the current context
-        setTheme(sharedPref.loadNightMode()? R.style.darkTheme: R.style.lightTheme); // Set the theme according to the shared preference value
+        setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme); // Set the theme according to the shared preference value
         sharedPref.loadLocale(this); //loads the saved language
 
         super.onCreate(savedInstanceState);

@@ -15,10 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/lightTheme">
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6646767279000716~7449282479" />
-
         <activity android:name="com.halfminute.itmadness.MyAccount" />
 
         <activity

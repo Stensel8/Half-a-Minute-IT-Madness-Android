@@ -60,7 +60,12 @@
                 android:text="@string/EnglishToDutch"
                 android:textColor="#4E342E"
                 android:textSize="18sp" />
-
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Crashwarning"
+                android:textColor="#FD0000"/>
             <Button
                 android:id="@+id/btnDeToEn"
                 android:layout_width="match_parent"
@@ -74,6 +79,13 @@
                 android:textColor="#4E342E"
                 android:textSize="18sp" />
 
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Crashwarning"
+                android:textColor="#FD0000"/>
 
             <Button
                 android:id="@+id/btnEnToDe"
@@ -114,6 +126,12 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Crashinfo"
+            android:textColor="#FD0000"/>
 
     </LinearLayout>
 
