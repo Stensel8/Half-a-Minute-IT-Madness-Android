@@ -3,6 +3,7 @@
     <string name="app_name">Half a Minute IT Madness</string>
     <string name="TimerValue">30s</string>
     <string name="DutchToEnglish">Engels naar Nederlands</string>
+    <string name="guessingGameButton">Raadspel</string>
     <string name="chooseGameTitle">Kies je spel</string>
     <string name="chooseTestTitle">Kies je test</string>
     <string name="darkModeText">Donkere modus</string>

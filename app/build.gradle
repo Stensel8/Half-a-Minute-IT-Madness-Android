@@ -9,8 +9,8 @@ android {
         minSdk 31 // Minimum SDK version required
         targetSdkVersion 34 // Target SDK version
         compileSdk 34 // Compile SDK version
-        versionCode 10 // Version code for the app (increment for each release)
-        versionName '2.4' // Version name for the app
+        versionCode 25 // Version code for the app (increment for each release)
+        versionName '2.5' // Version name for the app
         multiDexEnabled true // Enable MultiDex for applications with many methods
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Test runner for instrumentation tests
         signingConfig signingConfigs.debug // Signing configuration (debug build)

@@ -3,6 +3,7 @@
     <string name="app_name">Halbe Minute IT Wahnsinn</string>
     <string name="TimerValue">30s</string>
     <string name="DutchToEnglish">Niederländisch nach Englisch</string>
+    <string name="guessingGameButton">Ratespiel</string>
     <string name="chooseGameTitle">Wähle dein Spiel</string>
     <string name="chooseTestTitle">Wähle deinen Test</string>
     <string name="darkModeText">Dunkler Modus</string>
