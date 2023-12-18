@@ -22,7 +22,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="302dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="40dp">
 
@@ -44,6 +44,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:onClick="startLanguageGame"
@@ -55,13 +56,11 @@
             android:textColor="#455A64"
             android:textSize="24sp" />
 
-        <!-- Dit is de knop voor de guessing game -->
-        <!-- TODO: pas de afstand tussen de knoppen aan -->
         <Button
             android:id="@+id/guessingGameButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_btn"
             android:onClick="startGuessingGame"
             android:paddingLeft="20dp"
