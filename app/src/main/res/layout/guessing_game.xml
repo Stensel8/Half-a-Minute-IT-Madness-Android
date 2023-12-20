@@ -23,6 +23,7 @@
                 android:background="?attr/backgroundColor"
                 android:contentDescription="@string/pauseMenuTitle"
                 android:onClick="pauseGame"
+                android:layout_marginTop="9dp"
                 app:srcCompat="@android:drawable/ic_media_pause" />
         </LinearLayout>
 
@@ -42,7 +43,9 @@
                 android:text="@string/TimerValue"
                 android:textColor="?attr/textColor"
                 android:textSize="24sp"
-                android:drawablePadding="8dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/EuroPlate"
+                android:drawablePadding="2dp"
                 app:drawableLeftCompat="@drawable/timer_blue"
                 app:drawableStartCompat="@drawable/timer_blue" />
 
@@ -62,6 +65,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/difficultyEasy"
                 android:textColor="?attr/textColor"
+                android:fontFamily="@font/segoeui"
                 android:textSize="24sp" />
         </LinearLayout>
 
