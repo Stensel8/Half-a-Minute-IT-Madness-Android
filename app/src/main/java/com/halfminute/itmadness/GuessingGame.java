@@ -24,7 +24,7 @@ public class GuessingGame extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     double  op1, op2, correctAnswer, incorrectAnswer;
-    TextView tvTimer, tvPoints, tvSum, tvResult, tvDifficulty, tvLives;
+    TextView tvTimer, tvPoints, tvSum, tvResult, tvDifficulty, tvLives, txtvw1, txtvw2, txtvw3, txtvw4;
     Button btn0, btn1, btn2, btn3, clickedBtn;
     CountDownTimer countDownTimer;
     long millisUntilFinished;
@@ -63,10 +63,18 @@ public class GuessingGame extends AppCompatActivity {
         tvSum = findViewById(R.id.tvSum);
         tvResult = findViewById(R.id.tvResult);
         tvDifficulty = findViewById(R.id.tvDifficulty);
+        /* deze knoppen zijn niet meer nodig
+        // TODO later verwijderen (als alles werkt)
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
+        */
+        // Dit zijn de textVieuw waar de vier woorden moeten gaan komen
+        txtvw1 = findViewById(R.id.txtvw1);
+        txtvw2 = findViewById(R.id.textVieuw2);
+        txtvw3 = findViewById(R.id.textVieuw3);
+        txtvw4 = findViewById(R.id.textVieuw4);
         tvLives = findViewById(R.id.tvLives);
         millisUntilFinished = 30100; //30 seconds used for the timer
         points = 0;
