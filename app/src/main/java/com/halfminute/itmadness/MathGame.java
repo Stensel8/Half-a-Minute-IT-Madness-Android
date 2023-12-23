@@ -366,14 +366,14 @@ public class MathGame extends AppCompatActivity {
                 //stops the previous sound
                 stopPlayer();
 
-                player = MediaPlayer.create(this,R.raw.correct_fav);
+                player = MediaPlayer.create(this,R.raw.correct_sound);
                 startPlayer(player);
 
             }else{
                 //stops the previous sound
                 stopPlayer();
 
-                player = MediaPlayer.create(this,R.raw.wrong);
+                player = MediaPlayer.create(this,R.raw.incorrect_sound);
                 startPlayer(player);
             }
         }

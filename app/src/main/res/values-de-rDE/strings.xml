@@ -101,4 +101,6 @@
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
     <string name="show_releasenotes">Releasenotes anzeigen</string>
+    <string name="guessing_game">Guessing Game</string>
+    <string name="this_is_an_dynamic_icon_that_will_change_based_on_the_darktheme_settings">This is an dynamic icon that will change based on the darktheme settings</string>
 </resources>

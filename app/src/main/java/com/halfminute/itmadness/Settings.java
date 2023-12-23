@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,97 +21,66 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 
-import java.util.Objects;
-
 public class Settings extends AppCompatActivity {
 
     private SharedPref sharedPref;
     private SharedPreferences sharedPreferences;
-    private Button btnShowWelcomeAndUpdates;
+    private ImageView darkModeIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupThemeAndLocale();
+        sharedPref = new SharedPref(this);
+        setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
+        sharedPref.loadLocale(this);
+
         setContentView(R.layout.settings);
 
-        // Initialize sharedPreferences and sharedPref
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
-        sharedPref = new SharedPref(this);
 
         // Initialize UI components
-        initUI();
+        darkModeIcon = findViewById(R.id.darkModeIcon);
+        updateDarkModeIcon(sharedPref.loadNightMode());
 
-        // Initialize click listeners
-        initClickListeners();
-
-        // Check if the app is launched for the first time
-        boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
-        if (firstStart) {
-            // Set firstStart to false to ensure this block doesn't execute on subsequent launches
-            sharedPreferences.edit().putBoolean("firstStart", false).apply();
-
-            // Call showWelcomeAndUpdates only on the first launch
-            showWelcomeAndUpdates(btnShowWelcomeAndUpdates);
-        }
-    }
-
-
-    private void initUI() {
         SwitchCompat darkModeToggle = findViewById(R.id.darkModeToggle);
         darkModeToggle.setChecked(sharedPref.loadNightMode());
+        darkModeToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            sharedPref.setNightMode(isChecked);
+            updateDarkModeIcon(isChecked);
+            recreate();
+        });
 
         SwitchCompat soundToggle = findViewById(R.id.soundToggle);
         soundToggle.setChecked(sharedPref.getSound());
-
-        findViewById(R.id.btnChangeLanguage);
-        btnShowWelcomeAndUpdates = findViewById(R.id.btnShowWelcomeAndUpdates);
-    }
-
-    private void initClickListeners() {
-        SwitchCompat darkModeToggle = findViewById(R.id.darkModeToggle);
-        darkModeToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            sharedPref.setNightMode(isChecked);
-            recreate();
-        });
-
-        SwitchCompat soundToggle = findViewById(R.id.soundToggle);
-        soundToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            sharedPref.setSound(isChecked);
-            recreate();
-        });
+        soundToggle.setOnCheckedChangeListener((buttonView, isChecked) -> sharedPref.setSound(isChecked));
 
         Button changeLang = findViewById(R.id.btnChangeLanguage);
         changeLang.setOnClickListener(this::showChangeLanguageDialog);
 
+        Button btnShowWelcomeAndUpdates = findViewById(R.id.btnShowWelcomeAndUpdates);
         btnShowWelcomeAndUpdates.setOnClickListener(this::showWelcomeAndUpdates);
-    }
 
-    private void setupThemeAndLocale() {
-        sharedPref = new SharedPref(this);
-        setTheme(sharedPref.loadNightMode() ? R.style.darkTheme : R.style.lightTheme);
-        sharedPref.loadLocale(this);
+        // Check if the app is launched for the first time
+        boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
+        if (firstStart) {
+            sharedPreferences.edit().putBoolean("firstStart", false).apply();
+            showWelcomeAndUpdates(btnShowWelcomeAndUpdates);
+        }
     }
 
     public void showChangeLanguageDialog(View view) {
         final String[] listOfLang = {"German", "Français", "Nederlands", "English"};
-
         int dialogTheme = sharedPref.loadNightMode() ? R.style.darkTheme_Dialog : R.style.lightTheme_Dialog;
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this, dialogTheme);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, listOfLang) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, listOfLang) {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
-
                 TextView textView = view.findViewById(android.R.id.text1);
                 int textColorRes = sharedPref.loadNightMode() ? android.R.color.white : android.R.color.black;
-                int textColor = ContextCompat.getColor(getContext(), textColorRes);
-                textView.setTextColor(textColor);
-
+                textView.setTextColor(ContextCompat.getColor(getContext(), textColorRes));
                 return view;
             }
         };
@@ -128,56 +98,43 @@ public class Settings extends AppCompatActivity {
         });
 
         AlertDialog dialog = builder.create();
-
-        // Zorg ervoor dat het dialoogvenster altijd de volledige schermgrootte heeft
         Window window = dialog.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
         dialog.show();
     }
 
-
     public void chooseDifficulty(View view) {
         btnAnimation(view);
-
         SharedPreferences.Editor editor = getSharedPreferences("gameDifficulty", MODE_PRIVATE).edit();
         String difficulty = "";
-
         int viewId = view.getId();
+
         if (viewId == R.id.difficultyEasyBtn) {
-            editor.putString("difficulty", "easy");
-            difficulty = getString(R.string.difficultyEasy);
+            difficulty = "easy";
         } else if (viewId == R.id.difficultyMediumBtn) {
-            editor.putString("difficulty", "medium");
-            difficulty = getString(R.string.difficultyMedium);
+            difficulty = "medium";
         } else if (viewId == R.id.difficultyHardBtn) {
-            editor.putString("difficulty", "hard");
-            difficulty = getString(R.string.difficultyHard);
+            difficulty = "hard";
         }
 
+        editor.putString("difficulty", difficulty);
         editor.apply();
         Toast.makeText(this, getString(R.string.changeDfficultyTo) + difficulty, Toast.LENGTH_SHORT).show();
     }
 
     public void showWelcomeAndUpdates(View view) {
-        // Check if the "Show welcome and updates" button is pressed
         boolean fromSettingsButton = view.getId() == R.id.btnShowWelcomeAndUpdates;
-
-        // Check if it's the first start or if the "Show welcome and updates" button in settings is pressed
         boolean shouldShowDialog = sharedPreferences.getBoolean("firstStart", true) || fromSettingsButton;
 
         if (shouldShowDialog) {
-            // Call the showWelcomeAndUpdates dialog
+            // Display welcome and update dialogs
             MainActivity.DialogUtils.showStartDialog(this);
             MainActivity.DialogUtils.showUpdateDialog(this);
-
-            // Update the firstStart flag only if it's not from the settings button
             if (!fromSettingsButton) {
                 sharedPreferences.edit().putBoolean("firstStart", false).apply();
             }
         }
     }
-
 
     public static void btnAnimation(View view) {
         AlphaAnimation animation1 = new AlphaAnimation(0.2f, 1.0f);
@@ -188,12 +145,18 @@ public class Settings extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         SharedPreferences sharedPreferences = getSharedPreferences("activity", Activity.MODE_PRIVATE);
         String actual = sharedPreferences.getString("activity", "");
-
         Class<?> destinationClass = actual.equalsIgnoreCase("main") ? MainActivity.class : PauseMenu.class;
         startActivity(new Intent(Settings.this, destinationClass));
         finish();
+    }
+
+    private void updateDarkModeIcon(boolean isNightMode) {
+        if (isNightMode) {
+            darkModeIcon.setImageResource(R.drawable.dark_mode);
+        } else {
+            darkModeIcon.setImageResource(R.drawable.light_mode);
+        }
     }
 }

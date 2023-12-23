@@ -19,11 +19,8 @@ import java.util.Locale
 import java.util.Random
 
 
-//TODO: Fix the logic inside the LanguageGame.kt. Currently, it's just using wrong languages.
-// I think this is because of the buttons that i accidentally "swapped" for the wrong functions.
-
-//TODO: Also, I think I forgot something,
-// because the German language is crashing when on medium or hard mode. Easy one is working just fine.
+//TODO:I think I forgot something,
+// because all the languages are crashing when on medium or hard mode. Easy one is working just fine.
 class LanguageGame : AppCompatActivity() {
     private var sharedPref: SharedPref? = null
     private var sharedPreferences: SharedPreferences? = null
@@ -946,12 +943,12 @@ class LanguageGame : AppCompatActivity() {
 
                 //stops the previous sound
                 stopPlayer()
-                player = MediaPlayer.create(this, R.raw.correct_fav)
+                player = MediaPlayer.create(this, R.raw.correct_sound)
                 startPlayer(player)
             } else {
                 //stops the previous sound
                 stopPlayer()
-                player = MediaPlayer.create(this, R.raw.wrong)
+                player = MediaPlayer.create(this, R.raw.incorrect_sound)
                 startPlayer(player)
             }
         }

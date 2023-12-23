@@ -3,7 +3,6 @@ package com.halfminute.itmadness;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,18 +55,5 @@ public class ChooseGame extends AppCompatActivity {
         Intent intent = new Intent(ChooseGame.this, GuessingGame.class); // Create an intent to start the choose language game activity
         startActivity(intent); // Start the choose language game activity
         finish(); // Finish this activity
-
-        /*
-        Button gGameButton = (Button) findViewById(R.id.guessingGameButton);
-        gGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        Settings.btnAnimation(view);
-         */
-
-
     }
 }

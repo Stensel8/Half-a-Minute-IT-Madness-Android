@@ -2,165 +2,159 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
-    android:orientation="vertical">
+    android:background="?attr/backgroundColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:text="@string/settingsTitle"
+            android:textColor="?attr/textColor"
+            android:textSize="36sp"
+            android:layout_marginTop="30dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/settingsTitle"
-                android:textColor="?attr/textColor"
-                android:textSize="36sp" />
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/difficultyTitle"
+            android:textColor="?attr/textColor"
+            android:textSize="30sp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_marginTop="15dp"
+            android:gravity="center">
 
-            <TextView
+            <!-- Easy Button -->
+            <Button
+                android:id="@+id/difficultyEasyBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="@string/difficultyTitle"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_btn"
+                android:onClick="chooseDifficulty"
+                android:text="@string/difficultyEasy"
+                android:textColor="#424242"
+                android:textSize="16sp" />
+
+            <!-- Medium Button -->
+            <Button
+                android:id="@+id/difficultyMediumBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_btn"
+                android:onClick="chooseDifficulty"
+                android:text="@string/difficultyMedium"
+                android:textColor="#424242"
+                android:textSize="16sp" />
+
+            <!-- Hard Button -->
+            <Button
+                android:id="@+id/difficultyHardBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_btn"
+                android:onClick="chooseDifficulty"
+                android:text="@string/difficultyHard"
+                android:textColor="#424242"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Dark Mode Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/darkModeText"
                 android:textColor="?attr/textColor"
                 android:textSize="30sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/darkModeIcon"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center_horizontal">
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/light_mode"
+                android:contentDescription="@string/this_is_an_dynamic_icon_that_will_change_based_on_the_darktheme_settings" />
 
-                <Button
-                    android:id="@+id/difficultyEasyBtn"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/rounded_btn"
-                    android:onClick="chooseDifficulty"
-                    android:text="@string/difficultyEasy"
-                    android:textColor="#424242"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/difficultyMediumBtn"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/rounded_btn"
-                    android:onClick="chooseDifficulty"
-                    android:text="@string/difficultyMedium"
-                    android:textColor="#424242"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/difficultyHardBtn"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/rounded_btn"
-                    android:onClick="chooseDifficulty"
-                    android:text="@string/difficultyHard"
-                    android:textColor="#424242"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="70dp"
-                    android:layout_weight="1"
-                    android:text="@string/darkModeText"
-                    android:textColor="?attr/textColor"
-                    android:textSize="30sp" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/darkModeToggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="30dp"
-                    android:layout_weight="1"
-                    android:checked="false" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="70dp"
-                    android:text="@string/sound"
-                    android:textColor="?attr/textColor"
-                    android:textSize="30sp" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/soundToggle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="30dp"
-                    android:layout_weight="1"
-                    android:checked="false" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <Button
-                    android:id="@+id/btnChangeLanguage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_btn"
-                    android:onClick="showChangeLanguageDialog"
-                    android:padding="10dp"
-                    android:text="@string/ChangeLanguage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/btnShowWelcomeAndUpdates"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/rounded_btn"
-                    android:onClick="showWelcomeAndUpdates"
-                    android:text="@string/show_releasenotes"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-            </LinearLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/darkModeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
+        <!-- Sound Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sound"
+                android:textColor="?attr/textColor"
+                android:textSize="30sp"
+                android:gravity="start" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/soundToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false" />
+        </LinearLayout>
+
+        <!-- Language Change Button -->
+        <Button
+            android:id="@+id/btnChangeLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_btn"
+            android:onClick="showChangeLanguageDialog"
+            android:padding="10dp"
+            android:text="@string/ChangeLanguage"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
+        <!-- Welcome and Updates Button -->
+        <Button
+            android:id="@+id/btnShowWelcomeAndUpdates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_btn"
+            android:onClick="showWelcomeAndUpdates"
+            android:text="@string/show_releasenotes"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
     </LinearLayout>
 </ScrollView>
