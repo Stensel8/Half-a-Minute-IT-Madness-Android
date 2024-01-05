@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="40dp"
             android:contentDescription="@string/gameTitle"
-            app:srcCompat="@drawable/halfminute_itmadness_logo" />
+            app:srcCompat="@drawable/halfminute_itmadness_applogo" />
 
         <LinearLayout
             android:layout_width="match_parent"
