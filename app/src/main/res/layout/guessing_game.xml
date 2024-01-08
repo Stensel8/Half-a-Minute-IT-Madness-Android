@@ -13,6 +13,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <!-- imageButton pause button -->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="30dp"
@@ -21,6 +22,7 @@
             android:onClick="pauseGame"
             app:srcCompat="@android:drawable/ic_media_pause" />
 
+        <!-- TextView timer -->
         <TextView
             android:id="@+id/tvTimer"
             android:layout_width="0dp"
@@ -30,10 +32,11 @@
             android:text="@string/TimerValue"
             android:textColor="?attr/textColor"
             android:textSize="24sp"
-            android:fontFamily="@font/seguisbi"
+            android:fontFamily="@font/segoeui"
             app:drawableLeftCompat="@drawable/timer_blue"
             app:drawableStartCompat="@drawable/timer_blue" />
 
+        <!-- TextView Points -->a
         <TextView
             android:id="@+id/tvPoints"
             android:layout_width="wrap_content"
@@ -52,6 +55,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical|end">
 
+        <!-- TextView Difficulty (easy, medium, hard) -->
         <TextView
             android:id="@+id/tvDifficulty"
             android:layout_width="wrap_content"
@@ -61,6 +65,8 @@
             android:textSize="24sp"
             android:fontFamily="@font/segoeui" />
 
+        <!-- TODO: look for inplementation in guessing game -->
+        <!-- textVieuw lives -->
         <TextView
             android:id="@+id/tvLives"
             android:layout_width="wrap_content"
@@ -70,55 +76,64 @@
             android:textColor="?attr/textColor"
             android:textSize="24sp"
             app:drawableLeftCompat="@drawable/heart"
-            app:drawableStartCompat="@drawable/heart" />
+            app:drawableStartCompat="@drawable/heart"
+            android:fontFamily="@font/segoeui"/>
     </LinearLayout>
 
+    <!-- Button word 1 -->
     <Button
         android:id="@+id/txtvw1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_btn"
-        android:fontFamily="@font/seguisbi"
+        android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessing_game"
         android:textColor="#455A64"
         android:textSize="24sp" />
+
+    <!-- Button word 2 -->
     <Button
         android:id="@+id/txtvw2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_btn"
-        android:fontFamily="@font/seguisbi"
+        android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessing_game"
         android:textColor="#455A64"
         android:textSize="24sp" />
+
+    <!-- Button word 3 -->
     <Button
         android:id="@+id/txtvw3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_btn"
-        android:fontFamily="@font/seguisbi"
+        android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessing_game"
         android:textColor="#455A64"
         android:textSize="24sp" />
+
+    <!-- Button word 4 -->
     <Button
         android:id="@+id/txtvw4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_btn"
-        android:fontFamily="@font/seguisbi"
+        android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessing_game"
         android:textColor="#455A64"
         android:textSize="24sp" />
+
 </LinearLayout>
