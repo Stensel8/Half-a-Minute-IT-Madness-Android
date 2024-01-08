@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
+        <!--Imagevieuw game title HMTM -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="350dp"
@@ -28,6 +29,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <!--Button Play Game -->
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,8 +38,10 @@
                 android:padding="20dp"
                 android:text="@string/playGame"
                 android:textColor="#455A64"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/segoeuib"/>
 
+            <!-- Button Settings -->
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +51,8 @@
                 android:padding="20dp"
                 android:text="@string/settingsTitle"
                 android:textColor="#455A64"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/segoeuib"/>
         </LinearLayout>
 
     </LinearLayout>

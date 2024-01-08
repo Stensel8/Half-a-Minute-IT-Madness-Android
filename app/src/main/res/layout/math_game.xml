@@ -16,9 +16,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!-- imageButton pause button -->
             <ImageButton
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="?attr/backgroundColor"
                 android:contentDescription="@string/pauseMenuTitle"
@@ -32,7 +33,7 @@
             android:layout_marginStart="30dp"
             android:orientation="horizontal">
 
-
+            <!-- TextVieuw timer -->
             <TextView
                 android:id="@+id/tvTimer"
                 android:layout_width="match_parent"
@@ -42,7 +43,9 @@
                 android:text="@string/TimerValue"
                 android:textColor="?attr/textColor"
                 android:textSize="24sp"
+                android:fontFamily="@font/segoeui"
                 android:drawablePadding="8dp"
+                android:layout_marginVertical="0dp"
                 app:drawableLeftCompat="@drawable/timer_blue"
                 app:drawableStartCompat="@drawable/timer_blue" />
 
@@ -54,6 +57,7 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
+            <!-- TextView difficulty -->
             <TextView
                 android:id="@+id/tvDifficulty"
                 android:layout_width="wrap_content"
@@ -62,7 +66,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/difficultyEasy"
                 android:textColor="?attr/textColor"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/segoeui"/>
         </LinearLayout>
 
         <LinearLayout
@@ -71,6 +76,7 @@
             android:gravity="end"
             android:orientation="horizontal">
 
+            <!-- textvieuw points -->
             <TextView
                 android:id="@+id/tvPoints"
                 android:layout_width="wrap_content"
@@ -79,6 +85,7 @@
                 android:text="@string/ScoreValue"
                 android:textColor="?attr/textColor"
                 android:textSize="24sp"
+                android:fontFamily="@font/segoeui"
                 android:gravity="center_vertical"
                 app:drawableStartCompat="@drawable/star_blue"
                 app:drawableLeftCompat="@drawable/star_blue" />
@@ -92,6 +99,7 @@
         android:gravity="end"
         android:orientation="horizontal">
 
+        <!-- textVieuw lives -->
         <TextView
             android:id="@+id/tvLives"
             android:layout_width="wrap_content"
@@ -100,6 +108,7 @@
             android:text="@string/defaultBtnValue"
             android:textColor="?attr/textColor"
             android:textSize="24sp"
+            android:fontFamily="@font/segoeui"
             app:drawableLeftCompat="@drawable/heart"
             app:drawableStartCompat="@drawable/heart" />
     </LinearLayout>
@@ -115,20 +124,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!-- textView question
+            (whithout questionmark)-->
             <TextView
                 android:id="@+id/tvSum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sum"
                 android:textColor="?attr/textColor"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:fontFamily="@font/segoeui"/>
 
+            <!-- textView questonmark -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/defaultAnswerText"
                 android:textColor="@android:color/holo_red_light"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:fontFamily="@font/segoeui"/>
 
         </LinearLayout>
 
@@ -137,6 +151,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!-- answer button 0 -->
             <Button
                 android:id="@+id/btn0"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -146,9 +161,11 @@
                 android:background="@color/button1Color"
                 android:onClick="chooseAnswer"
                 android:text="@string/defaultBtnValue"
+                android:fontFamily="@font/segoeuib"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="80sp" />
+                android:textSize="70sp" />
 
+            <!-- anwer button 1 -->
             <Button
                 android:id="@+id/btn1"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -159,14 +176,17 @@
                 android:onClick="chooseAnswer"
                 android:text="@string/defaultBtnValue"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="80sp" />
+                android:textSize="70sp"
+                android:fontFamily="@font/segoeuib"/>
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!-- answer button 2 -->
             <Button
                 android:id="@+id/btn2"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -177,8 +197,10 @@
                 android:onClick="chooseAnswer"
                 android:text="@string/defaultBtnValue"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="80sp" />
+                android:textSize="70sp"
+                android:fontFamily="@font/segoeuib"/>
 
+            <!-- answer buttonn 3 -->
             <Button
                 android:id="@+id/btn3"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -189,9 +211,11 @@
                 android:onClick="chooseAnswer"
                 android:text="@string/defaultBtnValue"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="80sp" />
+                android:textSize="70sp"
+                android:fontFamily="@font/segoeuib"/>
         </LinearLayout>
 
+        <!-- TextView real answer -->
         <TextView
             android:id="@+id/tvResult"
             android:layout_width="wrap_content"
@@ -199,7 +223,8 @@
             android:layout_marginTop="5dp"
             android:text=""
             android:textColor="?attr/textColor"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:fontFamily="@font/segoeui"/>
 
 
     </LinearLayout>

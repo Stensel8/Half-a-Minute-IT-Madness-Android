@@ -25,26 +25,31 @@
                 android:contentDescription="@string/closeWindow"
                 app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
+            <!-- TextVieuw updates (Header) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="0dp"
                 android:layout_gravity="center"
                 android:text="@string/updates"
                 android:textColor="?attr/textColor"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                android:fontFamily="@font/segoeui"/>
         </FrameLayout>
 
+        <!-- TextView whats new -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:text="@string/patch_title"
             android:textColor="@color/buttonColor"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/segoeui"/>
 
+        <!-- textView release notes -->
         <TextView
             android:id="@+id/textViewUpdate"
             android:layout_width="match_parent"
@@ -53,7 +58,8 @@
             android:layout_marginRight="20dp"
             android:text="@string/patch_notes"
             android:textColor="?attr/textColor"
-            android:textSize="18sp" />
+            android:textSize="17sp"
+            android:fontFamily="@font/segoeui"/>
 
     </LinearLayout>
 </ScrollView>
