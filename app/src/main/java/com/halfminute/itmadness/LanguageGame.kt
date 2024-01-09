@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -72,6 +73,7 @@ class LanguageGame : AppCompatActivity() {
                 throw Exception("Words data is null")
             }
         } catch (e: Exception) {
+            Log.e("WordsLoading", "Error loading words: ${e.message}")
             e.printStackTrace()
             Toast.makeText(this, "Failed to load words data.", Toast.LENGTH_LONG).show()
             finish()
