@@ -112,5 +112,5 @@
 </string>
     <string name="show_releasenotes">Show releasenotes</string>
     <string name="guessing_game">Guessing Game</string>
-    <string name="this_is_an_dynamic_icon_that_will_change_based_on_the_darktheme_settings">This is an dynamic icon that will change based on the darktheme settings</string>
+    <string name="theme_dynamic_icon" translatable="false">This is an dynamic icon that will change based on the darktheme settings</string>
 </resources>

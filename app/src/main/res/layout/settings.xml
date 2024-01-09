@@ -14,23 +14,23 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/segoeui"
             android:gravity="center"
             android:text="@string/settingsTitle"
             android:textColor="?attr/textColor"
-            android:textSize="36sp"
-            android:fontFamily="@font/segoeui"
-            android:layout_marginTop="10dp" />
+            android:textSize="36sp" />
 
         <!-- Textview Difficulty -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/segoeui"
             android:text="@string/difficultyTitle"
             android:textColor="?attr/textColor"
-            android:textSize="30sp"
-            android:fontFamily="@font/segoeui"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center" />
+            android:textSize="30sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,11 +46,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="chooseDifficulty"
                 android:text="@string/difficultyEasy"
                 android:textColor="#424242"
-                android:textSize="16sp"
-                android:fontFamily="@font/segoeuib"/>
+                android:textSize="16sp" />
 
             <!-- Medium Button -->
             <Button
@@ -60,11 +60,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="chooseDifficulty"
                 android:text="@string/difficultyMedium"
                 android:textColor="#424242"
-                android:textSize="16sp"
-                android:fontFamily="@font/segoeuib"/>
+                android:textSize="16sp" />
 
             <!-- Hard Button -->
             <Button
@@ -74,11 +74,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="chooseDifficulty"
                 android:text="@string/difficultyHard"
                 android:textColor="#424242"
-                android:textSize="16sp"
-                android:fontFamily="@font/segoeuib"/>
+                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Dark Mode Row -->
@@ -94,11 +94,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/segoeui"
                 android:gravity="start"
                 android:text="@string/darkModeText"
                 android:textColor="?attr/textColor"
-                android:textSize="30sp"
-                android:fontFamily="@font/segoeui"/>
+                android:textSize="30sp" />
 
             <!-- ImageVieuw dark mode icon -->
             <ImageView
@@ -106,8 +106,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/light_mode"
-                android:contentDescription="@string/this_is_an_dynamic_icon_that_will_change_based_on_the_darktheme_settings" />
+                android:contentDescription="@string/theme_dynamic_icon"
+                android:src="@drawable/light_mode" />
 
             <!-- dark mode swich -->
             <androidx.appcompat.widget.SwitchCompat
@@ -129,11 +129,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/segoeui"
+                android:gravity="start"
                 android:text="@string/sound"
                 android:textColor="?attr/textColor"
-                android:textSize="30sp"
-                android:fontFamily="@font/segoeui"
-                android:gravity="start" />
+                android:textSize="30sp" />
 
             <!-- Sound switch -->
             <androidx.appcompat.widget.SwitchCompat
@@ -148,29 +148,29 @@
             android:id="@+id/btnChangeLanguage"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_btn"
+            android:fontFamily="@font/segoeuib"
             android:onClick="showChangeLanguageDialog"
             android:padding="10dp"
             android:text="@string/ChangeLanguage"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:fontFamily="@font/segoeuib"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp" />
+            android:textSize="16sp" />
 
         <!-- Welcome and Updates Button -->
         <Button
             android:id="@+id/btnShowWelcomeAndUpdates"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_btn"
+            android:fontFamily="@font/segoeuib"
             android:onClick="showWelcomeAndUpdates"
             android:text="@string/show_releasenotes"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:fontFamily="@font/segoeuib"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 </ScrollView>

@@ -1,9 +1,4 @@
-package com.halfminute.itmadness
-
-object WordsJson {
-    @JvmField
-    val myWords = """
-            {
+{
   "easyWords": [
     {
       "frWord": "Bonjour",
@@ -2138,7 +2133,4 @@ object WordsJson {
       "deWord": "USB Power Delivery (USB-PD)"
     }
   ]
-}
-
-""".trimIndent()
 }
