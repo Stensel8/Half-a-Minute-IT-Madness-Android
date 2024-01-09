@@ -16,7 +16,6 @@ import androidx.core.content.res.ResourcesCompat
 import java.util.Locale
 import java.util.Random
 
-
 class LanguageGame : AppCompatActivity() {
     private lateinit var sharedPref: SharedPref
     private lateinit var sharedPreferences: SharedPreferences
@@ -39,20 +38,17 @@ class LanguageGame : AppCompatActivity() {
     private var wrong = 0
     private var maxWrongAnswers = 2
     private var numberOfQuestions = 0
-    private var randomId = 0
-    private var previousRandom = Int.MAX_VALUE
     private lateinit var btnIds: IntArray
     private var correctAnswerPosition = 0
-    private var incorrectAnswers = mutableListOf<String>()
     private lateinit var correctAnswer: String
     private lateinit var savedLanguage: String
     private lateinit var chosenGame: String
     private lateinit var difficulty: String
     private var player: MediaPlayer? = null
     private var timerPlayer: MediaPlayer? = null
+    private var incorrectAnswers = mutableListOf<String>()
 
     private lateinit var words: Words
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +65,7 @@ class LanguageGame : AppCompatActivity() {
         difficulty = sharedPreferences.getString("difficulty", "easy") ?: "easy"
 
         setupOnBackPressedCallback()
-        words = Words.instance
+        words = Words.getInstance(this)
         random = Random()
         startGame()
     }
@@ -100,16 +96,13 @@ class LanguageGame : AppCompatActivity() {
         startGame()
     }
 
-
     fun pauseGame(view: View) {
-        // Saves the current game we're playing
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("actualGame", chosenGame)
         editor.apply()
-        countDownTimer!!.cancel()
+        countDownTimer?.cancel()
         val intent = Intent(this@LanguageGame, PauseMenu::class.java)
-        releasePlayer()
         startActivity(intent)
         finish()
     }
@@ -132,8 +125,6 @@ class LanguageGame : AppCompatActivity() {
                     tvTimer.setTextColor(resources.getColor(R.color.wrong, theme))
                     tvTimer.textSize = 26f
                     Handler(Looper.getMainLooper()).postDelayed({
-
-                        // set it initial color and size
                         tvTimer.textSize = 24f
                         tvTimer.setTextColor(initialColor)
                     }, 300)
@@ -146,6 +137,13 @@ class LanguageGame : AppCompatActivity() {
         }.start()
     }
 
+    private fun releasePlayer() {
+        if (timerPlayer != null && sharedPref.sound) {
+            timerPlayer!!.release()
+        }
+    }
+
+
     private fun playTimerSound() {
         if (sharedPref.sound) {
             startPlayer(timerPlayer)
@@ -154,12 +152,14 @@ class LanguageGame : AppCompatActivity() {
 
     private fun generateQuestion() {
         numberOfQuestions++
-        words = Words.instance // Ensure that the Words instance is initialized
         val wordList =
             words.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
         val word = wordList[random.nextInt(wordList.size)]
+        setQuestionAndAnswer(word)
+        setIncorrectAnswers()
+    }
 
-        // Determine the question and correct answer based on the chosen game
+    private fun setQuestionAndAnswer(word: Word) {
         when (chosenGame) {
             "NlToEn" -> {
                 tvQuestion.text = word.nlWord
@@ -191,16 +191,10 @@ class LanguageGame : AppCompatActivity() {
                 correctAnswer = word.frWord
             }
         }
-
-        // Set the correct answer in a random button position
         correctAnswerPosition = random.nextInt(4)
         (findViewById<View>(btnIds[correctAnswerPosition]) as Button).text = correctAnswer
-
-        // Prepare incorrect answers for other buttons
-        setIncorrectAnswers()
     }
 
-    //assign the incorrect answers to the other buttons
     private fun setIncorrectAnswers() {
         incorrectAnswers.clear()
         val wordList =
@@ -208,23 +202,12 @@ class LanguageGame : AppCompatActivity() {
 
         while (incorrectAnswers.size < 3) {
             val incorrectWord = wordList[random.nextInt(wordList.size)]
-            val incorrectAnswer = when (chosenGame) {
-                "NlToEn" -> incorrectWord.nlWord
-                "EnToNl" -> incorrectWord.enWord
-                "DeToEn" -> incorrectWord.deWord
-                "EnToDe" -> incorrectWord.enWord
-                "FrToEn" -> incorrectWord.frWord
-                "EnToFr" -> incorrectWord.enWord
-                // Add other cases as necessary
-                else -> ""
-            }
-
+            val incorrectAnswer = getIncorrectAnswer(incorrectWord)
             if (incorrectAnswer != correctAnswer && !incorrectAnswers.contains(incorrectAnswer)) {
                 incorrectAnswers.add(incorrectAnswer)
             }
         }
 
-        // Assign incorrect answers to the buttons, excluding the one with the correct answer
         var btnIndex = 0
         for (i in btnIds.indices) {
             if (i != correctAnswerPosition) {
@@ -233,14 +216,23 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    private fun getIncorrectAnswer(word: Word): String {
+        return when (chosenGame) {
+            "NlToEn" -> word.nlWord
+            "EnToNl" -> word.enWord
+            "DeToEn" -> word.deWord
+            "EnToDe" -> word.enWord
+            "FrToEn" -> word.frWord
+            "EnToFr" -> word.enWord
+            else -> ""
+        }
+    }
+
     private fun gameOver() {
         if (countDownTimer != null) {
             countDownTimer!!.cancel()
         }
-        btn0.isClickable = false
-        btn1.isClickable = false
-        btn2.isClickable = false
-        btn3.isClickable = false
+        disableButtons()
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("actualGame", chosenGame)
@@ -254,76 +246,62 @@ class LanguageGame : AppCompatActivity() {
         finish()
     }
 
-    private fun releasePlayer() {
-        if (timerPlayer != null && sharedPref.sound) {
-            timerPlayer!!.release()
-        }
+    private fun disableButtons() {
+        btn0.isClickable = false
+        btn1.isClickable = false
+        btn2.isClickable = false
+        btn3.isClickable = false
     }
 
     fun chooseAnswer(view: View?) {
-
-        //Log.i("GSon", "size: " + wordsList.getHardWords().size() + " | random: " + randomId + " | GSon: " + wordsList.getHardWords().get(randomId).getFrWord());
-        clickedBtn = view as Button?
-
-        //to make sure we don't verify the answer when clicking on the pause button
-        val answer = clickedBtn!!.text.toString() //we get the answer of the player
+        clickedBtn = view as? Button
+        clickedBtn ?: return // Return early if the cast fails
+        val answer = clickedBtn!!.text.toString()
         val strCorrect = resources.getString(R.string.correct)
         val strWrong = resources.getString(R.string.wrong)
         var isCorrect = false
+
         if (answer.equals(correctAnswer, ignoreCase = true)) {
             isCorrect = true
             playSound(isCorrect)
             points++
-
-            //change the color of the clicked button to green
-            clickedBtn!!.background =
-                ResourcesCompat.getDrawable(resources, R.drawable.rounded_green, null)
-            Handler(Looper.getMainLooper()).postDelayed({
-                //set its initial color
-                clickedBtn!!.background =
-                    ResourcesCompat.getDrawable(resources, R.drawable.rounded_btn, null)
-            }, 500)
+            changeButtonColor(clickedBtn!!, R.drawable.rounded_green)
             tvResult.text = strCorrect
         } else {
             if (wrong < maxWrongAnswers) {
                 playSound(isCorrect)
-
-                //change the color of the clicked button to red
-                clickedBtn!!.background =
-                    ResourcesCompat.getDrawable(resources, R.drawable.rounded_red, null)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    //set its initial color
-                    clickedBtn!!.background =
-                        ResourcesCompat.getDrawable(resources, R.drawable.rounded_btn, null)
-                }, 500)
+                changeButtonColor(clickedBtn!!, R.drawable.rounded_red)
                 tvResult.text = strWrong
                 wrong++
             } else {
                 gameOver()
             }
         }
+
+        updateUI()
+        generateQuestion()
+    }
+
+    private fun updateUI() {
         tvPoints.text = getString(R.string.points, points, numberOfQuestions)
         Handler(Looper.getMainLooper()).postDelayed({
-            //make the text disappear after 1s
             tvResult.text = ""
         }, 1000)
-        generateQuestion()
+    }
+
+    private fun changeButtonColor(button: Button, drawableResId: Int) {
+        button.background = ResourcesCompat.getDrawable(resources, drawableResId, null)
+        Handler(Looper.getMainLooper()).postDelayed({
+            button.background = ResourcesCompat.getDrawable(resources, R.drawable.rounded_btn, null)
+        }, 500)
     }
 
     private fun playSound(isCorrect: Boolean) {
         if (sharedPref.sound) {
-            if (isCorrect) {
-
-                //stops the previous sound
-                stopPlayer()
-                player = MediaPlayer.create(this, R.raw.correct_sound)
-                startPlayer(player)
-            } else {
-                //stops the previous sound
-                stopPlayer()
-                player = MediaPlayer.create(this, R.raw.incorrect_sound)
-                startPlayer(player)
-            }
+            val soundResId = if (isCorrect) R.raw.correct_sound else R.raw.incorrect_sound
+            stopPlayer()
+            player = MediaPlayer.create(this, soundResId)
+            startPlayer(player)
         }
     }
 
