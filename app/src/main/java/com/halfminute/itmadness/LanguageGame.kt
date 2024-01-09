@@ -1,5 +1,9 @@
 package com.halfminute.itmadness
 
+// Import static, hardcoded words.
+// These are purely used for testing purposes
+
+
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
@@ -15,6 +19,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import getStaticWordsData
 import java.util.Locale
 import java.util.Random
 
@@ -75,9 +80,11 @@ class LanguageGame : AppCompatActivity() {
         } catch (e: Exception) {
             Log.e("WordsLoading", "Error loading words: ${e.message}")
             e.printStackTrace()
-            Toast.makeText(this, "Failed to load words data.", Toast.LENGTH_LONG).show()
-            finish()
-            return
+            Toast.makeText(this, "Failed to load words data. Using static data.", Toast.LENGTH_LONG)
+                .show()
+
+            // Use static data as a fallback
+            words = getStaticWordsData()
         }
 
         random = Random()
@@ -122,6 +129,9 @@ class LanguageGame : AppCompatActivity() {
     }
 
     private fun startGame() {
+        Log.d("LanguageGame", "Current difficulty: $difficulty")
+        val wordList =
+            words?.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
         tvTimer.text = getString(R.string.timer_seconds, millisUntilFinished / 1000)
         tvPoints.text = getString(R.string.score_format, points, numberOfQuestions)
         generateQuestion()
@@ -169,6 +179,7 @@ class LanguageGame : AppCompatActivity() {
         val wordList =
             words?.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
         if (wordList.isNullOrEmpty()) {
+            Log.e("LanguageGame", "No words available for the selected difficulty: $difficulty")
             Toast.makeText(
                 this,
                 "No words available for the selected difficulty.",
