@@ -277,7 +277,7 @@ class LanguageGame : AppCompatActivity() {
                 gameOver()
             }
         }
-
+        
         updateUI()
         generateQuestion()
     }
