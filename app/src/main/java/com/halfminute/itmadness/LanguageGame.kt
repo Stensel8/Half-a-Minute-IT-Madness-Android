@@ -10,6 +10,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -48,7 +49,7 @@ class LanguageGame : AppCompatActivity() {
     private var timerPlayer: MediaPlayer? = null
     private var incorrectAnswers = mutableListOf<String>()
 
-    private lateinit var words: Words
+    private var words: Words? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +66,18 @@ class LanguageGame : AppCompatActivity() {
         difficulty = sharedPreferences.getString("difficulty", "easy") ?: "easy"
 
         setupOnBackPressedCallback()
-        words = Words.getInstance(this)
+        try {
+            words = Words.getInstance(this)
+            if (words == null) {
+                throw Exception("Words data is null")
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Failed to load words data.", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
         random = Random()
         startGame()
     }
@@ -153,7 +165,16 @@ class LanguageGame : AppCompatActivity() {
     private fun generateQuestion() {
         numberOfQuestions++
         val wordList =
-            words.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
+            words?.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
+        if (wordList.isNullOrEmpty()) {
+            Toast.makeText(
+                this,
+                "No words available for the selected difficulty.",
+                Toast.LENGTH_LONG
+            ).show()
+            gameOver()
+            return
+        }
         val word = wordList[random.nextInt(wordList.size)]
         setQuestionAndAnswer(word)
         setIncorrectAnswers()
@@ -198,10 +219,10 @@ class LanguageGame : AppCompatActivity() {
     private fun setIncorrectAnswers() {
         incorrectAnswers.clear()
         val wordList =
-            words.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
+            words?.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
 
         while (incorrectAnswers.size < 3) {
-            val incorrectWord = wordList[random.nextInt(wordList.size)]
+            val incorrectWord = wordList!![random.nextInt(wordList.size)]
             val incorrectAnswer = getIncorrectAnswer(incorrectWord)
             if (incorrectAnswer != correctAnswer && !incorrectAnswers.contains(incorrectAnswer)) {
                 incorrectAnswers.add(incorrectAnswer)
@@ -277,7 +298,7 @@ class LanguageGame : AppCompatActivity() {
                 gameOver()
             }
         }
-        
+
         updateUI()
         generateQuestion()
     }

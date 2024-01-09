@@ -29,10 +29,15 @@ data class Words(
     }
 
     companion object {
-        fun getInstance(context: Context): Words {
-            val inputStream = context.resources.openRawResource(R.raw.wordjsondata)
-            val jsonContent = inputStream.bufferedReader().use { it.readText() }
-            return Gson().fromJson(jsonContent, Words::class.java)
+        fun getInstance(context: Context): Words? {
+            return try {
+                val inputStream = context.resources.openRawResource(R.raw.wordjsondata)
+                val jsonContent = inputStream.bufferedReader().use { it.readText() }
+                Gson().fromJson(jsonContent, Words::class.java)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
         }
     }
 }
