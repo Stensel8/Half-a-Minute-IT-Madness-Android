@@ -72,18 +72,18 @@ class LanguageGame : AppCompatActivity() {
         difficulty = sharedPreferences.getString("difficulty", "easy") ?: "easy"
 
         setupOnBackPressedCallback()
+        // Try to load words. Otherwise use static words for fallback.
         try {
             words = Words.getInstance(this)
             if (words == null) {
-                throw Exception("Words data is null")
+                Log.d("LanguageGame", "Using static data as fallback.")
+                words = getStaticWordsData()
+                Log.d("LanguageGame", "Static words loaded: ${words?.easyWords?.size} easy words")
             }
         } catch (e: Exception) {
-            Log.e("WordsLoading", "Error loading words: ${e.message}")
-            e.printStackTrace()
+            Log.e("LanguageGame", "Error loading words: ${e.message}", e)
             Toast.makeText(this, "Failed to load words data. Using static data.", Toast.LENGTH_LONG)
                 .show()
-
-            // Use static data as a fallback
             words = getStaticWordsData()
         }
 
@@ -178,20 +178,38 @@ class LanguageGame : AppCompatActivity() {
         numberOfQuestions++
         val wordList =
             words?.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
+
+        Log.d("LanguageGame", "generateQuestion called. Difficulty: $difficulty")
+        Log.d("LanguageGame", "WordList size: ${wordList?.size ?: "null"}")
+
         if (wordList.isNullOrEmpty()) {
             Log.e("LanguageGame", "No words available for the selected difficulty: $difficulty")
-            Toast.makeText(
-                this,
-                "No words available for the selected difficulty.",
-                Toast.LENGTH_LONG
-            ).show()
-            gameOver()
+            handleNoWordsAvailable()
             return
         }
+
         val word = wordList[random.nextInt(wordList.size)]
-        setQuestionAndAnswer(word)
-        setIncorrectAnswers()
+        Log.d("LanguageGame", "Selected word: ${word.nlWord}")
     }
+
+    private fun handleNoWordsAvailable() {
+        // Handle the scenario when no words are available for the selected difficulty
+        Toast.makeText(
+            this,
+            "No words available for the selected difficulty: $difficulty.",
+            Toast.LENGTH_LONG
+        ).show()
+        // You can decide to redirect the user, load default words, etc.
+    }
+
+    private fun displayCustomToastMessage(wordList: List<Word>?) {
+        val message = when {
+            wordList.isNullOrEmpty() -> "No words available for the selected difficulty: $difficulty."
+            else -> "An unexpected error occurred."
+        }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
 
     private fun setQuestionAndAnswer(word: Word) {
         when (chosenGame) {
@@ -250,6 +268,18 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    private fun getCorrectAnswer(word: Word): String {
+        return when (chosenGame) {
+            "NlToEn" -> word.enWord
+            "EnToNl" -> word.nlWord
+            "DeToEn" -> word.enWord
+            "EnToDe" -> word.deWord
+            "FrToEn" -> word.enWord
+            "EnToFr" -> word.frWord
+            else -> ""
+        }
+    }
+
     private fun getIncorrectAnswer(word: Word): String {
         return when (chosenGame) {
             "NlToEn" -> word.nlWord
@@ -263,6 +293,10 @@ class LanguageGame : AppCompatActivity() {
     }
 
     private fun gameOver() {
+        Log.d(
+            "LanguageGame",
+            "gameOver() called. Current state: Points: $points, Wrong: $wrong, Difficulty: $difficulty"
+        )
         if (countDownTimer != null) {
             countDownTimer!!.cancel()
         }
