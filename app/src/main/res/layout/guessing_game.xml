@@ -91,7 +91,7 @@
         android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessing_game"
-        android:textColor="#455A64"
+        android:textColor="#fcfbdc"
         android:textSize="24sp" />
 
     <!-- Button word 2 -->
@@ -105,7 +105,7 @@
         android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessing_game"
-        android:textColor="#455A64"
+        android:textColor="#fcfbdc"
         android:textSize="24sp" />
 
     <!-- Button word 3 -->
@@ -119,7 +119,7 @@
         android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessing_game"
-        android:textColor="#455A64"
+        android:textColor="#fcfbdc"
         android:textSize="24sp" />
 
     <!-- Button word 4 -->
@@ -133,7 +133,7 @@
         android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessing_game"
-        android:textColor="#455A64"
+        android:textColor="#fcfbdc"
         android:textSize="24sp" />
 
 </LinearLayout>

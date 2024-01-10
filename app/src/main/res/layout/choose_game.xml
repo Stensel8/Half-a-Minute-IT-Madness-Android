@@ -41,7 +41,7 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/mathGameButton"
-            android:textColor="#455A64"
+            android:textColor="#fcfbdc"
             android:textSize="24sp"
             android:fontFamily="@font/segoeuib"/>
 
@@ -58,7 +58,7 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/languageGameButton"
-            android:textColor="#455A64"
+            android:textColor="#fcfbdc"
             android:textSize="24sp"
             android:fontFamily="@font/segoeuib"/>
 
@@ -75,7 +75,7 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/guessingGameButton"
-            android:textColor="#455A64"
+            android:textColor="@color/buttonTextColor"
             android:textSize="24sp"
             android:fontFamily="@font/segoeuib"/>
     </LinearLayout>

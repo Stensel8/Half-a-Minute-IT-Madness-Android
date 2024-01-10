@@ -47,7 +47,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/DutchToEnglish"
-                android:textColor="#4E342E"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="18sp"
                 tools:text="@string/DutchToEnglish"
                 android:fontFamily="@font/segoeuib"/>
@@ -63,7 +63,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToDutch"
-                android:textColor="#4E342E"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="18sp"
                 android:fontFamily="@font/segoeuib"/>
 
@@ -87,7 +87,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/GermanToEnglish"
-                android:textColor="#4E342E"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="18sp"
                 android:fontFamily="@font/segoeuib"/>
 
@@ -112,7 +112,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToGerman"
-                android:textColor="#4E342E"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="18sp"
                 android:fontFamily="@font/segoeuib"/>
 
@@ -127,7 +127,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/FrenchToEnglish"
-                android:textColor="#4E342E"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="18sp"
                 android:fontFamily="@font/segoeuib"/>
 
@@ -141,7 +141,7 @@
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToFrench"
-                android:textColor="#4E342E"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="18sp"
                 android:fontFamily="@font/segoeuib"/>
 
