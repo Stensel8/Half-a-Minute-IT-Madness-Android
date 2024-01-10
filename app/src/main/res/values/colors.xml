@@ -19,8 +19,10 @@
     <color name="button3Color">#44d80a</color>
     <color name="button4Color">#0886ff</color>
 
+    <!-- old colors from dead built (might need later)
+    // <color name="colorPrimary">#00b58d</color>
+    // <color name="colorPrimaryDark">#34495e</color> -->
+
 </resources>
 
-//old colors from dead built (might need later)
-//    <color name="colorPrimary">#00b58d</color>
-//<color name="colorPrimaryDark">#34495e</color>
+
