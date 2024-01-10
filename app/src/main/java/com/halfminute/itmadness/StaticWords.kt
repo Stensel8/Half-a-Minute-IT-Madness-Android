@@ -7,13 +7,13 @@ enum class Difficulty {
 
 fun getStaticWordsData(): Words {
     val easyWords = listOf(
-        Word("Bonjour", "Goeiedag", "Hello", "Hallo"),
+        Word("Dit is test 1", "Dit is test 2", "Dit is test 3", "Dit is test 4"),
     )
     val mediumWords = listOf(
-        Word("Bonjour", "Goeiedag", "Hello", "Hallo"),
+        Word("Dit is test 1", "Dit is test 2", "Dit is test 3", "Dit is test 4"),
     )
     val hardWords = listOf(
-        Word("Bonjour", "Goeiedag", "Hello", "Hallo"),
+        Word("Dit is test 1", "Dit is test 2", "Dit is test 3", "Dit is test 4"),
     )
     return Words(easyWords, mediumWords, hardWords)
 }
