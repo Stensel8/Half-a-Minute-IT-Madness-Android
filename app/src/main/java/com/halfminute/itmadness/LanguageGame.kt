@@ -1,9 +1,5 @@
 package com.halfminute.itmadness
 
-// Import static, hardcoded words.
-// These are purely used for testing purposes
-
-
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
@@ -15,83 +11,67 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import getStaticWordsData
+import com.google.gson.Gson
 import java.util.Locale
 import java.util.Random
 
+
+//TODO: Fix the logic inside the LanguageGame.kt. Currently, it's just using wrong languages.
+// I think this is because of the buttons that i accidentally "swapped" for the wrong functions.
+
+//TODO: Also, I think I forgot something,
+// because the German language is crashing when on medium or hard mode. Easy one is working just fine.
 class LanguageGame : AppCompatActivity() {
-    private lateinit var sharedPref: SharedPref
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var pref: SharedPreferences
-    private lateinit var random: Random
-    private lateinit var tvQuestion: TextView
-    private lateinit var tvTimer: TextView
-    private lateinit var tvPoints: TextView
-    private lateinit var tvResult: TextView
-    private lateinit var tvLives: TextView
-    private lateinit var tvDifficulty: TextView
-    private lateinit var btn0: Button
-    private lateinit var btn1: Button
-    private lateinit var btn2: Button
-    private lateinit var btn3: Button
+    private var sharedPref: SharedPref? = null
+    private var sharedPreferences: SharedPreferences? = null
+    private var pref: SharedPreferences? = null
+    private var random: Random? = null
+    private var correctAnswer: String? = null
+    private var savedLanguage: String? = null
+    var chosenGame: String? = null
+    private var difficulty: String? = null
+    private var tvQuestion: TextView? = null
+    var tvTimer: TextView? = null
+    private var tvPoints: TextView? = null
+    private var tvResult: TextView? = null
+    private var tvLives: TextView? = null
+    private var tvDifficulty: TextView? = null
+    private var btn0: Button? = null
+    private var btn1: Button? = null
+    private var btn2: Button? = null
+    private var btn3: Button? = null
     private var clickedBtn: Button? = null
-    private var countDownTimer: CountDownTimer? = null
-    private var millisUntilFinished: Long = 30100
+    var countDownTimer: CountDownTimer? = null
+    var millisUntilFinished: Long = 0
     private var points = 0
     private var wrong = 0
-    private var maxWrongAnswers = 2
+    private var maxWrongAnswers = 0
     private var numberOfQuestions = 0
+    private var randomId = 0
+    private var previousRandom = 0
     private lateinit var btnIds: IntArray
     private var correctAnswerPosition = 0
-    private lateinit var correctAnswer: String
-    private lateinit var savedLanguage: String
-    private lateinit var chosenGame: String
-    private lateinit var difficulty: String
+    private var incorrectAnswers: ArrayList<String>? = null
+    private var gson: Gson? = null
+    private var wordsList: Words? = null
     private var player: MediaPlayer? = null
     private var timerPlayer: MediaPlayer? = null
-    private var incorrectAnswers = mutableListOf<String>()
-
-    private var words: Words? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        // Check dark mode
         sharedPref = SharedPref(this)
-        setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
-        sharedPref.loadLocale(this)
+        setTheme(if (sharedPref!!.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
+        sharedPref!!.loadLocale(this) // Loads the saved language
         pref = getSharedPreferences("Settings", MODE_PRIVATE)
-        savedLanguage = pref.getString("My lang", Locale.getDefault().language) ?: ""
+        savedLanguage =
+            pref?.getString("My lang", Locale.getDefault().language) // Current language of the game
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.language_test)
 
-        initializeViews()
-        chosenGame = intent.getStringExtra("chosenGame") ?: ""
-        sharedPreferences = getSharedPreferences("gameDifficulty", MODE_PRIVATE)
-        difficulty = sharedPreferences.getString("difficulty", "easy") ?: "easy"
-
-        setupOnBackPressedCallback()
-        // Try to load words. Otherwise use static words for fallback.
-        try {
-            words = Words.getInstance(this)
-            if (words == null) {
-                Log.d("LanguageGame", "Using static data as fallback.")
-                words = getStaticWordsData()
-                Log.d("LanguageGame", "Static words loaded: ${words?.easyWords?.size} easy words")
-            }
-        } catch (e: Exception) {
-            Log.e("LanguageGame", "Error loading words: ${e.message}", e)
-            Toast.makeText(this, "Failed to load words data. Using static data.", Toast.LENGTH_LONG)
-                .show()
-            words = getStaticWordsData()
-        }
-
-        random = Random()
-        startGame()
-    }
-
-    private fun initializeViews() {
+        // Initialize variables
+        correctAnswer = "" // The answer of the question
         tvTimer = findViewById(R.id.tvTimer)
         tvPoints = findViewById(R.id.tvPoints)
         tvQuestion = findViewById(R.id.tvQuestion)
@@ -102,55 +82,80 @@ class LanguageGame : AppCompatActivity() {
         btn3 = findViewById(R.id.btn3)
         tvLives = findViewById(R.id.tvLives)
         tvDifficulty = findViewById(R.id.tvDifficulty2)
-        btnIds = intArrayOf(R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3)
-    }
+        millisUntilFinished = 30100 // 30 seconds used for the timer
+        points = 0
+        wrong = 0 // The wrong answers from the player
+        maxWrongAnswers = 2 // The maximum wrong answers allowed
+        numberOfQuestions = 0
+        random = Random()
+        randomId = 0 // Random used to get the question
+        previousRandom =
+            Int.MAX_VALUE // Random from the previous question // It is initialized to max Int to be sure that the first random will not be the same as this random
+        btnIds = intArrayOf(R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3) // The id's of the 4 buttons
+        correctAnswerPosition = 0
+        incorrectAnswers = ArrayList() // ArrayList with all the incorrect answers
+        gson = Gson() // A Google library used to facilitate the use of JSON files
+        wordsList = gson!!.fromJson(
+            WordsJson.myWords, Words::class.java
+        ) // We get the JSON string in the WordsJson class
+        chosenGame = intent.getStringExtra("chosenGame")
+        sharedPreferences = getSharedPreferences("gameDifficulty", MODE_PRIVATE)
+        difficulty = sharedPreferences?.getString("difficulty", "easy") ?: "easy"
 
-    private fun setupOnBackPressedCallback() {
-        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                countDownTimer?.cancel()
-                startActivity(Intent(this@LanguageGame, ChooseLanguageGame::class.java))
-                finish()
+
+        // Create a callback for onBackPressed
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+                    countDownTimer?.cancel()
+                    val intent = Intent(this@LanguageGame, ChooseLanguageGame::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
-        }
-        onBackPressedDispatcher.addCallback(this, callback)
+
+        onBackPressedDispatcher.addCallback(
+            this, callback
+        ) // Add the callback to the onBackPressedDispatcher
         startGame()
+
     }
 
     fun pauseGame(view: View) {
+        // Saves the current game we're playing
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
+        val editor = sharedPreferences!!.edit()
         editor.putString("actualGame", chosenGame)
         editor.apply()
-        countDownTimer?.cancel()
+        countDownTimer!!.cancel()
         val intent = Intent(this@LanguageGame, PauseMenu::class.java)
+        releasePlayer()
         startActivity(intent)
         finish()
     }
 
     private fun startGame() {
-        Log.d("LanguageGame", "Current difficulty: $difficulty")
-        val wordList =
-            words?.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
-        tvTimer.text = getString(R.string.timer_seconds, millisUntilFinished / 1000)
-        tvPoints.text = getString(R.string.score_format, points, numberOfQuestions)
+        tvTimer!!.text = getString(R.string.timer_seconds, millisUntilFinished / 1000)
+        tvPoints!!.text = getString(R.string.score_format, points, numberOfQuestions)
         generateQuestion()
         countDownTimer = object : CountDownTimer(millisUntilFinished, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
-                val initialColor = tvTimer.currentTextColor
-                tvTimer.text = getString(R.string.timer_seconds, seconds)
+                val initialColor = tvTimer!!.currentTextColor
+                tvTimer!!.text = getString(R.string.timer_seconds, seconds)
                 if (seconds <= 5) {
                     if (seconds == 5L) {
                         timerPlayer =
                             MediaPlayer.create(this@LanguageGame, R.raw.five_sec_countdown)
                         playTimerSound()
                     }
-                    tvTimer.setTextColor(resources.getColor(R.color.wrong, theme))
-                    tvTimer.textSize = 26f
+                    tvTimer!!.setTextColor(resources.getColor(R.color.wrong, theme))
+                    tvTimer!!.textSize = 26f
                     Handler(Looper.getMainLooper()).postDelayed({
-                        tvTimer.textSize = 24f
-                        tvTimer.setTextColor(initialColor)
+
+                        // set it initial color and size
+                        tvTimer!!.textSize = 24f
+                        tvTimer!!.setTextColor(initialColor)
                     }, 300)
                 }
             }
@@ -161,148 +166,713 @@ class LanguageGame : AppCompatActivity() {
         }.start()
     }
 
-    private fun releasePlayer() {
-        if (timerPlayer != null && sharedPref.sound) {
-            timerPlayer!!.release()
-        }
-    }
-
-
     private fun playTimerSound() {
-        if (sharedPref.sound) {
+        if (sharedPref!!.sound) {
             startPlayer(timerPlayer)
         }
     }
 
+    // Define a data class to represent the game difficulty
     private fun generateQuestion() {
         numberOfQuestions++
-        val wordList =
-            words?.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
 
-        Log.d("LanguageGame", "generateQuestion called. Difficulty: $difficulty")
-        Log.d("LanguageGame", "WordList size: ${wordList?.size ?: "null"}")
+        Log.d("Language", "Saved Language: $savedLanguage")
+/////////////////////// easy mode /////////////////////////
+        if (difficulty.equals("easy", ignoreCase = true)) {
+            tvDifficulty!!.text = resources.getString(R.string.difficultyEasy)
+            randomId = random!!.nextInt(wordsList!!.easyWords.size)
+            while (randomId == previousRandom) {
+                randomId = random!!.nextInt(wordsList!!.easyWords.size)
+            }
+            maxWrongAnswers = 5
+            when (savedLanguage) {
+                "fr" -> {
+                    val question: String
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.easyWords[randomId].nlWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].frWord
+                        }
 
-        if (wordList.isNullOrEmpty()) {
-            Log.e("LanguageGame", "No words available for the selected difficulty: $difficulty")
-            handleNoWordsAvailable()
-            return
+                        "EnToNl" -> {
+                            question = wordsList!!.easyWords[randomId].frWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].nlWord
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.easyWords[randomId].deWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.easyWords[randomId].enWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].deWord
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.easyWords[randomId].enWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].frWord
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.easyWords[randomId].frWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                        }
+                    }
+                }
+
+                "nl" -> {
+                    val question: String
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.easyWords[randomId].enWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].nlWord
+                        }
+
+                        "EnToNl" -> {
+                            question = wordsList!!.easyWords[randomId].nlWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].frWord
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.easyWords[randomId].deWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.easyWords[randomId].enWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].deWord
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.easyWords[randomId].frWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].nlWord
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.easyWords[randomId].nlWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                        }
+                    }
+                }
+
+                else -> {
+                    val question: String
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.easyWords[randomId].nlWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                        }
+
+                        "EnToNl" -> {
+                            question = wordsList!!.easyWords[randomId].enWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].nlWord
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.easyWords[randomId].deWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.easyWords[randomId].enWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].deWord
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.easyWords[randomId].frWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.easyWords[randomId].enWord
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.easyWords[randomId].frWord
+                        }
+                    }
+                }
+            }
+
+///////////////////// medium mode /////////////////////////
+        } else if (difficulty.equals("medium", ignoreCase = true)) {
+            tvDifficulty!!.text = resources.getString(R.string.difficultyMedium)
+            randomId = random!!.nextInt(wordsList!!.mediumWords.size)
+            while (randomId == previousRandom) {
+                randomId = random!!.nextInt(wordsList!!.mediumWords.size)
+            }
+            var question: String
+            if (savedLanguage == "de") {
+                when (chosenGame) {
+                    "NlToEn" -> {
+                        question = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                    }
+
+                    "EnToNl" -> {
+                        question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                    }
+
+                    "DeToEn" -> {
+                        question = wordsList!!.mediumWords[randomId].getMediumDeWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                    }
+
+                    "EnToDe" -> {
+                        question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.mediumWords[randomId].getMediumDeWord()
+                    }
+
+                    "FrToEn" -> {
+                        question = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                    }
+
+                    "EnToFr" -> {
+                        question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                    }
+                }
+            }
+            when (savedLanguage) {
+                "fr" -> {
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                        }
+
+                        "EnToNl" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumDeWord()
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+                    }
+                }
+
+                "nl" -> {
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                        }
+
+                        "EnToNl" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumDeWord()
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+                    }
+                }
+
+                else -> {
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+
+                        "EnToNl" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumNlWord()
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumDeWord()
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.mediumWords[randomId].getMediumFrWord()
+                        }
+                    }
+                }
+            }
+
+/////////////////////// hard mode /////////////////////////
+        } else {
+            tvDifficulty!!.text = resources.getString(R.string.difficultyHard)
+            randomId = random!!.nextInt(wordsList!!.hardWords.size)
+            while (randomId == previousRandom) {
+                randomId = random!!.nextInt(wordsList!!.hardWords.size)
+            }
+            var question: String
+            if (savedLanguage == "de") {
+                when (chosenGame) {
+                    "NlToEn" -> {
+                        question = wordsList!!.hardWords[randomId].getHardNlWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                    }
+
+                    "EnToNl" -> {
+                        question = wordsList!!.hardWords[randomId].getHardEnWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.hardWords[randomId].getHardNlWord()
+                    }
+
+                    "DeToEn" -> {
+                        question = wordsList!!.hardWords[randomId].getHardDeWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                    }
+
+                    "EnToDe" -> {
+                        question = wordsList!!.hardWords[randomId].getHardEnWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.hardWords[randomId].getHardDeWord()
+                    }
+
+                    "FrToEn" -> {
+                        question = wordsList!!.hardWords[randomId].getHardFrWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                    }
+
+                    "EnToFr" -> {
+                        question = wordsList!!.hardWords[randomId].getHardEnWord()
+                        tvQuestion!!.text = question
+                        correctAnswer = wordsList!!.hardWords[randomId].getHardFrWord()
+                    }
+                }
+            }
+            when (savedLanguage) {
+                "fr" -> {
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardNlWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardFrWord()
+                        }
+
+                        "EnToNl" -> {
+                            question = wordsList!!.hardWords[randomId].getHardFrWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardNlWord()
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardDeWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.hardWords[randomId].getHardEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardDeWord()
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardFrWord()
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.hardWords[randomId].getHardFrWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+                    }
+                }
+
+                "nl" -> {
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardNlWord()
+                        }
+
+                        "EnToNl" -> {
+                            question = wordsList!!.hardWords[randomId].getHardNlWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardFrWord()
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardDeWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.hardWords[randomId].getHardEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardDeWord()
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardFrWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardNlWord()
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.hardWords[randomId].getHardNlWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+                    }
+                }
+
+                else -> {
+                    when (chosenGame) {
+                        "NlToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardNlWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+
+                        "EnToNl" -> {
+                            question = wordsList!!.hardWords[randomId].getHardEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardNlWord()
+                        }
+
+                        "DeToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardDeWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+
+                        "EnToDe" -> {
+                            question = wordsList!!.hardWords[randomId].getHardEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardDeWord()
+                        }
+
+                        "FrToEn" -> {
+                            question = wordsList!!.hardWords[randomId].getHardFrWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+
+                        "EnToFr" -> {
+                            question = wordsList!!.hardWords[randomId].getHardEnWord()
+                            tvQuestion!!.text = question
+                            correctAnswer = wordsList!!.hardWords[randomId].getHardFrWord()
+                        }
+                    }
+                }
+            }
         }
 
-        val word = wordList[random.nextInt(wordList.size)]
-        Log.d("LanguageGame", "Selected word: ${word.nlWord}")
-    }
+        //we store the random to check it on the next question
+        previousRandom = randomId
 
-    private fun handleNoWordsAvailable() {
-        // Handle the scenario when no words are available for the selected difficulty
-        Toast.makeText(
-            this,
-            "No words available for the selected difficulty: $difficulty.",
-            Toast.LENGTH_LONG
-        ).show()
-        // You can decide to redirect the user, load default words, etc.
-    }
+        //update the live of the player on every question
+        tvLives!!.text = getString(R.string.lives, maxWrongAnswers + 1 - wrong)
 
-    private fun displayCustomToastMessage(wordList: List<Word>?) {
-        val message = when {
-            wordList.isNullOrEmpty() -> "No words available for the selected difficulty: $difficulty."
-            else -> "An unexpected error occurred."
+        //little bonus when you're at the 30th question
+        if (numberOfQuestions == 31) {
+            correctAnswer = "30 seconds game"
+            tvQuestion!!.text = getString(R.string.game_time)
         }
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
 
-
-    private fun setQuestionAndAnswer(word: Word) {
-        when (chosenGame) {
-            "NlToEn" -> {
-                tvQuestion.text = word.nlWord
-                correctAnswer = word.enWord
-            }
-
-            "EnToNl" -> {
-                tvQuestion.text = word.enWord
-                correctAnswer = word.nlWord
-            }
-
-            "DeToEn" -> {
-                tvQuestion.text = word.deWord
-                correctAnswer = word.enWord
-            }
-
-            "EnToDe" -> {
-                tvQuestion.text = word.enWord
-                correctAnswer = word.deWord
-            }
-
-            "FrToEn" -> {
-                tvQuestion.text = word.frWord
-                correctAnswer = word.enWord
-            }
-
-            "EnToFr" -> {
-                tvQuestion.text = word.enWord
-                correctAnswer = word.frWord
-            }
-        }
-        correctAnswerPosition = random.nextInt(4)
+        //get a random position between the 4 buttons
+        correctAnswerPosition = random!!.nextInt(4)
         (findViewById<View>(btnIds[correctAnswerPosition]) as Button).text = correctAnswer
+        setIncorrectAnswers()
     }
 
+    //assign the incorrect answers to the other buttons
     private fun setIncorrectAnswers() {
-        incorrectAnswers.clear()
-        val wordList =
-            words?.getWordsByDifficulty(Difficulty.valueOf(difficulty.uppercase(Locale.ROOT)))
+        while (true) {
 
-        while (incorrectAnswers.size < 3) {
-            val incorrectWord = wordList!![random.nextInt(wordList.size)]
-            val incorrectAnswer = getIncorrectAnswer(incorrectWord)
-            if (incorrectAnswer != correctAnswer && !incorrectAnswers.contains(incorrectAnswer)) {
-                incorrectAnswers.add(incorrectAnswer)
+            ///////////////////// easy mode //////////////////////////
+            var incorrectAnswer = ""
+            if (difficulty.equals("easy", ignoreCase = true) && incorrectAnswers!!.size <= 3) {
+                randomId = random!!.nextInt(wordsList!!.easyWords.size)
+
+                when (savedLanguage) {
+                    "de" -> {
+                        incorrectAnswer = when (chosenGame) {
+                            "NlToEn" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "EnToNl" -> wordsList!!.easyWords[randomId].getEasyNlWord()
+                            "DeToEn" -> wordsList!!.easyWords[randomId].getEasyEnWord()
+                            "EnToDe" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "FrToEn" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "EnToFr" -> wordsList!!.easyWords[randomId].getEasyEnWord()
+
+                            else -> ""
+                        }
+                    }
+
+                    "fr" -> {
+                        incorrectAnswer = when (chosenGame) {
+                            "NlToEn" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "EnToNl" -> wordsList!!.easyWords[randomId].getEasyNlWord()
+                            "DeToEn" -> wordsList!!.easyWords[randomId].getEasyEnWord()
+                            "EnToDe" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "FrToEn" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "EnToFr" -> wordsList!!.easyWords[randomId].getEasyEnWord()
+
+                            else -> ""
+                        }
+                    }
+
+                    "nl" -> {
+                        incorrectAnswer = when (chosenGame) {
+                            "NlToEn" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "EnToNl" -> wordsList!!.easyWords[randomId].getEasyNlWord()
+                            "DeToEn" -> wordsList!!.easyWords[randomId].getEasyEnWord()
+                            "EnToDe" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "FrToEn" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "EnToFr" -> wordsList!!.easyWords[randomId].getEasyEnWord()
+
+                            else -> ""
+                        }
+                    }
+
+                    else -> {
+                        incorrectAnswer = when (chosenGame) {
+                            "NlToEn" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "EnToNl" -> wordsList!!.easyWords[randomId].getEasyNlWord()
+                            "DeToEn" -> wordsList!!.easyWords[randomId].getEasyEnWord()
+                            "EnToDe" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "FrToEn" -> wordsList!!.easyWords[randomId].getEasyDeWord()
+                            "EnToFr" -> wordsList!!.easyWords[randomId].getEasyEnWord()
+
+                            else -> ""
+                        }
+                    }
+                }
+
+
+                // To make sure we never get multiple correct answers
+                if (incorrectAnswer == correctAnswer) continue
+                //to make sure we never get the same incorrect answer on the other buttons
+                if (incorrectAnswers!!.contains(incorrectAnswer)) continue
+                incorrectAnswers!!.add(incorrectAnswer)
+
+                ///////////////////// medium mode //////////////////////////
+            } else if (difficulty.equals("medium", ignoreCase = true)) {
+                if (incorrectAnswers!!.size > 3) {
+                    break
+                }
+                randomId = random!!.nextInt(wordsList!!.mediumWords.size)
+                when (savedLanguage) {
+                    "fr" -> {
+                        when (chosenGame) {
+                            "NlToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToNl" -> wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            "DeToEn" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            "EnToDe" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "FrToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToFr" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+                    }
+
+                    "nl" -> {
+                        when (chosenGame) {
+                            "NlToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToNl" -> wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            "DeToEn" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            "EnToDe" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "FrToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToFr" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+                    }
+
+                    "de" -> {
+                        when (chosenGame) {
+                            "NlToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToNl" -> wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            "DeToEn" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            "EnToDe" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "FrToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToFr" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+                    }
+
+                    "en" -> {
+                        when (chosenGame) {
+                            "NlToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToNl" -> wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            "DeToEn" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            "EnToDe" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "FrToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToFr" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+                    }
+
+                    else -> {
+                        when (chosenGame) {
+                            "NlToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToNl" -> wordsList!!.mediumWords[randomId].getMediumNlWord()
+                            "DeToEn" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                            "EnToDe" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "FrToEn" -> wordsList!!.mediumWords[randomId].getMediumDeWord()
+                            "EnToFr" -> wordsList!!.mediumWords[randomId].getMediumEnWord()
+                        }
+                    }
+                }
+                if (incorrectAnswer == correctAnswer) continue
+                if (incorrectAnswers!!.contains(incorrectAnswer)) continue
+                incorrectAnswers!!.add(incorrectAnswer)
+
+                ///////////////////// hard mode //////////////////////////
+            } else {
+                if (incorrectAnswers!!.size > 3) {
+                    break
+                }
+                randomId = random!!.nextInt(wordsList!!.hardWords.size)
+                when (savedLanguage) {
+                    "fr" -> {
+                        when (chosenGame) {
+                            "NlToEn", "FrToEn", "EnToNl" -> incorrectAnswer =
+                                wordsList!!.hardWords[randomId].getHardFrWord()
+
+                            "EnToFr" -> incorrectAnswer =
+                                wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+                    }
+
+                    "nl" -> {
+                        when (chosenGame) {
+                            "NlToEn", "FrToEn" -> incorrectAnswer =
+                                wordsList!!.hardWords[randomId].getHardNlWord()
+
+                            "EnToNl" -> incorrectAnswer =
+                                wordsList!!.hardWords[randomId].getHardFrWord()
+
+                            "EnToFr" -> incorrectAnswer =
+                                wordsList!!.hardWords[randomId].getHardEnWord()
+                        }
+                    }
+
+                    else -> {
+                        when (chosenGame) {
+                            "NlToEn", "FrToEn" -> incorrectAnswer =
+                                wordsList!!.hardWords[randomId].getHardEnWord()
+
+                            "EnToNl" -> incorrectAnswer =
+                                wordsList!!.hardWords[randomId].getHardNlWord()
+
+                            "EnToFr" -> incorrectAnswer =
+                                wordsList!!.hardWords[randomId].getHardFrWord()
+                        }
+                    }
+                }
+                if (incorrectAnswer == correctAnswer) continue
+                if (incorrectAnswers!!.contains(incorrectAnswer)) continue
+                incorrectAnswers!!.add(incorrectAnswer)
             }
         }
 
-        var btnIndex = 0
-        for (i in btnIds.indices) {
-            if (i != correctAnswerPosition) {
-                (findViewById<View>(btnIds[i]) as Button).text = incorrectAnswers[btnIndex++]
-            }
+        //get all the incorrect answers and assign them to a button one by one
+        for (i in 0..3) {
+            //doesn't put an incorrect answer at the correct answer's button
+            if (i == correctAnswerPosition) continue
+            (findViewById<View>(btnIds[i]) as Button).text = incorrectAnswers!![i]
         }
-    }
 
-    private fun getCorrectAnswer(word: Word): String {
-        return when (chosenGame) {
-            "NlToEn" -> word.enWord
-            "EnToNl" -> word.nlWord
-            "DeToEn" -> word.enWord
-            "EnToDe" -> word.deWord
-            "FrToEn" -> word.enWord
-            "EnToFr" -> word.frWord
-            else -> ""
-        }
-    }
-
-    private fun getIncorrectAnswer(word: Word): String {
-        return when (chosenGame) {
-            "NlToEn" -> word.nlWord
-            "EnToNl" -> word.enWord
-            "DeToEn" -> word.deWord
-            "EnToDe" -> word.enWord
-            "FrToEn" -> word.frWord
-            "EnToFr" -> word.enWord
-            else -> ""
-        }
+        //now that all the buttons are assigned, we have to clear the arrayList for the next question
+        incorrectAnswers!!.clear()
     }
 
     private fun gameOver() {
-        Log.d(
-            "LanguageGame",
-            "gameOver() called. Current state: Points: $points, Wrong: $wrong, Difficulty: $difficulty"
-        )
         if (countDownTimer != null) {
             countDownTimer!!.cancel()
         }
-        disableButtons()
+        btn0!!.isClickable = false
+        btn1!!.isClickable = false
+        btn2!!.isClickable = false
+        btn3!!.isClickable = false
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
+        val editor = sharedPreferences!!.edit()
         editor.putString("actualGame", chosenGame)
         editor.apply()
         val intent = Intent(this@LanguageGame, GameOver::class.java)
@@ -314,62 +884,76 @@ class LanguageGame : AppCompatActivity() {
         finish()
     }
 
-    private fun disableButtons() {
-        btn0.isClickable = false
-        btn1.isClickable = false
-        btn2.isClickable = false
-        btn3.isClickable = false
+    private fun releasePlayer() {
+        if (timerPlayer != null && sharedPref!!.sound) {
+            timerPlayer!!.release()
+        }
     }
 
     fun chooseAnswer(view: View?) {
-        clickedBtn = view as? Button
-        clickedBtn ?: return // Return early if the cast fails
-        val answer = clickedBtn!!.text.toString()
+
+        //Log.i("GSon", "size: " + wordsList.getHardWords().size() + " | random: " + randomId + " | GSon: " + wordsList.getHardWords().get(randomId).getFrWord());
+        clickedBtn = view as Button?
+
+        //to make sure we don't verify the answer when clicking on the pause button
+        val answer = clickedBtn!!.text.toString() //we get the answer of the player
         val strCorrect = resources.getString(R.string.correct)
         val strWrong = resources.getString(R.string.wrong)
         var isCorrect = false
-
         if (answer.equals(correctAnswer, ignoreCase = true)) {
             isCorrect = true
             playSound(isCorrect)
             points++
-            changeButtonColor(clickedBtn!!, R.drawable.rounded_green)
-            tvResult.text = strCorrect
+
+            //change the color of the clicked button to green
+            clickedBtn!!.background =
+                ResourcesCompat.getDrawable(resources, R.drawable.rounded_green, null)
+            Handler(Looper.getMainLooper()).postDelayed({
+                //set its initial color
+                clickedBtn!!.background =
+                    ResourcesCompat.getDrawable(resources, R.drawable.rounded_btn, null)
+            }, 500)
+            tvResult!!.text = strCorrect
         } else {
             if (wrong < maxWrongAnswers) {
                 playSound(isCorrect)
-                changeButtonColor(clickedBtn!!, R.drawable.rounded_red)
-                tvResult.text = strWrong
+
+                //change the color of the clicked button to red
+                clickedBtn!!.background =
+                    ResourcesCompat.getDrawable(resources, R.drawable.rounded_red, null)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    //set its initial color
+                    clickedBtn!!.background =
+                        ResourcesCompat.getDrawable(resources, R.drawable.rounded_btn, null)
+                }, 500)
+                tvResult!!.text = strWrong
                 wrong++
             } else {
                 gameOver()
             }
         }
-
-        updateUI()
+        tvPoints!!.text = getString(R.string.points, points, numberOfQuestions)
+        Handler(Looper.getMainLooper()).postDelayed({
+            //make the text disappear after 1s
+            tvResult!!.text = ""
+        }, 1000)
         generateQuestion()
     }
 
-    private fun updateUI() {
-        tvPoints.text = getString(R.string.points, points, numberOfQuestions)
-        Handler(Looper.getMainLooper()).postDelayed({
-            tvResult.text = ""
-        }, 1000)
-    }
-
-    private fun changeButtonColor(button: Button, drawableResId: Int) {
-        button.background = ResourcesCompat.getDrawable(resources, drawableResId, null)
-        Handler(Looper.getMainLooper()).postDelayed({
-            button.background = ResourcesCompat.getDrawable(resources, R.drawable.rounded_btn, null)
-        }, 500)
-    }
-
     private fun playSound(isCorrect: Boolean) {
-        if (sharedPref.sound) {
-            val soundResId = if (isCorrect) R.raw.correct_sound else R.raw.incorrect_sound
-            stopPlayer()
-            player = MediaPlayer.create(this, soundResId)
-            startPlayer(player)
+        if (sharedPref!!.sound) {
+            if (isCorrect) {
+
+                //stops the previous sound
+                stopPlayer()
+                player = MediaPlayer.create(this, R.raw.correct_fav)
+                startPlayer(player)
+            } else {
+                //stops the previous sound
+                stopPlayer()
+                player = MediaPlayer.create(this, R.raw.wrong)
+                startPlayer(player)
+            }
         }
     }
 
