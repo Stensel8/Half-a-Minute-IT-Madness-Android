@@ -142,7 +142,11 @@ For more detailed instructions, refer to our [Game Rules](https://github.com/Ste
 
 ## Roadmap
 
+<<<<<<< Updated upstream
 We are continuously working on improving and expanding Half-a-Minute-IT-Madness. Here's what you can expect in the near future:
+=======
+We are continuously working on improving and expanding Half-a-Minute-IT-Madness. Here's what we 4working on in the near future:
+>>>>>>> Stashed changes
 
 - **High Score Board**: Implementing a leaderboard to track top scores.
 - **New Difficulty Levels**: Adding the ability to choose even higher difficulty levels for a greater challenge.
@@ -169,15 +173,15 @@ A: The game is compatible with devices running Android SDK version 30 and above.
 A: Yes, Half-a-Minute-IT-Madness is completely free to play.
 
 **Q: How can I contribute to the game's development?**
-A: Check out our [Contributing Guide](link-to-contributing-guide) for details on how you can contribute.
+A: Check out our [Contributing Guide](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/blob/main/CONTRIBUTING.md) for details on how you can contribute.
 
 **Q: Are there any in-app purchases?**
 A: No, the game does not currently feature any in-app purchases.
 
 **Q: How can I report a bug or provide feedback?**
-A: Please open an issue on our GitHub repository or contact us directly through [GitHub Discussions](link-to-GitHub-discussions-if-available).
+A: Please open an issue on our GitHub repository or contact us directly through [GitHub Discussions](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/discussions).
 
-Have more questions? Feel free to ask them in the [Issues section](link-to-GitHub-issues) of our GitHub repository.
+Have more questions? Feel free to ask them in the [Issues section](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues) of our GitHub repository.
 
 
 ## License

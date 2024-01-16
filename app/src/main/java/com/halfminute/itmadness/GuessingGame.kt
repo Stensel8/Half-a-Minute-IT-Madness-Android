@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.Locale
 import java.util.Random
 
+/**
+ * Activity for the guessing game.
+ */
 class GuessingGame : AppCompatActivity() {
 
     private lateinit var sharedPref: SharedPref
@@ -46,9 +49,11 @@ class GuessingGame : AppCompatActivity() {
         // Start game and handle back button
         startGame()
         handleBackButton()
-
     }
 
+    /**
+     * Initializes the TextViews and sets up click listeners.
+     */
     private fun initializeTextViews() {
         tvTimer = findViewById(R.id.tvTimer)
         tvPoints = findViewById(R.id.tvPoints)
@@ -65,6 +70,9 @@ class GuessingGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Loads words based on difficulty and language preferences.
+     */
     private fun loadWords() {
         val difficultyString = sharedPref.loadDifficulty().uppercase(Locale.getDefault())
         val difficulty = try {
@@ -83,6 +91,9 @@ class GuessingGame : AppCompatActivity() {
         tvDifficulty.text = difficulty.name
     }
 
+    /**
+     * Generates random words and displays them in TextViews.
+     */
     private fun generateRandomWords() {
         val usedWords = mutableSetOf<Word>()
         val textViews = listOf(txtvw1, txtvw2, txtvw3, txtvw4)
@@ -103,6 +114,9 @@ class GuessingGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Starts the game by generating random words and starting the timer.
+     */
     private fun startGame() {
         generateRandomWords()
         selectedCount = 0
@@ -120,11 +134,17 @@ class GuessingGame : AppCompatActivity() {
         }.start()
     }
 
+    /**
+     * Calculates and updates the player's points.
+     */
     private fun calculatePoints() {
         val points = selectedCount
         tvPoints.text = getString(R.string.points, points, 0)
     }
 
+    /**
+     * Navigates to the game over screen when the game ends.
+     */
     private fun navigateToGameOver() {
         countDownTimer?.cancel()
         val intent = Intent(this, GameOver::class.java).apply {
@@ -135,6 +155,9 @@ class GuessingGame : AppCompatActivity() {
         finish()
     }
 
+    /**
+     * Handles the click event on word TextViews.
+     */
     private fun onWordClick(view: View) {
         val clickedTextView = view as TextView
         val isSelected = !(isSelectedMap[clickedTextView] ?: false)
@@ -144,10 +167,16 @@ class GuessingGame : AppCompatActivity() {
         updateSelectedCount()
     }
 
+    /**
+     * Updates the count of selected words.
+     */
     private fun updateSelectedCount() {
         selectedCount = isSelectedMap.count { it.value }
     }
 
+    /**
+     * Handles the back button press during the game.
+     */
     private fun handleBackButton() {
         onBackPressedDispatcher.addCallback(this) {
             countDownTimer?.cancel()
@@ -155,9 +184,14 @@ class GuessingGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Pauses the game and navigates to the pause menu.
+     *
+     * @param view The view that triggered this method (unused).
+     */
+    @Suppress("UNUSED_PARAMETER")
     fun pauseGame(view: View) {
         sharedPref.saveChosenGame("guessing")
-
         countDownTimer?.cancel()
 
         // If there's any media player, stop it here
@@ -167,6 +201,4 @@ class GuessingGame : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
-
 }

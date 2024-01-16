@@ -9,6 +9,9 @@ import android.widget.TableLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * Activity displayed when the game is over.
+ */
 class GameOver : AppCompatActivity() {
 
     // Views
@@ -25,34 +28,31 @@ class GameOver : AppCompatActivity() {
     // Game Points
     private var points: Int = 0
 
-    // Managers
-    private lateinit var sessionManager: SessionManager
+    // Shared Preferences
     private lateinit var sharedPref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Initialize SharedPref and set the theme based on the dark mode setting
         initializePreferencesAndSetTheme()
 
-        // Set the content view of the activity
         setContentView(R.layout.game_over)
-
-        // Initialize views and perform the rest of the setup
         initializeViews()
-        initializeManagers()
         retrieveIntentData()
         checkAndDisplayHighScore()
     }
 
-    // Initialize Shared Preferences and Set Theme
+    /**
+     * Initializes shared preferences and sets the theme based on user preferences.
+     */
     private fun initializePreferencesAndSetTheme() {
         sharedPref = SharedPref(this)
         val themeId = if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme
         setTheme(themeId)
     }
 
-    // Initialize Views
+    /**
+     * Initializes the UI views.
+     */
     private fun initializeViews() {
         tlScore = findViewById(R.id.tlScore)
         ivHighScore = findViewById(R.id.ivHighScore)
@@ -62,13 +62,9 @@ class GameOver : AppCompatActivity() {
         tvDifficulty = findViewById(R.id.tvDifficultyGOver)
     }
 
-    // Initialize Managers
-    private fun initializeManagers() {
-        sessionManager = SessionManager(this)
-        sharedPref = SharedPref(this)
-    }
-
-    // Retrieve Intent Data
+    /**
+     * Retrieves data from the intent extras.
+     */
     private fun retrieveIntentData() {
         points = intent?.extras?.getInt("points") ?: 0
         tvPoints.text = points.toString()
@@ -76,18 +72,22 @@ class GameOver : AppCompatActivity() {
         tvDifficulty.text = intent?.extras?.getString("difficulty") ?: ""
     }
 
-    // Check and Display High Score
+    /**
+     * Checks and displays the high score if the current score is higher.
+     */
     private fun checkAndDisplayHighScore() {
-        val highScore = sessionManager.highScore
+        val highScore = sharedPref.getHighScore()
         if (points > highScore) {
-            sessionManager.saveHighScore(points)
+            sharedPref.saveHighScore(points)
             playApplause()
             ivHighScore.visibility = View.VISIBLE
         }
         tvHighScore.text = highScore.toString()
     }
 
-    // Play Applause Sound
+    /**
+     * Plays the applause sound if sound is enabled in settings.
+     */
     private fun playApplause() {
         if (sharedPref.getSound()) {
             player = MediaPlayer.create(this, R.raw.applause).apply {
@@ -97,26 +97,34 @@ class GameOver : AppCompatActivity() {
         }
     }
 
-    // Release MediaPlayer
+    /**
+     * Releases the MediaPlayer.
+     */
     private fun releasePlayer() {
         player?.release()
         player = null
     }
 
-    // Navigate to Main Activity
+    /**
+     * Navigates back to the main activity.
+     */
     fun main(view: View) {
         applyButtonAnimation(view)
         navigateTo(MainActivity::class.java)
     }
 
-    // Restart the Game
+    /**
+     * Restarts the current game.
+     */
     fun restart(view: View) {
         applyButtonAnimation(view)
         val chosenGame = sharedPref.loadChosenGame() // Load the chosen game
         navigateToGame(chosenGame)
     }
 
-    // Navigate to a Specific Game
+    /**
+     * Navigates to a specific game based on the chosen game type.
+     */
     private fun navigateToGame(game: String) {
         val intent = when (game) {
             "math" -> Intent(this, MathGame::class.java)
@@ -127,7 +135,6 @@ class GameOver : AppCompatActivity() {
             ).apply {
                 putExtra("chosenGame", game)
             }
-
             else -> Intent(this, MainActivity::class.java) // Default to Main if unknown
         }
         intent.let {
@@ -137,29 +144,36 @@ class GameOver : AppCompatActivity() {
         }
     }
 
-    // Change the Game
+    /**
+     * Navigates to the game selection page.
+     */
     fun changeGame(view: View) {
         applyButtonAnimation(view)
         navigateTo(ChooseGame::class.java)
     }
 
-    // Exit the Game
+    /**
+     * Exits the game and finishes the activity.
+     */
     fun exit(view: View) {
         applyButtonAnimation(view)
         finish()
     }
 
-    // Apply Button Animation
+    /**
+     * Applies a button animation to the clicked view.
+     */
     private fun applyButtonAnimation(view: View) {
         Settings.btnAnimation(view)
     }
 
-    // Navigate to a Specific Destination
+    /**
+     * Navigates to a specific destination.
+     */
     private fun navigateTo(destination: Class<*>) {
         releasePlayer()
         val intent = Intent(this, destination)
         startActivity(intent)
         finish()
     }
-
 }

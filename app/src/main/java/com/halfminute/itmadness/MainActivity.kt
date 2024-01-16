@@ -9,11 +9,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 /**
@@ -21,28 +17,47 @@ import androidx.appcompat.app.AppCompatActivity
  */
 class MainActivity : AppCompatActivity() {
 
+    // Broadcast receiver to handle language changes
     private lateinit var languageChangeReceiver: BroadcastReceiver
+
+    // Shared preferences instance
+    private lateinit var sharedPref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val sharedPref = SharedPref(this)
-        setupThemeAndLocale(sharedPref)
+
+        // Initialize shared preferences
+        sharedPref = SharedPref(this)
+
+        // Setup theme and locale based on user preferences
+        setupThemeAndLocale()
+
+        // Set the layout for this activity
         setContentView(R.layout.activity_main)
+
+        // Setup language change receiver
         setupLanguageChangeReceiver()
 
-        if (!sharedPref.isFirstStart() && !sharedPref.isUpdateDialogShown()) {
-            DialogUtils.showStartDialog(this)
-            sharedPref.setUpdateDialogShown()
-        }
+        // Show welcome message if it's the first start of the app
+        showWelcomeMessageIfFirstStart()
     }
 
     /**
      * Sets up the theme and locale based on user preferences.
-     * @param sharedPref The shared preferences instance to load settings from.
      */
-    private fun setupThemeAndLocale(sharedPref: SharedPref) {
+    private fun setupThemeAndLocale() {
         setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
         sharedPref.loadLocale(this)
+    }
+
+    /**
+     * Shows the welcome message dialog if it's the first start of the app.
+     */
+    private fun showWelcomeMessageIfFirstStart() {
+        if (sharedPref.isFirstStart()) {
+            showWelcomeAndUpdates(this, sharedPref)
+            sharedPref.setFirstStartShown()
+        }
     }
 
     /**
@@ -79,75 +94,35 @@ class MainActivity : AppCompatActivity() {
         unregisterReceiver(languageChangeReceiver)
     }
 
-    /**
-     * Utility object for showing dialogs.
-     */
-    object DialogUtils {
+    companion object {
         /**
-         * Shows the start dialog when the app is launched for the first time.
+         * Shows the welcome and updates dialog.
          * @param activity The activity context in which to show the dialog.
+         * @param sharedPref The shared preferences instance to load settings from.
          */
-        fun showStartDialog(activity: Activity) {
-            // Inflate the layout with the appropriate root view.
-            // 'activity.window.decorView.rootView' is used to provide a root view while not actually attaching the dialog view to it.
-            val view = activity.layoutInflater.inflate(
-                R.layout.welcome_message,
-                activity.window.decorView.rootView as ViewGroup,
-                false
-            )
-            setupDialogButtons(view, activity)
-            logFirstStartPreference(activity)
+        fun showWelcomeAndUpdates(activity: Activity, sharedPref: SharedPref) {
+            val welcomeText = activity.getString(R.string.welcomeText)
+            val dialogTheme =
+                if (sharedPref.loadNightMode()) R.style.darkTheme_Dialog else R.style.lightTheme_Dialog
+            AlertDialog.Builder(activity, dialogTheme)
+                .setTitle(activity.getString(R.string.welcome))
+                .setMessage(welcomeText)
+                .setPositiveButton(activity.getString(R.string.show_releasenotes)) { dialog, _ ->
+                    dialog.dismiss()
+                    openGitHubRepository(activity)
+                }
+                .setNegativeButton(activity.getString(R.string.closeWindow)) { dialog, _ -> dialog.dismiss()
+                }
+                .show()
         }
 
-
         /**
-         * Sets up the buttons in the dialog.
-         * @param view The view containing the dialog's buttons.
+         * Opens the GitHub repository page in a web browser.
          * @param activity The activity context used for launching intents.
          */
-        private fun setupDialogButtons(view: View, activity: Activity) {
-            val btnViewReleaseNotes = view.findViewById<Button>(R.id.btnViewReleaseNotes)
-            btnViewReleaseNotes.setOnClickListener {
-                openGitHubPage(activity)
-            }
-
-            val dialog = AlertDialog.Builder(activity)
-                .setView(view)
-                .create()
-
-            view.findViewById<ImageButton>(R.id.btnClose).setOnClickListener { dialog.dismiss() }
-            dialog.show()
-        }
-
-        /**
-         * Opens the GitHub releases page in a web browser.
-         * @param activity The activity context used for launching intents.
-         */
-        private fun openGitHubPage(activity: Activity) {
-            val url = "https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases"
-            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-        }
-
-        /**
-         * Logs the value of the 'firstStart' preference before and after setting it.
-         * @param activity The activity context used for accessing shared preferences.
-         */
-        private fun logFirstStartPreference(activity: Activity) {
-            val sharedPrefs = activity.getSharedPreferences("welcomePreferences", MODE_PRIVATE)
-
-            Log.d(
-                "MainActivity",
-                "Before setting firstStart: ${sharedPrefs.getBoolean("firstStart", true)}"
-            )
-            sharedPrefs.edit().apply {
-                putBoolean("firstStart", false)
-                apply()
-            }
-
-            Log.d(
-                "MainActivity",
-                "After setting firstStart: ${sharedPrefs.getBoolean("firstStart", true)}"
-            )
+        private fun openGitHubRepository(activity: Activity) {
+            val gitHubRepoUrl = "https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases"
+            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(gitHubRepoUrl)))
         }
     }
 
@@ -170,9 +145,6 @@ class MainActivity : AppCompatActivity() {
     fun goSettings(view: View?) {
         view?.let {
             Settings.btnAnimation(it)
-            val editor = getSharedPreferences("activity", MODE_PRIVATE).edit()
-            editor.putString("activity", "main")
-            editor.apply()
             startActivity(Intent(this@MainActivity, Settings::class.java))
             finish()
         }

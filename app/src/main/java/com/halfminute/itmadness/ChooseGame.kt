@@ -6,6 +6,9 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * Activity for choosing the game to play.
+ */
 class ChooseGame : AppCompatActivity() {
 
     private lateinit var sharedPref: SharedPref // Declare a SharedPref object to access the shared preferences
@@ -36,6 +39,9 @@ class ChooseGame : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, callback) // Add the callback
     }
 
+    /**
+     * Starts the Math game.
+     */
     fun startMathGame(view: View) {
         Settings.btnAnimation(view) // Apply the button animation to the view
         // Save the chosen game name and start the MathGame activity
@@ -45,6 +51,9 @@ class ChooseGame : AppCompatActivity() {
         finish()
     }
 
+    /**
+     * Starts the Language game.
+     */
     fun startLanguageGame(view: View) {
         Settings.btnAnimation(view) // Apply the button animation to the view
         // Save the chosen game name and start the ChooseLanguageGame activity
@@ -54,7 +63,9 @@ class ChooseGame : AppCompatActivity() {
         finish()
     }
 
-    // Start the guessing game
+    /**
+     * Starts the Guessing game.
+     */
     fun startGuessingGame(view: View) {
         Settings.btnAnimation(view) // Apply the button animation to the view
         // Save the chosen game name and start the GuessingGame activity

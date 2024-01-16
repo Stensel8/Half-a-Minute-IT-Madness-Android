@@ -1,3 +1,6 @@
+/**
+ * Main MathGame class that handles the math game logic.
+ */
 package com.halfminute.itmadness
 
 import android.content.Intent
@@ -13,17 +16,25 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import java.text.DecimalFormat
 import java.util.Locale
 import java.util.Random
 
 class MathGame : AppCompatActivity() {
 
+    // Shared preferences for the game settings
     private lateinit var sharedPref: SharedPref
+
+    // Operand variables for the math operations
     private var op1 = 0.0
     private var op2 = 0.0
+
+    // Correct and incorrect answers
     private var correctAnswer = 0.0
     private var incorrectAnswer = 0.0
+
+    // UI components
     private lateinit var tvTimer: TextView
     private lateinit var tvPoints: TextView
     private lateinit var tvSum: TextView
@@ -37,6 +48,8 @@ class MathGame : AppCompatActivity() {
     private lateinit var clickedBtn: Button
     private var countDownTimer: CountDownTimer? = null
     private var millisUntilFinished = 30100L
+
+    // Game variables
     private var points = 0
     private var wrong = 0
     private var maxWrongAnswers = 2
@@ -53,20 +66,27 @@ class MathGame : AppCompatActivity() {
     private var player: MediaPlayer? = null
     private var timerPlayer: MediaPlayer? = null
 
+    /**
+     * Initializes the activity and sets up the game.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Initialize shared preferences
         sharedPref = SharedPref(this)
         setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
         sharedPref.loadLocale(this)
 
         setContentView(R.layout.math_game)
 
+        // Initialize view components
         initViewComponents()
+
+        // Load game difficulty and start the game
         difficulty = sharedPref.loadDifficulty()
         startGame()
 
-        // Handle back pressed with OnBackPressedCallback
+        // Handle back button press with OnBackPressedCallback
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 countDownTimer?.cancel()
@@ -79,6 +99,7 @@ class MathGame : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
+    // Function to initialize view components
     private fun initViewComponents() {
         tvTimer = findViewById(R.id.tvTimer)
         tvPoints = findViewById(R.id.tvPoints)
@@ -92,6 +113,10 @@ class MathGame : AppCompatActivity() {
         btn3 = findViewById(R.id.btn3)
     }
 
+    /**
+     * Function to pause the game when the pause button is clicked.
+     */
+    @Suppress("UNUSED_PARAMETER")
     fun pauseGame(view: View) {
         sharedPref.saveChosenGame("math")
         countDownTimer?.cancel()
@@ -101,41 +126,66 @@ class MathGame : AppCompatActivity() {
     }
 
 
+    /**
+     * Function to start the game and initialize game variables and countdown timer.
+     */
     private fun startGame() {
+        // Set initial UI text values
         tvTimer.text = "${millisUntilFinished / 1000}s"
         tvPoints.text = "$points/$numberOfQuestions"
+
+        // Generate the first question
         generateQuestion()
 
+        // Create a CountDownTimer for the game timer
         countDownTimer = object : CountDownTimer(millisUntilFinished, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                tvTimer.text = "${millisUntilFinished / 1000}s"
-                if (millisUntilFinished / 1000 <= 5) {
-                    tvTimer.setTextColor(resources.getColor(R.color.wrong))
-                    tvTimer.textSize = 26f  // Assuming the text size is 26sp
-                    Handler().postDelayed({
-                        tvTimer.textSize = 24f  // Assuming the original text size is 24sp
-                        tvTimer.setTextColor(resources.getColor(R.color.buttonTextColor)) // Replace with your default text color
+                val secondsLeft = millisUntilFinished / 1000
+                tvTimer.text = "${secondsLeft}s"
+
+                // Play timer sound and update text color when last 5 seconds
+                if (secondsLeft <= 5) {
+                    playTimerSound()
+                    tvTimer.setTextColor(ContextCompat.getColor(this@MathGame, R.color.wrong))
+                    tvTimer.textSize = 26f
+
+                    // Restore text color and size after 1 second
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        tvTimer.textSize = 24f
+                        tvTimer.setTextColor(ContextCompat.getColor(this@MathGame, R.color.buttonTextColor))
                     }, 1000)
                 }
             }
 
             override fun onFinish() {
+                // Handle game over when the timer finishes
                 gameOver()
             }
         }.start()
     }
 
-
+    /**
+     * Function to play the timer sound when the time is running out.
+     */
     private fun playTimerSound() {
         if (sharedPref.getSound()) {
+            // Initialize timerPlayer if it's null
+            if (timerPlayer == null) {
+                timerPlayer = MediaPlayer.create(this, R.raw.five_sec_countdown) // Make sure you have this sound file
+            }
             timerPlayer?.start()
         }
     }
 
+    /**
+     * Function to handle game over and navigate to the GameOver activity.
+     */
     private fun gameOver() {
         countDownTimer?.cancel()
+        // Disable button clicks and save the chosen game mode
         listOf(btn0, btn1, btn2, btn3).forEach { it.isClickable = false }
         sharedPref.saveChosenGame("math")
+        // Start the GameOver activity with relevant data
         val intent = Intent(this, GameOver::class.java).apply {
             putExtra("points", points)
             putExtra("difficulty", difficulty)
@@ -146,6 +196,9 @@ class MathGame : AppCompatActivity() {
         finish()
     }
 
+    /**
+     * Function to release the timerPlayer MediaPlayer.
+     */
     private fun releasePlayer() {
         if (timerPlayer != null && sharedPref.getSound()) {
             timerPlayer?.release()
@@ -153,6 +206,9 @@ class MathGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Function to generate a new math question based on the selected difficulty level.
+     */
     private fun generateQuestion() {
         numberOfQuestions++
         val selectedOperator = operatorArray[random.nextInt(4)]
@@ -195,6 +251,9 @@ class MathGame : AppCompatActivity() {
         setIncorrectAnswers()
     }
 
+    /**
+     * Function to calculate the correct answer for a math question.
+     */
     private fun calculateAnswer(selectedOperator: String): Double {
         return when (selectedOperator) {
             "+" -> op1 + op2
@@ -205,7 +264,9 @@ class MathGame : AppCompatActivity() {
         }
     }
 
-
+    /**
+     * Function to set incorrect answers for the multiple-choice buttons.
+     */
     private fun setIncorrectAnswers() {
         incorrectAnswers.clear()
         while (incorrectAnswers.size < 3) {
@@ -220,6 +281,11 @@ class MathGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Function to generate an incorrect answer for the math question.
+     * This function ensures that the incorrect answer is different from the correct answer and
+     * not already present in the list of incorrect answers.
+     */
     private fun generateIncorrectAnswer(): Double {
         // Logic to generate an incorrect answer
         var result: Double
@@ -238,7 +304,9 @@ class MathGame : AppCompatActivity() {
         return result
     }
 
-
+    /**
+     * Function to handle user's answer selection when a choice button is clicked.
+     */
     fun chooseAnswer(view: View) {
         if (view !is ImageButton) {
             clickedBtn = view as Button
@@ -257,9 +325,12 @@ class MathGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Function to update the UI and logic when the user selects the correct answer.
+     */
     private fun updateForCorrectAnswer() {
         points++
-        clickedBtn.setBackgroundColor(resources.getColor(R.color.correct))
+        clickedBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.correct))
         Handler(Looper.getMainLooper()).postDelayed({
             clickedBtn.setBackgroundColor(colorId)
             tvResult.text = getString(R.string.correct)
@@ -268,9 +339,12 @@ class MathGame : AppCompatActivity() {
         tvPoints.text = "$points/$numberOfQuestions"
     }
 
+    /**
+     * Function to update the UI and logic when the user selects an incorrect answer.
+     */
     private fun updateForIncorrectAnswer() {
         wrong++
-        clickedBtn.setBackgroundColor(resources.getColor(R.color.wrong))
+        clickedBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.wrong))
         Handler(Looper.getMainLooper()).postDelayed({
             clickedBtn.setBackgroundColor(colorId)
             if (wrong >= maxWrongAnswers) {
@@ -284,7 +358,9 @@ class MathGame : AppCompatActivity() {
         tvLives.text = "${maxWrongAnswers - wrong}" // Update lives here
     }
 
-
+    /**
+     * Function to play a sound effect based on whether the user's answer was correct or incorrect.
+     */
     private fun playSound(isCorrect: Boolean) {
         if (sharedPref.getSound()) {
             stopPlayer() // stop any previous sound
@@ -297,12 +373,17 @@ class MathGame : AppCompatActivity() {
         }
     }
 
-
+    /**
+     * Function to start playing a MediaPlayer.
+     */
     private fun startPlayer(myPlayer: MediaPlayer) {
         myPlayer.start()
         myPlayer.setOnCompletionListener { stopPlayer() }
     }
 
+    /**
+     * Function to stop and release a MediaPlayer.
+     */
     private fun stopPlayer() {
         player?.release()
         player = null

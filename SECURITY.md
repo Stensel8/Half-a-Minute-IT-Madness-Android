@@ -4,12 +4,12 @@
 
 We take the security of our software seriously. Below are the versions of Half-a-Minute-IT-Madness-Android that are currently being supported with security updates.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| V2.6 (current)    | :white_check_mark: |
-| V2.4    | :x:                |
-| V2.3    | :x:                |
-| < V2.3  | :x:                |
+| Version        | Supported          |
+|----------------|--------------------|
+| V2.6 (current) | :white_check_mark: |
+| V2.4           | :x:                |
+| V2.3           | :x:                |
+| < V2.3         | :x:                |
 
 ## Reporting a Vulnerability
 

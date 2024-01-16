@@ -205,6 +205,7 @@ class Settings : AppCompatActivity() {
     /**
      * Applies the language change and restarts the current activity to reflect the change.
      */
+    @Suppress("DEPRECATION")
     private fun applyLanguageChange() {
         startActivity(Intent(this, Settings::class.java))
         finish()
