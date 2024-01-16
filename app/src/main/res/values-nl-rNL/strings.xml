@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Half a Minute IT Madness</string>
     <string name="TimerValue">30s</string>
     <string name="DutchToEnglish">Engels naar Nederlands</string>
+    <string name="guessingGameButton">Raadspel</string>
     <string name="chooseGameTitle">Kies je spel</string>
     <string name="chooseTestTitle">Kies je test</string>
     <string name="darkModeText">Donkere modus</string>
     <string name="defaultAnswerText">\?</string>
     <string name="defaultBtnValue">3</string>
-    <string name="difficultyEasy">Easy</string>
-    <string name="difficultyHard">Hard</string>
-    <string name="difficultyMedium">Medium</string>
+    <string name="difficultyEasy">Makkelijk</string>
+    <string name="difficultyMedium">Gemiddeld</string>
+    <string name="difficultyHard">Moeilijk</string>
     <string name="difficultyTitle">Moeilijkheid</string>
     <string name="EnglishToFrench">Nederlands naar Engels</string>
     <string name="exitGame">Exit game</string>
@@ -36,27 +37,15 @@
     <string name="answerLang">I am 23 years old</string>
     <string name="EnglishToDutch">Nederlands naar Frans</string>
     <string name="changeGame">Spel veranderen</string>
-    <string name="changeDfficultyTo">"Moeilijkheid: "</string>
-    <string name="top5">Top 5:</string>
+    <string name="changeDifficultyTo">"Moeilijkheid: "</string>
+    <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Spel: "</string>
-    <string name="email">E-mail</string>
-    <string name="loginTitle">Login</string>
-    <string name="password">Paswoord</string>
-    <string name="login_empty_msg">Gelieve alle verplichte velden in te vullen</string>
     <string name="or">Of</string>
-    <string name="username">Gebruikersnaam</string>
-    <string name="account_title">Account</string>
-    <string name="sign_up_succes">Geregistreerd!</string>
-    <string name="username_too_long">Deze gebruikersnaam is te lang</string>
     <string name="no_data">Geen resultaat</string>
-    <string name="display_notifications">Meldingen weergeven</string>
-    <string name="notificationText">Welkom bij Half a Minute IT Madness</string>
     <string name="welcome">Welkom!</string>
     <string name="welcomeText">
     <![CDATA[
     Ontdek Half a Minute IT Madness, een creatieve game ontworpen door drie toegewijde Saxion Hogeschool studenten. Kies uit drie uitdagende spellen: rekenen, taal, en raden. Elk spel duurt 30 seconden, waarbij een correct antwoord een punt oplevert en een fout antwoord een leven kost. Let op je levens, weergegeven als groen/blauw achtige harten rechtsboven. Het spel eindigt na 30 seconden of bij verlies van alle levens. Daag jezelf uit om je score te verbeteren!
-
-    Bekijk de GitHub-repository voor meer informatie: [GitHub Repository](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android)
     ]]>
 
     </string>
@@ -64,41 +53,8 @@
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
     <string name="sound">Audio</string>
-    <string name="updates">Nieuwe stuff enzo</string>
-    <string name="patch_title">Wat is er nieuw?</string>
-    <string name="patch_notes" tools:ignore="StringFormatInvalid">
- <![CDATA[
-<b>Versie 2.4 bevat:</b><br/>
-- Bugfixes<br/>
-  - Probleem met niet opslaan van high scores - Probleem #5 - Opgelost<br/>
-  - Taal wordt niet correct opgeslagen - Probleem #7 - Opgelost<br/>
-  - Flikkeren van donkere modus in sommige scenario\'s - Probleem #10 - Opgelost<br/>
-  - Donkere modus wordt niet correct opgeslagen - Probleem #11 - Opgelost<br/>
-
-  - Enkele andere typfouten opgelost<br/>
-  - We hebben nog steeds veel bekende problemen en bugs, maar ik zal mijn best doen om ze aan te pakken.<br/><br/>
-  - Bekende problemen:
-  Tegels kunnen onverwachte kleuren tonen #6
-  Game crasht in de hard-modus #9
-
-
-<b>Versie 2.3 bevat:</b><br/>
-- Applicatiecrash in combinatie met de Duitse taal is opgelost!<br/>
-- Algemene bugfixes!<br/>
-- Verbeterde logica voor het vertalen van woorden<br/>
-- Belgische taal verwijderd!<br/>
-- Applicatie is voor 35% herschreven in Kotlin 1.9.21. In de toekomst zullen meerdere Java 17-componenten worden vervangen door Kotlin.<br/><br/>
-
-<b>Versie 2.2 bevat:</b><br/>
-- Duits is toegevoegd als nieuwe taal! (Dit kan nog onstabiel zijn. Ik plan dit in de toekomst aan te pakken.)<br/>
-- Meer dan 350 nieuwe woorden toegevoegd!<br/>
-- Verbeterde vertalingen binnen de interface<br/>
-- GUI- en leesbaarheidsverbeteringen<br/><br/>
-
-    Voor de nieuwste versies, bezoek GitHub op: <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>
-    ]]>
-    </string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
     <string name="show_releasenotes">Toon releasenotes</string>
+    <string name="guessing_game">Guessing Game</string>
 </resources>

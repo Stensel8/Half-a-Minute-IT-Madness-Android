@@ -12,20 +12,23 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
+        <!-- TextView Choose your game -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/chooseGameTitle"
             android:textColor="?attr/textColor"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:fontFamily="@font/segoeui"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="40dp">
 
+        <!-- Button start math game -->
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,12 +41,15 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/mathGameButton"
-            android:textColor="#455A64"
-            android:textSize="24sp" />
+            android:textColor="#fcfbdc"
+            android:textSize="24sp"
+            android:fontFamily="@font/segoeuib"/>
 
+        <!-- Button start language game -->
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:onClick="startLanguageGame"
@@ -52,8 +58,26 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:text="@string/languageGameButton"
-            android:textColor="#455A64"
-            android:textSize="24sp" />
+            android:textColor="#fcfbdc"
+            android:textSize="24sp"
+            android:fontFamily="@font/segoeuib"/>
+
+        <!-- Button start guessing game -->
+        <Button
+            android:id="@+id/guessingGameButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_btn"
+            android:onClick="startGuessingGame"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/guessingGameButton"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="24sp"
+            android:fontFamily="@font/segoeuib"/>
     </LinearLayout>
 
 </LinearLayout>

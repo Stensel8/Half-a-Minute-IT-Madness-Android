@@ -8,49 +8,54 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
 class PauseMenu : AppCompatActivity() {
-    private var sharedPref: SharedPref? = null
-    private var sharedPreferences: SharedPreferences? = null
+    private lateinit var sharedPref: SharedPref
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // check dark mode
-        sharedPref = SharedPref(this)
-        setTheme(if (sharedPref!!.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
-        sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE)
-        sharedPref!!.loadLocale(this) // loads the saved language
         super.onCreate(savedInstanceState)
+        sharedPref = SharedPref(this)
+        setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
+        sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE)
+        sharedPref.loadLocale(this)
         setContentView(R.layout.pause_menu)
 
-        // Create a callback for onBackPressed
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                goBack()
+                resumeCurrentGame()
             }
         }
-
-        // Add the callback to the onBackPressedDispatcher
         onBackPressedDispatcher.addCallback(this, callback)
     }
 
-    private fun goBack() {
-        val intent: Intent = when (sharedPreferences!!.getString("actualGame", "")) {
+    private fun resumeCurrentGame() {
+        val intent = when (val chosenGame = sharedPref.loadChosenGame()) { // Load the chosen game
             "math" -> Intent(this, MathGame::class.java)
-            "NlToEn" -> Intent(this, LanguageGame::class.java).putExtra("chosenGame", "NlToEn")
-            "EnToNl" -> Intent(this, LanguageGame::class.java).putExtra("chosenGame", "EnToNl")
-            "FrToEn" -> Intent(this, LanguageGame::class.java).putExtra("chosenGame", "FrToEn")
-            "EnToFr" -> Intent(this, LanguageGame::class.java).putExtra("chosenGame", "EnToFr")
-            else -> throw IllegalStateException("Unknown game type")
+            "guessing" -> Intent(this, GuessingGame::class.java)
+            "NlToEn", "EnToNl", "FrToEn", "EnToFr", "EnToDe", "DeToEn" -> Intent(
+                this,
+                LanguageGame::class.java
+            ).apply {
+                putExtra("chosenGame", chosenGame)
+            }
+
+            else -> Intent(this, MainActivity::class.java) // Default to Main if unknown
         }
         startActivity(intent)
         finish()
     }
 
+
     fun resumeGame(view: View?) {
-        Settings.btnAnimation(view)
-        goBack()
+        if (view != null) {
+            Settings.btnAnimation(view)
+        }
+        resumeCurrentGame()
     }
 
     fun goSettings(view: View?) {
-        Settings.btnAnimation(view)
+        if (view != null) {
+            Settings.btnAnimation(view)
+        }
         val sharedPreferences = getSharedPreferences("activity", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("activity", "pause")
@@ -61,14 +66,18 @@ class PauseMenu : AppCompatActivity() {
     }
 
     fun goMain(view: View?) {
-        Settings.btnAnimation(view)
+        if (view != null) {
+            Settings.btnAnimation(view)
+        }
         val intent = Intent(this@PauseMenu, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     fun changeGame(view: View?) {
-        Settings.btnAnimation(view)
+        if (view != null) {
+            Settings.btnAnimation(view)
+        }
         val intent = Intent(this@PauseMenu, ChooseGame::class.java)
         startActivity(intent)
         finish()

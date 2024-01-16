@@ -2,6 +2,7 @@
     <string name="app_name">Half a Minute IT Madness</string>
     <string name="mathGameButton">Math Game</string>
     <string name="languageGameButton">Language test</string>
+    <string name="guessingGameButton">Guessing game</string>
     <string name="chooseGameTitle">Choose your game</string>
     <string name="chooseTestTitle">Choose your test</string>
     <string name="DutchToEnglish">Dutch to English</string>
@@ -40,27 +41,17 @@
     <string name="EnglishToFrench">English to French</string>
     <string name="EnglishToDutch">English to dutch</string>
     <string name="changeGame">Change game</string>
-    <string name="changeDfficultyTo">"Difficulty: "</string>
-    <string name="top5">Top 5:</string>
+    <string name="changeDifficultyTo">"Difficulty: "</string>
+    <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Game: "</string>
-    <string name="loginTitle">Login</string>
-    <string name="email">E-mail</string>
-    <string name="password">Password</string>
-    <string name="login_empty_msg">Please fill any empty fields</string>
     <string name="or">Or</string>
-    <string name="username">Username</string>
-    <string name="sign_up_succes">Successfully signed-up!</string>
-    <string name="username_too_long">this username is too long</string>
-    <string name="account_title">Account</string>
     <string name="no_data">No result</string>
-    <string name="display_notifications">Show notifications</string>
-    <string name="notificationText">Welcome to Half a Minute IT Madness</string>
-    <string name="welcome">Welcome!</string>
+
+    <string name="welcome">Welcome to Half a Minute IT Madness!</string>
     <string name="welcomeText">
     <![CDATA[
     Discover Half a Minute IT Madness, a creative game designed by three dedicated Saxion University of Applied Sciences students. Choose from three challenging games: math, language, and guessing. Each game lasts for 30 seconds, where a correct answer earns a point and a wrong answer costs a life. Keep an eye on your lives, displayed as green/blue hearts in the top right. The game ends after 30 seconds or upon losing all lives. Challenge yourself to improve your score!
 
-    Check out the GitHub repository for more information: [GitHub Repository](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android)
     ]]>
     </string>
     <string name="closeWindow">Close window</string>
@@ -68,46 +59,9 @@
     <string name="yes">yes</string>
     <string name="no">No</string>
     <string name="sound">Sound</string>
-    <string name="updates">Updates</string>
-    <string name="patch_title">What\'s New?</string>
-    <string name="patch_notes">
-<![CDATA[
-<b>Version 2.4 contains:</b><br/>
-- Bugfixes<br/>
-  - High scores not being saved - Issue #5 - Resolved<br/>
-  - Language not saving correctly - Issue #7 - Resolved<br/>
-  - Dark mode flickering in some scenarios - Issue #10 - Resolved<br/>
-  - Dark mode not saving correctly - Issue #11 - Resolved<br/>
-
-  - Resolved some other typos<br/>
-  - We still have a lot of known issues and bugs, but I will try to tackle them.<br/><br/>
-  - Known issues:
-  Tiles may show unexpected colors #6
-  Game crashes when on hard mode #9
-
-
-<b>Version 2.3 contains:</b><br/>
-- Application crash in combination with the German language is fixed!<br/>
-- General bug fixes!<br/>
-- Improved logic for translating words<br/>
-- Belgian language removed!<br/>
-- Application is 35% rewritten in Kotlin 1.9.21. In the future, multiple Java 17 components will be replaced with Kotlin.<br/><br/>
-
-<b>Version 2.2 contains:</b><br/>
-- German has been added as a new language! (This may still be unstable. I plan to address this in the future.)<br/>
-- Added more than 350 new words!<br/>
-- Improved translations within the interface<br/>
-- GUI and readability improvements<br/><br/>
-
-    For the latest versions, visit GitHub at: <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>
-    ]]>
-    </string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
-    <string name="Crashwarning" translatable="false">Medium and Hard may cause a hard crash!</string>
-    <string name="Crashinfo" translatable="false">
-    We\'re aware of an issue involving the Medium and Hard game modes crashing when selecting either German to English or English to German.
-    We hope this will get solved in the upcoming V2.6 or V2.7 update.
-</string>
     <string name="show_releasenotes">Show releasenotes</string>
+    <string name="guessing_game">Guessing Game</string>
+    <string name="theme_dynamic_icon" translatable="false">This is an dynamic icon that will change based on the darktheme settings</string>
 </resources>

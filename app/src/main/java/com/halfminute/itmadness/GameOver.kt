@@ -1,7 +1,6 @@
 package com.halfminute.itmadness
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
@@ -12,144 +11,155 @@ import androidx.appcompat.app.AppCompatActivity
 
 class GameOver : AppCompatActivity() {
 
+    // Views
     private lateinit var tlScore: TableLayout
     private lateinit var ivHighScore: ImageView
     private lateinit var tvHighScore: TextView
-    private lateinit var tvTop2: TextView
     private lateinit var tvPoints: TextView
     private lateinit var tvChosenGame: TextView
     private lateinit var tvDifficulty: TextView
 
+    // Sound Player
     private var player: MediaPlayer? = null
-    private var points: Int = 0
-    private lateinit var difficulty: String
-    private lateinit var chosenGame: String
 
-    private lateinit var sharedPreferences: SharedPreferences
+    // Game Points
+    private var points: Int = 0
+
+    // Managers
     private lateinit var sessionManager: SessionManager
     private lateinit var sharedPref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Initialize SharedPref and set the theme based on the dark mode setting
+        initializePreferencesAndSetTheme()
+
+        // Set the content view of the activity
         setContentView(R.layout.game_over)
 
+        // Initialize views and perform the rest of the setup
+        initializeViews()
+        initializeManagers()
+        retrieveIntentData()
+        checkAndDisplayHighScore()
+    }
+
+    // Initialize Shared Preferences and Set Theme
+    private fun initializePreferencesAndSetTheme() {
+        sharedPref = SharedPref(this)
+        val themeId = if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme
+        setTheme(themeId)
+    }
+
+    // Initialize Views
+    private fun initializeViews() {
         tlScore = findViewById(R.id.tlScore)
         ivHighScore = findViewById(R.id.ivHighScore)
         tvHighScore = findViewById(R.id.tvHighScore)
-        tvTop2 = findViewById(R.id.tvTop2)
         tvPoints = findViewById(R.id.tvPoints)
         tvChosenGame = findViewById(R.id.tvChosenGame)
         tvDifficulty = findViewById(R.id.tvDifficultyGOver)
+    }
 
-        points = intent.extras!!.getInt("points")
-        difficulty = intent.extras!!.getString("difficulty")!!
-        chosenGame = intent.extras!!.getString("chosenGame")!!
-
-        sharedPreferences = getSharedPreferences("pref", 0)
+    // Initialize Managers
+    private fun initializeManagers() {
         sessionManager = SessionManager(this)
         sharedPref = SharedPref(this)
+    }
 
-        val pointsHC = sessionManager.highScore
+    // Retrieve Intent Data
+    private fun retrieveIntentData() {
+        points = intent?.extras?.getInt("points") ?: 0
+        tvPoints.text = points.toString()
+        tvChosenGame.text = intent?.extras?.getString("chosenGame") ?: ""
+        tvDifficulty.text = intent?.extras?.getString("difficulty") ?: ""
+    }
 
-        if (points > pointsHC) {
+    // Check and Display High Score
+    private fun checkAndDisplayHighScore() {
+        val highScore = sessionManager.highScore
+        if (points > highScore) {
             sessionManager.saveHighScore(points)
-            applause()
+            playApplause()
             ivHighScore.visibility = View.VISIBLE
         }
-
-        tvPoints.text = points.toString()
-        tvHighScore.text = sessionManager.highScore.toString()
+        tvHighScore.text = highScore.toString()
     }
 
-    private fun applause() {
-        if (sharedPref.sound) {
-            player = MediaPlayer.create(this, R.raw.applause)
-            player?.start()
-            player?.setOnCompletionListener { stopPlayer() }
+    // Play Applause Sound
+    private fun playApplause() {
+        if (sharedPref.getSound()) {
+            player = MediaPlayer.create(this, R.raw.applause).apply {
+                start()
+                setOnCompletionListener { releasePlayer() }
+            }
         }
     }
 
+    // Release MediaPlayer
+    private fun releasePlayer() {
+        player?.release()
+        player = null
+    }
+
+    // Navigate to Main Activity
     fun main(view: View) {
-        Settings.btnAnimation(view)
-
-        val intent = Intent(this@GameOver, MainActivity::class.java)
-        stopPlayer()
-        startActivity(intent)
-        finish()
+        applyButtonAnimation(view)
+        navigateTo(MainActivity::class.java)
     }
 
-    private fun stopPlayer() {
-        if (player != null) {
-            player!!.release()
-            player = null
-        }
-    }
-
+    // Restart the Game
     fun restart(view: View) {
-        Settings.btnAnimation(view)
+        applyButtonAnimation(view)
+        val chosenGame = sharedPref.loadChosenGame() // Load the chosen game
+        navigateToGame(chosenGame)
+    }
 
-        val intent: Intent
-        val sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE)
-        val actual = sharedPreferences.getString("actualGame", "") ?: ""
-        stopPlayer()
-
-        when (actual) {
-            "math" -> {
-                intent = Intent(this, MathGame::class.java)
-                startActivity(intent)
+    // Navigate to a Specific Game
+    private fun navigateToGame(game: String) {
+        val intent = when (game) {
+            "math" -> Intent(this, MathGame::class.java)
+            "guessing" -> Intent(this, GuessingGame::class.java)
+            "NlToEn", "EnToNl", "FrToEn", "EnToFr", "EnToDe", "DeToEn" -> Intent(
+                this,
+                LanguageGame::class.java
+            ).apply {
+                putExtra("chosenGame", game)
             }
 
-            "NlToEn" -> {
-                intent = Intent(this, LanguageGame::class.java)
-                intent.putExtra("chosenGame", "NlToEn")
-                startActivity(intent)
-            }
-
-            "EnToNl" -> {
-                intent = Intent(this, LanguageGame::class.java)
-                intent.putExtra("chosenGame", "EnToNl")
-                startActivity(intent)
-            }
-
-            "FrToEn" -> {
-                intent = Intent(this, LanguageGame::class.java)
-                intent.putExtra("chosenGame", "FrToEn")
-                startActivity(intent)
-            }
-
-            "EnToFr" -> {
-                intent = Intent(this, LanguageGame::class.java)
-                intent.putExtra("chosenGame", "EnToFr")
-                startActivity(intent)
-            }
-
-            "EnToDe" -> {
-                intent = Intent(this, LanguageGame::class.java)
-                intent.putExtra("chosenGame", "EnToDe")
-                startActivity(intent)
-            }
-
-            "DeToEn" -> {
-                intent = Intent(this, LanguageGame::class.java)
-                intent.putExtra("chosenGame", "DeToEn")
-                startActivity(intent)
-            }
+            else -> Intent(this, MainActivity::class.java) // Default to Main if unknown
         }
+        intent.let {
+            releasePlayer()
+            startActivity(it)
+            finish()
+        }
+    }
+
+    // Change the Game
+    fun changeGame(view: View) {
+        applyButtonAnimation(view)
+        navigateTo(ChooseGame::class.java)
+    }
+
+    // Exit the Game
+    fun exit(view: View) {
+        applyButtonAnimation(view)
         finish()
     }
 
-    fun changeGame(view: View) {
+    // Apply Button Animation
+    private fun applyButtonAnimation(view: View) {
         Settings.btnAnimation(view)
+    }
 
-        val intent = Intent(this@GameOver, ChooseGame::class.java)
-        stopPlayer()
+    // Navigate to a Specific Destination
+    private fun navigateTo(destination: Class<*>) {
+        releasePlayer()
+        val intent = Intent(this, destination)
         startActivity(intent)
         finish()
     }
 
-    fun exit(view: View) {
-        Settings.btnAnimation(view)
-
-        finish()
-    }
 }

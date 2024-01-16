@@ -3,6 +3,7 @@
     <string name="app_name">Halbe Minute IT Wahnsinn</string>
     <string name="TimerValue">30s</string>
     <string name="DutchToEnglish">Niederländisch nach Englisch</string>
+    <string name="guessingGameButton">Ratespiel</string>
     <string name="chooseGameTitle">Wähle dein Spiel</string>
     <string name="chooseTestTitle">Wähle deinen Test</string>
     <string name="darkModeText">Dunkler Modus</string>
@@ -36,68 +37,23 @@
     <string name="answerLang">Ich bin 23 Jahre alt</string>
     <string name="EnglishToDutch">Englisch nach Niederländisch</string>
     <string name="changeGame">Spiel ändern</string>
-    <string name="changeDfficultyTo">"Schwierigkeitsgrad: "</string>
-    <string name="top5">Top 5:</string>
+    <string name="changeDifficultyTo">"Schwierigkeitsgrad: "</string>
+    <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Spiel: "</string>
-    <string name="email">E-Mail</string>
-    <string name="loginTitle">Anmeldung</string>
-    <string name="password">Passwort</string>
-    <string name="login_empty_msg">Bitte füllen Sie alle Pflichtfelder aus</string>
     <string name="or">Oder</string>
-    <string name="username">Benutzername</string>
-    <string name="account_title">Konto</string>
-    <string name="sign_up_succes">Registriert!</string>
-    <string name="username_too_long">Dieser Benutzername ist zu lang</string>
     <string name="no_data">Kein Ergebnis</string>
-    <string name="display_notifications">Benachrichtigungen anzeigen</string>
-    <string name="notificationText">Willkommen bei Halbe Minute IT Wahnsinn</string>
     <string name="welcome">Willkommen!</string>
     <string name="welcomeText">
     <![CDATA[
     Entdecke Half a Minute IT Madness, ein kreatives Spiel, entwickelt von drei engagierten Studenten der Saxion University of Applied Sciences. Wähle aus drei herausfordernden Spielen: Mathe, Sprache und Raten. Jedes Spiel dauert 30 Sekunden, wobei eine richtige Antwort einen Punkt einbringt und eine falsche Antwort ein Leben kostet. Achte auf deine Leben, die als grün/blau herzförmige Symbole oben rechts angezeigt werden. Das Spiel endet nach 30 Sekunden oder wenn alle Leben verloren sind. Fordere dich selbst heraus, um deine Punktzahl zu verbessern!
-
-    Schau dir das GitHub-Repository für weitere Informationen an: [GitHub Repository](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android)
     ]]>
     </string>
     <string name="closeWindow">Fenster schließen</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="sound">Ton</string>
-    <string name="updates">Neue coole Sachen und so</string>
-    <string name="patch_title">Was ist neu?</string>
-    <string name="patch_notes">
-<![CDATA[
-<b>Version 2.4 enthält:</b><br/>
-- Fehlerbehebungen<br/>
-  - Problem mit nicht gespeicherten Highscores - Problem #5 - Behoben<br/>
-  - Sprache wird nicht korrekt gespeichert - Problem #7 - Behoben<br/>
-  - Flackern im Dunkelmodus in bestimmten Szenarien - Problem #10 - Behoben<br/>
-  - Dunkelmodus wird nicht korrekt gespeichert - Problem #11 - Behoben<br/>
-
-  - Einige weitere Tippfehler behoben<br/>
-  - Wir haben immer noch viele bekannte Probleme und Bugs, aber ich werde versuchen, sie anzugehen.<br/><br/>
-  - Bekannte Probleme:
-  Kacheln können unerwartete Farben anzeigen #6
-  Spiel stürzt im Hard-Modus ab #9
-
-
-<b>Version 2.3 enthält:</b><br/>
-- Anwendungsabsturz in Kombination mit der deutschen Sprache wurde behoben!<br/>
-- Allgemeine Fehlerbehebungen!<br/>
-- Verbesserte Logik zur Übersetzung von Wörtern<br/>
-- Belgische Sprache entfernt!<br/>
-- Die Anwendung wurde zu 35 % in Kotlin 1.9.21 neu geschrieben. In Zukunft werden mehrere Java 17-Komponenten durch Kotlin ersetzt werden.<br/><br/>
-
-<b>Version 2.2 enthält:</b><br/>
-- Deutsch wurde als neue Sprache hinzugefügt! (Dies könnte noch instabil sein. Ich plane, dies in der Zukunft anzugehen.)<br/>
-- Über 350 neue Wörter hinzugefügt!<br/>
-- Verbesserte Übersetzungen innerhalb der Benutzeroberfläche<br/>
-- GUI- und Lesbarkeitsverbesserungen<br/><br/>
-
-    Für die neuesten Versionen besuchen Sie GitHub unter: <font color="#0000FF"><a href="https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases">https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases</a></font>
-    ]]>
-    </string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
-    <string name="show_releasenotes">Releasenotes anzeigen</string>
+    <string name="show_releasenotes">Versionshinweise anzeigen</string>
+    <string name="guessing_game">Guessing Game</string>
 </resources>

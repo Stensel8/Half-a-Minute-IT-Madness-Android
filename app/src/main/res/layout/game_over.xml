@@ -18,19 +18,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!--TextView Score (the word) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
                 android:text="@string/scoreGOver"
                 android:textColor="?attr/textColor"
                 android:textSize="30sp" />
 
+
+            <!--TODO: controleer de hoogte van de les -->
+            <!-- TextView: Score (points collected) -->
             <TextView
                 android:id="@+id/tvPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
                 android:text="@string/defaultBtnValue"
-                android:textColor="#33691E"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="60sp" />
         </LinearLayout>
 
@@ -40,21 +46,26 @@
             android:orientation="horizontal">
 
 
+            <!--TextVieuw personal best (the text) -->
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
                 android:text="@string/PersonalHighScore"
                 android:textColor="?attr/textColor"
                 android:textSize="30sp" />
 
+
+            <!-- TextView peronal best score (hightes points collected) -->
             <TextView
                 android:id="@+id/tvHighScore"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/segoeui"
                 android:text="@string/defaultBtnValue"
-                android:textColor="#BF360C"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="30sp" />
 
         </LinearLayout>
@@ -67,56 +78,64 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <!-- Button try again -->
             <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="restart"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/retry"
-                android:textColor="#424242"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="16sp" />
 
+            <!-- Button change game -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:gravity="center"
                 android:onClick="changeGame"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/changeGame"
-                android:textColor="#424242"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="16sp" />
 
+            <!-- Button main menu -->
             <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="main"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/mainMenuBtn"
-                android:textColor="#424242"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="16sp" />
 
+            <!-- Button Exit game -->
             <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="exit"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/exitGame"
-                android:textColor="#424242"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -126,6 +145,7 @@
             android:background="@drawable/border_orange"
             android:orientation="vertical">
 
+            <!-- imageView high score -->
             <ImageView
                 android:id="@+id/ivHighScore"
                 android:layout_width="match_parent"
@@ -135,37 +155,43 @@
                 android:visibility="visible"
                 app:srcCompat="@drawable/high_scores" />
 
+            <!-- TextView top 5 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-30dp"
+                android:fontFamily="@font/segoeui"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:text="@string/top5"
+                android:text="@string/changeDfficultyTo"
                 android:textColor="#455A64"
                 android:textSize="30sp" />
 
+            <!-- TextView difficulty -->
             <TextView
                 android:id="@+id/tvDifficultyGOver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
                 android:paddingStart="10dp"
                 android:paddingEnd="5dp"
                 android:text="@string/difficultyTitle"
-                android:textColor="#424242"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="12sp" />
 
+            <!-- TextViuw Game -->
             <TextView
                 android:id="@+id/tvChosenGame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
                 android:paddingStart="10dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
                 android:text="@string/chosenGame"
-                android:textColor="#424242"
+                android:textColor="@color/buttonTextColor"
                 android:textSize="12sp" />
         </LinearLayout>
 

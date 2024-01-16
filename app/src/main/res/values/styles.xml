@@ -7,7 +7,7 @@
         <item name="backgroundColor">@color/background</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="textColor">@color/lightThemeText</item>
-        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
     </style>
 
     <!-- Dark application theme. -->
@@ -17,28 +17,29 @@
         <item name="backgroundColor">@color/darkBackground</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="textColor">@color/darkThemeText</item>
-        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
     </style>
 
     <!-- Dialog animation style -->
-    <style name="WindowAnimationTransition">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
     <!-- Light theme dialog style -->
     <style name="lightTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:textColor">@color/lightThemeText</item>
-        <item name="android:windowIsFloating">true</item> <!-- Voeg deze regel toe -->
+        <item name="android:windowIsFloating">true</item>
     </style>
 
-
     <!-- Dark theme dialog style -->
-    <style name="darkTheme.Dialog">
+    <style name="darkTheme.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
         <item name="android:windowBackground">@color/darkBackground</item>
         <item name="android:textColor">@color/darkThemeText</item>
-        <item name="android:windowIsFloating">true</item> <!-- Voeg deze regel toe -->
+        <item name="android:windowIsFloating">true</item>
     </style>
 
 </resources>
