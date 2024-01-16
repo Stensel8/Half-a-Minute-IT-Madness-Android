@@ -41,21 +41,12 @@
     <string name="EnglishToFrench">English to French</string>
     <string name="EnglishToDutch">English to dutch</string>
     <string name="changeGame">Change game</string>
-    <string name="changeDfficultyTo">"Difficulty: "</string>
-    <string name="top5">Top 5:</string>
+    <string name="changeDifficultyTo">"Difficulty: "</string>
+    <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Game: "</string>
-    <string name="loginTitle">Login</string>
-    <string name="email">E-mail</string>
-    <string name="password">Password</string>
-    <string name="login_empty_msg">Please fill any empty fields</string>
     <string name="or">Or</string>
-    <string name="username">Username</string>
-    <string name="sign_up_succes">Successfully signed-up!</string>
-    <string name="username_too_long">this username is too long</string>
-    <string name="account_title">Account</string>
     <string name="no_data">No result</string>
-    <string name="display_notifications">Show notifications</string>
-    <string name="notificationText">Welcome to Half a Minute IT Madness</string>
+
     <string name="welcome">Welcome to Half a Minute IT Madness!</string>
     <string name="welcomeText">
     <![CDATA[
@@ -68,7 +59,6 @@
     <string name="yes">yes</string>
     <string name="no">No</string>
     <string name="sound">Sound</string>
-    <string name="updates">Updates</string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
     <string name="show_releasenotes">Show releasenotes</string>
