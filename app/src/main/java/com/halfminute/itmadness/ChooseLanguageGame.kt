@@ -7,6 +7,9 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * Activity for choosing the language-based game to play.
+ */
 class ChooseLanguageGame : AppCompatActivity() {
 
     companion object {
@@ -34,7 +37,10 @@ class ChooseLanguageGame : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, callback)
     }
 
-    // Method to start the language test based on the button clicked
+    /**
+     * Starts the language test based on the button clicked.
+     * @param view The button view that triggered this action.
+     */
     fun startLanguageTest(view: View) {
         Settings.btnAnimation(view)
 
@@ -64,5 +70,4 @@ class ChooseLanguageGame : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
 }

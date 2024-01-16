@@ -51,6 +51,10 @@ class LanguageGame : AppCompatActivity() {
     private var player: MediaPlayer? = null
     private var timerPlayer: MediaPlayer? = null
 
+    /**
+     * Initializes the activity and sets up the game environment.
+     * @param savedInstanceState Bundle object to recover the previous state.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeSharedPref()
@@ -62,14 +66,23 @@ class LanguageGame : AppCompatActivity() {
         startGame()
     }
 
+    /**
+     * Initializes shared preferences to store and retrieve game settings and states.
+     */
     private fun initializeSharedPref() {
         sharedPref = SharedPref(this)
     }
 
+    /**
+     * Sets the application theme based on user preferences.
+     */
     private fun setAppTheme() {
         setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
     }
 
+    /**
+     * Loads locale settings and other game settings.
+     */
     private fun loadLocaleAndSettings() {
         // Locale and settings are now loaded through the SharedPref class
         sharedPref.loadLocale(this)
@@ -78,6 +91,9 @@ class LanguageGame : AppCompatActivity() {
         chosenGame = intent.getStringExtra("chosenGame") ?: ""
     }
 
+    /**
+     * Initializes game components like buttons, text views, timers, etc.
+     */
     private fun initializeGameComponents() {
         tvTimer = findViewById(R.id.tvTimer)
         tvPoints = findViewById(R.id.tvPoints)
@@ -103,6 +119,9 @@ class LanguageGame : AppCompatActivity() {
         wordsList = Words.getInstance(this)
     }
 
+    /**
+     * Sets up a callback for handling the device's back button press.
+     */
     private fun setupOnBackPressedCallback() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -114,6 +133,10 @@ class LanguageGame : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, callback)
     }
 
+    /**
+     * Pauses the game, saves the current state, and navigates to the pause menu.
+     * @param view The current view context.
+     */
     fun pauseGame(view: View) {
         saveCurrentGame()
         countDownTimer?.cancel()
@@ -121,6 +144,9 @@ class LanguageGame : AppCompatActivity() {
         navigateToPauseMenu()
     }
 
+    /**
+     * Saves the current game state to shared preferences.
+     */
     private fun saveCurrentGame() {
         sharedPreferences = getSharedPreferences("actualGame", MODE_PRIVATE)
         sharedPreferences.edit()?.apply {
@@ -129,6 +155,9 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Navigates to the pause menu.
+     */
     private fun navigateToPauseMenu() {
         Intent(this, PauseMenu::class.java).also {
             startActivity(it)
@@ -137,6 +166,9 @@ class LanguageGame : AppCompatActivity() {
     }
 
 
+    /**
+     * Starts the game, sets up questions, and starts the timer.
+     */
     private fun startGame() {
         tvTimer!!.text = getString(R.string.timer_seconds, millisUntilFinished / 1000)
         tvPoints!!.text = getString(R.string.score_format, points, numberOfQuestions)
@@ -169,13 +201,18 @@ class LanguageGame : AppCompatActivity() {
         }.start()
     }
 
+    /**
+     * Plays a sound to indicate the timer is running out.
+     */
     private fun playTimerSound() {
         if (sharedPref.getSound()) {
             startPlayer(timerPlayer)
         }
     }
 
-    // Define a data class to represent the game difficulty
+    /**
+     * Generates a new question for the game.
+     */
     private fun generateQuestion() {
         numberOfQuestions++
 
@@ -670,6 +707,9 @@ class LanguageGame : AppCompatActivity() {
         setIncorrectAnswers()
     }
 
+    /**
+     * Sets incorrect answers for the game's multiple-choice questions.
+     */
     private fun setIncorrectAnswers() {
         incorrectAnswers!!.clear()
 
@@ -694,6 +734,10 @@ class LanguageGame : AppCompatActivity() {
         assignIncorrectAnswersToButtons()
     }
 
+    /**
+     * Gets a random word from the word list based on the current difficulty.
+     * @return A random Word object.
+     */
     private fun getRandomWord(): Word {
         return when (difficulty) {
             "easy" -> wordsList!!.easyWords.random()
@@ -703,6 +747,12 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Retrieves a word based on the game type and language.
+     * @param word The word object.
+     * @param language The language in which the word is needed.
+     * @return A string representing the word in the specified language.
+     */
     private fun getWordBasedOnGame(word: Word, language: String): String {
         return when (chosenGame) {
             "NlToEn" -> if (language == "nl") word.nlWord else word.enWord
@@ -715,6 +765,9 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Assigns incorrect answers to the available buttons in the game.
+     */
     private fun assignIncorrectAnswersToButtons() {
         incorrectAnswers!!.clear()
 
@@ -747,6 +800,10 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Processes the player's answer selection and updates the game state.
+     * @param view The view context of the clicked button.
+     */
     fun chooseAnswer(view: View?) {
         clickedBtn = view as Button?
         val answer = clickedBtn!!.text.toString()
@@ -772,6 +829,11 @@ class LanguageGame : AppCompatActivity() {
         updateUIAfterAnswer()
     }
 
+    /**
+     * Updates the appearance of the button based on whether the answer is correct or wrong.
+     * @param button The button to be updated.
+     * @param drawableId The resource ID of the drawable to be used for the button background.
+     */
     private fun updateButtonBackground(button: Button, drawableId: Int) {
         button.background = ResourcesCompat.getDrawable(resources, drawableId, null)
         Handler(Looper.getMainLooper()).postDelayed({
@@ -779,6 +841,9 @@ class LanguageGame : AppCompatActivity() {
         }, 500)
     }
 
+    /**
+     * Updates the game's UI after an answer is selected.
+     */
     private fun updateUIAfterAnswer() {
         tvPoints!!.text = getString(R.string.points, points, numberOfQuestions)
         Handler(Looper.getMainLooper()).postDelayed({
@@ -787,6 +852,10 @@ class LanguageGame : AppCompatActivity() {
         }, 1000)
     }
 
+    /**
+     * Plays a sound based on whether the player's answer is correct or not.
+     * @param isCorrect A boolean indicating whether the answer was correct.
+     */
     private fun playSound(isCorrect: Boolean) {
         if (sharedPref.getSound()) {
             if (isCorrect) {
@@ -804,11 +873,18 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Starts a media player to play a sound.
+     * @param myPlayer The MediaPlayer object to play the sound.
+     */
     private fun startPlayer(myPlayer: MediaPlayer?) {
         myPlayer!!.start()
         myPlayer.setOnCompletionListener { stopPlayer() }
     }
 
+    /**
+     * Stops and releases the media player.
+     */
     private fun stopPlayer() {
         if (player != null) {
             player!!.release()
@@ -816,12 +892,18 @@ class LanguageGame : AppCompatActivity() {
         }
     }
 
+    /**
+     * Releases the timer sound player.
+     */
     private fun releasePlayer() {
         if (timerPlayer != null && sharedPref.getSound()) {
             timerPlayer!!.release()
         }
     }
 
+    /**
+     * Handles the game over scenario, stops the timer, and navigates to the game over screen.
+     */
     private fun gameOver() {
         if (countDownTimer != null) {
             countDownTimer!!.cancel()
