@@ -142,11 +142,8 @@ For more detailed instructions, refer to our [Game Rules](https://github.com/Ste
 
 ## Roadmap
 
-<<<<<<< Updated upstream
-We are continuously working on improving and expanding Half-a-Minute-IT-Madness. Here's what you can expect in the near future:
-=======
-We are continuously working on improving and expanding Half-a-Minute-IT-Madness. Here's what we 4working on in the near future:
->>>>>>> Stashed changes
+We are continuously working on improving and expanding Half-a-Minute-IT-Madness. Here's what we may be working on in the near future:
+
 
 - **High Score Board**: Implementing a leaderboard to track top scores.
 - **New Difficulty Levels**: Adding the ability to choose even higher difficulty levels for a greater challenge.
