@@ -75,7 +75,7 @@ Version 2.3 brings a range of updates and fixes:
 - **General Bug Fixes:** Multiple improvements for a smoother experience.
 - **Translation Logic:** Improved logic for translating words.
 - **Language Update:** Belgian language removed!
-- **Code Rewrite:** Application is ~35% rewritten in Kotlin 1.9.21. Future updates will replace multiple Java 17 components with the newer and faster Kotlin language.
+- **Code Rewrite:** Application is ~35% rewritten in Kotlin 1.9.21. Future updates will replace multiple Java 17. We are transitioning from Java to Kotlin, as Kotlin offers more modern features and improved syntax.
 - **Dark Mode Menus:** Reworked the dark mode context menus.
 - **Release Notes Access:** Added the option to view the release notes from within the settings page.
 - **Icon Update:** Changed the ic_launcher_icon.
