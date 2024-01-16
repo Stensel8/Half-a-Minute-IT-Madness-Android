@@ -25,8 +25,8 @@ possible in 30 seconds.
 - [Getting Started](#getting-started)
 - [Installation Guide](#installation-guide)
 - [Usage Instructions](#usage-instructions)
-- [Contributing](#contributing)
 - [Roadmap](#roadmap)
+- [Contributing](#contributing)
 - [FAQs](#faqs)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
@@ -76,12 +76,7 @@ A fun and challenging Android game that tests your IT knowledge across various c
 - **Game Over Screen** (High scores coming soon)
   ![Game over screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_gameover.webp)
 
-## Coming Soon?
 
-- High score board.
-- The ability to choose an even higher difficulty.
-- Extra animations.
-- Improved performance.
 
 
 ## Getting Started
@@ -123,22 +118,79 @@ Click on the 'Run' button (represented by a green triangle) or press Shift + F10
 Android Studio will build the project and install the app on your device or emulator.
 
 
-### Installation Guide
+## Installation Guide
 
-## Prerequisites:
+### Prerequisites:
 
 - **Android Studio Hedgehog or Higher:** Ensure you have Android Studio version Hedgehog (2023.1.1) or higher installed. This version includes all necessary tools and SDKs for building the app.
 - **Minimum Android SDK:** The project requires a minimum Android SDK version of 30. Make sure this SDK version is installed via the SDK Manager in Android Studio.
 - **Device Storage:** At least 128MB of free space on your Android device or emulator for optimal performance.
+
+
+## Usage Instructions
+
+To get started with Half-a-Minute-IT-Madness:
+
+1. **Start the Game**: Open the app on your Android device.
+2. **Choose a Category**: Select your preferred category from the main menu.
+3. **Answer Questions**: Try to answer as many questions as possible within 30 seconds.
+4. **Keep Track of Your Score**: Your score is displayed at the top of the screen.
+5. **Repeat**: Play again to improve your score or try a different category for a new challenge.
+
+For more detailed instructions, refer to our [Game Rules](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/tree/main/Documentation).
+
+
+## Roadmap
+
+We are continuously working on improving and expanding Half-a-Minute-IT-Madness. Here's what you can expect in the near future:
+
+- **High Score Board**: Implementing a leaderboard to track top scores.
+- **New Difficulty Levels**: Adding the ability to choose even higher difficulty levels for a greater challenge.
+- **Extra Animations**: Enhancing the game with additional animations for a more engaging experience.
+- **Improved Performance**: Continuously optimizing the game for smoother and faster gameplay.
+- **Additional Categories**: Introducing new trivia categories based on user feedback.
+- **Multiplayer Mode**: Developing a multiplayer feature for competitive play.
+
+Stay tuned for these updates and more as we strive to make Half-a-Minute-IT-Madness even more exciting!
+
 
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to the project, please follow the
 contribution guidelines.
 
+
+## FAQs
+
+**Q: Can I play Half-a-Minute-IT-Madness on any Android device?**
+A: The game is compatible with devices running Android SDK version 30 and above.
+
+**Q: Is the game free?**
+A: Yes, Half-a-Minute-IT-Madness is completely free to play.
+
+**Q: How can I contribute to the game's development?**
+A: Check out our [Contributing Guide](link-to-contributing-guide) for details on how you can contribute.
+
+**Q: Are there any in-app purchases?**
+A: No, the game does not currently feature any in-app purchases.
+
+**Q: How can I report a bug or provide feedback?**
+A: Please open an issue on our GitHub repository or contact us directly through [GitHub Discussions](link-to-GitHub-discussions-if-available).
+
+Have more questions? Feel free to ask them in the [Issues section](link-to-GitHub-issues) of our GitHub repository.
+
+
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the GNU General Public License version 3 (GPL v3).
+
+Copyright (c) 2023-2024 by Sten Tijhuis
+- [Sten Tijhuis](https://github.com/Stensel8)
+- [Wouter Woertman](https://github.com/waldbaan)
+- [Timon Zeelen](https://github.com/TimonZeelen)
+
+For more details, see the [GPL version 3 License](https://www.gnu.org/licenses/gpl-3.0.html).
+
 
 ## Acknowledgments
 
