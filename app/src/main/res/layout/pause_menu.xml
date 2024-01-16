@@ -17,12 +17,14 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
+            <!-- TextView pause menu -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pauseMenuTitle"
                 android:textColor="?attr/textColor"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                android:fontFamily="@font/segoeui"/>
         </LinearLayout>
 
         <LinearLayout
@@ -33,6 +35,7 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <!-- replay button -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,8 +49,10 @@
                 android:paddingBottom="20dp"
                 android:text="@string/resumeBtn"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:fontFamily="@font/segoeui"/>
 
+            <!-- Settings button -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,8 +66,10 @@
                 android:paddingBottom="20dp"
                 android:text="@string/settingsTitle"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:fontFamily="@font/segoeui"/>
 
+            <!-- Change game button -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,8 +83,10 @@
                 android:paddingBottom="20dp"
                 android:text="@string/changeGame"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:fontFamily="@font/segoeui"/>
 
+            <!-- Main menu button -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,7 +100,8 @@
                 android:paddingBottom="20dp"
                 android:text="@string/mainMenuBtn"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:fontFamily="@font/segoeui"/>
 
         </LinearLayout>
 

@@ -1,6 +1,7 @@
 # Half-a-Minute-IT-Madness-Android
 
-A little Android game written in Java and Kotlin where you have to answer as many questions as possible in 30 seconds.
+A little Android game written in Java and Kotlin where you have to answer as many questions as
+possible in 30 seconds.
 
 [![Codacy Security Scan](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml/badge.svg?branch=main)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml)
 [![Scan with Detekt](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/detekt.yml/badge.svg?branch=main)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/detekt.yml)
@@ -14,12 +15,10 @@ A little Android game written in Java and Kotlin where you have to answer as man
 ![Beta_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_prereleases&label=BetaVersion)
 ![Stable_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_releases&label=StableVersion&style=flat&color=brightgreen)
 
-
-
-
 ## Overview
 
-A fun and challenging Android game that tests your knowledge across various categories. Answer as many questions as you can within the given 30-second time limit.
+A fun and challenging Android game that tests your knowledge across various categories. Answer as
+many questions as you can within the given 30-second time limit.
 
 ## Features
 
@@ -32,28 +31,28 @@ A fun and challenging Android game that tests your knowledge across various cate
 ## Screenshots
 
 - **Welcome Screen**
-  ![Welcome screen](Documentation/Half%20a%20Minute%20IT%20Madness_welcome.jpg)
+  ![Welcome screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_welcome.jpg)
 
 - **Home Screen**
-  ![Home screen](Documentation/Half%20a%20Minute%20IT%20Madness_mainactivity.jpg)
+  ![Home screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_mainactivity.jpg)
 
 - **Settings Screen**
-  ![Settings screen](Documentation/Half%20a%20Minute%20IT%20Madness_settings.jpg)
+  ![Settings screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_settings.jpg)
 
 - **Choose Game Screen**
-  ![Choose game screen](Documentation/Half%20a%20Minute%20IT%20Madness_choosegame.jpg)
+  ![Choose game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_choosegame.jpg)
 
 - **Math Game Screen**
-  ![Math game screen](Documentation/Half%20a%20Minute%20IT%20Madness_mathgame.jpg)
+  ![Math game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_mathgame.jpg)
 
 - **Choose Language Game Screen**
-  ![Choose language game screen](Documentation/Half%20a%20Minute%20IT%20Madness_chooselanguagegame.jpg)
+  ![Choose language game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_chooselanguagegame.jpg)
 
 - **Language Game Screen**
-  ![Language game screen](Documentation/Half%20a%20Minute%20IT%20Madness_languagegame.jpg)
+  ![Language game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_languagegame.jpg)
 
 - **Game Over Screen** (High scores coming soon)
-  ![Game over screen](Documentation/Half%20a%20Minute%20IT%20Madness_gameover.jpg)
+  ![Game over screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_gameover.jpg)
 
 ## Coming Soon
 
@@ -80,13 +79,17 @@ To get started with the game, follow these steps:
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to the project, please follow the contribution guidelines.
+Contributions are welcome! If you'd like to contribute to the project, please follow the
+contribution guidelines.
 
 ## License
+
 This project is licensed under the MIT License.
 
 ## Acknowledgments
+
 Special thanks to the contributors who have helped make this game possible:
+
 - [nassimassb](https://github.com/nassimassb)
 - [Stensel8](https://github.com/Stensel8)
 - [waldbaan](https://github.com/waldbaan)
@@ -94,7 +97,6 @@ Special thanks to the contributors who have helped make this game possible:
 - [tritshuri](https://github.com/tritshuri)
 
 [View contributors](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/graphs/contributors)
-
 
 Feel free to star the repository if you like it or find the project interesting!
 
