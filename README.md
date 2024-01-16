@@ -75,15 +75,12 @@ A fun and challenging Android game that tests your IT knowledge across various c
 - **Game Over Screen** (High scores coming soon)
   ![Game over screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_gameover.webp)
 
-## Coming Soon
+## Coming Soon?
 
 - High score board.
-- Guessing game.
-- Improved switching between dark/light mode.
-- Extra additional words.
 - The ability to choose an even higher difficulty.
 - Extra animations.
-- Improved performance / bug fixes.
+- Improved performance.
 
 
 ## Getting Started
