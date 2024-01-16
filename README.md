@@ -13,8 +13,9 @@ possible in 30 seconds.
 
 ![Kotlin_Used](https://img.shields.io/github/languages/top/Stensel8/Half-a-Minute-IT-Madness-Android?color=purple&label=Kotlin)
 
-![Beta_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_prereleases&label=BetaVersion)
-![Stable_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_releases&label=StableVersion&style=flat&color=brightgreen)
+[![Stable Version](https://img.shields.io/badge/StableVersion-V2.6-darkgreen)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV2.6)
+[![Beta Version](https://img.shields.io/badge/BetaVersion-V2.4-blue)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.4)
+
 
 
 ## Table of Contents
