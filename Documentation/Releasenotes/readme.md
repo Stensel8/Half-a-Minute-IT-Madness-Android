@@ -1,0 +1,1 @@
+![View Releasenotes](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/main/Documentation/Releasenotes/releasenotes.md)
