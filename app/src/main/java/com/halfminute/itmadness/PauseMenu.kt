@@ -28,23 +28,34 @@ class PauseMenu : AppCompatActivity() {
     }
 
     private fun resumeCurrentGame() {
-        val intent = when (sharedPreferences.getString("actualGame", "")) {
+        val intent = when (val chosenGame = sharedPref.loadChosenGame()) { // Load the chosen game
             "math" -> Intent(this, MathGame::class.java)
             "guessing" -> Intent(this, GuessingGame::class.java)
-            // Add cases for different LanguageGame modes if needed
+            "NlToEn", "EnToNl", "FrToEn", "EnToFr", "EnToDe", "DeToEn" -> Intent(
+                this,
+                LanguageGame::class.java
+            ).apply {
+                putExtra("chosenGame", chosenGame)
+            }
+
             else -> Intent(this, MainActivity::class.java) // Default to Main if unknown
         }
         startActivity(intent)
         finish()
     }
 
+
     fun resumeGame(view: View?) {
-        Settings.btnAnimation(view)
+        if (view != null) {
+            Settings.btnAnimation(view)
+        }
         resumeCurrentGame()
     }
 
     fun goSettings(view: View?) {
-        Settings.btnAnimation(view)
+        if (view != null) {
+            Settings.btnAnimation(view)
+        }
         val sharedPreferences = getSharedPreferences("activity", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("activity", "pause")
@@ -55,14 +66,18 @@ class PauseMenu : AppCompatActivity() {
     }
 
     fun goMain(view: View?) {
-        Settings.btnAnimation(view)
+        if (view != null) {
+            Settings.btnAnimation(view)
+        }
         val intent = Intent(this@PauseMenu, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     fun changeGame(view: View?) {
-        Settings.btnAnimation(view)
+        if (view != null) {
+            Settings.btnAnimation(view)
+        }
         val intent = Intent(this@PauseMenu, ChooseGame::class.java)
         startActivity(intent)
         finish()

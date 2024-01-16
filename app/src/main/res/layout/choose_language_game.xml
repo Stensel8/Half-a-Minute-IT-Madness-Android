@@ -24,10 +24,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
                 android:text="@string/chooseTestTitle"
                 android:textColor="?attr/textColor"
-                android:textSize="36sp"
-                android:fontFamily="@font/segoeui"/>
+                android:textSize="36sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -44,13 +44,13 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/DutchToEnglish"
                 android:textColor="@color/buttonTextColor"
                 android:textSize="18sp"
-                tools:text="@string/DutchToEnglish"
-                android:fontFamily="@font/segoeuib"/>
+                tools:text="@string/DutchToEnglish" />
 
             <!-- Butten EN to NL -->
             <Button
@@ -60,21 +60,12 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToDutch"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="18sp"
-                android:fontFamily="@font/segoeuib"/>
-
-            <!-- TextView upper Chrash warning -->
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Crashwarning"
-                android:textColor="#FD0000"
-                android:fontFamily="@font/segoeuib"/>
+                android:textSize="18sp" />
 
             <!-- Butten DE to EN -->
             <Button
@@ -84,22 +75,12 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/GermanToEnglish"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="18sp"
-                android:fontFamily="@font/segoeuib"/>
-
-
-            <!-- TextView middle Crash warning -->
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeuib"
-                android:text="@string/Crashwarning"
-                android:textColor="#FD0000" />
+                android:textSize="18sp" />
 
             <!-- Button EN to DE -->
             <Button
@@ -109,12 +90,12 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToGerman"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="18sp"
-                android:fontFamily="@font/segoeuib"/>
+                android:textSize="18sp" />
 
             <!-- Button FR to EN -->
             <Button
@@ -124,12 +105,12 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/FrenchToEnglish"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="18sp"
-                android:fontFamily="@font/segoeuib"/>
+                android:textSize="18sp" />
 
             <!-- Button EN to FR -->
             <Button
@@ -138,22 +119,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_btn"
+                android:fontFamily="@font/segoeuib"
                 android:onClick="startLanguageTest"
                 android:padding="20dp"
                 android:text="@string/EnglishToFrench"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="18sp"
-                android:fontFamily="@font/segoeuib"/>
+                android:textSize="18sp" />
 
         </LinearLayout>
-        <!-- TextView lower crash warning -->
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Crashinfo"
-            android:textColor="#FD0000"
-            android:fontFamily="@font/segoeuib"/>
 
     </LinearLayout>
 

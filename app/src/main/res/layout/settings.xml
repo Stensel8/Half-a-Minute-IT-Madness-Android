@@ -100,7 +100,7 @@
                 android:textColor="?attr/textColor"
                 android:textSize="30sp" />
 
-            <!-- ImageVieuw dark mode icon -->
+            <!-- ImageView dark mode icon -->
             <ImageView
                 android:id="@+id/darkModeIcon"
                 android:layout_width="wrap_content"
@@ -152,7 +152,6 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded_btn"
             android:fontFamily="@font/segoeuib"
-            android:onClick="showChangeLanguageDialog"
             android:padding="10dp"
             android:text="@string/ChangeLanguage"
             android:textColor="@color/buttonTextColor"
@@ -167,7 +166,6 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded_btn"
             android:fontFamily="@font/segoeuib"
-            android:onClick="showWelcomeAndUpdates"
             android:text="@string/show_releasenotes"
             android:textColor="@color/buttonTextColor"
             android:textSize="16sp" />

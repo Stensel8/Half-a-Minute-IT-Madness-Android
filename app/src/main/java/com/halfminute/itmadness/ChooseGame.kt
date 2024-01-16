@@ -38,30 +38,29 @@ class ChooseGame : AppCompatActivity() {
 
     fun startMathGame(view: View) {
         Settings.btnAnimation(view) // Apply the button animation to the view
-        val intent =
-            Intent(this, MathGame::class.java) // Create an intent to start the math game activity
-        startActivity(intent) // Start the math game activity
-        finish() // Finish this activity
+        // Save the chosen game name and start the MathGame activity
+        sharedPref.saveChosenGame("math")
+        val intent = Intent(this, MathGame::class.java)
+        startActivity(intent)
+        finish()
     }
 
     fun startLanguageGame(view: View) {
         Settings.btnAnimation(view) // Apply the button animation to the view
-        val intent = Intent(
-            this,
-            ChooseLanguageGame::class.java
-        ) // Create an intent to start the choose language game activity
-        startActivity(intent) // Start the choose language game activity
-        finish() // Finish this activity
+        // Save the chosen game name and start the ChooseLanguageGame activity
+        sharedPref.saveChosenGame("language")
+        val intent = Intent(this, ChooseLanguageGame::class.java)
+        startActivity(intent)
+        finish()
     }
 
     // Start the guessing game
     fun startGuessingGame(view: View) {
         Settings.btnAnimation(view) // Apply the button animation to the view
-        val intent = Intent(
-            this,
-            GuessingGame::class.java
-        ) // Create an intent to start the guessing game activity
-        startActivity(intent) // Start the guessing game activity
-        finish() // Finish this activity
+        // Save the chosen game name and start the GuessingGame activity
+        sharedPref.saveChosenGame("guessing")
+        val intent = Intent(this, GuessingGame::class.java)
+        startActivity(intent)
+        finish()
     }
 }

@@ -22,10 +22,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="0dp"
+                android:fontFamily="@font/segoeui"
                 android:text="@string/welcome"
                 android:textColor="?attr/textColor"
-                android:textSize="36sp"
-                android:fontFamily="@font/segoeui"/>
+                android:textSize="36sp" />
 
             <!-- Imagebutton close button -->
             <ImageButton
@@ -45,11 +45,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:fontFamily="@font/segoeui"
             android:text="@string/welcomeText"
             android:textAllCaps="false"
             android:textColor="?attr/textColor"
-            android:textSize="18sp"
-            android:fontFamily="@font/segoeui"/>
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnViewReleaseNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/show_releasenotes" />
 
     </LinearLayout>
 </ScrollView>

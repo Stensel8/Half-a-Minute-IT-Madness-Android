@@ -13,11 +13,19 @@
     <color name="correct">#27ae60</color>
     <color name="wrong">#f98722</color>
 
-    // Colors for the 4 MathGame buttons
+    <!-- Colors for the 4 MathGame buttons -->
     <color name="button1Color">#08a8ff</color>
     <color name="button2Color">#38b209</color>
     <color name="button3Color">#44d80a</color>
     <color name="button4Color">#0886ff</color>
+
+    <!-- Snackbar backgroundcolors -->
+    <color name="snackbar_background_dark">#333333</color>
+    <color name="snackbar_background_light">#F5F5F5</color>
+
+    <!-- Snackbar textcolors -->
+    <color name="snackbar_text_dark">#FFFFFF</color>
+    <color name="snackbar_text_light">#0c476c</color>
 
     <!-- old colors from dead build (might need later)
     // <color name="colorPrimary">#00b58d</color>

@@ -8,10 +8,13 @@ import android.view.View
 import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import java.util.Locale
 import java.util.Random
 
 class GuessingGame : AppCompatActivity() {
 
+    private lateinit var sharedPref: SharedPref
+    private lateinit var words: List<Word>
     private lateinit var tvTimer: TextView
     private lateinit var tvPoints: TextView
     private lateinit var tvDifficulty: TextView
@@ -24,21 +27,29 @@ class GuessingGame : AppCompatActivity() {
     private val millisUntilFinished = 30100L
     private var selectedCount = 0
     private val isSelectedMap = mutableMapOf<TextView, Boolean>()
-    private val randomWords = arrayOf("Word1", "Word2", "Word3", "Word4")
     private val random = Random()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPref = SharedPref(this)
 
-        // This object is used to access the stored shared preferences, specifically the theme preference.
-        val sharedPref = SharedPref(this)
-
-        // This needs to be done before setContentView is called, as the theme cannot be changed after the layout is inflated.
+        // Set theme and content view
         setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
-
-        // This inflates the layout defined in R.layout.guessing_game and sets it as the content view for this activity.
         setContentView(R.layout.guessing_game)
 
-        // These variables represent the TextViews defined in your layout file. findViewById is used to link them.
+        // Initialize TextViews
+        initializeTextViews()
+
+        // Load words based on difficulty and language
+        loadWords()
+
+        // Start game and handle back button
+        startGame()
+        handleBackButton()
+
+    }
+
+    private fun initializeTextViews() {
         tvTimer = findViewById(R.id.tvTimer)
         tvPoints = findViewById(R.id.tvPoints)
         tvDifficulty = findViewById(R.id.tvDifficulty)
@@ -48,22 +59,48 @@ class GuessingGame : AppCompatActivity() {
         txtvw3 = findViewById(R.id.txtvw3)
         txtvw4 = findViewById(R.id.txtvw4)
 
-        // This loop sets an onClickListener for each TextView, linking them to the onWordClick function.
-        listOf(txtvw1, txtvw2, txtvw3, txtvw4).forEach { textView ->
-            textView.setOnClickListener { onWordClick(it) }
-        }
-
-        // Initialize isSelectedMap for each TextView
         listOf(txtvw1, txtvw2, txtvw3, txtvw4).forEach { textView ->
             isSelectedMap[textView] = false
             textView.setOnClickListener { onWordClick(it) }
         }
+    }
 
-        // This function initializes and starts the game logic.
-        startGame()
+    private fun loadWords() {
+        val difficultyString = sharedPref.loadDifficulty().uppercase(Locale.getDefault())
+        val difficulty = try {
+            Difficulty.valueOf(difficultyString)
+        } catch (e: IllegalArgumentException) {
+            // Show a custom Snackbar message if an error occurs
+            sharedPref.showCustomSnackbar(
+                this,
+                "Invalid difficulty saved: $difficultyString. Default value 'EASY' is used."
+            )
+            Difficulty.EASY // Default value if an invalid one is saved
+        }
 
-        // This sets up a custom behavior for when the back button is pressed in this activity.
-        handleBackButton()
+        sharedPref.getSavedLanguage(this)
+        words = Words.getInstance(this)?.getWordsByDifficulty(difficulty) ?: emptyList()
+        tvDifficulty.text = difficulty.name
+    }
+
+    private fun generateRandomWords() {
+        val usedWords = mutableSetOf<Word>()
+        val textViews = listOf(txtvw1, txtvw2, txtvw3, txtvw4)
+        textViews.forEach { textView ->
+            var randomWord: Word
+            do {
+                randomWord = words[random.nextInt(words.size)]
+            } while (!usedWords.add(randomWord))
+            // Set the text based on the selected language
+            textView.text = when (sharedPref.getSavedLanguage(this)) {
+                "fr" -> randomWord.frWord
+                "nl" -> randomWord.nlWord
+                "en" -> randomWord.enWord
+                "de" -> randomWord.deWord
+                else -> randomWord.enWord  // Default to English
+            }
+            textView.setBackgroundColor(Color.WHITE)
+        }
     }
 
     private fun startGame() {
@@ -73,7 +110,7 @@ class GuessingGame : AppCompatActivity() {
 
         countDownTimer = object : CountDownTimer(millisUntilFinished, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                tvTimer.text = (millisUntilFinished / 1000).toString() + "s"
+                tvTimer.text = "${millisUntilFinished / 1000}s"
             }
 
             override fun onFinish() {
@@ -81,42 +118,6 @@ class GuessingGame : AppCompatActivity() {
                 navigateToGameOver()
             }
         }.start()
-    }
-
-    private fun generateRandomWords() {
-        val usedWords = mutableSetOf<String>()
-        val textViews = listOf(txtvw1, txtvw2, txtvw3, txtvw4)
-        textViews.forEach { textView ->
-            var randomWord: String
-            do {
-                randomWord = randomWords[random.nextInt(randomWords.size)]
-            } while (!usedWords.add(randomWord))
-            textView.text = randomWord
-            textView.setBackgroundColor(Color.WHITE)
-        }
-    }
-
-    private fun onWordClick(view: View) {
-        val clickedTextView = view as TextView
-
-        // Toggle the selected state and update the map
-        val isSelected = !(isSelectedMap[clickedTextView] ?: false)
-        isSelectedMap[clickedTextView] = isSelected
-
-        // Change the background color based on the selected state
-        if (isSelected) {
-            clickedTextView.setBackgroundColor(Color.GREEN)
-        } else {
-            clickedTextView.setBackgroundColor(Color.WHITE)
-        }
-
-        // Update the selected count
-        updateSelectedCount()
-    }
-
-    private fun updateSelectedCount() {
-        // Calculate the number of selected TextViews
-        selectedCount = isSelectedMap.count { it.value }
     }
 
     private fun calculatePoints() {
@@ -128,9 +129,23 @@ class GuessingGame : AppCompatActivity() {
         countDownTimer?.cancel()
         val intent = Intent(this, GameOver::class.java).apply {
             putExtra("points", selectedCount)
+            putExtra("chosenGame", "guessing") // Add the game type here
         }
         startActivity(intent)
         finish()
+    }
+
+    private fun onWordClick(view: View) {
+        val clickedTextView = view as TextView
+        val isSelected = !(isSelectedMap[clickedTextView] ?: false)
+        isSelectedMap[clickedTextView] = isSelected
+
+        clickedTextView.setBackgroundColor(if (isSelected) Color.GREEN else Color.WHITE)
+        updateSelectedCount()
+    }
+
+    private fun updateSelectedCount() {
+        selectedCount = isSelectedMap.count { it.value }
     }
 
     private fun handleBackButton() {
@@ -141,13 +156,17 @@ class GuessingGame : AppCompatActivity() {
     }
 
     fun pauseGame(view: View) {
-        countDownTimer?.cancel()
-        navigateToPauseMenu()
-    }
+        sharedPref.saveChosenGame("guessing")
 
-    private fun navigateToPauseMenu() {
+        countDownTimer?.cancel()
+
+        // If there's any media player, stop it here
+        // mediaPlayer?.stop()
+
         val intent = Intent(this, PauseMenu::class.java)
         startActivity(intent)
         finish()
     }
+
+
 }

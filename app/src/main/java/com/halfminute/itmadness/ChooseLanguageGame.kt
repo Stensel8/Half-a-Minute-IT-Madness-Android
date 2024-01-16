@@ -56,7 +56,13 @@ class ChooseLanguageGame : AppCompatActivity() {
 
         Log.d(TAG, "Starting language test: $chosenGame")
         intent.putExtra("chosenGame", chosenGame)
+
+        // Save the chosen LanguageGame mode to SharedPreferences
+        val sharedPref = SharedPref(this)
+        sharedPref.saveChosenGame(chosenGame)
+
         startActivity(intent)
         finish()
     }
+
 }

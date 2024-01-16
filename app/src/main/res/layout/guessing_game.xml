@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
@@ -10,17 +11,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <!-- imageButton pause button -->
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
             android:background="?attr/backgroundColor"
             android:contentDescription="@string/pauseMenuTitle"
             android:onClick="pauseGame"
-            app:srcCompat="@android:drawable/ic_media_pause" />
+            app:srcCompat="@android:drawable/ic_media_pause"
+            tools:ignore="OnClick" />
+
 
         <!-- TextView timer -->
         <TextView
@@ -28,15 +32,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/segoeui"
             android:gravity="center_vertical|start"
             android:text="@string/TimerValue"
             android:textColor="?attr/textColor"
             android:textSize="24sp"
-            android:fontFamily="@font/segoeui"
             app:drawableLeftCompat="@drawable/timer_blue"
             app:drawableStartCompat="@drawable/timer_blue" />
 
-        <!-- TextView Points -->a
+        <!-- TextView Points -->
         <TextView
             android:id="@+id/tvPoints"
             android:layout_width="wrap_content"
@@ -45,25 +49,25 @@
             android:text="@string/ScoreValue"
             android:textColor="?attr/textColor"
             android:textSize="24sp"
-            app:drawableStartCompat="@drawable/star_blue"
-            app:drawableLeftCompat="@drawable/star_blue" />
+            app:drawableLeftCompat="@drawable/star_blue"
+            app:drawableStartCompat="@drawable/star_blue" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical|end">
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal">
 
         <!-- TextView Difficulty (easy, medium, hard) -->
         <TextView
             android:id="@+id/tvDifficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
             android:text="@string/difficultyEasy"
             android:textColor="?attr/textColor"
-            android:textSize="24sp"
-            android:fontFamily="@font/segoeui" />
+            android:textSize="24sp" />
 
         <!-- TODO: look for inplementation in guessing game -->
         <!-- textVieuw lives -->
@@ -72,12 +76,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/segoeui"
             android:text="@string/defaultBtnValue"
             android:textColor="?attr/textColor"
             android:textSize="24sp"
             app:drawableLeftCompat="@drawable/heart"
-            app:drawableStartCompat="@drawable/heart"
-            android:fontFamily="@font/segoeui"/>
+            app:drawableStartCompat="@drawable/heart" />
     </LinearLayout>
 
     <!-- Button word 1 -->

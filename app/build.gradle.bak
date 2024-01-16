@@ -7,11 +7,11 @@ android {
     // Configuration for the Android application
     defaultConfig {
         applicationId "com.halfminute.itmadness" // Unique identifier for the app
-        minSdk 31 // Minimum SDK version required
+        minSdk 30 // Minimum SDK version required
         targetSdkVersion 34 // Target SDK version
         compileSdk 34 // Compile SDK version
-        versionCode 10 // Version code for the app (increment for each release)
-        versionName '2.4' // Version name for the app
+        versionCode 26 // Version code for the app (increment for each release)
+        versionName '2.6' // Version name for the app
         multiDexEnabled true // Enable MultiDex for applications with many methods
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Test runner for instrumentation tests
         signingConfig signingConfigs.debug // Signing configuration (debug build)
