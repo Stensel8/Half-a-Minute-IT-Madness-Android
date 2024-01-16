@@ -8,7 +8,7 @@ We are excited to announce the first stable release, Version 2.6, of Half a Minu
 - **Crash Handling:** Added more crash handlers to reduce and manage crashes effectively.
 - **New Feature:** Introduced an engaging Guessing Game.
 - **Theme Update:** Updated theme colors for better consistency with the app's color scheme.
-- **Code Optimization:** Application is ~95% rewritten in Kotlin 1.9.21. Future updates will replace multiple Java 17 components with the newer and faster Kotlin language.
+- **Code Optimization:** Application is ~95% rewritten in Kotlin 1.9.21. Future updates will replace multiple Java 17. We are transitioning from Java to Kotlin, as Kotlin offers more modern features and improved syntax.
 
 ### New Game Addition
 - Added a new GuessingGame feature.
