@@ -41,7 +41,7 @@ A fun and challenging Android game that tests your IT knowledge across various c
 ## Features
 
 - Engaging gameplay with a 30-second time constraint.
-- Multiple categories including math, language, and IT trivia.
+- Multiple categories including math, language, and guessing.
 - Earn points for correct answers; lose lives for incorrect ones.
 - Lives displayed as heart icons in the top right corner.
 - Challenge yourself to beat your high scores in each category.
