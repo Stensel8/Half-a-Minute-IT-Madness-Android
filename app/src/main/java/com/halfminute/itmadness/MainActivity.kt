@@ -11,13 +11,18 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * Main activity of the application, serving as the entry point.
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var languageChangeReceiver: BroadcastReceiver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val sharedPref = SharedPref(this)
@@ -29,14 +34,20 @@ class MainActivity : AppCompatActivity() {
             DialogUtils.showStartDialog(this)
             sharedPref.setUpdateDialogShown()
         }
-
     }
 
+    /**
+     * Sets up the theme and locale based on user preferences.
+     * @param sharedPref The shared preferences instance to load settings from.
+     */
     private fun setupThemeAndLocale(sharedPref: SharedPref) {
         setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
         sharedPref.loadLocale(this)
     }
 
+    /**
+     * Sets up a receiver to handle language changes.
+     */
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private fun setupLanguageChangeReceiver() {
         languageChangeReceiver = object : BroadcastReceiver() {
@@ -47,87 +58,123 @@ class MainActivity : AppCompatActivity() {
             }
         }
         val intentFilter = IntentFilter("LANGUAGE_CHANGED")
+        registerReceiverBasedOnApiVersion(intentFilter)
+    }
 
-        // Check the API level and register the receiver with appropriate flag
+    /**
+     * Registers the language change receiver based on the API version.
+     * @param intentFilter The intent filter for the receiver.
+     */
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    private fun registerReceiverBasedOnApiVersion(intentFilter: IntentFilter) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            // For API level 33 and above, use RECEIVER_NOT_EXPORTED
             registerReceiver(languageChangeReceiver, intentFilter, Context.RECEIVER_NOT_EXPORTED)
-        } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            // For API level 31 and 32, RECEIVER_NOT_EXPORTED is not available, so use the old way
-            registerReceiver(languageChangeReceiver, intentFilter)
         } else {
-            // For API level 30 and below, no need to specify
             registerReceiver(languageChangeReceiver, intentFilter)
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(languageChangeReceiver)
     }
 
+    /**
+     * Utility object for showing dialogs.
+     */
     object DialogUtils {
+        /**
+         * Shows the start dialog when the app is launched for the first time.
+         * @param activity The activity context in which to show the dialog.
+         */
         fun showStartDialog(activity: Activity) {
-            val builder = AlertDialog.Builder(activity)
-            val view = activity.layoutInflater.inflate(R.layout.welcome_message, null)
+            // Inflate the layout with the appropriate root view.
+            // 'activity.window.decorView.rootView' is used to provide a root view while not actually attaching the dialog view to it.
+            val view = activity.layoutInflater.inflate(
+                R.layout.welcome_message,
+                activity.window.decorView.rootView as ViewGroup,
+                false
+            )
+            setupDialogButtons(view, activity)
+            logFirstStartPreference(activity)
+        }
 
-            // Vind de 'View Release Notes' knop en stel een click listener in
+
+        /**
+         * Sets up the buttons in the dialog.
+         * @param view The view containing the dialog's buttons.
+         * @param activity The activity context used for launching intents.
+         */
+        private fun setupDialogButtons(view: View, activity: Activity) {
             val btnViewReleaseNotes = view.findViewById<Button>(R.id.btnViewReleaseNotes)
             btnViewReleaseNotes.setOnClickListener {
                 openGitHubPage(activity)
             }
 
-            val btnClose = view.findViewById<ImageButton>(R.id.btnClose)
-            builder.setView(view)
-            val dialog = builder.create()
+            val dialog = AlertDialog.Builder(activity)
+                .setView(view)
+                .create()
+
+            view.findViewById<ImageButton>(R.id.btnClose).setOnClickListener { dialog.dismiss() }
             dialog.show()
-            btnClose.setOnClickListener { dialog.dismiss() }
-
-            // Log de waarde voor het instellen van firstStart
-            Log.d(
-                "MainActivity",
-                "Before setting firstStart: " + activity.getSharedPreferences(
-                    "welcomePreferences",
-                    MODE_PRIVATE
-                ).getBoolean("firstStart", true)
-            )
-
-            // Stel de firstStart voorkeur in op false
-            val editor = activity.getSharedPreferences("welcomePreferences", MODE_PRIVATE).edit()
-            editor.putBoolean("firstStart", false)
-            editor.apply()
-
-            // Log de waarde na het instellen van firstStart
-            Log.d(
-                "MainActivity",
-                "After setting firstStart: " + activity.getSharedPreferences(
-                    "welcomePreferences",
-                    MODE_PRIVATE
-                ).getBoolean("firstStart", true)
-            )
         }
 
+        /**
+         * Opens the GitHub releases page in a web browser.
+         * @param activity The activity context used for launching intents.
+         */
         private fun openGitHubPage(activity: Activity) {
             val url = "https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases"
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
-            activity.startActivity(intent)
+            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        }
+
+        /**
+         * Logs the value of the 'firstStart' preference before and after setting it.
+         * @param activity The activity context used for accessing shared preferences.
+         */
+        private fun logFirstStartPreference(activity: Activity) {
+            val sharedPrefs = activity.getSharedPreferences("welcomePreferences", MODE_PRIVATE)
+
+            Log.d(
+                "MainActivity",
+                "Before setting firstStart: ${sharedPrefs.getBoolean("firstStart", true)}"
+            )
+            sharedPrefs.edit().apply {
+                putBoolean("firstStart", false)
+                apply()
+            }
+
+            Log.d(
+                "MainActivity",
+                "After setting firstStart: ${sharedPrefs.getBoolean("firstStart", true)}"
+            )
         }
     }
 
+    /**
+     * Navigates to the game selection page.
+     * @param view The view that triggers this action.
+     */
     fun chooseGamePage(view: View?) {
-        Settings.btnAnimation(view!!)
-        startActivity(Intent(this@MainActivity, ChooseGame::class.java))
-        finish()
+        view?.let {
+            Settings.btnAnimation(it)
+            startActivity(Intent(this@MainActivity, ChooseGame::class.java))
+            finish()
+        }
     }
 
+    /**
+     * Navigates to the settings page.
+     * @param view The view that triggers this action.
+     */
     fun goSettings(view: View?) {
-        Settings.btnAnimation(view!!)
-        val editor = getSharedPreferences("activity", MODE_PRIVATE).edit()
-        editor.putString("activity", "main")
-        editor.apply()
-        startActivity(Intent(this@MainActivity, Settings::class.java))
-        finish()
+        view?.let {
+            Settings.btnAnimation(it)
+            val editor = getSharedPreferences("activity", MODE_PRIVATE).edit()
+            editor.putString("activity", "main")
+            editor.apply()
+            startActivity(Intent(this@MainActivity, Settings::class.java))
+            finish()
+        }
     }
 }

@@ -37,21 +37,11 @@
     <string name="answerLang">I am 23 years old</string>
     <string name="EnglishToDutch">Français à Néerlandais</string>
     <string name="changeGame">Changer de jeu</string>
-    <string name="changeDfficultyTo">"Difficulté: "</string>
-    <string name="top5">Top 5:</string>
+    <string name="changeDifficultyTo">"Difficulté: "</string>
+    <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Jeu: "</string>
-    <string name="email">E-mail</string>
-    <string name="loginTitle">Connexion</string>
-    <string name="password">Mot de passe</string>
-    <string name="login_empty_msg">Veuillez entrer les champs requis</string>
     <string name="or">Ou</string>
-    <string name="username">Nom d\\\\\'utilisateur</string>
-    <string name="account_title">Compte</string>
-    <string name="sign_up_succes">Inscription réussie!</string>
-    <string name="username_too_long">Ce nom d\'utilisateur est trop long</string>
     <string name="no_data">Aucun résultat</string>
-    <string name="display_notifications">Affichage des notifications</string>
-    <string name="notificationText">Bienvenue sur Half a Minute IT Madness</string>
     <string name="welcome">Bienvenue!</string>
     <string name="welcomeText">
     <![CDATA[
@@ -62,7 +52,6 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="sound">Son</string>
-    <string name="updates">Nouveautés</string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
     <string name="show_releasenotes">Voir les notes de version</string>

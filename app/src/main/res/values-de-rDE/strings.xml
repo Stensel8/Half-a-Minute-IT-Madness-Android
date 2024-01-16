@@ -37,21 +37,11 @@
     <string name="answerLang">Ich bin 23 Jahre alt</string>
     <string name="EnglishToDutch">Englisch nach Niederländisch</string>
     <string name="changeGame">Spiel ändern</string>
-    <string name="changeDfficultyTo">"Schwierigkeitsgrad: "</string>
-    <string name="top5">Top 5:</string>
+    <string name="changeDifficultyTo">"Schwierigkeitsgrad: "</string>
+    <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Spiel: "</string>
-    <string name="email">E-Mail</string>
-    <string name="loginTitle">Anmeldung</string>
-    <string name="password">Passwort</string>
-    <string name="login_empty_msg">Bitte füllen Sie alle Pflichtfelder aus</string>
     <string name="or">Oder</string>
-    <string name="username">Benutzername</string>
-    <string name="account_title">Konto</string>
-    <string name="sign_up_succes">Registriert!</string>
-    <string name="username_too_long">Dieser Benutzername ist zu lang</string>
     <string name="no_data">Kein Ergebnis</string>
-    <string name="display_notifications">Benachrichtigungen anzeigen</string>
-    <string name="notificationText">Willkommen bei Halbe Minute IT Wahnsinn</string>
     <string name="welcome">Willkommen!</string>
     <string name="welcomeText">
     <![CDATA[
@@ -62,7 +52,6 @@
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="sound">Ton</string>
-    <string name="updates">Neue coole Sachen und so</string>
     <string name="GermanToEnglish">German To English</string>
     <string name="EnglishToGerman">English to German</string>
     <string name="show_releasenotes">Versionshinweise anzeigen</string>
