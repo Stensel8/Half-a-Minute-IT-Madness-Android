@@ -10,6 +10,7 @@ possible in 30 seconds.
 
 ![Repo_Size](https://img.shields.io/github/repo-size/Stensel8/Half-a-Minute-IT-Madness-Android)
 
+
 ![Kotlin_Used](https://img.shields.io/github/languages/top/Stensel8/Half-a-Minute-IT-Madness-Android?color=purple&label=Kotlin)
 
 ![Beta_Release](https://img.shields.io/github/v/release/Stensel8/Half-a-Minute-IT-Madness-Android?include_prereleases&label=BetaVersion)
@@ -28,6 +29,7 @@ possible in 30 seconds.
 - [FAQs](#faqs)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
+
 
 
 ## Overview
