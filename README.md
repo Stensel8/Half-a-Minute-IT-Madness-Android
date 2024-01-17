@@ -205,6 +205,8 @@ Owners:
 Project contributors:
 - [tritshuri](https://github.com/tritshuri)
 - [nassimassb](https://github.com/nassimassb)
+- [OpenAI](https://openai.com)
+- [Microsoft CoPilot](https://learn.microsoft.com/en-us/copilot)
 
 [View all contributors](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/graphs/contributors)
 
