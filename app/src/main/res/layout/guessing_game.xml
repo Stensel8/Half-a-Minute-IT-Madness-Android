@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
+        
         <!-- imageButton pause button -->
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_weight="0.4"
             android:background="?attr/backgroundColor"
             android:contentDescription="@string/pauseMenuTitle"
             android:onClick="pauseGame"
@@ -40,6 +40,18 @@
             app:drawableLeftCompat="@drawable/timer_blue"
             app:drawableStartCompat="@drawable/timer_blue" />
 
+        <!-- TextView Difficulty (easy, medium, hard) -->
+        <TextView
+            android:id="@+id/tvDifficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/segoeui"
+            android:text="@string/difficultyEasy"
+            android:textColor="?attr/textColor"
+            android:textSize="24sp" />
+
         <!-- TextView Points -->
         <TextView
             android:id="@+id/tvPoints"
@@ -58,38 +70,14 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical|end"
         android:orientation="horizontal">
-
-        <!-- TextView Difficulty (easy, medium, hard) -->
-        <TextView
-            android:id="@+id/tvDifficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/segoeui"
-            android:text="@string/difficultyEasy"
-            android:textColor="?attr/textColor"
-            android:textSize="24sp" />
-
-        <!-- TODO: look for inplementation in guessing game -->
-        <!-- textVieuw lives -->
-        <TextView
-            android:id="@+id/tvLives"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/segoeui"
-            android:text="@string/defaultBtnValue"
-            android:textColor="?attr/textColor"
-            android:textSize="24sp"
-            app:drawableLeftCompat="@drawable/heart"
-            app:drawableStartCompat="@drawable/heart" />
     </LinearLayout>
-
+    
     <!-- Button word 1 -->
     <Button
         android:id="@+id/txtvw1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/rounded_btn"
         android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
