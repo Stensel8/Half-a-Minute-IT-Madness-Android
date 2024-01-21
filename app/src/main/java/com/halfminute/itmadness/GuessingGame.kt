@@ -21,7 +21,7 @@ class GuessingGame : AppCompatActivity() {
     private lateinit var tvTimer: TextView
     private lateinit var tvPoints: TextView
     private lateinit var tvDifficulty: TextView
-    private lateinit var tvLives: TextView
+    //private lateinit var tvLives: TextView
     private lateinit var txtvw1: TextView
     private lateinit var txtvw2: TextView
     private lateinit var txtvw3: TextView
@@ -58,7 +58,7 @@ class GuessingGame : AppCompatActivity() {
         tvTimer = findViewById(R.id.tvTimer)
         tvPoints = findViewById(R.id.tvPoints)
         tvDifficulty = findViewById(R.id.tvDifficulty)
-        tvLives = findViewById(R.id.tvLives)
+        //tvLives = findViewById(R.id.tvLives)
         txtvw1 = findViewById(R.id.txtvw1)
         txtvw2 = findViewById(R.id.txtvw2)
         txtvw3 = findViewById(R.id.txtvw3)

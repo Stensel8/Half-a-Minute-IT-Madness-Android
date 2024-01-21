@@ -50,31 +50,31 @@ A fun and challenging Android game that tests your IT knowledge across various c
 ## Screenshots
 
 - **Welcome Screen**
-  ![Welcome screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_welcome.webp)
+  ![Welcome screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_welcome.webp)
 
 - **Home Screen**
-  ![Home screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_mainactivity.webp)
+  ![Home screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_mainactivity.webp)
 
 - **Settings Screen**
-  ![Settings screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_settings.webp)
+  ![Settings screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_settings.webp)
 
 - **Choose Game Screen**
-  ![Choose game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_choosegame.webp)
+  ![Choose game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_choosegame.webp)
 
 - **Math Game Screen**
-  ![Math game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_mathgame.webp)
+  ![Math game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_mathgame.webp)
 
 - **Guessing Game Screen**
-  ![Guessing game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_guessinggame.webp)
+  ![Guessing game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_guessinggame.webp)
 
 - **Choose Language Game Screen**
-  ![Choose language game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_chooselanguagegame.webp)
+  ![Choose language game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_chooselanguagegame.webp)
 
 - **Language Game Screen**
-  ![Language game screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_languagegame.webp)
+  ![Language game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_languagegame.webp)
 
 - **Game Over Screen** (High scores coming soon)
-  ![Game over screen](Documentation/Screenshots/Half%20a%20Minute%20IT%20Madness_gameover.webp)
+  ![Game over screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_gameover.webp)
 
 
 

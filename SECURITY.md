@@ -4,8 +4,8 @@
 
 We take the security of our software seriously. Below are the versions of Half-a-Minute-IT-Madness-Android that are currently being supported with security updates and additional hotfixes.
 
-| Version                                                |                                                 Supported          |
-|--------------------------------------------------------|--------------------------------------------------------------------|
+| Version                                                                                                | Supported          |
+|--------------------------------------------------------------------------------------------------------|--------------------|
 | [V2.6](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV2.6) (current) | :white_check_mark: |
 | [V2.4](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.4)            | :x:                |
 | [V2.3](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.3)            | :x:                |
