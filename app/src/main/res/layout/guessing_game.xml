@@ -13,25 +13,22 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-        
+
         <!-- imageButton pause button -->
         <ImageButton
-            android:layout_width="0dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_weight="0.4"
             android:background="?attr/backgroundColor"
             android:contentDescription="@string/pauseMenuTitle"
             android:onClick="pauseGame"
             app:srcCompat="@android:drawable/ic_media_pause"
             tools:ignore="OnClick" />
 
-
         <!-- TextView timer -->
         <TextView
             android:id="@+id/tvTimer"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="@font/segoeui"
             android:gravity="center_vertical|start"
             android:text="@string/TimerValue"
@@ -39,6 +36,7 @@
             android:textSize="24sp"
             app:drawableLeftCompat="@drawable/timer_blue"
             app:drawableStartCompat="@drawable/timer_blue" />
+
 
         <!-- TextView Difficulty (easy, medium, hard) -->
         <TextView
@@ -53,17 +51,24 @@
             android:textSize="24sp" />
 
         <!-- TextView Points -->
-        <TextView
-            android:id="@+id/tvPoints"
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="@string/ScoreValue"
-            android:textColor="?attr/textColor"
-            android:textSize="24sp"
-            app:drawableLeftCompat="@drawable/star_blue"
-            app:drawableStartCompat="@drawable/star_blue" />
+            android:layout_marginStart="25dp"
+            app:srcCompat="@drawable/star_blue" />
+
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
+        android:text="@string/ScoreValue"
+        android:textColor="?attr/textColor"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,7 +87,7 @@
         android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
         android:padding="20dp"
-        android:text="@string/guessing_game"
+        android:text="@string/guessingGameButton"
         android:textColor="#000000"
         android:textSize="24sp" />
 
@@ -96,7 +101,7 @@
         android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
         android:padding="20dp"
-        android:text="@string/guessing_game"
+        android:text="@string/guessingGameButton"
         android:textColor="#000000"
         android:textSize="24sp" />
 
@@ -110,7 +115,7 @@
         android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
         android:padding="20dp"
-        android:text="@string/guessing_game"
+        android:text="@string/guessingGameButton"
         android:textColor="#000000"
         android:textSize="24sp" />
 
@@ -124,7 +129,7 @@
         android:fontFamily="@font/segoeuib"
         android:onClick="startGuessingGame"
         android:padding="20dp"
-        android:text="@string/guessing_game"
+        android:text="@string/guessingGameButton"
         android:textColor="#000000"
         android:textSize="24sp" />
 

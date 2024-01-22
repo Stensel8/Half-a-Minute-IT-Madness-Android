@@ -1,3 +1,33 @@
+## **Half a Minute IT Madness - Android Stable Release V2.7**
+**Release Notes**
+
+Version 2.7, of Half a Minute IT Madness for Android. This release some small improvements, enhancing the overall user experience and stability of the game.
+
+### Enhancements and New Features
+- **UI Overhaul:** Replaced more notifications with Snackbar for a cleaner and more elegant display.
+- **Crash Handling:** Added more crash handlers to reduce and manage crashes effectively.
+- **Improved onBackPressed behaviour:** The application will now require you to press the back button 2 times, when inside a game, instead of 1. This is done to prevent misclicks and accidental swipe gestures.
+- **Build info:** The app will now show it's current build and version info.
+- **Code Optimization:** Merged the 'myaccount.java' with the newly created 'SharedPref.kt' for better readability.
+
+### Documentation
+- **Settings Storage:** Reworked the SharedPref.kt class for more efficient variable storage.
+- **Localization:** Updated some strings and translations.
+- **Performance:** Improved overall performance and fixed various bugs.
+
+### Improved Crash Handling
+- **Try-Catch Implementations:** In case of errors, the game will now attempt to show a warning message at the bottom of the screen instead of crashing immediately. Note that this is not guaranteed to prevent all crashes.
+
+### Known Issues
+- **Color Display Issue:** Tiles may show unexpected colors - [#6](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues/6).
+
+### Coming Soon
+- **High Score Board:** We are currently discussing and working on the implementation of a high score board. The decision to include this feature is still under consideration.
+
+We appreciate your continued support and feedback as we strive to make Half a Minute IT Madness the best it can be. Stay tuned for more updates and enhancements in future releases!
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## **Half a Minute IT Madness - Android Stable Release V2.6**
 **Release Notes**
 

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,19 +7,24 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Outermost LinearLayout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <!-- Section: Score -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:gravity="center_horizontal">
 
-            <!--TextView Score (the word) -->
+            <!-- TextView Score -->
             <TextView
+                android:id="@+id/tlScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
@@ -27,9 +32,7 @@
                 android:textColor="?attr/textColor"
                 android:textSize="30sp" />
 
-
-            <!--TODO: controleer de hoogte van de les -->
-            <!-- TextView: Score (points collected) -->
+            <!-- TextView Points -->
             <TextView
                 android:id="@+id/tvPoints"
                 android:layout_width="wrap_content"
@@ -40,15 +43,14 @@
                 android:textSize="60sp" />
         </LinearLayout>
 
+        <!-- Section: Personal Best -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
-            <!--TextVieuw personal best (the text) -->
+            <!-- TextView Personal Best -->
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
@@ -56,8 +58,7 @@
                 android:textColor="?attr/textColor"
                 android:textSize="30sp" />
 
-
-            <!-- TextView peronal best score (hightes points collected) -->
+            <!-- TextView Personal Best Score -->
             <TextView
                 android:id="@+id/tvHighScore"
                 android:layout_width="0dp"
@@ -67,9 +68,9 @@
                 android:text="@string/defaultBtnValue"
                 android:textColor="@color/buttonTextColor"
                 android:textSize="30sp" />
-
         </LinearLayout>
 
+        <!-- Section: Buttons -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -78,7 +79,7 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <!-- Button try again -->
+            <!-- Button Try Again -->
             <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
@@ -93,7 +94,7 @@
                 android:textColor="@color/buttonTextColor"
                 android:textSize="16sp" />
 
-            <!-- Button change game -->
+            <!-- Button Change Game -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,7 +109,7 @@
                 android:textColor="@color/buttonTextColor"
                 android:textSize="16sp" />
 
-            <!-- Button main menu -->
+            <!-- Button Main Menu -->
             <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
@@ -123,7 +124,7 @@
                 android:textColor="@color/buttonTextColor"
                 android:textSize="16sp" />
 
-            <!-- Button Exit game -->
+            <!-- Button Exit Game -->
             <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
@@ -139,13 +140,14 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
+        <!-- Section: High Score and Game Info -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/border_orange"
             android:orientation="vertical">
 
-            <!-- imageView high score -->
+            <!-- ImageView High Score -->
             <ImageView
                 android:id="@+id/ivHighScore"
                 android:layout_width="match_parent"
@@ -155,7 +157,7 @@
                 android:visibility="visible"
                 app:srcCompat="@drawable/high_scores" />
 
-            <!-- TextView top 5 -->
+            <!-- TextView Top 5 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -169,7 +171,7 @@
                 android:textColor="#455A64"
                 android:textSize="30sp" />
 
-            <!-- TextView difficulty -->
+            <!-- TextView Difficulty -->
             <TextView
                 android:id="@+id/tvDifficultyGOver"
                 android:layout_width="match_parent"
@@ -181,7 +183,7 @@
                 android:textColor="@color/buttonTextColor"
                 android:textSize="12sp" />
 
-            <!-- TextViuw Game -->
+            <!-- TextView Chosen Game -->
             <TextView
                 android:id="@+id/tvChosenGame"
                 android:layout_width="match_parent"
@@ -194,34 +196,6 @@
                 android:textColor="@color/buttonTextColor"
                 android:textSize="12sp" />
         </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableLayout
-                android:id="@+id/tlScore"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="invisible">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:id="@+id/tvTop2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:textColor="?attr/textColor"
-                        android:textSize="24sp" />
-                </TableRow>
-
-            </TableLayout>
-
-        </FrameLayout>
 
     </LinearLayout>
 </ScrollView>

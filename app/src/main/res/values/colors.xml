@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">@color/background</color>
     <color name="colorAccent">#e8f301</color>
     <color name="background">#7fe75c</color>
-    <color name="boxColor">#00b58d</color>
     <color name="buttonTextColor">#fcfbdc</color>
     <color name="lightThemeText">#0c476c</color>
     <color name="buttonColor">#08a8ff</color>

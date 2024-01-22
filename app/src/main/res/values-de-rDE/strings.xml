@@ -1,59 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Halbe Minute IT Wahnsinn</string>
-    <string name="TimerValue">30s</string>
-    <string name="DutchToEnglish">Niederländisch nach Englisch</string>
+    <!-- Game Buttons -->
+    <string name="playGame">Spiel spielen</string>
+    <string name="mathGameButton">Mathe-Spiel</string>
+    <string name="languageGameButton">Sprachtest</string>
     <string name="guessingGameButton">Ratespiel</string>
+    <string name="defaultBtnValue">3</string>
+
+    <!-- Titles -->
+    <string name="app_name">Half a Minute IT Madness</string>
+    <string name="title_activity_language_test">Sprachtest</string>
     <string name="chooseGameTitle">Wähle dein Spiel</string>
     <string name="chooseTestTitle">Wähle deinen Test</string>
-    <string name="darkModeText">Dunkler Modus</string>
-    <string name="defaultAnswerText">\?</string>
-    <string name="defaultBtnValue">3</string>
-    <string name="difficultyEasy">Einfach</string>
-    <string name="difficultyHard">Schwer</string>
-    <string name="difficultyMedium">Mittel</string>
     <string name="difficultyTitle">Schwierigkeitsgrad</string>
-    <string name="EnglishToFrench">Englisch nach Französisch</string>
-    <string name="exitGame">Spiel verlassen</string>
-    <string name="hScoreDescription">Highscore-Bild</string>
-    <string name="languageGameButton">Sprachtest</string>
-    <string name="mainMenuBtn">Hauptmenü</string>
-    <string name="pauseMenuTitle">Pausemenü</string>
-    <string name="playGame">Spielen</string>
-    <string name="resumeBtn">Fortsetzen</string>
-    <string name="retry">Erneut versuchen</string>
-    <string name="scoreGOver">"Punktzahl: "</string>
+    <string name="pauseMenuTitle">Pause Menü</string>
+    <string name="gameTitle">Spiel Titel</string>
+
+    <!-- Settings -->
     <string name="settingsTitle">Einstellungen</string>
-    <string name="FrenchToEnglish">Französisch nach Englisch</string>
-    <string name="PersonalHighScore">"Highscore: "</string>
-    <string name="ScoreValue">0/0</string>
+    <string name="darkModeText">Dunkler Modus</string>
+    <string name="sound">Ton</string>
     <string name="ChangeLanguage">Sprache ändern</string>
-    <string name="correct">Richtig!</string>
-    <string name="wrong">Falsch!</string>
-    <string name="question">Ich bin 23 Jahre alt</string>
-    <string name="sum">1 + 2 =</string>
-    <string name="title_activity_language_test">Sprachtest</string>
-    <string name="mathGameButton">Mathematikspiel</string>
-    <string name="answerLang">Ich bin 23 Jahre alt</string>
-    <string name="EnglishToDutch">Englisch nach Niederländisch</string>
+    <string name="show_releasenotes">Versionshinweise anzeigen</string>
+
+    <!-- Timer and Score -->
+    <string name="TimerValue">30s</string>
+    <string name="game_time">30 Sekunden Spiel</string>
+    <string name="ScoreValue">0/0</string>
+
+    <!-- Difficulty Levels -->
+    <string name="difficultyEasy">Leicht</string>
+    <string name="difficultyMedium">Mittel</string>
+    <string name="difficultyHard">Schwer</string>
+
+    <!-- Buttons and Labels -->
+    <string name="resumeBtn">Wiedergabe</string>
+    <string name="mainMenuBtn">Hauptmenü</string>
+    <string name="retry">Erneut versuchen</string>
+    <string name="exitGame">Spiel verlassen</string>
     <string name="changeGame">Spiel ändern</string>
     <string name="changeDifficultyTo">"Schwierigkeitsgrad: "</string>
     <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Spiel: "</string>
-    <string name="or">Oder</string>
-    <string name="no_data">Kein Ergebnis</string>
-    <string name="welcome">Willkommen!</string>
+
+    <!-- Score Messages -->
+    <string name="scoreGOver">"Punktzahl: "</string>
+    <string name="PersonalHighScore">"Persönlicher Rekord: "</string>
+    <string name="correct">Richtig!</string>
+    <string name="wrong">Falsch!</string>
+
+    <!-- Lives and Questions -->
+    <string name="sum">1 + 2 =</string>
+    <string name="question">Ich bin 23 Jahre alt</string>
+    <string name="answerLang">Ich bin 23 Jahre alt</string>
+
+    <!-- Welcome and Information -->
+    <string name="welcome">Willkommen bei Half a Minute IT Madness!</string>
     <string name="welcomeText">
-    <![CDATA[
-    Entdecke Half a Minute IT Madness, ein kreatives Spiel, entwickelt von drei engagierten Studenten der Saxion University of Applied Sciences. Wähle aus drei herausfordernden Spielen: Mathe, Sprache und Raten. Jedes Spiel dauert 30 Sekunden, wobei eine richtige Antwort einen Punkt einbringt und eine falsche Antwort ein Leben kostet. Achte auf deine Leben, die als grün/blau herzförmige Symbole oben rechts angezeigt werden. Das Spiel endet nach 30 Sekunden oder wenn alle Leben verloren sind. Fordere dich selbst heraus, um deine Punktzahl zu verbessern!
-    ]]>
+        <![CDATA[
+        Entdecke Half a Minute IT Madness, ein kreatives Spiel, entworfen von drei engagierten Studenten der Saxion University of Applied Sciences. Wähle aus drei herausfordernden Spielen: Mathe, Sprache und Raten. Jedes Spiel dauert 30 Sekunden, wobei eine richtige Antwort einen Punkt bringt und eine falsche Antwort ein Leben kostet. Achte auf deine Leben, die rechts oben als grüne/blau Herzen angezeigt werden. Das Spiel endet nach 30 Sekunden oder wenn alle Leben verloren sind. Fordere dich selbst heraus, um deine Punktzahl zu verbessern!
+        ]]>
     </string>
+
+    <!-- Dialog and Confirmation -->
     <string name="closeWindow">Fenster schließen</string>
-    <string name="yes">Ja</string>
-    <string name="no">Nein</string>
-    <string name="sound">Ton</string>
-    <string name="GermanToEnglish">German To English</string>
-    <string name="EnglishToGerman">English to German</string>
-    <string name="show_releasenotes">Versionshinweise anzeigen</string>
-    <string name="guessing_game">Guessing Game</string>
+
+    <!-- Language Options -->
+    <string name="DutchToEnglish">Niederländisch zu Englisch</string>
+    <string name="FrenchToEnglish">Französisch zu Englisch</string>
+    <string name="EnglishToFrench">Englisch zu Französisch</string>
+    <string name="EnglishToDutch">Englisch zu Niederländisch</string>
+    <string name="GermanToEnglish">Deutsch zu Englisch</string>
+    <string name="EnglishToGerman">Englisch zu Deutsch</string>
+
+    <!-- Miscellaneous -->
+    <string name="theme_dynamic_icon">Dies ist ein dynamisches Symbol, das sich je nach Einstellungen des dunklen Modus ändert</string>
+    <string name="hScoreDescription">Highscore-Bild</string>
+
+
 </resources>

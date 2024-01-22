@@ -2,6 +2,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+// Set app version and buildversion
+ext {
+    appVersionCode = 27
+    appVersionName = "2.7"
+}
+
 android {
     // Configuration for the Android application
     defaultConfig {
@@ -9,8 +15,8 @@ android {
         minSdk 30 // Minimum SDK version required
         targetSdkVersion 34 // Target SDK version
         compileSdk 34 // Compile SDK version
-        versionCode 26 // Version code for the app (increment for each release)
-        versionName '2.6' // Version name for the app
+        versionCode project.ext.appVersionCode // Version code for the app (increment for each release)
+        versionName project.ext.appVersionName // Version name for the app
         multiDexEnabled true // Enable MultiDex for applications with many methods
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // Test runner for instrumentation tests
@@ -32,18 +38,14 @@ android {
     }
 
     // Configure Java compilation options
-    android {
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_17
-            targetCompatibility JavaVersion.VERSION_17
-        }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 
-        // Enable lint checks and deprecation warnings for Java compilation
-        tasks.withType(JavaCompile).tap {
-            configureEach {
-                options.compilerArgs += ['-Xlint:all', '-Xlint:deprecation']
-            }
-        }
+    // Enable lint checks and deprecation warnings for Java compilation
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs += ['-Xlint:all', '-Xlint:deprecation']
     }
 
     // Namespace for the Android application
