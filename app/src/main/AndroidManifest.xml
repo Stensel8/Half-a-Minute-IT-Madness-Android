@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.halfminute.itmadness"
     android:versionCode="27"
-    android:versionName="@string/versionname"
-    >
+    android:versionName="@string/versionname">
 
     <application
         android:icon="@mipmap/ic_launcher"
