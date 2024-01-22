@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:installLocation="preferExternal"
-    android:versionCode="26"
-    android:versionName="2.6">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    package="com.halfminute.itmadness"
+    android:versionCode="27"
+    android:versionName="@string/versionname"
+    >
 
     <application
-        android:forceDarkAllowed="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/lightTheme">
 
-        <activity android:name="com.halfminute.itmadness.MyAccount" />
-
+        <!-- Main Activity -->
         <activity
-            android:name="com.halfminute.itmadness.LanguageGame"
-            android:label="@string/title_activity_language_test"
-            android:theme="@style/lightTheme" />
-
-        <activity android:name="com.halfminute.itmadness.PauseMenu" />
-
-        <activity
-            android:name="com.halfminute.itmadness.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,34 +22,58 @@
             </intent-filter>
         </activity>
 
+        <!-- Language Game Activity -->
         <activity
-            android:name="com.halfminute.itmadness.Settings"
-            android:parentActivityName="com.halfminute.itmadness.MainActivity" />
+            android:name=".LanguageGame"
+            android:label="@string/title_activity_language_test"
+            android:theme="@style/lightTheme" />
 
-        <activity android:name="com.halfminute.itmadness.ChooseLanguageGame" />
+        <!-- Pause Menu Activity -->
+        <activity android:name=".PauseMenu" />
 
-        <activity android:name="com.halfminute.itmadness.ChooseGame">
+        <!-- Settings Activity -->
+        <activity
+            android:name=".Settings"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- Choose Language Game Activity -->
+        <activity android:name=".ChooseLanguageGame" />
+
+        <!-- Choose Game Activity -->
+        <activity
+            android:name=".ChooseGame"
+            android:theme="@style/lightTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.halfminute.itmadness.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
 
-        <activity android:name="com.halfminute.itmadness.MathGame">
+        <!-- Math Game Activity -->
+        <activity
+            android:name=".MathGame"
+            android:theme="@style/lightTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.halfminute.itmadness.ChooseGame" />
+                android:value=".ChooseGame" />
         </activity>
 
-        <activity android:name="com.halfminute.itmadness.GuessingGame">
+        <!-- Guessing Game Activity -->
+        <activity
+            android:name=".GuessingGame"
+            android:theme="@style/lightTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.halfminute.itmadness.ChooseGame" />
+                android:value=".ChooseGame" />
         </activity>
 
-        <activity android:name="com.halfminute.itmadness.GameOver">
+        <!-- Game Over Activity -->
+        <activity
+            android:name=".GameOver"
+            android:theme="@style/lightTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.halfminute.itmadness.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
+
     </application>
 </manifest>
