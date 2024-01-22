@@ -4,7 +4,6 @@ A little Android game written in Kotlin and Java where you have to answer as man
 possible in 30 seconds.
 
 [![Codacy Security Scan](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml/badge.svg?branch=main)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml)
-[![Scan with Detekt](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/detekt.yml/badge.svg?branch=main)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/detekt.yml)
 
 ![License](https://img.shields.io/github/license/Stensel8/Half-a-Minute-IT-Madness-Android?label=License)
 
