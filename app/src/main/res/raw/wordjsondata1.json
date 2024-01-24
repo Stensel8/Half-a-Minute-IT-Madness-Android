@@ -905,8 +905,8 @@
     {
       "nlWord": "Sleeplift",
       "frWord": "Teleski",
-      "enWord": "Schlepplift",
-      "deWord": "Drag lift"
+      "enWord": "Drag lift",
+      "deWord": "Schlepplift"
     },
     {
       "nlWord": "Kabelbaan",
@@ -1059,12 +1059,6 @@
       "deWord": "Hauptuntersuchung (HU)"
     },
     {
-      "nlWord": "Kabeltrein",
-      "frWord": "Funiculaire",
-      "enWord": "Funicular Railway",
-      "deWord": "Standseilbahn"
-    },
-    {
       "nlWord": "Studiepunten",
       "frWord": "Crédits d'études",
       "enWord": "Study credits",
@@ -1131,6 +1125,12 @@
       "nlWord": "innovatief",
       "enWord": "innovative",
       "deWord": "innovativ"
+    },
+    {
+      "nlWord": "Kabeltrein",
+      "frWord": "Funiculaire",
+      "enWord": "Funicular Railway",
+      "deWord": "Standseilbahn"
     },
     {
       "frWord": "klaxonner",

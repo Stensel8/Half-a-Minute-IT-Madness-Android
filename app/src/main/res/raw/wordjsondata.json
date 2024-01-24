@@ -623,8 +623,8 @@
     {
       "nlWord": "Sleeplift",
       "frWord": "Teleski",
-      "enWord": "Schlepplift",
-      "deWord": "Drag lift"
+      "enWord": "Drag lift",
+      "deWord": "Schlepplift"
     },
     {
       "nlWord": "Spoorwegsein",
@@ -632,13 +632,6 @@
       "enWord": "Railway Signal",
       "deWord": "Eisenbahnsignal"
     },
-    {
-      "nlWord": "Kabeltrein",
-      "frWord": "Funiculaire",
-      "enWord": "Funicular Railway",
-      "deWord": "Standseilbahn"
-    },
-
     {
       "frWord": "Hématome",
       "nlWord": "Blauwe plek",
@@ -1234,10 +1227,10 @@
       "deWord": "Ethernet-Kabel"
     },
     {
-      "nlWord": "AVG",
-      "frWord": "AVG",
-      "enWord": "AVG",
-      "deWord": "AVG"
+      "nlWord": "Algemene Verordening Gegevensbescherming",
+      "frWord": "Règelement général sur la protection des données",
+      "enWord": "General Data Protection Regulation",
+      "deWord": "Datenschutz-Grundverordnung"
     },
     {
       "nlWord": "Datacenter",
@@ -1409,6 +1402,13 @@
       "enWord": "innovative",
       "deWord": "innovativ"
     },
+    {
+      "nlWord": "Kabeltrein",
+      "frWord": "Funiculaire",
+      "enWord": "Funicular Railway",
+      "deWord": "Standseilbahn"
+    },
+
     {
       "nlWord": "Europese verordening",
       "frWord": "Réglementation Eruopéenne",
