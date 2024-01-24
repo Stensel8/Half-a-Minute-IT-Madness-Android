@@ -337,54 +337,6 @@
       "deWord": "Zeh"
     },
     {
-      "frWord": "Smartphone",
-      "nlWord": "Smartphone",
-      "enWord": "Smartphone",
-      "deWord": "Smartphone"
-    },
-    {
-      "frWord": "USB-C",
-      "nlWord": "USB-C",
-      "enWord": "USB-C",
-      "deWord": "USB-C"
-    },
-    {
-      "frWord": "Ordinateur portable",
-      "nlWord": "Laptop",
-      "enWord": "Laptop",
-      "deWord": "Laptop"
-    },
-    {
-      "frWord": "Word",
-      "nlWord": "Word",
-      "enWord": "Word",
-      "deWord": "Word"
-    },
-    {
-      "frWord": "PowerPoint",
-      "nlWord": "PowerPoint",
-      "enWord": "PowerPoint",
-      "deWord": "PowerPoint"
-    },
-    {
-      "frWord": "Excel",
-      "nlWord": "Excel",
-      "enWord": "Excel",
-      "deWord": "Excel"
-    },
-    {
-      "frWord": "Outlook",
-      "nlWord": "Outlook",
-      "enWord": "Outlook",
-      "deWord": "Outlook"
-    },
-    {
-      "frWord": "Google",
-      "nlWord": "Google",
-      "enWord": "Google",
-      "deWord": "Google"
-    },
-    {
       "frWord": "Voiture",
       "nlWord": "Auto",
       "enWord": "Car",
@@ -392,69 +344,15 @@
     },
     {
       "frWord": "Enschede",
-      "nlWord": "Enschede",
-      "enWord": "Enschede",
-      "deWord": "Enschede"
+      "nlWord": "Italië",
+      "enWord": "Italy",
+      "deWord": "Italien"
     },
     {
       "frWord": "Train",
       "nlWord": "Trein",
       "enWord": "Train",
       "deWord": "Zug"
-    },
-    {
-      "frWord": "A35",
-      "nlWord": "A35",
-      "enWord": "A35",
-      "deWord": "A35"
-    },
-    {
-      "frWord": "Tablette",
-      "nlWord": "Tablet",
-      "enWord": "Tablet",
-      "deWord": "Tablet"
-    },
-    {
-      "frWord": "Hacker",
-      "nlWord": "Hacker",
-      "enWord": "Hacker",
-      "deWord": "Hacker"
-    },
-    {
-      "frWord": "Zwolle",
-      "nlWord": "Zwolle",
-      "enWord": "Zwolle",
-      "deWord": "Zwolle"
-    },
-    {
-      "frWord": "Java",
-      "nlWord": "Java",
-      "enWord": "Java",
-      "deWord": "Java"
-    },
-    {
-      "frWord": "Processeur",
-      "nlWord": "Processor",
-      "enWord": "Processor",
-      "deWord": "Prozessor"
-    },
-    {
-      "frWord": "Overijssel",
-      "nlWord": "Overijssel",
-      "enWord": "Overijssel",
-      "deWord": "Overijssel"
-    },
-    {
-      "frWord": "Blackboard",
-      "nlWord": "Blackboard",
-      "enWord": "Blackboard",
-      "deWord": "Schultafel"
-    },
-    {
-      "frWord": "Youtube",
-      "nlWord": "Youtube",
-      "enWord": "Youtube",
-      "deWord": "Youtube"
     },
     {
       "frWord": "Vapeur",
@@ -467,30 +365,6 @@
       "nlWord": "Fiets",
       "enWord": "Bicycle",
       "deWord": "Fahrrad"
-    },
-    {
-      "frWord": "Berlin",
-      "nlWord": "Berlijn",
-      "enWord": "Berlin",
-      "deWord": "Berlin"
-    },
-    {
-      "frWord": "Nijverdal",
-      "nlWord": "Nijverdal",
-      "enWord": "Nijverdal",
-      "deWord": "Nijverdal"
-    },
-    {
-      "frWord": "iOS",
-      "nlWord": "iOS",
-      "enWord": "iOS",
-      "deWord": "iOS"
-    },
-    {
-      "frWord": "Android",
-      "nlWord": "Android",
-      "enWord": "Android",
-      "deWord": "Android"
     },
     {
       "frWord": "Casque d'écoute",
@@ -511,46 +385,10 @@
       "deWord": "Windows Phone"
     },
     {
-      "frWord": "Ubuntu",
-      "nlWord": "Ubuntu",
-      "enWord": "Ubuntu",
-      "deWord": "Ubuntu"
-    },
-    {
-      "frWord": "Epy Drost",
-      "nlWord": "Epy Drost",
-      "enWord": "Epy Drost",
-      "deWord": "Epy Drost"
-    },
-    {
-      "frWord": "Half-Duplex",
-      "nlWord": "Half-Duplex",
-      "enWord": "Half-Duplex",
-      "deWord": "Halbduplex"
-    },
-    {
-      "frWord": "Duplex intégral",
-      "nlWord": "Full-Duplex",
-      "enWord": "Full-Duplex",
-      "deWord": "Vollduplex"
-    },
-    {
       "frWord": "Voie unique",
       "nlWord": "enkelbaans spoor",
       "enWord": "Single track",
       "deWord": "Eingleisige Strecke"
-    },
-    {
-      "frWord": "Carte à puce OV",
-      "nlWord": "OV-Chipkaart",
-      "enWord": "OV chip card",
-      "deWord": "OV-Chipkarte"
-    },
-    {
-      "frWord": "Tunnel",
-      "nlWord": "Tunnel",
-      "enWord": "Tunnel",
-      "deWord": "Tunnel"
     },
     {
       "frWord": "Plaque d'immatriculation",
@@ -559,10 +397,10 @@
       "deWord": "Kennzeichen"
     },
     {
-      "frWord": "QWERTY",
-      "nlWord": "QWERTY",
-      "enWord": "QWERTY",
-      "deWord": "QWERTZ"
+      "frWord": "Clavier",
+      "nlWord": "Toetsenbordlayout",
+      "enWord": "Keyboard layout",
+      "deWord": "Tastaturbelegung"
     },
     {
       "frWord": "formation professionnelle supérieure",
@@ -594,24 +432,6 @@
       "enWord": "Fingerprintscanner",
       "deWord": "Fingerabdruckscanner"
     },
-    {
-      "frWord": "OLED",
-      "nlWord": "OLED",
-      "enWord": "OLED",
-      "deWord": "OLED"
-    },
-    {
-      "frWord": "LCD",
-      "nlWord": "LCD",
-      "enWord": "LCD",
-      "deWord": "LCD"
-    },
-    {
-      "frWord": "LED",
-      "nlWord": "LED",
-      "enWord": "LED",
-      "deWord": "LED"
-    }
   ],
   "mediumWords": [
     {
@@ -620,25 +440,6 @@
       "enWord": "Sentence",
       "deWord": "Satz"
     },
-    {
-      "nlWord": "Sleeplift",
-      "frWord": "Teleski",
-      "enWord": "Schlepplift",
-      "deWord": "Drag lift"
-    },
-    {
-      "nlWord": "Spoorwegsein",
-      "frWord": "Signal Ferroviaire",
-      "enWord": "Railway Signal",
-      "deWord": "Eisenbahnsignal"
-    },
-    {
-      "nlWord": "Kabeltrein",
-      "frWord": "Funiculaire",
-      "enWord": "Funicular Railway",
-      "deWord": "Standseilbahn"
-    },
-
     {
       "frWord": "Hématome",
       "nlWord": "Blauwe plek",
@@ -1102,16 +903,10 @@
       "deWord": "Reise"
     },
     {
-      "nlWord": "Plasma",
-      "frWord": "Plasma",
-      "enWord": "Plasma",
-      "deWord": "Plasma"
-    },
-    {
-      "nlWord": "Qled",
-      "frWord": "Qled",
-      "enWord": "Qled",
-      "deWord": "Qled"
+      "nlWord": "Sleeplift",
+      "frWord": "Teleski",
+      "enWord": "Schlepplift",
+      "deWord": "Drag lift"
     },
     {
       "nlWord": "Kabelbaan",
@@ -1144,10 +939,10 @@
       "deWord": "Standstreifen (während Stoßzeiten)"
     },
     {
-      "nlWord": "Thinkpad",
-      "frWord": "Thinkpad",
-      "enWord": "Thinkpad",
-      "deWord": "Thinkpad"
+      "nlWord": "Spoorwegsein",
+      "frWord": "Signal Ferroviaire",
+      "enWord": "Railway Signal",
+      "deWord": "Eisenbahnsignal"
     },
     {
       "nlWord": "Touchscreen",
@@ -1192,10 +987,10 @@
       "deWord": "Alpen"
     },
     {
-      "nlWord": "Locomotief",
-      "frWord": "Locomotive",
-      "enWord": "Locomotive",
-      "deWord": "Lokomotive"
+      "nlWord": "Stoptrein",
+      "frWord": "Train Local",
+      "enWord": "Local Train",
+      "deWord": "Regionalbahn"
     },
     {
       "nlWord": "File",
@@ -1222,22 +1017,16 @@
       "deWord": "Gardasee"
     },
     {
-      "nlWord": "Power Over Ethernet",
-      "frWord": "Power Over Ethernet",
-      "enWord": "Power Over Ethernet",
-      "deWord": "Power over Ethernet"
-    },
-    {
       "nlWord": "Ethernet Kabel",
       "frWord": "Câble Ethernet",
       "enWord": "Ethernet cable",
       "deWord": "Ethernet-Kabel"
     },
     {
-      "nlWord": "AVG",
-      "frWord": "AVG",
-      "enWord": "AVG",
-      "deWord": "AVG"
+      "nlWord": "Algemene Verordening Gegevensbescherming",
+      "frWord": "Règelement général sur la protection des données",
+      "enWord": "General Data Protection Regulation",
+      "deWord": "Datenschutz-Grundverordnung"
     },
     {
       "nlWord": "Datacenter",
@@ -1246,28 +1035,10 @@
       "deWord": "Rechenzentrum"
     },
     {
-      "nlWord": "Packet Tracer",
-      "frWord": "Packet Tracer",
-      "enWord": "Packet Tracer",
-      "deWord": "Packet Tracer"
-    },
-    {
-      "nlWord": "Wireshark",
-      "frWord": "Wireshark",
-      "enWord": "Wireshark",
-      "deWord": "Wireshark"
-    },
-    {
       "nlWord": "VOG",
       "frWord": "Déclaration de comportement",
       "enWord": "Certificate of Conduct",
       "deWord": "Verklaring Omtrent Gedrag"
-    },
-    {
-      "nlWord": "Limburg",
-      "frWord": "Limbourg",
-      "enWord": "Limburg",
-      "deWord": "Limburg"
     },
     {
       "nlWord": "België",
@@ -1288,41 +1059,17 @@
       "deWord": "Hauptuntersuchung (HU)"
     },
     {
-      "nlWord": "DMZ",
-      "frWord": "DMZ (Zone démilitarisée)",
-      "enWord": "DMZ (Demilitarized Zone)",
-      "deWord": "DMZ (Entmilitarisierte Zone)"
-    },
-    {
-      "nlWord": "Twente",
-      "frWord": "Twente",
-      "enWord": "Twente",
-      "deWord": "Twente"
-    },
-    {
-      "nlWord": "SSD",
-      "frWord": "SSD (Disque SSD)",
-      "enWord": "SSD (Solid State Drive)",
-      "deWord": "SSD (Festkörperlaufwerk)"
-    },
-    {
-      "nlWord": "HDD",
-      "frWord": "HDD (Disque dur)",
-      "enWord": "HDD (Hard Disk Drive)",
-      "deWord": "HDD (Festplattenlaufwerk)"
+      "nlWord": "Kabeltrein",
+      "frWord": "Funiculaire",
+      "enWord": "Funicular Railway",
+      "deWord": "Standseilbahn"
     },
     {
       "nlWord": "Studiepunten",
       "frWord": "Crédits d'études",
       "enWord": "Study credits",
       "deWord": "Studienpunkte"
-    },
-    {
-      "nlWord": "A1",
-      "frWord": "A1",
-      "enWord": "A1",
-      "deWord": "A1"
-    },
+    }, ,
     {
       "nlWord": "Aanhanger",
       "frWord": "Remorque",
@@ -1360,18 +1107,6 @@
       "deWord": "DVD-Player"
     },
     {
-      "nlWord": "MFA (Multi-Factor Authenticatie)",
-      "frWord": "MFA (Facteur d'authentification multiple)",
-      "enWord": "MFA (Multi-Factor Authentication)",
-      "deWord": "MFA (Mehrstufige Authentifizierung)"
-    },
-    {
-      "nlWord": "MacOS",
-      "frWord": "MacOS",
-      "enWord": "MacOS",
-      "deWord": "MacOS"
-    },
-    {
       "nlWord": "Tweede kamer verkiezingen",
       "frWord": "Élections de la Deuxième Chambre",
       "enWord": "House of Representatives elections",
@@ -1389,18 +1124,6 @@
       "enWord": "Austria",
       "deWord": "Österreich"
     },
-    {
-      "nlWord": "AZERTY",
-      "frWord": "AZERTY",
-      "enWord": "AZERTY",
-      "deWord": "AZERTY"
-    },
-    {
-      "nlWord": "Megekko",
-      "frWord": "Megekko",
-      "enWord": "Megekko",
-      "deWord": "Megekko"
-    }
   ],
   "hardWords": [
     {
@@ -1408,48 +1131,6 @@
       "nlWord": "innovatief",
       "enWord": "innovative",
       "deWord": "innovativ"
-    },
-    {
-      "nlWord": "Europese verordening",
-      "frWord": "Réglementation Eruopéenne",
-      "enWord": "European Regulation",
-      "deWord": "Europäische Verordnung"
-    },
-    {
-      "nlWord": "Officier van Justitie",
-      "frWord": "Procureur",
-      "enWord": "Prosecutor",
-      "deWord": "Staatsanwalt"
-    },
-    {
-      "nlWord": "Advocaat",
-      "frWord": "Advocat",
-      "enWord": "Lawyer",
-      "deWord": "Rechtsanwalt"
-    },
-    {
-      "nlWord": "Gezichtsherkenning",
-      "frWord": "Reconnaissance de visage",
-      "enWord": "Face recognition",
-      "deWord": "Gesichtserkennung"
-    },
-    {
-      "nlWord": "Regeerakkoord",
-      "frWord": "Accord de Coalition",
-      "enWord": "Coaliton Agreement",
-      "deWord": "Koalitionsvertrag"
-    },
-    {
-      "nlWord": "Minister President",
-      "frWord": "Premier Ministre",
-      "enWord": "Prime Minister",
-      "deWord": "Premierminister"
-    },
-    {
-      "nlWord": "Opperbevelhebber",
-      "frWord": "Commandant en chef",
-      "enWord": "Commander in Chief",
-      "deWord": "Oberbefehlshaber"
     },
     {
       "frWord": "klaxonner",
@@ -1620,40 +1301,10 @@
       "deWord": "Apfel"
     },
     {
-      "nlWord": "iOS",
-      "frWord": "iOS",
-      "enWord": "iOS",
-      "deWord": "iOS"
-    },
-    {
-      "nlWord": "Azure",
-      "frWord": "Azure",
-      "enWord": "Azure",
-      "deWord": "Azure"
-    },
-    {
       "nlWord": "Virtual Machine (VM)",
       "frWord": "Machine virtuelle (VM)",
       "enWord": "Virtual Machine (VM)",
       "deWord": "Virtuelle Maschine (VM)"
-    },
-    {
-      "nlWord": "Antivirus",
-      "frWord": "Antivirus",
-      "enWord": "Antivirus",
-      "deWord": "Antivirus"
-    },
-    {
-      "nlWord": "Ransomware",
-      "frWord": "Ransomware",
-      "enWord": "Ransomware",
-      "deWord": "Ransomware"
-    },
-    {
-      "nlWord": "CVE",
-      "frWord": "CVE (Common Vulnerabilities and Exposures)",
-      "enWord": "CVE (Common Vulnerabilities and Exposures)",
-      "deWord": "CVE (Gemeinsame Schwachstellen und Expositionen)"
     },
     {
       "nlWord": "Databreach",
@@ -1662,52 +1313,10 @@
       "deWord": "Datenleck"
     },
     {
-      "nlWord": "big.LITTLE",
-      "frWord": "big.LITTLE",
-      "enWord": "big.LITTLE",
-      "deWord": "big.LITTLE"
-    },
-    {
-      "nlWord": "ARM",
-      "frWord": "ARM",
-      "enWord": "ARM",
-      "deWord": "ARM"
-    },
-    {
-      "nlWord": "x64",
-      "frWord": "x64",
-      "enWord": "x64",
-      "deWord": "x64"
-    },
-    {
-      "nlWord": "GPU",
-      "frWord": "GPU (Unité de traitement graphique)",
-      "enWord": "GPU (Graphics Processing Unit)",
-      "deWord": "GPU (Grafikprozessor)"
-    },
-    {
-      "nlWord": "CPU",
-      "frWord": "CPU (Unité centrale de traitement)",
-      "enWord": "CPU (Central Processing Unit)",
-      "deWord": "CPU (Zentrale Verarbeitungseinheit)"
-    },
-    {
-      "nlWord": "RAM",
-      "frWord": "RAM (Mémoire vive)",
-      "enWord": "RAM (Random Access Memory)",
-      "deWord": "RAM (Arbeitsspeicher)"
-    },
-    {
-      "nlWord": "Raspberry Pi",
-      "frWord": "Raspberry Pi",
-      "enWord": "Raspberry Pi",
-      "deWord": "Raspberry Pi"
-    },
-    {
-      "nlWord": "Flipper Zero",
-      "frWord": "Flipper Zero",
-      "enWord": "Flipper Zero",
-      "deWord": "Flipper Zero"
+      "nlWord": "Europese verordening",
+      "frWord": "Réglementation Eruopéenne",
+      "enWord": "European Regulation",
+      "deWord": "Europäische Verordnung"
     },
     {
       "nlWord": "IO board",
@@ -1716,39 +1325,16 @@
       "deWord": "E/A-Platine"
     },
     {
-      "nlWord": "Thunderbolt",
-      "frWord": "Thunderbolt",
-      "enWord": "Thunderbolt"
-    },
-    {
-      "nlWord": "Thunderbolt",
-      "frWord": "Thunderbolt",
-      "enWord": "Thunderbolt",
-      "deWord": "Thunderbolt"
-    },
-    {
       "nlWord": "Linux kernel",
       "frWord": "Noyau Linux",
       "enWord": "Linux kernel",
       "deWord": "Linux-Kernel"
     },
     {
-      "nlWord": "Tizen",
-      "frWord": "Tizen",
-      "enWord": "Tizen",
-      "deWord": "Tizen"
-    },
-    {
-      "nlWord": "Citrix",
-      "frWord": "Citrix",
-      "enWord": "Citrix",
-      "deWord": "Citrix"
-    },
-    {
-      "nlWord": "RDS",
-      "frWord": "RDS (Services Bureau à distance)",
-      "enWord": "RDS (Remote Desktop Services)",
-      "deWord": "RDS (Remote Desktop Services)"
+      "nlWord": "Bezwaar",
+      "frWord": "Objection",
+      "enWord": "objection",
+      "deWord": "Einspruch"
     },
     {
       "nlWord": "RDP Protocol",
@@ -1769,18 +1355,6 @@
       "deWord": "Broadcast"
     },
     {
-      "nlWord": "Unicast",
-      "frWord": "Unicast",
-      "enWord": "Unicast",
-      "deWord": "Unicast"
-    },
-    {
-      "nlWord": "Anycast",
-      "frWord": "Anycast",
-      "enWord": "Anycast",
-      "deWord": "Anycast"
-    },
-    {
       "nlWord": "MitM attack",
       "frWord": "Attaque de l'homme du milieu",
       "enWord": "Man-in-the-Middle (MitM) attack",
@@ -1797,30 +1371,6 @@
       "frWord": "Empoisonnement SEO",
       "enWord": "SEO poisoning",
       "deWord": "SEO-Vergiftung"
-    },
-    {
-      "nlWord": "Google",
-      "frWord": "Google",
-      "enWord": "Google",
-      "deWord": "Google"
-    },
-    {
-      "nlWord": "LinkedIn",
-      "frWord": "LinkedIn",
-      "enWord": "LinkedIn",
-      "deWord": "LinkedIn"
-    },
-    {
-      "nlWord": "Facebook",
-      "frWord": "Facebook",
-      "enWord": "Facebook",
-      "deWord": "Facebook"
-    },
-    {
-      "nlWord": "Microsoft 365",
-      "frWord": "Microsoft 365",
-      "enWord": "Microsoft 365",
-      "deWord": "Microsoft 365"
     },
     {
       "nlWord": "PaaS",
@@ -1841,40 +1391,10 @@
       "deWord": "IaaS (Infrastruktur als Dienst)"
     },
     {
-      "nlWord": "IntelliJ",
-      "frWord": "IntelliJ",
-      "enWord": "IntelliJ",
-      "deWord": "IntelliJ"
-    },
-    {
-      "nlWord": "PyCharm",
-      "frWord": "PyCharm",
-      "enWord": "PyCharm",
-      "deWord": "PyCharm"
-    },
-    {
-      "nlWord": "Jetbrains",
-      "frWord": "JetBrains",
-      "enWord": "JetBrains",
-      "deWord": "JetBrains"
-    },
-    {
       "nlWord": "Commandline",
       "frWord": "Ligne de commande",
       "enWord": "Commandline",
       "deWord": "Befehlszeile"
-    },
-    {
-      "nlWord": "Powershell",
-      "frWord": "PowerShell",
-      "enWord": "PowerShell",
-      "deWord": "PowerShell"
-    },
-    {
-      "nlWord": "UEFI / BIOS",
-      "frWord": "UEFI / BIOS",
-      "enWord": "UEFI / BIOS",
-      "deWord": "UEFI / BIOS"
     },
     {
       "nlWord": "Firmware",
@@ -1887,12 +1407,6 @@
       "frWord": "Langage de programmation",
       "enWord": "Programming language",
       "deWord": "Programmiersprache"
-    },
-    {
-      "nlWord": "DDOS",
-      "frWord": "DDoS (Attaque par déni de service distribué)",
-      "enWord": "DDoS (Distributed Denial of Service) attack",
-      "deWord": "DDoS (Verteilter Denial-of-Service-Angriff)"
     },
     {
       "nlWord": "IDS systeem",
@@ -1915,6 +1429,7 @@
     {
       "nlWord": "Secure Boot",
       "frWord": "Amorçage sécurisé",
+      "enWord": "secure boot",
       "deWord": "Sicheres Booten"
     },
     {
@@ -1924,52 +1439,16 @@
       "deWord": "CSM (Kompatibilitäts-Support-Modul)"
     },
     {
-      "nlWord": "Wordpress",
-      "frWord": "WordPress",
-      "enWord": "WordPress",
-      "deWord": "WordPress"
-    },
-    {
-      "nlWord": "PHP",
-      "frWord": "PHP",
-      "enWord": "PHP",
-      "deWord": "PHP"
-    },
-    {
       "nlWord": "Database",
       "frWord": "Base de données",
       "enWord": "Database",
       "deWord": "Datenbank"
     },
     {
-      "nlWord": "GitHub",
-      "frWord": "GitHub",
-      "enWord": "GitHub",
-      "deWord": "GitHub"
-    },
-    {
-      "nlWord": "HTML",
-      "frWord": "HTML (Langage de balisage hypertexte)",
-      "enWord": "HTML (Hypertext Markup Language)",
-      "deWord": "HTML (Hypertext Auszeichnungssprache)"
-    },
-    {
       "nlWord": "Lightning kabel",
       "frWord": "Câble Lightning",
       "enWord": "Lightning cable",
       "deWord": "Lightning-Kabel"
-    },
-    {
-      "nlWord": "AD",
-      "frWord": "AD (Active Directory)",
-      "enWord": "AD (Active Directory)",
-      "deWord": "AD (Active Directory)"
-    },
-    {
-      "nlWord": "Azure AD",
-      "frWord": "Azure AD (Active Directory)",
-      "enWord": "Azure AD (Active Directory)",
-      "deWord": "Azure AD (Active Directory)"
     },
     {
       "nlWord": "Microsoft Entra",
@@ -1984,16 +1463,16 @@
       "deWord": "Visual Studio Code (VSC)"
     },
     {
-      "nlWord": "Firewall",
-      "frWord": "Firewall",
-      "enWord": "Firewall",
-      "deWord": "Firewall"
+      "nlWord": "Officier van Justitie",
+      "frWord": "Procureur",
+      "enWord": "Prosecutor",
+      "deWord": "Staatsanwalt"
     },
     {
-      "nlWord": "Client",
-      "frWord": "Client",
-      "enWord": "Client",
-      "deWord": "Client"
+      "nlWord": "Advocaat",
+      "frWord": "Advocat",
+      "enWord": "Lawyer",
+      "deWord": "Rechtsanwalt"
     },
     {
       "nlWord": "Server",
@@ -2001,95 +1480,42 @@
       "enWord": "Server",
       "deWord": "Server"
     },
+
     {
-      "nlWord": "API",
-      "frWord": "API (Interface de programmation d'application)",
-      "enWord": "API (Application Programming Interface)",
-      "deWord": "API (Schnittstelle für Anwendungsprogrammierung)"
+      "nlWord": "Gezichtsherkenning",
+      "frWord": "Reconnaissance de visage",
+      "enWord": "Face recognition",
+      "deWord": "Gesichtserkennung"
     },
     {
-      "nlWord": "Solana",
-      "frWord": "Solana",
-      "enWord": "Solana",
-      "deWord": "Solana"
+      "nlWord": "Spoorwegovergang",
+      "frWord": "Passage à Niveau",
+      "enWord": "Railroad Crossing",
+      "deWord": "Bahnübergang"
     },
     {
-      "nlWord": "Ethereum",
-      "frWord": "Ethereum",
-      "enWord": "Ethereum",
-      "deWord": "Ethereum"
+      "nlWord": "Regeerakkoord",
+      "frWord": "Accord de Coalition",
+      "enWord": "Coaliton Agreement",
+      "deWord": "Koalitionsvertrag"
     },
     {
-      "nlWord": "Bitcoin",
-      "frWord": "Bitcoin",
-      "enWord": "Bitcoin",
-      "deWord": "Bitcoin"
+      "nlWord": "Minister President",
+      "frWord": "Premier Ministre",
+      "enWord": "Prime Minister",
+      "deWord": "Premierminister"
     },
     {
-      "nlWord": "Monero",
-      "frWord": "Monero",
-      "enWord": "Monero",
-      "deWord": "Monero"
-    },
-    {
-      "nlWord": "XRP",
-      "frWord": "XRP",
-      "enWord": "XRP",
-      "deWord": "XRP"
-    },
-    {
-      "nlWord": "Avalanche",
-      "frWord": "Avalanche",
-      "enWord": "Avalanche",
-      "deWord": "Avalanche"
-    },
-    {
-      "nlWord": "Fantom",
-      "frWord": "Fantom",
-      "enWord": "Fantom",
-      "deWord": "Fantom"
-    },
-    {
-      "nlWord": "Litecoin",
-      "frWord": "Litecoin",
-      "enWord": "Litecoin",
-      "deWord": "Litecoin"
-    },
-    {
-      "nlWord": "Blackboard",
-      "frWord": "Blackboard",
-      "enWord": "Blackboard",
-      "deWord": "Blackboard"
-    },
-    {
-      "nlWord": "Brightspace",
-      "frWord": "Brightspace",
-      "enWord": "Brightspace",
-      "deWord": "Brightspace"
-    },
-    {
-      "nlWord": "SQL",
-      "frWord": "SQL (Langage de requête structuré)",
-      "enWord": "SQL (Structured Query Language)",
-      "deWord": "SQL (Strukturierte Abfragesprache)"
+      "nlWord": "Opperbevelhebber",
+      "frWord": "Commandant en chef",
+      "enWord": "Commander in Chief",
+      "deWord": "Oberbefehlshaber"
     },
     {
       "nlWord": "Encryptie",
       "frWord": "Cryptage",
       "enWord": "Encryption",
       "deWord": "Verschlüsselung"
-    },
-    {
-      "nlWord": "Byte",
-      "frWord": "Octet",
-      "enWord": "Byte",
-      "deWord": "Byte"
-    },
-    {
-      "nlWord": "Bit",
-      "frWord": "Bit",
-      "enWord": "Bit",
-      "deWord": "Bit"
     },
     {
       "nlWord": "Bug",
@@ -2104,94 +1530,10 @@
       "deWord": "Malware"
     },
     {
-      "nlWord": "VPN",
-      "frWord": "VPN (Réseau privé virtuel)",
-      "enWord": "VPN (Virtual Private Network)",
-      "deWord": "VPN (Virtuelles privates Netzwerk)"
-    },
-    {
-      "nlWord": "IPv4",
-      "frWord": "IPv4",
-      "enWord": "IPv4",
-      "deWord": "IPv4"
-    },
-    {
-      "nlWord": "IPv6",
-      "frWord": "IPv6",
-      "enWord": "IPv6",
-      "deWord": "IPv6"
-    },
-    {
       "nlWord": "Patch",
       "frWord": "Correctif",
       "enWord": "Patch",
       "deWord": "Patch"
     },
-    {
-      "nlWord": "LAN",
-      "frWord": "LAN (Réseau local)",
-      "enWord": "LAN (Local Area Network)",
-      "deWord": "LAN (lokales Netzwerk)"
-    },
-    {
-      "nlWord": "WAN",
-      "frWord": "WAN (Réseau étendu)",
-      "enWord": "WAN (Wide Area Network)",
-      "deWord": "WAN (Weitverkehrsnetz)"
-    },
-    {
-      "nlWord": "PfSense",
-      "frWord": "PfSense",
-      "enWord": "PfSense",
-      "deWord": "PfSense"
-    },
-    {
-      "nlWord": "LG",
-      "frWord": "LG",
-      "enWord": "LG",
-      "deWord": "LG"
-    },
-    {
-      "nlWord": "Samsung",
-      "frWord": "Samsung",
-      "enWord": "Samsung",
-      "deWord": "Samsung"
-    },
-    {
-      "nlWord": "IBM",
-      "frWord": "IBM",
-      "enWord": "IBM",
-      "deWord": "IBM"
-    },
-    {
-      "nlWord": "WatchOS",
-      "frWord": "WatchOS",
-      "enWord": "WatchOS",
-      "deWord": "WatchOS"
-    },
-    {
-      "nlWord": "Lenovo",
-      "frWord": "Lenovo",
-      "enWord": "Lenovo",
-      "deWord": "Lenovo"
-    },
-    {
-      "nlWord": "Oneplus",
-      "frWord": "OnePlus",
-      "enWord": "OnePlus",
-      "deWord": "Oneplus"
-    },
-    {
-      "nlWord": "WearOS",
-      "frWord": "WearOS",
-      "enWord": "WearOS",
-      "deWord": "WearOS"
-    },
-    {
-      "nlWord": "USB-PD",
-      "frWord": "USB Power Delivery",
-      "enWord": "USB Power Delivery (USB-PD)",
-      "deWord": "USB Power Delivery (USB-PD)"
-    }
   ]
 }
