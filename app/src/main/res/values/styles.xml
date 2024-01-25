@@ -22,8 +22,8 @@
 
     <!-- Dialog animation style -->
     <style name="DialogAnimation">
-        <item name="android:windowEnterAnimation">@anim/fade_in</item>
-        <item name="android:windowExitAnimation">@anim/fade_out</item>
+        <item name="android:windowEnterAnimation">@anim/dialog_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_fade_out</item>
     </style>
 
     <!-- Light theme dialog style -->

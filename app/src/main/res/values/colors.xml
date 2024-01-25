@@ -26,8 +26,9 @@
     <color name="snackbar_text_dark">#FFFFFF</color>
     <color name="snackbar_text_light">#0c476c</color>
 
-    <!-- old colors from dead build (might need later)
-    // <color name="colorPrimary">#00b58d</color>
-    // <color name="colorPrimaryDark">#34495e</color> -->
+    <!-- Dice button colors -->
+    <color name="dice_ready_color">#27ae60</color>
+    <color name="dice_rolled_color">#f98722</color>
+
 
 </resources>

@@ -4,10 +4,8 @@
     <string name="mathGameButton">Mathe-Spiel</string>
     <string name="languageGameButton">Sprachtest</string>
     <string name="guessingGameButton">Ratespiel</string>
-    <string name="defaultBtnValue">3</string>
 
     <!-- Titles -->
-    <string name="app_name">Half a Minute IT Madness</string>
     <string name="title_activity_language_test">Sprachtest</string>
     <string name="chooseGameTitle">Wähle dein Spiel</string>
     <string name="chooseTestTitle">Wähle deinen Test</string>
@@ -23,12 +21,13 @@
     <string name="show_releasenotes">Versionshinweise anzeigen</string>
 
     <!-- Timer and Score -->
-    <string name="TimerValue">30s</string>
     <string name="game_time">30 Sekunden Spiel</string>
-    <string name="ScoreValue">0/0</string>
+    <string name="roll">Werfen</string>
+    <string name="throw_dice">Werfe einen Würfel!</string>
+    <string name="last_dice_value">Letzter Würfelwert: %1$d</string>
 
     <!-- Difficulty Levels -->
-    <string name="difficultyEasy">Leicht</string>
+    <string name="difficultyEasy">Einfach</string>
     <string name="difficultyMedium">Mittel</string>
     <string name="difficultyHard">Schwer</string>
 
@@ -39,7 +38,6 @@
     <string name="exitGame">Spiel verlassen</string>
     <string name="changeGame">Spiel ändern</string>
     <string name="changeDifficultyTo">"Schwierigkeitsgrad: "</string>
-    <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Spiel: "</string>
 
     <!-- Score Messages -->
@@ -49,7 +47,6 @@
     <string name="wrong">Falsch!</string>
 
     <!-- Lives and Questions -->
-    <string name="sum">1 + 2 =</string>
     <string name="question">Ich bin 23 Jahre alt</string>
     <string name="answerLang">Ich bin 23 Jahre alt</string>
 
@@ -57,7 +54,7 @@
     <string name="welcome">Willkommen bei Half a Minute IT Madness!</string>
     <string name="welcomeText">
         <![CDATA[
-        Entdecke Half a Minute IT Madness, ein kreatives Spiel, entworfen von drei engagierten Studenten der Saxion University of Applied Sciences. Wähle aus drei herausfordernden Spielen: Mathe, Sprache und Raten. Jedes Spiel dauert 30 Sekunden, wobei eine richtige Antwort einen Punkt bringt und eine falsche Antwort ein Leben kostet. Achte auf deine Leben, die rechts oben als grüne/blau Herzen angezeigt werden. Das Spiel endet nach 30 Sekunden oder wenn alle Leben verloren sind. Fordere dich selbst heraus, um deine Punktzahl zu verbessern!
+        Willkommen bei Half a Minute IT Madness, einem kreativen Spiel, das von drei engagierten Studenten der Saxion University of Applied Sciences entwickelt wurde. Wähle aus drei herausfordernden Spielen: Mathe, Sprache und Raten. Jedes Spiel dauert 30 Sekunden, wobei eine richtige Antwort einen Punkt einbringt und eine falsche Antwort ein Leben kostet. Behalte deine Leben im Auge, die oben rechts als grüne/blau Herzen angezeigt werden. Das Spiel endet nach 30 Sekunden oder wenn alle Leben verloren sind. Fordere dich selbst heraus, um deine Punktzahl zu verbessern!
         ]]>
     </string>
 
@@ -73,8 +70,7 @@
     <string name="EnglishToGerman">Englisch zu Deutsch</string>
 
     <!-- Miscellaneous -->
-    <string name="theme_dynamic_icon">Dies ist ein dynamisches Symbol, das sich je nach Einstellungen des dunklen Modus ändert</string>
+    <string name="theme_dynamic_icon">Dies ist ein dynamisches Symbol, das sich je nach Einstellungen des Dunkelmodus ändert</string>
     <string name="hScoreDescription">Highscore-Bild</string>
-
-
+    <string name="points_icon">Punkte-Symbol</string>
 </resources>

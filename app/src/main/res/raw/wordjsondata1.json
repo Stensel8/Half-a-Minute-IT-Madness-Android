@@ -431,7 +431,7 @@
       "nlWord": "Vingerafdrukscanner",
       "enWord": "Fingerprintscanner",
       "deWord": "Fingerabdruckscanner"
-    },
+    }
   ],
   "mediumWords": [
     {
@@ -1063,7 +1063,7 @@
       "frWord": "Crédits d'études",
       "enWord": "Study credits",
       "deWord": "Studienpunkte"
-    }, ,
+    },
     {
       "nlWord": "Aanhanger",
       "frWord": "Remorque",
@@ -1117,7 +1117,7 @@
       "frWord": "Autriche",
       "enWord": "Austria",
       "deWord": "Österreich"
-    },
+    }
   ],
   "hardWords": [
     {
@@ -1534,6 +1534,6 @@
       "frWord": "Correctif",
       "enWord": "Patch",
       "deWord": "Patch"
-    },
+    }
   ]
 }
