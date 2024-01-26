@@ -4,8 +4,8 @@ apply plugin: 'kotlin-android'
 
 // Set app version and buildversion
 ext {
-    appVersionCode = 28
-    appVersionName = "2.7.5"
+    appVersionCode = 30
+    appVersionName = "3.0.0"
 }
 
 android {

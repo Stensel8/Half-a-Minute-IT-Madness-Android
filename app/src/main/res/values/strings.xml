@@ -54,7 +54,7 @@
     <string name="welcome">Welcome to Half a Minute IT Madness!</string>
     <string name="welcomeText">
         <![CDATA[
-        Discover Half a Minute IT Madness, a creative game designed by three dedicated Saxion University of Applied Sciences students. Choose from three challenging games: math, language, and guessing. Each game lasts for 30 seconds, where a correct answer earns a point and a wrong answer costs a life. Keep an eye on your lives, displayed as green/blue hearts in the top right. The game ends after 30 seconds or upon losing all lives. Challenge yourself to improve your score!
+        Discover Half a Minute IT Madness, a creative game designed by three dedicated Saxion students. Choose from three challenging games: math, language, and guessing. Each game lasts for 30 seconds, where a correct answer earns a point and a wrong answer costs a life. Keep an eye on your lives, displayed as green/blue hearts in the top right. The game ends after 30 seconds or upon losing all lives. Challenge yourself to improve your score!
         ]]>
     </string>
 
