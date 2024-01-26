@@ -81,14 +81,13 @@
     <string name="ScoreValue" translatable="false">0/0</string>
     <string name="sum" translatable="false">1 + 2 =</string>
     <string name="defaultAnswerText" translatable="false">\?</string>
-    <string name="points" translatable="false">Points</string>
+    <string name="points" translatable="false">%1$d/%2$d</string>
     <string name="timer_seconds" translatable="false">seconds</string>
     <string name="score_format" translatable="false">%d/%d</string>
-    <string name="lives" translatable="false">Lives</string>
+    <string name="lives" translatable="false">%1$d</string>
     <string name="group_logo_description" translatable="false">De Beunhazen</string>
     <string name="groupname" translatable="false">De Beunhazen</string>
-    <string name="build_label" translatable="false">Build: </string>
-    <string name="version_label" translatable="false">Version: </string>
-    <string name="versionname" translatable="false">2.7.0</string>
+    <string name="build_label" translatable="false">Build:</string>
+    <string name="version_label" translatable="false">Version:</string>
     <string name="app_name" translatable="false">Half a Minute IT Madness</string>
 </resources>

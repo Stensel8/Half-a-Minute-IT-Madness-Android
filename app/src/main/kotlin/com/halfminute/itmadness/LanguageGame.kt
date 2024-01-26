@@ -196,14 +196,14 @@ class LanguageGame : AppCompatActivity() {
      * Starts the game, sets up questions, and starts the timer.
      */
     private fun startGame() {
-        tvTimer!!.text = getString(R.string.timer_seconds, millisUntilFinished / 1000)
+        tvTimer!!.text = (millisUntilFinished / 1000).toString()
         tvPoints!!.text = getString(R.string.score_format, points, numberOfQuestions)
         generateQuestion()
         countDownTimer = object : CountDownTimer(millisUntilFinished, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
                 val initialColor = tvTimer!!.currentTextColor
-                tvTimer!!.text = getString(R.string.timer_seconds, seconds)
+                tvTimer!!.text = "$seconds" + "s"
                 if (seconds <= 5) {
                     if (seconds == 5L) {
                         timerPlayer =
