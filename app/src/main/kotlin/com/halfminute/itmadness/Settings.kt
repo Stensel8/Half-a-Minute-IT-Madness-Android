@@ -4,7 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AlphaAnimation
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -28,22 +28,23 @@ class Settings : AppCompatActivity() {
         initializeUI()
         handleBackPress()
 
-        // Haal de build- en versie-informatie op uit Gradle
-        val buildLabel = getString(R.string.build_label)
-        val versionLabel = getString(R.string.version_label)
-        val versionCode = getString(R.string.versioncode)
-        val versionName = getString(R.string.versionname)
+        // Get the version and build numbers from the package info
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        val versionName = packageInfo.versionName
+        val versionCode = packageInfo.longVersionCode
 
-        // Formateer de tekst met behulp van String.format
-        val buildInfo = "$buildLabel $versionCode"
-        val versionInfo = "$versionLabel $versionName"
+        // Format the version and build numbers
+        val formattedVersion = getString(R.string.version_label) + " $versionName"
+        val formattedBuild = getString(R.string.build_label) + " $versionCode"
 
-        // Zoek de TextViews en stel de geformatteerde tekst in
+        // Find the TextViews in the layout
         val tvBuildInfo: TextView = findViewById(R.id.tvBuildInfo)
         val tvVersionInfo: TextView = findViewById(R.id.tvVersionInfo)
 
-        tvBuildInfo.text = buildInfo
-        tvVersionInfo.text = versionInfo
+        // Set the formatted version and build numbers to the TextViews
+        tvBuildInfo.text = formattedBuild
+        tvVersionInfo.text = formattedVersion
+
     }
 
 
@@ -141,9 +142,13 @@ class Settings : AppCompatActivity() {
      */
     fun chooseDifficulty(view: View) {
         val difficultyKey = getDifficultyKey(view.id)
+        // Call the animation function before performing other actions
+        btnAnimation(view)
         sharedPref.saveDifficulty(difficultyKey)
         displayDifficultyChange(difficultyKey)
     }
+
+
 
     /**
      * Determines the difficulty key based on the selected button's ID.
@@ -181,16 +186,28 @@ class Settings : AppCompatActivity() {
      */
     private fun setupLanguageButton() {
         val changeLang: Button = findViewById(R.id.btnChangeLanguage)
-        changeLang.setOnClickListener { showChangeLanguageDialog() }
+        changeLang.setOnClickListener {
+            // Call the animation function before performing other actions
+            btnAnimation(changeLang)
+
+            // Add your existing logic for language selection here
+            showChangeLanguageDialog()
+        }
     }
+
 
     /**
      * Sets up the welcome and updates button to show relevant information.
      */
     private fun setupWelcomeAndUpdatesButton() {
         val btnShowWelcomeAndUpdates: Button = findViewById(R.id.btnShowWelcomeAndUpdates)
-        btnShowWelcomeAndUpdates.setOnClickListener { showWelcomeAndUpdates() }
+        btnShowWelcomeAndUpdates.setOnClickListener {
+            // Call the animation function before performing other actions
+            btnAnimation(btnShowWelcomeAndUpdates)
+            showWelcomeAndUpdates()
+        }
     }
+
 
     /**
      * Shows a dialog allowing the user to choose the application language.
@@ -228,7 +245,7 @@ class Settings : AppCompatActivity() {
     private fun applyLanguageChange() {
         startActivity(Intent(this, Settings::class.java))
         finish()
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        overridePendingTransition(R.anim.dialog_fade_in, R.anim.dialog_fade_out)
     }
 
     /**
@@ -275,10 +292,9 @@ class Settings : AppCompatActivity() {
          * @param view The view (button) to apply the animation to.
          */
         fun btnAnimation(view: View) {
-            val animation = AlphaAnimation(0.2f, 1.0f).apply {
-                duration = 500
-            }
+            val animation = AnimationUtils.loadAnimation(view.context, R.anim.button_click_animation)
             view.startAnimation(animation)
         }
     }
+
 }

@@ -4,10 +4,8 @@
     <string name="mathGameButton">Rekenspel</string>
     <string name="languageGameButton">Taaltest</string>
     <string name="guessingGameButton">Raadspel</string>
-    <string name="defaultBtnValue">3</string>
 
     <!-- Titles -->
-    <string name="app_name">Half a Minute IT Madness</string>
     <string name="title_activity_language_test">Taaltest</string>
     <string name="chooseGameTitle">Kies je spel</string>
     <string name="chooseTestTitle">Kies je test</string>
@@ -23,9 +21,10 @@
     <string name="show_releasenotes">Toon release-opmerkingen</string>
 
     <!-- Timer and Score -->
-    <string name="TimerValue">30s</string>
     <string name="game_time">30 seconden spel</string>
-    <string name="ScoreValue">0/0</string>
+    <string name="roll">Gooien</string>
+    <string name="throw_dice">Gooi een dobbelsteen!</string>
+    <string name="last_dice_value">Laatste Dobbelsteenwaarde: %1$d</string>
 
     <!-- Difficulty Levels -->
     <string name="difficultyEasy">Makkelijk</string>
@@ -39,7 +38,6 @@
     <string name="exitGame">Spel verlaten</string>
     <string name="changeGame">Verander spel</string>
     <string name="changeDifficultyTo">"Moeilijkheid: "</string>
-    <string name="changeDfficultyTo">Top 5:</string>
     <string name="chosenGame">"Spel: "</string>
 
     <!-- Score Messages -->
@@ -49,7 +47,6 @@
     <string name="wrong">Fout!</string>
 
     <!-- Lives and Questions -->
-    <string name="sum">1 + 2 =</string>
     <string name="question">Ik ben 23 jaar oud</string>
     <string name="answerLang">Ik ben 23 jaar oud</string>
 
@@ -73,6 +70,7 @@
     <string name="EnglishToGerman">Engels naar Duits</string>
 
     <!-- Miscellaneous -->
-    <string name="theme_dynamic_icon">Dit is een dynamische pictogram dat verandert op basis van de instellingen van de donkere modus</string>
+    <string name="theme_dynamic_icon">Dit is een dynamisch pictogram dat verandert op basis van de instellingen van de donkere modus</string>
     <string name="hScoreDescription">Highscore-afbeelding</string>
+    <string name="points_icon">Icoontje om punten weer te geven</string>
 </resources>

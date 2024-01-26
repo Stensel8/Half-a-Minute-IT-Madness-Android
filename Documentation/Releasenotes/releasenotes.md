@@ -1,3 +1,26 @@
+## **Half a Minute IT Madness - Android Stable Release V3.0.0**
+**Release Notes**
+
+Version 3.0.0, of Half a Minute IT Madness for Android. This release some small improvements, enhancing the overall user experience and stability of the game.
+
+### Enhancements and New Features
+- **Difficulty adjustments:** Changed game rules and the amount of points you'll be getting. This is now based on the difficulty.
+- **New dice feature:** Introduced a dice roll button, this is used if you want to follow the actual game rules.
+- **Wordlist changes:** Changed the wordlist and separated them. Each game will now use different words.
+
+### Documentation
+- **Localization:** Updated some strings and translations.
+
+### Known Issues
+- **Color Display Issue:** Tiles may show unexpected colors - [#6](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues/6).
+
+### Coming Soon
+- **High Score Board:** We are currently discussing and working on the implementation of a high score board. The decision to include this feature is still under consideration.
+
+We appreciate your continued support and feedback as we strive to make Half a Minute IT Madness the best it can be. Stay tuned for more updates and enhancements in future releases!
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## **Half a Minute IT Madness - Android Stable Release V2.7**
 **Release Notes**
 

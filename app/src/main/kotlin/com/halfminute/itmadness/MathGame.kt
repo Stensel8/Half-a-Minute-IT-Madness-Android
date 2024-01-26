@@ -52,7 +52,7 @@ class MathGame : AppCompatActivity() {
     // Game variables
     private var points = 0
     private var wrong = 0
-    private var maxWrongAnswers = 2
+    private var maxWrongAnswers = 0
     private var numberOfQuestions = 0
     private val random = Random()
     private val btnIds = intArrayOf(R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3)
@@ -75,26 +75,44 @@ class MathGame : AppCompatActivity() {
 
         // Initialize shared preferences
         sharedPref = SharedPref(this)
+        // Set the theme based on the user's preference
         setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
+        // Load the selected language
         sharedPref.loadLocale(this)
 
+        // Set the layout for the activity
         setContentView(R.layout.math_game)
 
-        // Initialize view components
+        // Initialize UI components
         initViewComponents()
 
-        // Load game difficulty and start the game
+        // Load the game difficulty and start the game
         difficulty = sharedPref.loadDifficulty()
+        // Adjust game variables based on the difficulty level
+        when (difficulty.lowercase(Locale.getDefault())) {
+            "easy" -> {
+                maxWrongAnswers = 5  // Easy mode has 5 lives
+            }
+            "medium" -> {
+                maxWrongAnswers = 3  // Medium mode has 3 lives
+            }
+            else -> {  // This includes the "hard" difficulty
+                maxWrongAnswers = 2  // Hard mode has 2 lives
+            }
+        }
         startGame()
 
-// Handle back button press with OnBackPressedCallback
+        // Handle the back button press with OnBackPressedCallback
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                // Cancel the countdown timer and release the media player
                 countDownTimer?.cancel()
                 releasePlayer()
+
                 if (!isBackButtonPressed) {
                     // First time back button (or swipe)
                     isBackButtonPressed = true
+                    // Show a custom Snackbar to inform the user
                     sharedPref.showCustomSnackbar(
                         this@MathGame,
                         "Back button pressed. Press again to navigate back."
@@ -106,14 +124,15 @@ class MathGame : AppCompatActivity() {
                     }, 3000)
                 } else {
                     // Second time back button (or swipe)
+                    // Navigate back to the ChooseGame activity
                     val intent = Intent(this@MathGame, ChooseGame::class.java)
                     startActivity(intent)
                     finish()
                 }
             }
         }
+        // Register the onBackPressedCallback with the activity
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
-
     }
 
     // Function to initialize view components
@@ -346,7 +365,13 @@ class MathGame : AppCompatActivity() {
      * Function to update the UI and logic when the user selects the correct answer.
      */
     private fun updateForCorrectAnswer() {
-        points++
+        // Voeg punten toe op basis van de moeilijkheidsgraad
+        points += when (difficulty.lowercase(Locale.getDefault())) {
+            "easy" -> 1
+            "medium" -> 2
+            else -> 3
+        }
+        // Update de weergave en genereer een nieuwe vraag
         clickedBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.correct))
         Handler(Looper.getMainLooper()).postDelayed({
             clickedBtn.setBackgroundColor(colorId)
@@ -355,6 +380,7 @@ class MathGame : AppCompatActivity() {
         }, 300)
         tvPoints.text = "$points/$numberOfQuestions"
     }
+
 
     /**
      * Function to update the UI and logic when the user selects an incorrect answer.

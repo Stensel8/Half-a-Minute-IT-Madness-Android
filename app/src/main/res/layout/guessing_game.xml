@@ -55,28 +55,22 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            app:srcCompat="@drawable/star_blue" />
+            android:layout_marginStart="2dp"
+            app:srcCompat="@drawable/star_blue"
+            android:contentDescription="@string/points_icon" />
+
+        <TextView
+            android:id="@+id/tvPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@string/ScoreValue"
+            android:textColor="?attr/textColor"
+            android:textSize="24sp" />
 
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:text="@string/ScoreValue"
-        android:textColor="?attr/textColor"
-        android:textSize="24sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|end"
-        android:orientation="horizontal">
-    </LinearLayout>
-    
     <!-- Button word 1 -->
     <Button
         android:id="@+id/txtvw1"
@@ -85,7 +79,6 @@
         android:layout_marginTop="120dp"
         android:background="@drawable/rounded_btn"
         android:fontFamily="@font/segoeuib"
-        android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessingGameButton"
         android:textColor="#000000"
@@ -99,7 +92,6 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_btn"
         android:fontFamily="@font/segoeuib"
-        android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessingGameButton"
         android:textColor="#000000"
@@ -113,7 +105,6 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_btn"
         android:fontFamily="@font/segoeuib"
-        android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessingGameButton"
         android:textColor="#000000"
@@ -127,7 +118,6 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_btn"
         android:fontFamily="@font/segoeuib"
-        android:onClick="startGuessingGame"
         android:padding="20dp"
         android:text="@string/guessingGameButton"
         android:textColor="#000000"

@@ -1,5 +1,7 @@
 package com.halfminute.itmadness
 
+import LanguageWord
+import LanguageWords
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
@@ -47,7 +49,7 @@ class LanguageGame : AppCompatActivity() {
     private lateinit var btnIds: IntArray
     private var correctAnswerPosition = 0
     private var incorrectAnswers: ArrayList<String>? = null
-    private var wordsList: Words? = null
+    private var languageWordsList: LanguageWords? = null
     private var player: MediaPlayer? = null
     private var timerPlayer: MediaPlayer? = null
     private var isBackButtonPressed = false
@@ -117,7 +119,7 @@ class LanguageGame : AppCompatActivity() {
         btnIds = intArrayOf(R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3)
         correctAnswerPosition = 0
         incorrectAnswers = ArrayList()
-        wordsList = Words.getInstance(this)
+        languageWordsList = LanguageWords.getInstance(this)
     }
 
     /**
@@ -196,14 +198,14 @@ class LanguageGame : AppCompatActivity() {
      * Starts the game, sets up questions, and starts the timer.
      */
     private fun startGame() {
-        tvTimer!!.text = getString(R.string.timer_seconds, millisUntilFinished / 1000)
+        tvTimer!!.text = (millisUntilFinished / 1000).toString()
         tvPoints!!.text = getString(R.string.score_format, points, numberOfQuestions)
         generateQuestion()
         countDownTimer = object : CountDownTimer(millisUntilFinished, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
                 val initialColor = tvTimer!!.currentTextColor
-                tvTimer!!.text = getString(R.string.timer_seconds, seconds)
+                tvTimer!!.text = "$seconds" + "s"
                 if (seconds <= 5) {
                     if (seconds == 5L) {
                         timerPlayer =
@@ -246,9 +248,9 @@ class LanguageGame : AppCompatActivity() {
 /////////////////////// easy mode /////////////////////////
         if (difficulty.equals("easy", ignoreCase = true)) {
             tvDifficulty!!.text = resources.getString(R.string.difficultyEasy)
-            randomId = random!!.nextInt(wordsList!!.easyWords.size)
+            randomId = random!!.nextInt(languageWordsList!!.easyWords.size)
             while (randomId == previousRandom) {
-                randomId = random!!.nextInt(wordsList!!.easyWords.size)
+                randomId = random!!.nextInt(languageWordsList!!.easyWords.size)
             }
             maxWrongAnswers = 5
             when (savedLanguage) {
@@ -256,39 +258,39 @@ class LanguageGame : AppCompatActivity() {
                     val question: String
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.easyWords[randomId].nlWord
+                            question = languageWordsList!!.easyWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].frWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.easyWords[randomId].frWord
+                            question = languageWordsList!!.easyWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].nlWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.easyWords[randomId].deWord
+                            question = languageWordsList!!.easyWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.easyWords[randomId].enWord
+                            question = languageWordsList!!.easyWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.easyWords[randomId].enWord
+                            question = languageWordsList!!.easyWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].frWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.easyWords[randomId].frWord
+                            question = languageWordsList!!.easyWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].enWord
                         }
                     }
                 }
@@ -297,39 +299,39 @@ class LanguageGame : AppCompatActivity() {
                     val question: String
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.easyWords[randomId].enWord
+                            question = languageWordsList!!.easyWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].nlWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.easyWords[randomId].nlWord
+                            question = languageWordsList!!.easyWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].frWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.easyWords[randomId].deWord
+                            question = languageWordsList!!.easyWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.easyWords[randomId].enWord
+                            question = languageWordsList!!.easyWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.easyWords[randomId].frWord
+                            question = languageWordsList!!.easyWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].nlWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.easyWords[randomId].nlWord
+                            question = languageWordsList!!.easyWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].enWord
                         }
                     }
                 }
@@ -338,39 +340,39 @@ class LanguageGame : AppCompatActivity() {
                     val question: String
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.easyWords[randomId].nlWord
+                            question = languageWordsList!!.easyWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].enWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.easyWords[randomId].enWord
+                            question = languageWordsList!!.easyWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].nlWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.easyWords[randomId].deWord
+                            question = languageWordsList!!.easyWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.easyWords[randomId].enWord
+                            question = languageWordsList!!.easyWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.easyWords[randomId].frWord
+                            question = languageWordsList!!.easyWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].enWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.easyWords[randomId].enWord
+                            question = languageWordsList!!.easyWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.easyWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.easyWords[randomId].frWord
                         }
                     }
                 }
@@ -379,47 +381,47 @@ class LanguageGame : AppCompatActivity() {
 ///////////////////// medium mode /////////////////////////
         } else if (difficulty.equals("medium", ignoreCase = true)) {
             tvDifficulty!!.text = resources.getString(R.string.difficultyMedium)
-            randomId = random!!.nextInt(wordsList!!.mediumWords.size)
+            randomId = random!!.nextInt(languageWordsList!!.mediumWords.size)
             while (randomId == previousRandom) {
-                randomId = random!!.nextInt(wordsList!!.mediumWords.size)
+                randomId = random!!.nextInt(languageWordsList!!.mediumWords.size)
             }
             var question: String
             if (savedLanguage == "de") {
                 when (chosenGame) {
                     "NlToEn" -> {
-                        question = wordsList!!.mediumWords[randomId].nlWord
+                        question = languageWordsList!!.mediumWords[randomId].nlWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                        correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                     }
 
                     "EnToNl" -> {
-                        question = wordsList!!.mediumWords[randomId].enWord
+                        question = languageWordsList!!.mediumWords[randomId].enWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.mediumWords[randomId].nlWord
+                        correctAnswer = languageWordsList!!.mediumWords[randomId].nlWord
                     }
 
                     "DeToEn" -> {
-                        question = wordsList!!.mediumWords[randomId].deWord
+                        question = languageWordsList!!.mediumWords[randomId].deWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                        correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                     }
 
                     "EnToDe" -> {
-                        question = wordsList!!.mediumWords[randomId].enWord
+                        question = languageWordsList!!.mediumWords[randomId].enWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.mediumWords[randomId].deWord
+                        correctAnswer = languageWordsList!!.mediumWords[randomId].deWord
                     }
 
                     "FrToEn" -> {
-                        question = wordsList!!.mediumWords[randomId].frWord
+                        question = languageWordsList!!.mediumWords[randomId].frWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                        correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                     }
 
                     "EnToFr" -> {
-                        question = wordsList!!.mediumWords[randomId].enWord
+                        question = languageWordsList!!.mediumWords[randomId].enWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.mediumWords[randomId].frWord
+                        correctAnswer = languageWordsList!!.mediumWords[randomId].frWord
                     }
                 }
             }
@@ -427,39 +429,39 @@ class LanguageGame : AppCompatActivity() {
                 "fr" -> {
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].nlWord
+                            question = languageWordsList!!.mediumWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].frWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.mediumWords[randomId].frWord
+                            question = languageWordsList!!.mediumWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].nlWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].deWord
+                            question = languageWordsList!!.mediumWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.mediumWords[randomId].enWord
+                            question = languageWordsList!!.mediumWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].enWord
+                            question = languageWordsList!!.mediumWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].frWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.mediumWords[randomId].frWord
+                            question = languageWordsList!!.mediumWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                         }
                     }
                 }
@@ -467,39 +469,39 @@ class LanguageGame : AppCompatActivity() {
                 "nl" -> {
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].enWord
+                            question = languageWordsList!!.mediumWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].nlWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.mediumWords[randomId].nlWord
+                            question = languageWordsList!!.mediumWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].frWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].deWord
+                            question = languageWordsList!!.mediumWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.mediumWords[randomId].enWord
+                            question = languageWordsList!!.mediumWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].frWord
+                            question = languageWordsList!!.mediumWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].nlWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.mediumWords[randomId].nlWord
+                            question = languageWordsList!!.mediumWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                         }
                     }
                 }
@@ -507,39 +509,39 @@ class LanguageGame : AppCompatActivity() {
                 else -> {
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].nlWord
+                            question = languageWordsList!!.mediumWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.mediumWords[randomId].enWord
+                            question = languageWordsList!!.mediumWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].nlWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].deWord
+                            question = languageWordsList!!.mediumWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.mediumWords[randomId].enWord
+                            question = languageWordsList!!.mediumWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.mediumWords[randomId].frWord
+                            question = languageWordsList!!.mediumWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].enWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.mediumWords[randomId].enWord
+                            question = languageWordsList!!.mediumWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.mediumWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.mediumWords[randomId].frWord
                         }
                     }
                 }
@@ -548,47 +550,47 @@ class LanguageGame : AppCompatActivity() {
 /////////////////////// hard mode /////////////////////////
         } else {
             tvDifficulty!!.text = resources.getString(R.string.difficultyHard)
-            randomId = random!!.nextInt(wordsList!!.hardWords.size)
+            randomId = random!!.nextInt(languageWordsList!!.hardWords.size)
             while (randomId == previousRandom) {
-                randomId = random!!.nextInt(wordsList!!.hardWords.size)
+                randomId = random!!.nextInt(languageWordsList!!.hardWords.size)
             }
             var question: String
             if (savedLanguage == "de") {
                 when (chosenGame) {
                     "NlToEn" -> {
-                        question = wordsList!!.hardWords[randomId].nlWord
+                        question = languageWordsList!!.hardWords[randomId].nlWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.hardWords[randomId].enWord
+                        correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                     }
 
                     "EnToNl" -> {
-                        question = wordsList!!.hardWords[randomId].enWord
+                        question = languageWordsList!!.hardWords[randomId].enWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.hardWords[randomId].nlWord
+                        correctAnswer = languageWordsList!!.hardWords[randomId].nlWord
                     }
 
                     "DeToEn" -> {
-                        question = wordsList!!.hardWords[randomId].deWord
+                        question = languageWordsList!!.hardWords[randomId].deWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.hardWords[randomId].enWord
+                        correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                     }
 
                     "EnToDe" -> {
-                        question = wordsList!!.hardWords[randomId].enWord
+                        question = languageWordsList!!.hardWords[randomId].enWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.hardWords[randomId].deWord
+                        correctAnswer = languageWordsList!!.hardWords[randomId].deWord
                     }
 
                     "FrToEn" -> {
-                        question = wordsList!!.hardWords[randomId].frWord
+                        question = languageWordsList!!.hardWords[randomId].frWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.hardWords[randomId].enWord
+                        correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                     }
 
                     "EnToFr" -> {
-                        question = wordsList!!.hardWords[randomId].enWord
+                        question = languageWordsList!!.hardWords[randomId].enWord
                         tvQuestion!!.text = question
-                        correctAnswer = wordsList!!.hardWords[randomId].frWord
+                        correctAnswer = languageWordsList!!.hardWords[randomId].frWord
                     }
                 }
             }
@@ -596,39 +598,39 @@ class LanguageGame : AppCompatActivity() {
                 "fr" -> {
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.hardWords[randomId].nlWord
+                            question = languageWordsList!!.hardWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].frWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.hardWords[randomId].frWord
+                            question = languageWordsList!!.hardWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].nlWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.hardWords[randomId].deWord
+                            question = languageWordsList!!.hardWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.hardWords[randomId].enWord
+                            question = languageWordsList!!.hardWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.hardWords[randomId].enWord
+                            question = languageWordsList!!.hardWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].frWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.hardWords[randomId].frWord
+                            question = languageWordsList!!.hardWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                         }
                     }
                 }
@@ -636,39 +638,39 @@ class LanguageGame : AppCompatActivity() {
                 "nl" -> {
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.hardWords[randomId].enWord
+                            question = languageWordsList!!.hardWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].nlWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.hardWords[randomId].nlWord
+                            question = languageWordsList!!.hardWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].frWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.hardWords[randomId].deWord
+                            question = languageWordsList!!.hardWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.hardWords[randomId].enWord
+                            question = languageWordsList!!.hardWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.hardWords[randomId].frWord
+                            question = languageWordsList!!.hardWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].nlWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.hardWords[randomId].nlWord
+                            question = languageWordsList!!.hardWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                         }
                     }
                 }
@@ -676,39 +678,39 @@ class LanguageGame : AppCompatActivity() {
                 else -> {
                     when (chosenGame) {
                         "NlToEn" -> {
-                            question = wordsList!!.hardWords[randomId].nlWord
+                            question = languageWordsList!!.hardWords[randomId].nlWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                         }
 
                         "EnToNl" -> {
-                            question = wordsList!!.hardWords[randomId].enWord
+                            question = languageWordsList!!.hardWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].nlWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].nlWord
                         }
 
                         "DeToEn" -> {
-                            question = wordsList!!.hardWords[randomId].deWord
+                            question = languageWordsList!!.hardWords[randomId].deWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                         }
 
                         "EnToDe" -> {
-                            question = wordsList!!.hardWords[randomId].enWord
+                            question = languageWordsList!!.hardWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].deWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].deWord
                         }
 
                         "FrToEn" -> {
-                            question = wordsList!!.hardWords[randomId].frWord
+                            question = languageWordsList!!.hardWords[randomId].frWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].enWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].enWord
                         }
 
                         "EnToFr" -> {
-                            question = wordsList!!.hardWords[randomId].enWord
+                            question = languageWordsList!!.hardWords[randomId].enWord
                             tvQuestion!!.text = question
-                            correctAnswer = wordsList!!.hardWords[randomId].frWord
+                            correctAnswer = languageWordsList!!.hardWords[randomId].frWord
                         }
                     }
                 }
@@ -764,12 +766,12 @@ class LanguageGame : AppCompatActivity() {
      * Gets a random word from the word list based on the current difficulty.
      * @return A random Word object.
      */
-    private fun getRandomWord(): Word {
+    private fun getRandomWord(): LanguageWord {
         return when (difficulty) {
-            "easy" -> wordsList!!.easyWords.random()
-            "medium" -> wordsList!!.mediumWords.random()
-            "hard" -> wordsList!!.hardWords.random()
-            else -> wordsList!!.easyWords.random()
+            "easy" -> languageWordsList!!.easyWords.random()
+            "medium" -> languageWordsList!!.mediumWords.random()
+            "hard" -> languageWordsList!!.hardWords.random()
+            else -> languageWordsList!!.easyWords.random()
         }
     }
 
@@ -779,7 +781,7 @@ class LanguageGame : AppCompatActivity() {
      * @param language The language in which the word is needed.
      * @return A string representing the word in the specified language.
      */
-    private fun getWordBasedOnGame(word: Word, language: String): String {
+    private fun getWordBasedOnGame(word: LanguageWord, language: String): String {
         return when (chosenGame) {
             "NlToEn" -> if (language == "nl") word.nlWord else word.enWord
             "EnToNl" -> if (language == "en") word.enWord else word.nlWord
