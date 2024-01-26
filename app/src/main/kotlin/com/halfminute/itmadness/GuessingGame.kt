@@ -1,5 +1,6 @@
 package com.halfminute.itmadness
 
+import Word
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
@@ -14,9 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.Locale
 import java.util.Random
 
-/**
- * Activity for the guessing game.
- */
 class GuessingGame : AppCompatActivity() {
 
     private lateinit var sharedPref: SharedPref
@@ -34,34 +32,25 @@ class GuessingGame : AppCompatActivity() {
     private val isSelectedMap = mutableMapOf<TextView, Boolean>()
     private val random = Random()
     private var isBackButtonPressed = false
+    private var pointsPerCorrectAnswer = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPref = SharedPref(this)
 
-        // Set theme and content view
         setTheme(if (sharedPref.loadNightMode()) R.style.darkTheme else R.style.lightTheme)
         setContentView(R.layout.guessing_game)
 
-        // Initialize TextViews
         initializeTextViews()
-
-        // Load words based on difficulty and language
         loadWords()
-
-        // Start game and handle back button
         startGame()
         setupOnBackPressedCallback()
     }
 
-    /**
-     * Initializes the TextViews and sets up click listeners.
-     */
     private fun initializeTextViews() {
         tvTimer = findViewById(R.id.tvTimer)
         tvPoints = findViewById(R.id.tvPoints)
         tvDifficulty = findViewById(R.id.tvDifficulty)
-        //tvLives = findViewById(R.id.tvLives)
         txtvw1 = findViewById(R.id.txtvw1)
         txtvw2 = findViewById(R.id.txtvw2)
         txtvw3 = findViewById(R.id.txtvw3)
@@ -73,30 +62,30 @@ class GuessingGame : AppCompatActivity() {
         }
     }
 
-    /**
-     * Loads words based on difficulty and language preferences.
-     */
     private fun loadWords() {
         val difficultyString = sharedPref.loadDifficulty().uppercase(Locale.getDefault())
         val difficulty = try {
             Difficulty.valueOf(difficultyString)
         } catch (e: IllegalArgumentException) {
-            // Show a custom Snackbar message if an error occurs
             sharedPref.showCustomSnackbar(
                 this,
                 "Invalid difficulty saved: $difficultyString. Default value 'EASY' is used."
             )
-            Difficulty.EASY // Default value if an invalid one is saved
+            Difficulty.EASY
         }
 
         sharedPref.getSavedLanguage(this)
         words = Words.getInstance(this)?.getWordsByDifficulty(difficulty) ?: emptyList()
         tvDifficulty.text = difficulty.name
+
+        pointsPerCorrectAnswer = when (difficulty) {
+            Difficulty.EASY -> 2
+            Difficulty.MEDIUM -> 3
+            Difficulty.HARD -> 4
+        }
     }
 
-    /**
-     * Generates random words and displays them in TextViews.
-     */
+
     private fun generateRandomWords() {
         val usedWords = mutableSetOf<Word>()
         val textViews = listOf(txtvw1, txtvw2, txtvw3, txtvw4)
@@ -105,25 +94,22 @@ class GuessingGame : AppCompatActivity() {
             do {
                 randomWord = words[random.nextInt(words.size)]
             } while (!usedWords.add(randomWord))
-            // Set the text based on the selected language
+
             textView.text = when (sharedPref.getSavedLanguage(this)) {
                 "fr" -> randomWord.frWord
                 "nl" -> randomWord.nlWord
                 "en" -> randomWord.enWord
                 "de" -> randomWord.deWord
-                else -> randomWord.enWord  // Default to English
+                else -> randomWord.enWord
             }
             textView.setBackgroundColor(Color.WHITE)
         }
     }
 
-    /**
-     * Starts the game by generating random words and starting the timer.
-     */
     private fun startGame() {
         generateRandomWords()
         selectedCount = 0
-        tvPoints.text = getString(R.string.points, 0, 0)
+        tvPoints.text = getString(R.string.points, 0, pointsPerCorrectAnswer)
 
         countDownTimer = object : CountDownTimer(millisUntilFinished, 1000) {
             @SuppressLint("SetTextI18n")
@@ -138,31 +124,24 @@ class GuessingGame : AppCompatActivity() {
         }.start()
     }
 
-
-    /**
-     * Calculates and updates the player's points.
-     */
     private fun calculatePoints() {
-        val points = selectedCount
+        val points = selectedCount * pointsPerCorrectAnswer
         tvPoints.text = getString(R.string.points, points, 0)
     }
 
-    /**
-     * Navigates to the game over screen when the game ends.
-     */
+
     private fun navigateToGameOver() {
         countDownTimer?.cancel()
+        val points = selectedCount * pointsPerCorrectAnswer // Calculate the points based on the selected count and points per correct answer
         val intent = Intent(this, GameOver::class.java).apply {
-            putExtra("points", selectedCount)
-            putExtra("chosenGame", "guessing") // Add the game type here
+            putExtra("points", points) // Pass the calculated points
+            putExtra("chosenGame", "guessing")
         }
         startActivity(intent)
         finish()
     }
 
-    /**
-     * Handles the click event on word TextViews.
-     */
+
     private fun onWordClick(view: View) {
         val clickedTextView = view as TextView
         val isSelected = !(isSelectedMap[clickedTextView] ?: false)
@@ -172,34 +151,25 @@ class GuessingGame : AppCompatActivity() {
         updateSelectedCount()
     }
 
-    /**
-     * Updates the count of selected words.
-     */
     private fun updateSelectedCount() {
         selectedCount = isSelectedMap.count { it.value }
     }
 
-    /**
-     * Sets up the callback to handle the back button press during the game.
-     */
     private fun setupOnBackPressedCallback() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 countDownTimer?.cancel()
                 if (!isBackButtonPressed) {
-                    // First time back button (or swipe)
                     isBackButtonPressed = true
                     sharedPref.showCustomSnackbar(
                         this@GuessingGame,
                         "Back button pressed. Press again to navigate back."
                     )
 
-                    // Reset the isBackButtonPressed flag after 3 seconds
                     Handler(Looper.getMainLooper()).postDelayed({
                         isBackButtonPressed = false
                     }, 3000)
                 } else {
-                    // Second time back button (or swipe)
                     navigateToPreviousActivity()
                 }
             }
@@ -207,30 +177,16 @@ class GuessingGame : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, callback)
     }
 
-
-    /**
-     * Navigates back to the previous activity.
-     */
     private fun navigateToPreviousActivity() {
         val intent = Intent(this, ChooseGame::class.java)
         startActivity(intent)
         finish()
     }
 
-
-
-    /**
-     * Pauses the game and navigates to the pause menu.
-     *
-     * @param ignoredView The view that triggered this method (unused).
-     */
     @Suppress("UNUSED_PARAMETER")
     fun pauseGame(ignoredView: View) {
         sharedPref.saveChosenGame("guessing")
         countDownTimer?.cancel()
-
-        // If there's any media player, stop it here
-        // mediaPlayer?.stop()
 
         val intent = Intent(this, PauseMenu::class.java)
         startActivity(intent)
