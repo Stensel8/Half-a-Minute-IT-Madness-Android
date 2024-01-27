@@ -10,6 +10,7 @@ Version 3.0.0, of Half a Minute IT Madness for Android. This release some small 
 
 ### Documentation
 - **Localization:** Updated some strings and translations.
+- **Application icon:** Updated the application icon.
 
 ### Known Issues
 - **Color Display Issue:** Tiles may show unexpected colors - [#6](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues/6).

@@ -1,7 +1,8 @@
+package com.halfminute.itmadness
+
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
-import com.halfminute.itmadness.R
 
 enum class Difficulty {
     EASY, MEDIUM, HARD
