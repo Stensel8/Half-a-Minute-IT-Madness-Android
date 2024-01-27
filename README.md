@@ -1,7 +1,6 @@
 # Half-a-Minute-IT-Madness-Android
 
-A little Android game written in Kotlin and Java where you have to answer as many questions as
-possible in 30 seconds.
+A fun and challenging Android game that tests your IT knowledge across various categories. Answer as many questions as you can within the 30-second time limit.
 
 [![Codacy Security Scan](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml/badge.svg?branch=main)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml)
 
@@ -9,21 +8,23 @@ possible in 30 seconds.
 
 ![Kotlin_Used](https://img.shields.io/github/languages/top/Stensel8/Half-a-Minute-IT-Madness-Android?color=purple&label=Kotlin)
 
-![Repo_Size](https://img.shields.io/github/repo-size/Stensel8/Half-a-Minute-IT-Madness-Android) ![Apk_Size](https://img.shields.io/badge/APK_Size-35.3MB-blue)
+![Repo_Size](https://img.shields.io/github/repo-size/Stensel8/Half-a-Minute-IT-Madness-Android) ![Apk_Size](https://img.shields.io/badge/APK_Size-22MB-blue)
 
 
 
 
-[![Stable Version](https://img.shields.io/badge/StableVersion-V2.7-darkgreen)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV2.7)
+[![Stable Version](https://img.shields.io/badge/StableVersion-V3.0.0-darkgreen)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV3.0.0)
 [![Beta Version](https://img.shields.io/badge/BetaVersion-V2.4-blue)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.4)
 
 
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Features](#features)
 - [Screenshots](#screenshots)
-- [Getting Started](#getting-started)
+- [Getting Started (PC)](#getting-started-on-pc)
+- [Getting Started (Mobile)](#getting-started-on-mobile)
 - [Installation Guide](#installation-guide)
 - [Usage Instructions](#usage-instructions)
 - [Roadmap](#roadmap)
@@ -36,8 +37,7 @@ possible in 30 seconds.
 
 ## Overview
 
-A fun and challenging Android game that tests your IT knowledge across various categories. Answer as many questions as you can within the 30-second time limit.
-
+We created an Android game with multiple minigames in which you earn points by moving forward, you will also lose lives on wrong answers. The goal is to be the first one to reach 50 points. You can play with or without a board. Scores are tracked for each round.
 
 ## Features
 
@@ -51,36 +51,35 @@ A fun and challenging Android game that tests your IT knowledge across various c
 ## Screenshots
 
 - **Welcome Screen**
-  ![Welcome screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_welcome.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_welcome.webp" alt="Welcome screen" width="300">
 
 - **Home Screen**
-  ![Home screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_mainactivity.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_mainactivity.webp" alt="Home screen" width="300">
 
 - **Settings Screen**
-  ![Settings screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_settings.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_settings.webp" alt="Settings screen" width="300">
 
 - **Choose Game Screen**
-  ![Choose game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_choosegame.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_choosegame.webp" alt="Choose game screen" width="300">
 
 - **Math Game Screen**
-  ![Math game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_mathgame.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_mathgame.webp" alt="Math game screen" width="300">
 
 - **Guessing Game Screen**
-  ![Guessing game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_guessinggame.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_guessinggame.webp" alt="Guessing game screen" width="300">
 
 - **Choose Language Game Screen**
-  ![Choose language game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_chooselanguagegame.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_chooselanguagegame.webp" alt="Choose language game screen" width="300">
 
 - **Language Game Screen**
-  ![Language game screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_languagegame.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_languagegame.webp" alt="Language game screen" width="300">
 
 - **Game Over Screen** (High scores coming soon)
-  ![Game over screen](Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_gameover.webp)
+  <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_gameover.webp" alt="Game over screen" width="300">
 
 
 
-
-## Getting Started
+## Getting Started on PC?
 
 To get started with Half-a-Minute-IT-Madness, follow these steps to set up the project:
 
@@ -127,8 +126,11 @@ Android Studio will build the project and install the app on your device or emul
 - **Minimum Android SDK:** The project requires a minimum Android SDK version of 30. Make sure this SDK version is installed via the SDK Manager in Android Studio.
 - **Device Storage:** At least 128MB of free space on your Android device or emulator for optimal performance.
 
+## Getting Started on Mobile?
 
-## Usage Instructions
+To get started with Half-a-Minute-IT-Madness, follow these steps to set up the project:
+
+### Usage Instructions
 
 To get started with Half-a-Minute-IT-Madness:
 
@@ -148,7 +150,6 @@ We are continuously working on improving and expanding Half-a-Minute-IT-Madness.
 
 - **High Score Board**: Implementing a leaderboard to track top scores.
 - **New Difficulty Levels**: Adding the ability to choose even higher difficulty levels for a greater challenge.
-- **Extra Animations**: Enhancing the game with additional animations for a more engaging experience.
 - **Improved Performance**: Continuously optimizing the game for smoother and faster gameplay.
 - **Additional Categories**: Introducing new trivia categories based on user feedback.
 - **Multiplayer Mode**: Developing a multiplayer feature for competitive play.
@@ -189,7 +190,6 @@ This project is licensed under the GNU General Public License version 3 (GPL v3)
 Copyright (c) 2023-2024 by Sten Tijhuis
 - [Sten Tijhuis](https://github.com/Stensel8)
 - [Wouter Woertman](https://github.com/waldbaan)
-- [Timon Zeelen](https://github.com/TimonZeelen)
 
 For more details, see the [GPL version 3 License](https://www.gnu.org/licenses/gpl-3.0.html).
 
@@ -201,14 +201,22 @@ Special thanks to the contributors who have helped make this game possible!
 Owners:
 - [Stensel8](https://github.com/Stensel8)
 - [waldbaan](https://github.com/waldbaan)
-- [TimonZeelen](https://github.com/TimonZeelen)
 
 Project contributors:
+- [TimonZeelen](https://github.com/TimonZeelen)
 - [tritshuri](https://github.com/tritshuri)
 - [nassimassb](https://github.com/nassimassb)
 - [OpenAI](https://openai.com)
 - [Microsoft CoPilot](https://learn.microsoft.com/en-us/copilot)
+- [Google Developer Training](https://github.com/google-developer-training)
+- [Icon Kitchen](http://icon.kitchen)
+- [TheMardy/ThirtySeconds](https://github.com/TheMardy/ThirtySeconds)
+- [nassimassb/THE-30-seconds-game](https://github.com/nassimassb/THE-30-seconds-game)
+- [haugeSander/Cardgame](https://github.com/haugeSander/Cardgame)
+
 
 [View all contributors](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/graphs/contributors)
+
+For more details, see the [GPL version 3 License](https://www.gnu.org/licenses/gpl-3.0.html).
 
 Feel free to star the repository if you like it or find the project interesting!

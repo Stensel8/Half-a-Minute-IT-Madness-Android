@@ -89,15 +89,17 @@ class MathGame : AppCompatActivity() {
         // Load the game difficulty and start the game
         difficulty = sharedPref.loadDifficulty()
         // Adjust game variables based on the difficulty level
-        when (difficulty.lowercase(Locale.getDefault())) {
+        maxWrongAnswers = when (difficulty.lowercase(Locale.getDefault())) {
             "easy" -> {
-                maxWrongAnswers = 5  // Easy mode has 5 lives
+                5  // Easy mode has 5 lives
             }
+
             "medium" -> {
-                maxWrongAnswers = 3  // Medium mode has 3 lives
+                3  // Medium mode has 3 lives
             }
+
             else -> {  // This includes the "hard" difficulty
-                maxWrongAnswers = 2  // Hard mode has 2 lives
+                2  // Hard mode has 2 lives
             }
         }
         startGame()

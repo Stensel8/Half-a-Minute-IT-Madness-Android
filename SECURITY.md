@@ -4,13 +4,14 @@
 
 We take the security of our software seriously. Below are the versions of Half-a-Minute-IT-Madness-Android that are currently being supported with security updates and additional hotfixes.
 
-| Version                                                                                                | Supported          |
-|--------------------------------------------------------------------------------------------------------|--------------------|
-| [V2.7](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV2.7) (current) | :white_check_mark: |
-| [V2.6](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV2.6)           | :white_check_mark: |
-| [V2.4](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.4)            | :x:                |
-| [V2.3](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.3)            | :x:                |
-| < [V2.3](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.3)          | :x:                |
+| Version                                                                                                    | Supported          |
+|------------------------------------------------------------------------------------------------------------|--------------------|
+| [V3.0.0](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV3.0.0) (current) | :white_check_mark: |
+| [V2.7](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV2.7)               | :white_check_mark: |
+| [V2.6](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV2.6)               | :x:                |
+| [V2.4](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.4)                | :x:                |
+| [V2.3](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.3)                | :x:                |
+| < [V2.3](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.3)              | :x:                |
 
 ## Reporting a Vulnerability
 

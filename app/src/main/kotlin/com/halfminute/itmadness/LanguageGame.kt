@@ -1,7 +1,5 @@
 package com.halfminute.itmadness
 
-import LanguageWord
-import LanguageWords
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
