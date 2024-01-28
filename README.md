@@ -203,7 +203,7 @@ Owners:
 - [Stensel8](https://github.com/Stensel8)
 - [waldbaan](https://github.com/waldbaan)
 
-Project contributors:
+Project contributors / Inspirations:
 - [TimonZeelen](https://github.com/TimonZeelen)
 - [tritshuri](https://github.com/tritshuri)
 - [nassimassb](https://github.com/nassimassb)
