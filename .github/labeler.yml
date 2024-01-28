@@ -1,0 +1,30 @@
+# Configuration file for the GitHub labeler action
+
+labeler:
+    rules:
+      - name: "Bug"
+        conditions:
+          - filename: "*.bug"
+      - name: "Feature"
+        conditions:
+          - filename: "*.feature"
+      - name: "Documentation"
+        conditions:
+          - filename: "*.md"
+      - name: "Java"
+        conditions:
+          - filename: "*.java"
+      - name: "Kotlin"
+        conditions:
+          - filename: "*.kt"
+      - name: "XML"
+        conditions:
+          - filename: "*.xml"
+      - name: "Gradle"
+        conditions:
+          - filename: "*.gradle"
+      - name: "Configuration"
+        conditions:
+          - filename: "*.yaml"
+          - filename: "*.yml"
+  

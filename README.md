@@ -15,6 +15,7 @@ A fun and challenging Android game that tests your IT knowledge across various c
 
 [![Stable Version](https://img.shields.io/badge/StableVersion-V3.0.0-darkgreen)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV3.0.0)
 [![Beta Version](https://img.shields.io/badge/BetaVersion-V2.4-blue)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.4)
+![Last Commit](https://img.shields.io/github/last-commit/Stensel8/Half-a-Minute-IT-Madness-Android?label=Last%20Commit)
 
 
 
