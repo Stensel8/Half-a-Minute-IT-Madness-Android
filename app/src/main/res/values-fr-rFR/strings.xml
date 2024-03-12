@@ -74,4 +74,5 @@
     <string name="theme_dynamic_icon">Il s\'agit d\'une icône dynamique qui changera en fonction des paramètres du mode sombre</string>
     <string name="hScoreDescription">Image du meilleur score</string>
     <string name="points_icon">Points icon</string>
+    <string name="dice_thrown_waiting">Lancé %1$s. Attente : %2$s s</string>
 </resources>

@@ -73,4 +73,5 @@
     <string name="theme_dynamic_icon">Dies ist ein dynamisches Symbol, das sich je nach Einstellungen des Dunkelmodus ändert</string>
     <string name="hScoreDescription">Highscore-Bild</string>
     <string name="points_icon">Punkte-Symbol</string>
+    <string name="dice_thrown_waiting">Geworfen %1$s. Warten: %2$s s</string>
 </resources>

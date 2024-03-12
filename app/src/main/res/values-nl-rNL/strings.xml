@@ -73,4 +73,5 @@
     <string name="theme_dynamic_icon">Dit is een dynamisch pictogram dat verandert op basis van de instellingen van de donkere modus</string>
     <string name="hScoreDescription">Highscore-afbeelding</string>
     <string name="points_icon">Icoontje om punten weer te geven</string>
+    <string name="dice_thrown_waiting">Geworpen %1$s. Wachten: %2$s s</string>
 </resources>

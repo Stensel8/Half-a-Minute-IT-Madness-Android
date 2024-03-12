@@ -90,4 +90,5 @@
     <string name="build_label" translatable="false">Build:</string>
     <string name="version_label" translatable="false">Version:</string>
     <string name="app_name" translatable="false">Half a Minute IT Madness</string>
+    <string name="dice_thrown_waiting">Thrown %1$s. Waiting: %2$s s</string>
 </resources>
