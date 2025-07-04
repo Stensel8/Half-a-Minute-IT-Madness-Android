@@ -220,4 +220,7 @@ Project contributors / Inspirations:
 
 For more details, see the [GPL version 3 License](https://www.gnu.org/licenses/gpl-3.0.html).
 
-Feel free to star the repository if you like it or find the project interesting!
+Please note: This project was largely developed with the assistance of AI tools.
+--------------------------------
+
+Feel free to star the repository if you like it!
