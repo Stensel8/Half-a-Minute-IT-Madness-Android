@@ -3,7 +3,7 @@
 > **⚠️ END OF LIFE NOTICE**  
 > This project is no longer actively maintained and has reached End of Life (EoL) as of November 2025.  
 > This was a school project created by 2 classmates competing against teams of 4 - we were at a disadvantage but gave it our all! 🎮  
-> No new releases are being made. The app is provided solely for archival/reference purposes.  
+> No new releases are being made. The app is provided solely for archival/reference purposes. 
 > Final version: **v4.0.1** - A complete rewrite with modern Android APIs and Jetpack Compose.
 
 A fun and challenging Android game that tests your IT knowledge across various categories. Answer as many questions as you can within the 30-second time limit.
@@ -14,12 +14,12 @@ A fun and challenging Android game that tests your IT knowledge across various c
 
 ![Kotlin_Used](https://img.shields.io/github/languages/top/Stensel8/Half-a-Minute-IT-Madness-Android?color=purple&label=Kotlin)
 
-![Repo_Size](https://img.shields.io/github/repo-size/Stensel8/Half-a-Minute-IT-Madness-Android) ![Apk_Size](https://img.shields.io/badge/APK_Size-22MB-blue)
+![Repo_Size](https://img.shields.io/github/repo-size/Stensel8/Half-a-Minute-IT-Madness-Android) ![Apk_Size](https://img.shields.io/badge/APK_Size-8MB-blue)
 
 
 
 
-[![Stable Version](https://img.shields.io/badge/StableVersion-V3.0.0-darkgreen)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV3.0.0)
+[![Stable Version](https://img.shields.io/badge/StableVersion-V4.0.1-darkgreen)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV4.0.1)
 [![Beta Version](https://img.shields.io/badge/BetaVersion-V2.4-blue)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/DebugV2.4)
 ![Last Commit](https://img.shields.io/github/last-commit/Stensel8/Half-a-Minute-IT-Madness-Android?label=Last%20Commit)
 
@@ -155,8 +155,8 @@ For more detailed instructions, refer to our [Game Rules](https://github.com/Ste
 We are continuously working on improving and expanding Half-a-Minute-IT-Madness. Here's what we may be working on in the near future:
 
 
-- **High Score Board**: Implementing a leaderboard to track top scores.
-- **New Difficulty Levels**: Adding the ability to choose even higher difficulty levels for a greater challenge.
+- ~~**High Score Board**: Implementing a leaderboard to track top scores.~~ [fixed in 4.0.1](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV4.0)
+- ~~**New Difficulty Levels**: Adding the ability to choose even higher difficulty levels for a greater challenge.~~[fixed in V4.0.1](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV4.0)
 - **Improved Performance**: Continuously optimizing the game for smoother and faster gameplay.
 - **Additional Categories**: Introducing new trivia categories based on user feedback.
 - **Multiplayer Mode**: Developing a multiplayer feature for competitive play.
@@ -228,7 +228,7 @@ Special thanks to the contributors who have helped make this game possible!
 
 ### 📝 Important Notice
 
-**This was a school project created by 2 classmates competing against teams of 4 students.** Mobile game development was not our area of expertise, but we took on the challenge for fun and learning. This project was largely developed with the assistance of AI tools, including GitHub Copilot, Microsoft Copilot, OpenAI ChatGPT, and Anthropic Claude Code for the final v4.0.1 rewrite.
+**This was a school project created by 2 classmates competing against teams of 4 students.** Mobile game development was not our area of expertise, but we took on the challenge for fun and learning. This project was largely developed with the assistance of Anthropic Claude Code for the final v4.0.1 rewrite.
 
 **Disclaimer:** This app was made for educational purposes and entertainment. Unexpected bugs and issues may still appear. We did our best with limited mobile development experience. The project is now archived and no longer maintained.
 
