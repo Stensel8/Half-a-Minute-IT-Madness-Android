@@ -156,8 +156,8 @@ We are continuously working on improving and expanding Half-a-Minute-IT-Madness.
 
 
 - ~~**High Score Board**: Implementing a leaderboard to track top scores.~~ [fixed in 4.0.1](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV4.0)
-- ~~**New Difficulty Levels**: Adding the ability to choose even higher difficulty levels for a greater challenge.~~[fixed in V4.0.1](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV4.0)
-- **Improved Performance**: Continuously optimizing the game for smoother and faster gameplay.
+- **New Difficulty Levels**: Adding the ability to choose even higher difficulty levels for a greater challenge.
+- ~~**Improved Performance**: Continuously optimizing the game for smoother and faster gameplay.~~ [fixed in V4.0.1](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/releases/tag/StableV4.0)
 - **Additional Categories**: Introducing new trivia categories based on user feedback.
 - **Multiplayer Mode**: Developing a multiplayer feature for competitive play.
 
