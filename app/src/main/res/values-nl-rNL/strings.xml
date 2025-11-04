@@ -1,64 +1,42 @@
 <resources>
     <!-- Game Buttons -->
-    <string name="playGame">Spelen</string>
     <string name="mathGameButton">Rekenspel</string>
     <string name="languageGameButton">Taaltest</string>
     <string name="guessingGameButton">Raadspel</string>
 
     <!-- Titles -->
-    <string name="title_activity_language_test">Taaltest</string>
     <string name="chooseGameTitle">Kies je spel</string>
-    <string name="chooseTestTitle">Kies je test</string>
-    <string name="difficultyTitle">Moeilijkheid</string>
-    <string name="pauseMenuTitle">Pauzemenu</string>
-    <string name="gameTitle">Speltitel</string>
 
     <!-- Settings -->
     <string name="settingsTitle">Instellingen</string>
-    <string name="darkModeText">Donkere modus</string>
-    <string name="sound">Geluid</string>
-    <string name="ChangeLanguage">Verander taal</string>
-    <string name="show_releasenotes">Toon release-opmerkingen</string>
+    <string name="settings">Instellingen</string>
+    <string name="username">Gebruikersnaam</string>
+    <string name="username_placeholder">Voer gebruikersnaam in</string>
+    <string name="difficulty">Moeilijkheid</string>
+    <string name="release_notes">Release-opmerkingen</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuleren</string>
 
-    <!-- Timer and Score -->
-    <string name="game_time">30 seconden spel</string>
-    <string name="roll">Gooien</string>
+    <!-- Dice -->
     <string name="throw_dice">Gooi een dobbelsteen!</string>
-    <string name="last_dice_value">Laatste Dobbelsteenwaarde: %1$d</string>
 
     <!-- Difficulty Levels -->
     <string name="difficultyEasy">Makkelijk</string>
     <string name="difficultyMedium">Gemiddeld</string>
     <string name="difficultyHard">Moeilijk</string>
 
-    <!-- Buttons and Labels -->
-    <string name="resumeBtn">Opnieuw afspelen</string>
+    <!-- Buttons -->
     <string name="mainMenuBtn">Hoofdmenu</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="exitGame">Spel verlaten</string>
-    <string name="changeGame">Verander spel</string>
-    <string name="changeDifficultyTo">"Moeilijkheid: "</string>
-    <string name="chosenGame">"Spel: "</string>
+    <string name="viewLeaderboard">Bekijk Klassement</string>
 
-    <!-- Score Messages -->
-    <string name="scoreGOver">"Score: "</string>
-    <string name="PersonalHighScore">"Persoonlijk record: "</string>
-    <string name="correct">Correct!</string>
-    <string name="wrong">Fout!</string>
-
-    <!-- Lives and Questions -->
-    <string name="question">Ik ben 23 jaar oud</string>
-    <string name="answerLang">Ik ben 23 jaar oud</string>
-
-    <!-- Welcome and Information -->
+    <!-- Welcome -->
     <string name="welcome">Welkom bij Half a Minute IT Madness!</string>
     <string name="welcomeText">
         <![CDATA[
         Welkom bij Half a Minute IT Madness, een creatief spel ontworpen door twee toegewijde studenten van het Saxion in Enschede. Kies uit drie games: rekenen, taal en raden (30 seconds). Elk spel duurt 30 seconden, waarbij een juist antwoord een punt oplevert en een fout antwoord een leven kost. Houd je levens in de gaten, weergegeven als groen/blauwe harten rechtsboven. Het spel eindigt na 30 seconden of als alle levens verloren zijn. Daag jezelf uit om je score te verbeteren!
         ]]>
     </string>
-
-    <!-- Dialog and Confirmation -->
     <string name="closeWindow">Venster sluiten</string>
 
     <!-- Language Options -->
@@ -68,9 +46,7 @@
     <string name="EnglishToDutch">Engels naar Nederlands</string>
     <string name="GermanToEnglish">Duits naar Engels</string>
     <string name="EnglishToGerman">Engels naar Duits</string>
-
-    <!-- Miscellaneous -->
-    <string name="theme_dynamic_icon">Dit is een dynamisch pictogram dat verandert op basis van de instellingen van de donkere modus</string>
-    <string name="hScoreDescription">Highscore-afbeelding</string>
-    <string name="points_icon">Icoontje om punten weer te geven</string>
+    
+    <!-- AI Development Notice -->
+    <string name="ai_development_notice">ℹ️ Dit project is grotendeels ontwikkeld met behulp van AI-tools.</string>
 </resources>

@@ -1,64 +1,42 @@
 <resources>
     <!-- Game Buttons -->
-    <string name="playGame">Jouer au jeu</string>
     <string name="mathGameButton">Jeu de mathématiques</string>
     <string name="languageGameButton">Test de langues</string>
     <string name="guessingGameButton">Jeu de devinette</string>
 
     <!-- Titles -->
-    <string name="title_activity_language_test">Test de langues</string>
     <string name="chooseGameTitle">Choisissez votre jeu</string>
-    <string name="chooseTestTitle">Choisissez votre test</string>
-    <string name="difficultyTitle">Difficulté</string>
-    <string name="pauseMenuTitle">Menu pause</string>
-    <string name="gameTitle">Titre du jeu</string>
 
     <!-- Settings -->
     <string name="settingsTitle">Paramètres</string>
-    <string name="darkModeText">Mode sombre</string>
-    <string name="sound">Son</string>
-    <string name="ChangeLanguage">Changer de langue</string>
-    <string name="show_releasenotes">Afficher les notes de version</string>
+    <string name="settings">Paramètres</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="username_placeholder">Entrez le nom d\'utilisateur</string>
+    <string name="difficulty">Difficulté</string>
+    <string name="release_notes">Notes de version</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
 
-    <!-- Timer and Score -->
-    <string name="game_time">30 secondes de jeu</string>
-    <string name="roll">Lancer</string>
+    <!-- Dice -->
     <string name="throw_dice">Lancer un dé !</string>
-    <string name="last_dice_value">Dernière valeur du dé : %1$d</string>
 
     <!-- Difficulty Levels -->
     <string name="difficultyEasy">Facile</string>
     <string name="difficultyMedium">Moyen</string>
     <string name="difficultyHard">Difficile</string>
 
-    <!-- Buttons and Labels -->
-    <string name="resumeBtn">Rejouer</string>
+    <!-- Buttons -->
     <string name="mainMenuBtn">Menu principal</string>
     <string name="retry">Réessayer</string>
-    <string name="exitGame">Quitter le jeu</string>
-    <string name="changeGame">Changer de jeu</string>
-    <string name="changeDifficultyTo">"Difficulté : "</string>
-    <string name="chosenGame">"Jeu : "</string>
+    <string name="viewLeaderboard">Voir le classement</string>
 
-    <!-- Score Messages -->
-    <string name="scoreGOver">"Score : "</string>
-    <string name="PersonalHighScore">"Record personnel : "</string>
-    <string name="correct">Correct !</string>
-    <string name="wrong">Incorrect !</string>
-
-    <!-- Lives and Questions -->
-    <string name="question">J\'ai 23 ans</string>
-    <string name="answerLang">I am 23 years old</string>
-
-    <!-- Welcome and Information -->
+    <!-- Welcome -->
     <string name="welcome">Bienvenue dans Half a Minute IT Madness !</string>
     <string name="welcomeText">
         <![CDATA[
         Découvrez Half a Minute IT Madness, un jeu créatif conçu par deux étudiants dévoués de la Saxion. Choisissez parmi trois jeux stimulants : mathématiques, langues et devinettes. Chaque jeu dure 30 secondes, où une réponse correcte rapporte un point et une réponse incorrecte coûte une vie. Gardez un œil sur vos vies, affichées sous forme de cœurs verts/bleus en haut à droite. Le jeu se termine après 30 secondes ou en perdant toutes les vies. Défiez-vous pour améliorer votre score !
         ]]>
     </string>
-
-    <!-- Dialog and Confirmation -->
     <string name="closeWindow">Fermer la fenêtre</string>
 
     <!-- Language Options -->
@@ -68,10 +46,7 @@
     <string name="EnglishToDutch">Anglais vers le néerlandais</string>
     <string name="GermanToEnglish">Allemand vers l\'anglais</string>
     <string name="EnglishToGerman">Anglais vers l\'allemand</string>
-
-
-    <!-- Miscellaneous -->
-    <string name="theme_dynamic_icon">Il s\'agit d\'une icône dynamique qui changera en fonction des paramètres du mode sombre</string>
-    <string name="hScoreDescription">Image du meilleur score</string>
-    <string name="points_icon">Points icon</string>
+    
+    <!-- AI Development Notice -->
+    <string name="ai_development_notice">ℹ️ Ce projet a été largement développé avec l\'aide d\'outils d\'IA.</string>
 </resources>

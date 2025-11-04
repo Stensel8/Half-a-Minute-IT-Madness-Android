@@ -1,5 +1,11 @@
 # Half-a-Minute-IT-Madness-Android
 
+> **⚠️ END OF LIFE NOTICE**  
+> This project is no longer actively maintained and has reached End of Life (EoL) as of November 2025.  
+> This was a school project created by 2 classmates competing against teams of 4 - we were at a disadvantage but gave it our all! 🎮  
+> No new releases are being made. The app is provided solely for archival/reference purposes.  
+> Final version: **v4.0.1** - A complete rewrite with modern Android APIs and Jetpack Compose.
+
 A fun and challenging Android game that tests your IT knowledge across various categories. Answer as many questions as you can within the 30-second time limit.
 
 [![Codacy Security Scan](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml/badge.svg?branch=main)](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/actions/workflows/codacy.yml)
@@ -199,25 +205,36 @@ For more details, see the [GPL version 3 License](https://www.gnu.org/licenses/g
 
 Special thanks to the contributors who have helped make this game possible!
 
-Owners:
+**Owners:**
 - [Stensel8](https://github.com/Stensel8)
 - [waldbaan](https://github.com/waldbaan)
 
-Project contributors / Inspirations:
+**Project contributors / Inspirations:**
 - [TimonZeelen](https://github.com/TimonZeelen)
 - [tritshuri](https://github.com/tritshuri)
 - [nassimassb](https://github.com/nassimassb)
 - [OpenAI](https://openai.com)
 - [Microsoft CoPilot](https://learn.microsoft.com/en-us/copilot)
+- [Anthropic Claude](https://www.anthropic.com/claude) - AI assistance for v4.0.1 rewrite
 - [Google Developer Training](https://github.com/google-developer-training)
 - [Icon Kitchen](http://icon.kitchen)
 - [TheMardy/ThirtySeconds](https://github.com/TheMardy/ThirtySeconds)
 - [nassimassb/THE-30-seconds-game](https://github.com/nassimassb/THE-30-seconds-game)
 - [haugeSander/Cardgame](https://github.com/haugeSander/Cardgame)
 
-
 [View all contributors](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/graphs/contributors)
+
+---
+
+### 📝 Important Notice
+
+**This was a school project created by 2 classmates competing against teams of 4 students.** Mobile game development was not our area of expertise, but we took on the challenge for fun and learning. This project was largely developed with the assistance of AI tools, including GitHub Copilot, Microsoft Copilot, OpenAI ChatGPT, and Anthropic Claude Code for the final v4.0.1 rewrite.
+
+**Disclaimer:** This app was made for educational purposes and entertainment. Unexpected bugs and issues may still appear. We did our best with limited mobile development experience. The project is now archived and no longer maintained.
+
+---
 
 For more details, see the [GPL version 3 License](https://www.gnu.org/licenses/gpl-3.0.html).
 
-Feel free to star the repository if you like it or find the project interesting!
+Feel free to star the repository if you like it! ⭐
+

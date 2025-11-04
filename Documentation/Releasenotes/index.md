@@ -1,3 +1,51 @@
+## **Half a Minute IT Madness - Android Final Release V4.0.1**
+**Release Notes - End of Life**
+
+⚠️ **This is the final release of Half a Minute IT Madness for Android. The project has reached End of Life (EoL) and will no longer receive updates.**
+
+Version 4.0.1 represents a complete rewrite focusing on modern Android development, improved stability, and quality of life improvements. This was a school project created by 2 classmates competing against teams of 4. Mobile game development was not our expertise, but we gave it our all!
+
+### Major Technology Migration
+- **Complete UI Rewrite:** Migrated from Android XML to Jetpack Compose (modern declarative UI).
+- **Android SDK Update:** Updated from SDK 30-34 to SDK 33-36 (Android 13-14+).
+- **Kotlin Update:** Updated to Kotlin 2.2.21 with modern coroutines. Removed all deprecated APIs.
+- **Build System:** Gradle 8.13 with R8 full mode optimization. Fixed all Gradle warnings.
+
+### Enhancements and New Features
+- **APK Size Reduction:** Reduced by 77% (36 MB → 8.29 MB) through aggressive optimization, ProGuard rules, and resource cleanup.
+- **Countdown Alert:** Added sound effect and red blinking timer animation for the last 5 seconds of gameplay.
+- **Animations & Visual Feedback:** Green flash on correct answers (100ms), shake on wrong answers (80ms), snackbar messages (✅ +X pts, ❌ X lives), hearts display for lives (❤️), and anti-spam cooldown protection.
+- **Sound System:** Added sound effects for correct/wrong answers and game completion with applause. Toggle in Settings to enable/disable.
+- **Performance:** Faster startup, smoother animations, better memory usage, improved battery efficiency.
+- **Code Organization:** Restructured into `/screens`, `/utils`, `/ui/theme`, `/ui/components` packages with improved separation of concerns.
+
+### Documentation
+- **Project Status:** Added End of Life notices to README, SECURITY, and CONTRIBUTING files.
+- **Settings Notice:** Added project context and AI assistance disclaimer in Settings screen.
+- **Localization:** Maintained support for English, Dutch, French, and German.
+
+### Bugfixes
+- **Difficulty Display:** Fixed difficulty not showing on leaderboard for Math and Guessing games - [#6](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues/6) - Resolved.
+- **Scoring Issues:** Fixed inconsistencies across different game modes - [#48](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues/48) - Resolved.
+- **Android 13+ Crashes:** Resolved various crashes, memory leaks, and theme inconsistencies.
+- **Leaderboard Persistence:** Fixed leaderboard scores not saving correctly on some devices.
+- **General Stability:** Improved overall app stability and performance.
+
+### Known Limitations (Will Not Be Fixed - EoL)
+- No multiplayer, cloud sync, or global leaderboards. Local leaderboards only.
+- Limited game modes (Math, Language, Guessing). No background music or accessibility features.
+
+### Development Credits
+**Code Migration & Rewrite:** Anthropic Claude Code  
+**Team:** [Sten Tijhuis](https://github.com/Stensel8) & [Wouter Woertman](https://github.com/waldbaan)
+
+### End of Life Notice
+No new releases, bug fixes, or security patches will be provided. The app is provided solely for archival and reference purposes. Thank you to everyone who supported this project!
+
+**Final APK:** 8.29 MB 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## **Half a Minute IT Madness - Android Stable Release V3.0.0**
 **Release Notes**
 

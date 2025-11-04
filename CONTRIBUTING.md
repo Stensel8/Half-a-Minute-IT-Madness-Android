@@ -1,17 +1,27 @@
 # Contributing to Half-a-Minute-IT-Madness-Android
 
-First off, thank you for considering contributing to Half-a-Minute-IT-Madness-Android! It's people like you that make it such a great project.
+## ⚠️ Project Status: End of Life
 
-## How to Contribute
+**This project has reached End of Life (EoL) as of November 2025 and is no longer accepting contributions.**
 
-Contributing isn't just about writing code. You can help in the following ways:
+The repository is now **archived** and in **read-only mode**. No pull requests, issues, or feature requests will be reviewed or merged.
+
+---
+
+## Historical Information
+
+This section is preserved for archival purposes.
+
+### How We Previously Accepted Contributions
+
+Contributing wasn't just about writing code. Contributors could help in the following ways:
 
 - Reporting bugs or issues in the [Issues](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues) section.
 - Suggesting enhancements or new features.
 - Improving documentation or writing tutorials.
 - Submitting pull requests with bug fixes or new features.
 
-## Pull Request Process
+### Pull Request Process (Archived)
 
 1. Fork the repository and create your branch from `main`.
 2. If you've added code that should be tested, add tests.
@@ -19,23 +29,38 @@ Contributing isn't just about writing code. You can help in the following ways:
 4. Update the README.md with details of changes, if applicable.
 5. Issue that pull request!
 
-## Reporting Bugs
+### Reporting Bugs (No Longer Active)
 
-Bugs are tracked as [GitHub issues](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues). Create a bug report and include as much information as possible:
+Bugs were tracked as [GitHub issues](https://github.com/Stensel8/Half-a-Minute-IT-Madness-Android/issues). Bug reports included:
 
 - A quick summary and/or background.
-- Steps to reproduce. Be specific!
-- What you expected would happen.
-- What actually happens.
-- Include screenshots and animated GIFs if possible.
-- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work).
+- Steps to reproduce.
+- Expected vs. actual behavior.
+- Screenshots and animated GIFs.
+- Notes on possible causes or attempted fixes.
 
-## Code of Conduct
+---
 
-Please note we have a code of conduct, please follow it in all your interactions with the project.
+## Alternative Options
 
-## Questions or Suggestions?
+Since this project is End of Life:
 
-Feel free to open an issue in the repository or contact the project maintainers directly.
+✅ **You can still:**
+- Fork the repository for your own use
+- View and learn from the source code
+- Create your own derivative projects (following GPL v3.0 license)
 
-Thank you for contributing to Half-a-Minute-IT-Madness-Android!
+❌ **We will not:**
+- Review or merge pull requests
+- Respond to issues or feature requests
+- Provide technical support
+- Update or maintain the codebase
+
+---
+
+## Final Note
+
+Thank you to everyone who contributed to this project during its active development. This was a great learning experience for us!
+
+**License:** GNU General Public License v3.0  
+**Copyright:** © 2023-2025 Sten Tijhuis & Wouter Woertman
