@@ -81,7 +81,7 @@ We created an Android game with multiple minigames in which you earn points by m
 - **Language Game Screen**
   <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_languagegame.webp" alt="Language game screen" width="300">
 
-- **Game Over Screen** (High scores coming soon)
+- **Game Over Screen**
   <img src="Documentation/Screenshots/Dark/Half%20a%20Minute%20IT%20Madness_gameover.webp" alt="Game over screen" width="300">
 
 
