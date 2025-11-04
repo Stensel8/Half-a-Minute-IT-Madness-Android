@@ -1,64 +1,42 @@
 <resources>
     <!-- Game Buttons -->
-    <string name="playGame">Play game</string>
     <string name="mathGameButton">Math Game</string>
     <string name="languageGameButton">Language Test</string>
     <string name="guessingGameButton">Guessing Game</string>
 
     <!-- Titles -->
-    <string name="title_activity_language_test">Language test</string>
     <string name="chooseGameTitle">Choose Your Game</string>
-    <string name="chooseTestTitle">Choose Your Test</string>
-    <string name="difficultyTitle">Difficulty</string>
-    <string name="pauseMenuTitle">Pause Menu</string>
-    <string name="gameTitle">Game Title</string>
 
     <!-- Settings -->
     <string name="settingsTitle">Settings</string>
-    <string name="darkModeText">Dark Mode</string>
-    <string name="sound">Sound</string>
-    <string name="ChangeLanguage">Change language</string>
-    <string name="show_releasenotes">Show Releasenotes</string>
+    <string name="settings">Settings</string>
+    <string name="username">Username</string>
+    <string name="username_placeholder">Enter username</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="release_notes">Release Notes</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
-    <!-- Timer and Score -->
-    <string name="game_time">30 seconds game</string>
-    <string name="roll">Roll</string>
+    <!-- Dice -->
     <string name="throw_dice">Throw a dice!</string>
-    <string name="last_dice_value">Last Dice Value: %1$d</string>
-
+    
     <!-- Difficulty Levels -->
     <string name="difficultyEasy">Easy</string>
     <string name="difficultyMedium">Medium</string>
     <string name="difficultyHard">Hard</string>
 
-    <!-- Buttons and Labels -->
-    <string name="resumeBtn">Replay</string>
+    <!-- Buttons -->
     <string name="mainMenuBtn">Main Menu</string>
     <string name="retry">Try Again</string>
-    <string name="exitGame">Exit Game</string>
-    <string name="changeGame">Change Game</string>
-    <string name="changeDifficultyTo">"Difficulty: "</string>
-    <string name="chosenGame">"Game: "</string>
+    <string name="viewLeaderboard">View Leaderboard</string>
 
-    <!-- Score Messages -->
-    <string name="scoreGOver">"Score: "</string>
-    <string name="PersonalHighScore">"Personal Best: "</string>
-    <string name="correct">Correct!</string>
-    <string name="wrong">Wrong!</string>
-
-    <!-- Lives and Questions -->
-    <string name="question">I am 23 years old</string>
-    <string name="answerLang">I am 23 years old</string>
-
-    <!-- Welcome and Information -->
+    <!-- Welcome -->
     <string name="welcome">Welcome to Half a Minute IT Madness!</string>
     <string name="welcomeText">
         <![CDATA[
         Discover Half a Minute IT Madness, a creative game designed by two dedicated Saxion students. Choose from three challenging games: math, language, and guessing. Each game lasts for 30 seconds, where a correct answer earns a point and a wrong answer costs a life. Keep an eye on your lives, displayed as green/blue hearts in the top right. The game ends after 30 seconds or upon losing all lives. Challenge yourself to improve your score!
         ]]>
     </string>
-
-    <!-- Dialog and Confirmation -->
     <string name="closeWindow">Close Window</string>
 
     <!-- Language Options -->
@@ -69,25 +47,9 @@
     <string name="GermanToEnglish">Duits naar Engels</string>
     <string name="EnglishToGerman">Engels naar Duits</string>
 
-    <!-- Miscellaneous -->
-    <string name="theme_dynamic_icon">This is a dynamic icon that will change based on the dark theme settings</string>
-    <string name="hScoreDescription">High-Score image</string>
-    <string name="points_icon">Points icon to show the points</string>
-
     <!-- Non-Translatable Strings -->
-    <string name="defaultBtnValue" translatable="false">3</string>
-    <string name="top_5_scores" translatable="false">Top 5:</string>
-    <string name="TimerValue" translatable="false">30s</string>
-    <string name="ScoreValue" translatable="false">0/0</string>
-    <string name="sum" translatable="false">1 + 2 =</string>
-    <string name="defaultAnswerText" translatable="false">\?</string>
-    <string name="points" translatable="false">%1$d/%2$d</string>
-    <string name="timer_seconds" translatable="false">seconds</string>
-    <string name="score_format" translatable="false">%d/%d</string>
-    <string name="lives" translatable="false">%1$d</string>
-    <string name="group_logo_description" translatable="false">De Beunhazen</string>
-    <string name="groupname" translatable="false">De Beunhazen</string>
-    <string name="build_label" translatable="false">Build:</string>
-    <string name="version_label" translatable="false">Version:</string>
     <string name="app_name" translatable="false">Half a Minute IT Madness</string>
+    
+    <!-- AI Development Notice -->
+    <string name="ai_development_notice">ℹ️ This project was largely developed with the assistance of AI tools.</string>
 </resources>

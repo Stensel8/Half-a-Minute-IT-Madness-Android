@@ -1,64 +1,42 @@
 <resources>
     <!-- Game Buttons -->
-    <string name="playGame">Spiel spielen</string>
     <string name="mathGameButton">Mathe-Spiel</string>
     <string name="languageGameButton">Sprachtest</string>
     <string name="guessingGameButton">Ratespiel</string>
 
     <!-- Titles -->
-    <string name="title_activity_language_test">Sprachtest</string>
     <string name="chooseGameTitle">Wähle dein Spiel</string>
-    <string name="chooseTestTitle">Wähle deinen Test</string>
-    <string name="difficultyTitle">Schwierigkeitsgrad</string>
-    <string name="pauseMenuTitle">Pause Menü</string>
-    <string name="gameTitle">Spiel Titel</string>
 
     <!-- Settings -->
     <string name="settingsTitle">Einstellungen</string>
-    <string name="darkModeText">Dunkler Modus</string>
-    <string name="sound">Ton</string>
-    <string name="ChangeLanguage">Sprache ändern</string>
-    <string name="show_releasenotes">Versionshinweise anzeigen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="username">Benutzername</string>
+    <string name="username_placeholder">Benutzername eingeben</string>
+    <string name="difficulty">Schwierigkeitsgrad</string>
+    <string name="release_notes">Versionshinweise</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
 
-    <!-- Timer and Score -->
-    <string name="game_time">30 Sekunden Spiel</string>
-    <string name="roll">Werfen</string>
+    <!-- Dice -->
     <string name="throw_dice">Werfe einen Würfel!</string>
-    <string name="last_dice_value">Letzter Würfelwert: %1$d</string>
 
     <!-- Difficulty Levels -->
     <string name="difficultyEasy">Einfach</string>
     <string name="difficultyMedium">Mittel</string>
     <string name="difficultyHard">Schwer</string>
 
-    <!-- Buttons and Labels -->
-    <string name="resumeBtn">Wiedergabe</string>
+    <!-- Buttons -->
     <string name="mainMenuBtn">Hauptmenü</string>
     <string name="retry">Erneut versuchen</string>
-    <string name="exitGame">Spiel verlassen</string>
-    <string name="changeGame">Spiel ändern</string>
-    <string name="changeDifficultyTo">"Schwierigkeitsgrad: "</string>
-    <string name="chosenGame">"Spiel: "</string>
+    <string name="viewLeaderboard">Bestenliste anzeigen</string>
 
-    <!-- Score Messages -->
-    <string name="scoreGOver">"Punktzahl: "</string>
-    <string name="PersonalHighScore">"Persönlicher Rekord: "</string>
-    <string name="correct">Richtig!</string>
-    <string name="wrong">Falsch!</string>
-
-    <!-- Lives and Questions -->
-    <string name="question">Ich bin 23 Jahre alt</string>
-    <string name="answerLang">Ich bin 23 Jahre alt</string>
-
-    <!-- Welcome and Information -->
+    <!-- Welcome -->
     <string name="welcome">Willkommen bei Half a Minute IT Madness!</string>
     <string name="welcomeText">
         <![CDATA[
         Willkommen bei Half a Minute IT Madness, einem kreativen Spiel, das von zwei engagierten Studenten der Saxion entwickelt wurde. Wähle aus drei herausfordernden Spielen: Mathe, Sprache und Raten. Jedes Spiel dauert 30 Sekunden, wobei eine richtige Antwort einen Punkt einbringt und eine falsche Antwort ein Leben kostet. Behalte deine Leben im Auge, die oben rechts als grüne/blau Herzen angezeigt werden. Das Spiel endet nach 30 Sekunden oder wenn alle Leben verloren sind. Fordere dich selbst heraus, um deine Punktzahl zu verbessern!
         ]]>
     </string>
-
-    <!-- Dialog and Confirmation -->
     <string name="closeWindow">Fenster schließen</string>
 
     <!-- Language Options -->
@@ -68,9 +46,7 @@
     <string name="EnglishToDutch">Englisch zu Niederländisch</string>
     <string name="GermanToEnglish">Deutsch zu Englisch</string>
     <string name="EnglishToGerman">Englisch zu Deutsch</string>
-
-    <!-- Miscellaneous -->
-    <string name="theme_dynamic_icon">Dies ist ein dynamisches Symbol, das sich je nach Einstellungen des Dunkelmodus ändert</string>
-    <string name="hScoreDescription">Highscore-Bild</string>
-    <string name="points_icon">Punkte-Symbol</string>
+    
+    <!-- AI Development Notice -->
+    <string name="ai_development_notice">ℹ️ Dieses Projekt wurde größtenteils mit Hilfe von KI-Tools entwickelt.</string>
 </resources>

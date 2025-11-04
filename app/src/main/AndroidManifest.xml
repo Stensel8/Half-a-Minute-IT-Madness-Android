@@ -7,11 +7,14 @@
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/lightTheme">
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+        android:enableOnBackInvokedCallback="true"
+        android:localeConfig="@xml/locales_config">
 
         <!-- Main Activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".screens.MainActivity"
+            android:launchMode="singleTop"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,51 +22,46 @@
             </intent-filter>
         </activity>
 
+        <!-- Settings Activity -->
+        <activity
+            android:name=".screens.SettingsActivity"
+            android:parentActivityName=".screens.MainActivity"
+            android:exported="false" />
+
+        <!-- Game Selection Activity -->
+        <activity
+            android:name=".screens.GameSelectionActivity"
+            android:parentActivityName=".screens.MainActivity" />
+
+        <!-- Language Selection Activity -->
+        <activity
+            android:name=".screens.LanguageSelectionActivity"
+            android:parentActivityName=".screens.GameSelectionActivity" />
 
         <!-- Language Game Activity -->
         <activity
-            android:name=".LanguageGame"
-            android:parentActivityName=".ChooseLanguageGame"
-            android:label="@string/title_activity_language_test"/>
-
-
-        <!-- Pause Menu Activity -->
-        <activity
-            android:name=".PauseMenu" />
-
-
-        <!-- Settings Activity -->
-        <activity
-            android:name=".Settings"
-            android:parentActivityName=".MainActivity" />
-
-
-        <!-- Choose Language Game Activity -->
-        <activity
-            android:name=".ChooseLanguageGame" />
-
-
-        <!-- Choose Game Activity -->
-        <activity
-            android:name=".ChooseGame"
-            android:parentActivityName=".MainActivity" />
-
+            android:name=".screens.LanguageGameActivity"
+            android:parentActivityName=".screens.LanguageSelectionActivity" />
 
         <!-- Math Game Activity -->
         <activity
-            android:name=".MathGame"
-            android:parentActivityName=".ChooseGame" />
-
+            android:name=".screens.MathGameActivity"
+            android:parentActivityName=".screens.GameSelectionActivity" />
 
         <!-- Guessing Game Activity -->
         <activity
-            android:name=".GuessingGame"
-            android:parentActivityName=".ChooseGame" />
-
+            android:name=".screens.GuessingGameActivity"
+            android:parentActivityName=".screens.GameSelectionActivity" />
 
         <!-- Game Over Activity -->
         <activity
-            android:name=".GameOver" />
+            android:name=".screens.GameOverActivity" />
+
+        <!-- Leaderboard Activity -->
+        <activity
+            android:name=".ui.screens.LeaderboardActivity"
+            android:parentActivityName=".screens.MainActivity"
+            android:exported="false" />
 
     </application>
 </manifest>
